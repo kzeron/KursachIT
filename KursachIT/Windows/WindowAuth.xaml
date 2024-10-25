@@ -12,9 +12,33 @@
         AllowsTransparency="True"
         Title="MainWindow" Height="600" Width="1200">
     <Grid>
-        <materialDesign:Card>
+        <materialDesign:Card UniformCornerRadius="15"
+                             Margin="5" Background="WhiteSmoke">
             <Grid>
-                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.08*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="WindowMinimize" 
+                                             Height="20"
+                                             Width="20"
+                                             HorizontalAlignment="Right"
+                                             Margin="5 0"
+                                             Foreground="Black"
+                                             MouseLeftButtonDown="Minimize_MouseLeftButtonDown"/>
+                    <materialDesign:PackIcon Kind="WindowClose" 
+                                             Height="20"
+                                             Width="20"
+                                             Margin="5 0"
+                                             Foreground="Black"
+                                             HorizontalAlignment="Right"
+                                             MouseLeftButtonDown="Close_MouseLeftButtonDown"
+                        />
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    
+                </StackPanel>
             </Grid>
         </materialDesign:Card>
     </Grid>

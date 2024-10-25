@@ -10,28 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KursachIT.Windows
+namespace KursachIT.PageFolder
 {
     /// <summary>
-    /// Логика взаимодействия для WindowAuth.xaml
+    /// Логика взаимодействия для AuthPage.xaml
     /// </summary>
-    public partial class WindowAuth : Window
+    public partial class AuthPage : Page
     {
-        public WindowAuth()
+        public AuthPage()
         {
             InitializeComponent();
-        }
-
-        private void Minimaze_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
     }
 }
