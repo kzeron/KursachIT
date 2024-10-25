@@ -10,7 +10,7 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
-        Title="MainWindow" Height="600" Width="1200">
+        Title="MainWindow" Height="600" Width="900">
     <Grid>
         <materialDesign:Card UniformCornerRadius="15"
                              Margin="5" Background="WhiteSmoke">
@@ -37,7 +37,11 @@
                         />
                 </StackPanel>
                 <StackPanel Grid.Row="1">
-                    
+                    <Frame x:Name="FrameConnect"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Width="900"
+                           Height="550"/>
                 </StackPanel>
             </Grid>
         </materialDesign:Card>

@@ -22,16 +22,17 @@ namespace KursachIT.Windows
         public WindowAuth()
         {
             InitializeComponent();
+            FrameConnect.NavigationService.Navigate(new PageFolder.AuthPage());
         }
 
-        private void Minimaze_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Minimize_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            WindowState = WindowState.Minimized;
         }
 
         private void Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            Close();
         }
     }
 }
