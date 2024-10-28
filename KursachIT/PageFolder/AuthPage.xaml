@@ -15,14 +15,45 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            
+            <TextBlock Text="Логин" 
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="0 180 0 40"
+                       FontFamily="Cascadia Mono SemiLight"/>
+            <TextBlock Text="Пароль" 
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Margin="0 50 0 180"
+                       FontFamily="Cascadia Mono SemiLight"
+                       FontSize="20"/>
         </StackPanel>
         <StackPanel Grid.Column="1">
-            <TextBlock/>
+            <TextBlock Text="Авторизация"
+                       Margin="50"
+                       HorizontalAlignment="Center"
+                       FontSize="37" 
+                       FontFamily="Cascadia Mono"
+                       />
             <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"/>
-            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"/>
+                     materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                     VerticalAlignment="Center"
+                     Margin="80 30"/>
+            <PasswordBox Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
+                         materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                         VerticalAlignment="Center"
+                         Margin="80 30"/>
+            <Button x:Name="AuthButton"
+                    materialDesign:ButtonAssist.CornerRadius="10"
+                    Width="200"
+                    Background="#3DAB28"
+                    FontSize="20"
+                    Content="Авторизоваться"
+                    Foreground="WhiteSmoke"
+                    Height="55"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="MaterialDesignRaisedButton with Round Corners"/>
         </StackPanel>
     </Grid>
 </Page>
