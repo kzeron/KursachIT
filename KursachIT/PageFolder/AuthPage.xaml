@@ -15,11 +15,16 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
+            <Image Source="/Assets/Images/cloud.png"
+                   Width="90"
+                   Height="90"
+                   HorizontalAlignment="Left"
+                   Margin="20 0"/>
             <TextBlock Text="Логин" 
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center"
                        FontSize="20"
-                       Margin="0 180 0 40"
+                       Margin="0 60 0 40"
                        FontFamily="Cascadia Mono SemiLight"/>
             <TextBlock Text="Пароль" 
                        HorizontalAlignment="Right"
