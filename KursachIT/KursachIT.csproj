@@ -79,6 +79,9 @@
     <Compile Include="PageFolder\PersAcc.xaml.cs">
       <DependentUpon>PersAcc.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AnketWin.xaml.cs">
+      <DependentUpon>AnketWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\WindowAuth.xaml.cs">
       <DependentUpon>WindowAuth.xaml</DependentUpon>
     </Compile>
@@ -120,6 +123,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageFolder\PersAcc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AnketWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
