@@ -25,5 +25,12 @@
                   Style="{StaticResource MaterialDesignDataGrid}">
             
         </DataGrid>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="1">
+            <TextBlock Text=""/>
+            <TextBlock Text=""/>
+            <TextBlock Text=""/>
+            <TextBlock Text=""/>
+        </StackPanel>
     </Grid>
 </Page>
