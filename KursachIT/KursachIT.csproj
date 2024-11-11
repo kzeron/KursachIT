@@ -79,6 +79,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ClassFolder\MBClass.cs" />
     <Compile Include="DataFolder\Category.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -213,7 +214,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ClassFolder\" />
     <Folder Include="PageFolder\UserFolder\" />
   </ItemGroup>
   <ItemGroup>
