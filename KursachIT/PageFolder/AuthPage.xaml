@@ -58,7 +58,8 @@
                     Height="55"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
-                    ToolTip="MaterialDesignRaisedButton with Round Corners"/>
+                    ToolTip="MaterialDesignRaisedButton with Round Corners"
+                    Click="AuthButton_Click"/>
         </StackPanel>
     </Grid>
 </Page>

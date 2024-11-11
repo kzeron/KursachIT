@@ -23,5 +23,15 @@ namespace KursachIT.Windows
         {
             InitializeComponent();
         }
+
+        private void PackIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void PackIcon_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            ClassFolder.MBClass.ExitMB();
+        }
     }
 }

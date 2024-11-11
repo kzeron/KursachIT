@@ -26,14 +26,15 @@
                                              HorizontalAlignment="Right"
                                              Margin="5 0"
                                              Foreground="Black"
-                                             MouseLeftButtonDown="Minimize_MouseLeftButtonDown"/>
+                                             MouseLeftButtonDown="PackIcon_MouseLeftButtonDown"/>
                     <materialDesign:PackIcon Kind="WindowClose" 
                                              Height="20"
                                              Width="20"
                                              Margin="5 0"
                                              Foreground="Black"
                                              HorizontalAlignment="Right"
-                                             MouseLeftButtonDown="Close_MouseLeftButtonDown"
+                                             MouseLeftButtonDown="PackIcon_MouseLeftButtonDown_1"
+                                             
                         />
                 </StackPanel>
      

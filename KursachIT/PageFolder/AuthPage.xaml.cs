@@ -24,5 +24,10 @@ namespace KursachIT.PageFolder
         {
             InitializeComponent();
         }
+
+        private void AuthButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

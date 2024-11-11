@@ -32,7 +32,7 @@ namespace KursachIT.Windows
 
         private void Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Close();
+            ClassFolder.MBClass.ExitMB();
         }
     }
 }
