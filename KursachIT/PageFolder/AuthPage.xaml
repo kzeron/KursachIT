@@ -40,11 +40,13 @@
                        FontSize="37" 
                        FontFamily="Cascadia Mono"
                        />
-            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+            <TextBox x:Name="LoginTb"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
                      VerticalAlignment="Center"
                      Margin="80 30"/>
-            <PasswordBox Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
+            <PasswordBox x:Name="PasswordPb"
+                         Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                          materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
                          VerticalAlignment="Center"
                          Margin="80 30"/>
