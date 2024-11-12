@@ -10,7 +10,8 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
-        Title="MainWindow" Height="600" Width="900">
+        Title="MainWindow" Height="600" Width="900"
+        MouseDoubleClick="Window_MouseDoubleClick">
     <Grid>
         <materialDesign:Card UniformCornerRadius="15"
                              Margin="5" Background="WhiteSmoke">
@@ -20,6 +21,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="890">
+                    
                     <Image Source="/Assets/Images/cloud.png"
                            Width="60"
                            Height="60"
@@ -45,7 +47,9 @@
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
                            Width="900"
-                           Height="550"/>
+                           Height="550"
+                           NavigationUIVisibility="Hidden"
+                           />
                 </StackPanel>
             </Grid>
         </materialDesign:Card>

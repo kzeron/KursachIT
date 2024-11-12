@@ -32,7 +32,7 @@ namespace KursachIT.ClassFolder
         }
         public static void ExitMB()
         {
-            bool result = QuestionMB("Вы действительно хотите выйтм?");
+            bool result = QuestionMB("Вы действительно хотите выйти?");
             if (result)
             {
                 App.Current.Shutdown();

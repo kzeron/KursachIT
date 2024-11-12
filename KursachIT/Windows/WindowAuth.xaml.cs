@@ -19,6 +19,7 @@ namespace KursachIT.Windows
     /// </summary>
     public partial class WindowAuth : Window
     {
+        private Point startPoint;
         public WindowAuth()
         {
             InitializeComponent();
@@ -33,6 +34,14 @@ namespace KursachIT.Windows
         private void Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ClassFolder.MBClass.ExitMB();
+        }
+
+        private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+                startPoint = e.GetPosition(this);
+
+                DragMove();
+            
         }
     }
 }

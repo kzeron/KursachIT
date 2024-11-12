@@ -23,14 +23,18 @@
         <DataGrid Grid.Column="1"
                   Grid.Row="1"
                   Style="{StaticResource MaterialDesignDataGrid}">
-            
+
         </DataGrid>
-        <StackPanel Grid.Column="0"
-                    Grid.Row="1">
-            <TextBlock Text=""/>
-            <TextBlock Text=""/>
-            <TextBlock Text=""/>
-            <TextBlock Text=""/>
-        </StackPanel>
+        <Grid Grid.Row="1"
+              Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            
+        </Grid>
     </Grid>
 </Page>
