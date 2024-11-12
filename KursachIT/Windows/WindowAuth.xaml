@@ -19,18 +19,22 @@
                     <RowDefinition Height="0.08*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="890">
+                    <Image Source="/Assets/Images/cloud.png"
+                           Width="60"
+                           Height="60"
+                           Margin="20 0 740 0"/>
                     <materialDesign:PackIcon Kind="WindowMinimize" 
                                              Height="20"
                                              Width="20"
                                              HorizontalAlignment="Right"
-                                             Margin="5 0"
+                                             Margin="5 10"
                                              Foreground="Black"
                                              MouseLeftButtonDown="Minimize_MouseLeftButtonDown"/>
                     <materialDesign:PackIcon Kind="WindowClose" 
                                              Height="20"
                                              Width="20"
-                                             Margin="5 0"
+                                             Margin="10 10"
                                              Foreground="Black"
                                              HorizontalAlignment="Right"
                                              MouseLeftButtonDown="Close_MouseLeftButtonDown"
