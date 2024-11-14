@@ -13,10 +13,10 @@ namespace KursachIT.DataFolder
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ITAdminEntities : DbContext
+    public partial class ITAdminEntities1 : DbContext
     {
-        public ITAdminEntities()
-            : base("name=ITAdminEntities")
+        public ITAdminEntities1()
+            : base("name=ITAdminEntities1")
         {
         }
     

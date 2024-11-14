@@ -18,7 +18,7 @@ namespace KursachIT.DataFolder
         public string SerialNumber { get; set; }
         public System.DateTime PurchaseDate { get; set; }
         public System.DateTime WarrantyEndDate { get; set; }
-        public int IdDeviceType { get; set; }
+        public Nullable<int> IdDeviceType { get; set; }
     
         public virtual DeviceTypes DeviceTypes { get; set; }
     }

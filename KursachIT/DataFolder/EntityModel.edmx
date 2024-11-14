@@ -20,7 +20,7 @@
           <Property Name="SerialNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="PurchaseDate" Type="date" Nullable="false" />
           <Property Name="WarrantyEndDate" Type="date" Nullable="false" />
-          <Property Name="IdDeviceType" Type="int" Nullable="false" />
+          <Property Name="IdDeviceType" Type="int" />
         </EntityType>
         <EntityType Name="DeviceTypes">
           <Key>
@@ -150,7 +150,7 @@
           <Property Name="IdRole" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Devices_DeviceTypes">
-          <End Role="DeviceTypes" Type="Self.DeviceTypes" Multiplicity="1" />
+          <End Role="DeviceTypes" Type="Self.DeviceTypes" Multiplicity="0..1" />
           <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DeviceTypes">
@@ -379,7 +379,7 @@
           <Property Name="SerialNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="WarrantyEndDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IdDeviceType" Type="Int32" Nullable="false" />
+          <Property Name="IdDeviceType" Type="Int32" />
           <NavigationProperty Name="DeviceTypes" Relationship="Self.FK_Devices_DeviceTypes" FromRole="Devices" ToRole="DeviceTypes" />
         </EntityType>
         <EntityType Name="DeviceTypes">
@@ -544,7 +544,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Devices_DeviceTypes">
-          <End Role="DeviceTypes" Type="Self.DeviceTypes" Multiplicity="1" />
+          <End Role="DeviceTypes" Type="Self.DeviceTypes" Multiplicity="0..1" />
           <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DeviceTypes">
@@ -675,7 +675,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ITAdminEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ITAdminEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="Devices" EntityType="Self.Devices" />
           <EntitySet Name="DeviceTypes" EntityType="Self.DeviceTypes" />
@@ -745,7 +745,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ITAdminModelContainer" CdmEntityContainer="ITAdminEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ITAdminModelContainer" CdmEntityContainer="ITAdminEntities1">
           <EntitySetMapping Name="Category">
             <EntityTypeMapping TypeName="ITAdminModel.Category">
               <MappingFragment StoreEntitySet="Category">
