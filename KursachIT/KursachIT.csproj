@@ -79,6 +79,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ClassFolder\ClassDevice.cs" />
     <Compile Include="ClassFolder\ClassUser.cs" />
     <Compile Include="ClassFolder\MBClass.cs" />
     <Compile Include="DataFolder\Category.cs">
