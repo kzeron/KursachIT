@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using KursachIT.DataFolder;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -14,22 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KursachIT.PageFolder.AdminFolder
+namespace KursachIT.PageFolder.UserFolder
 {
     /// <summary>
-    /// Логика взаимодействия для RequestList.xaml
+    /// Логика взаимодействия для PageRequestAdd.xaml
     /// </summary>
-    public partial class RequestList : Page
+    public partial class PageRequestAdd : Page
     {
-        private ITAdminEntities adminEntities = new ITAdminEntities();
-        public RequestList()
+        public PageRequestAdd()
         {
             InitializeComponent();
-        }
-
-        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

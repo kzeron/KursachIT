@@ -143,6 +143,15 @@
     <Compile Include="DataFolder\User.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\AdminFolder\PageHistory.xaml.cs">
+      <DependentUpon>PageHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\AdminFolder\PageRequestMore.xaml.cs">
+      <DependentUpon>PageRequestMore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\AdminFolder\PageStaff.xaml.cs">
+      <DependentUpon>PageStaff.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\AdminFolder\RequestList.xaml.cs">
       <DependentUpon>RequestList.xaml</DependentUpon>
     </Compile>
@@ -151,6 +160,9 @@
     </Compile>
     <Compile Include="PageFolder\PersAcc.xaml.cs">
       <DependentUpon>PersAcc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\UserFolder\PageRequestAdd.xaml.cs">
+      <DependentUpon>PageRequestAdd.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AnketWin.xaml.cs">
       <DependentUpon>AnketWin.xaml</DependentUpon>
@@ -198,6 +210,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\AdminFolder\PageHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\AdminFolder\PageRequestMore.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\AdminFolder\PageStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\AdminFolder\RequestList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +234,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\UserFolder\PageRequestAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AnketWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -219,9 +247,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PageFolder\UserFolder\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\Images\cloud.png" />
   </ItemGroup>
