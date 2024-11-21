@@ -18,10 +18,6 @@ namespace KursachIT.DataFolder
         public DeviceTypes()
         {
             this.Devices = new HashSet<Devices>();
-            this.PCDetails = new HashSet<PCDetails>();
-            this.PrinterDetails = new HashSet<PrinterDetails>();
-            this.ScannerDetails = new HashSet<ScannerDetails>();
-            this.ServerDetails = new HashSet<ServerDetails>();
         }
     
         public int IdDeviceType { get; set; }
@@ -29,13 +25,5 @@ namespace KursachIT.DataFolder
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Devices> Devices { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PCDetails> PCDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PrinterDetails> PrinterDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ScannerDetails> ScannerDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServerDetails> ServerDetails { get; set; }
     }
 }

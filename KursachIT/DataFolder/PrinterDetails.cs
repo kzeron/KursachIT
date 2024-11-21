@@ -21,6 +21,6 @@ namespace KursachIT.DataFolder
         public string ColorPrinting { get; set; }
         public Nullable<int> IdDevice { get; set; }
     
-        public virtual DeviceTypes DeviceTypes { get; set; }
+        public virtual Devices Devices { get; set; }
     }
 }

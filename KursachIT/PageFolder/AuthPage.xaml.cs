@@ -21,6 +21,7 @@ namespace KursachIT.PageFolder
     /// <summary>
     /// Логика взаимодействия для AuthPage.xaml
     /// </summary>
+    //public partial class ITAdminEntities : DbContext 
     public partial class AuthPage : Page
     {
         public AuthPage()

@@ -14,9 +14,22 @@ namespace KursachIT.ClassFolder
         public string DeviceTypeName { get; set; }
         public int DeviceTypeId { get; set; }
         public string SerialNumber {  get; set; }
-        public DateTimeValueSerializer PurchaseDate { get; set; }
-        public DateTimeValueSerializer WarrantyEndDate { get; set; }
+        public string PurchaseDate { get; set; }
+        public string WarrantyEndDate { get; set; }
         public string CPU {  get; set; }
-
+        public int RAM { get; set; }
+        public string Storage {  get; set; }
+        public string GPU { get; set; }
+        public int IdPrinter { get; set; }
+        public string PrintTechnology { get; set; }
+        public string MaxResolution { get; set; }
+        public float MaxPrintSpeed { get; set; }
+        public string ColorPrinting { get; set; }
+        public int IdScanner { get; set; } 
+        public string MaxScanResolution { get; set; }
+        public string ScanSpeed { get; set; }
+        public string DocumentFeeder { get; set; }
+        public int RackUnit { get; set; }
+        public string NetworkInterface {  get; set; }
     }
 }

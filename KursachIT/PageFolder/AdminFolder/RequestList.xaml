@@ -26,16 +26,17 @@
         <StackPanel Grid.Row="1"
                     Grid.Column="0"/>
         <DataGrid Grid.Column="1"
+                  x:Name="ReqestDgList"
                   Grid.Row="1"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   FontFamily="Cascadia Mono SemiLight"
                   Padding="Auto"
-                  Style="{StaticResource MaterialDesignDataGrid}" 
-                  Loaded="DataGrid_Loaded">
+                  Style="{StaticResource MaterialDesignDataGrid}"
+                  IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№ п/п"
-                                    Binding="{Binding IdEmployers}"/>
+                                    Binding="{Binding IdDevice}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="1"

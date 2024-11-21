@@ -185,24 +185,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PCDetails_DeviceTypes">
-          <End Role="DeviceTypes" Type="Self.DeviceTypes" Multiplicity="0..1" />
+        <Association Name="FK_PCDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
           <End Role="PCDetails" Type="Self.PCDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DeviceTypes">
-              <PropertyRef Name="IdDeviceType" />
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
             </Principal>
             <Dependent Role="PCDetails">
               <PropertyRef Name="IdDevice" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PrinterDetails_DeviceTypes">
-          <End Role="DeviceTypes" Type="Self.DeviceTypes" Multiplicity="0..1" />
+        <Association Name="FK_PrinterDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
           <End Role="PrinterDetails" Type="Self.PrinterDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DeviceTypes">
-              <PropertyRef Name="IdDeviceType" />
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
             </Principal>
             <Dependent Role="PrinterDetails">
               <PropertyRef Name="IdDevice" />
@@ -257,24 +257,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ScannerDetails_DeviceTypes">
-          <End Role="DeviceTypes" Type="Self.DeviceTypes" Multiplicity="0..1" />
+        <Association Name="FK_ScannerDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
           <End Role="ScannerDetails" Type="Self.ScannerDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DeviceTypes">
-              <PropertyRef Name="IdDeviceType" />
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
             </Principal>
             <Dependent Role="ScannerDetails">
               <PropertyRef Name="IdDevice" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ServerDetails_DeviceTypes">
-          <End Role="DeviceTypes" Type="Self.DeviceTypes" Multiplicity="0..1" />
+        <Association Name="FK_ServerDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
           <End Role="ServerDetails" Type="Self.ServerDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DeviceTypes">
-              <PropertyRef Name="IdDeviceType" />
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
             </Principal>
             <Dependent Role="ServerDetails">
               <PropertyRef Name="IdDevice" />
@@ -321,12 +321,12 @@
             <End Role="User" EntitySet="User" />
             <End Role="Employers" EntitySet="Employers" />
           </AssociationSet>
-          <AssociationSet Name="FK_PCDetails_DeviceTypes" Association="Self.FK_PCDetails_DeviceTypes">
-            <End Role="DeviceTypes" EntitySet="DeviceTypes" />
+          <AssociationSet Name="FK_PCDetails_Devices" Association="Self.FK_PCDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
             <End Role="PCDetails" EntitySet="PCDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_PrinterDetails_DeviceTypes" Association="Self.FK_PrinterDetails_DeviceTypes">
-            <End Role="DeviceTypes" EntitySet="DeviceTypes" />
+          <AssociationSet Name="FK_PrinterDetails_Devices" Association="Self.FK_PrinterDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
             <End Role="PrinterDetails" EntitySet="PrinterDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Requests_Category" Association="Self.FK_Requests_Category">
@@ -345,12 +345,12 @@
             <End Role="Status" EntitySet="Status" />
             <End Role="Requests" EntitySet="Requests" />
           </AssociationSet>
-          <AssociationSet Name="FK_ScannerDetails_DeviceTypes" Association="Self.FK_ScannerDetails_DeviceTypes">
-            <End Role="DeviceTypes" EntitySet="DeviceTypes" />
+          <AssociationSet Name="FK_ScannerDetails_Devices" Association="Self.FK_ScannerDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
             <End Role="ScannerDetails" EntitySet="ScannerDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_ServerDetails_DeviceTypes" Association="Self.FK_ServerDetails_DeviceTypes">
-            <End Role="DeviceTypes" EntitySet="DeviceTypes" />
+          <AssociationSet Name="FK_ServerDetails_Devices" Association="Self.FK_ServerDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
             <End Role="ServerDetails" EntitySet="ServerDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
@@ -381,6 +381,10 @@
           <Property Name="WarrantyEndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IdDeviceType" Type="Int32" />
           <NavigationProperty Name="DeviceTypes" Relationship="Self.FK_Devices_DeviceTypes" FromRole="Devices" ToRole="DeviceTypes" />
+          <NavigationProperty Name="PCDetails" Relationship="Self.FK_PCDetails_Devices" FromRole="Devices" ToRole="PCDetails" />
+          <NavigationProperty Name="PrinterDetails" Relationship="Self.FK_PrinterDetails_Devices" FromRole="Devices" ToRole="PrinterDetails" />
+          <NavigationProperty Name="ScannerDetails" Relationship="Self.FK_ScannerDetails_Devices" FromRole="Devices" ToRole="ScannerDetails" />
+          <NavigationProperty Name="ServerDetails" Relationship="Self.FK_ServerDetails_Devices" FromRole="Devices" ToRole="ServerDetails" />
         </EntityType>
         <EntityType Name="DeviceTypes">
           <Key>
@@ -389,10 +393,6 @@
           <Property Name="IdDeviceType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DeviceTypeName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Devices" Relationship="Self.FK_Devices_DeviceTypes" FromRole="DeviceTypes" ToRole="Devices" />
-          <NavigationProperty Name="PCDetails" Relationship="Self.FK_PCDetails_DeviceTypes" FromRole="DeviceTypes" ToRole="PCDetails" />
-          <NavigationProperty Name="PrinterDetails" Relationship="Self.FK_PrinterDetails_DeviceTypes" FromRole="DeviceTypes" ToRole="PrinterDetails" />
-          <NavigationProperty Name="ScannerDetails" Relationship="Self.FK_ScannerDetails_DeviceTypes" FromRole="DeviceTypes" ToRole="ScannerDetails" />
-          <NavigationProperty Name="ServerDetails" Relationship="Self.FK_ServerDetails_DeviceTypes" FromRole="DeviceTypes" ToRole="ServerDetails" />
         </EntityType>
         <EntityType Name="Employers">
           <Key>
@@ -429,7 +429,7 @@
           <Property Name="Storage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GPU" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdDevice" Type="Int32" />
-          <NavigationProperty Name="DeviceTypes" Relationship="Self.FK_PCDetails_DeviceTypes" FromRole="PCDetails" ToRole="DeviceTypes" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_PCDetails_Devices" FromRole="PCDetails" ToRole="Devices" />
         </EntityType>
         <EntityType Name="PrinterDetails">
           <Key>
@@ -441,7 +441,7 @@
           <Property Name="MaxPrintSpeed" Type="Double" Nullable="false" />
           <Property Name="ColorPrinting" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdDevice" Type="Int32" />
-          <NavigationProperty Name="DeviceTypes" Relationship="Self.FK_PrinterDetails_DeviceTypes" FromRole="PrinterDetails" ToRole="DeviceTypes" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_PrinterDetails_Devices" FromRole="PrinterDetails" ToRole="Devices" />
         </EntityType>
         <EntityType Name="Priority">
           <Key>
@@ -487,7 +487,7 @@
           <Property Name="ScanSpeed" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DocumentFeeder" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdDevice" Type="Int32" />
-          <NavigationProperty Name="DeviceTypes" Relationship="Self.FK_ScannerDetails_DeviceTypes" FromRole="ScannerDetails" ToRole="DeviceTypes" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_ScannerDetails_Devices" FromRole="ScannerDetails" ToRole="Devices" />
         </EntityType>
         <EntityType Name="ServerDetails">
           <Key>
@@ -500,7 +500,7 @@
           <Property Name="RackUnit" Type="Int32" Nullable="false" />
           <Property Name="NetworkInterface" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdDevice" Type="Int32" />
-          <NavigationProperty Name="DeviceTypes" Relationship="Self.FK_ServerDetails_DeviceTypes" FromRole="ServerDetails" ToRole="DeviceTypes" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_ServerDetails_Devices" FromRole="ServerDetails" ToRole="Devices" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -555,48 +555,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PCDetails_DeviceTypes">
-          <End Role="DeviceTypes" Type="Self.DeviceTypes" Multiplicity="0..1" />
+        <Association Name="FK_PCDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
           <End Role="PCDetails" Type="Self.PCDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DeviceTypes">
-              <PropertyRef Name="IdDeviceType" />
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
             </Principal>
             <Dependent Role="PCDetails">
               <PropertyRef Name="IdDevice" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PrinterDetails_DeviceTypes">
-          <End Role="DeviceTypes" Type="Self.DeviceTypes" Multiplicity="0..1" />
+        <Association Name="FK_PrinterDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
           <End Role="PrinterDetails" Type="Self.PrinterDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DeviceTypes">
-              <PropertyRef Name="IdDeviceType" />
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
             </Principal>
             <Dependent Role="PrinterDetails">
               <PropertyRef Name="IdDevice" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ScannerDetails_DeviceTypes">
-          <End Role="DeviceTypes" Type="Self.DeviceTypes" Multiplicity="0..1" />
+        <Association Name="FK_ScannerDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
           <End Role="ScannerDetails" Type="Self.ScannerDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DeviceTypes">
-              <PropertyRef Name="IdDeviceType" />
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
             </Principal>
             <Dependent Role="ScannerDetails">
               <PropertyRef Name="IdDevice" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ServerDetails_DeviceTypes">
-          <End Role="DeviceTypes" Type="Self.DeviceTypes" Multiplicity="0..1" />
+        <Association Name="FK_ServerDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
           <End Role="ServerDetails" Type="Self.ServerDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DeviceTypes">
-              <PropertyRef Name="IdDeviceType" />
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
             </Principal>
             <Dependent Role="ServerDetails">
               <PropertyRef Name="IdDevice" />
@@ -675,7 +675,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ITAdminEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ITAdminEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="Devices" EntityType="Self.Devices" />
           <EntitySet Name="DeviceTypes" EntityType="Self.DeviceTypes" />
@@ -699,20 +699,20 @@
             <End Role="DeviceTypes" EntitySet="DeviceTypes" />
             <End Role="Devices" EntitySet="Devices" />
           </AssociationSet>
-          <AssociationSet Name="FK_PCDetails_DeviceTypes" Association="Self.FK_PCDetails_DeviceTypes">
-            <End Role="DeviceTypes" EntitySet="DeviceTypes" />
+          <AssociationSet Name="FK_PCDetails_Devices" Association="Self.FK_PCDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
             <End Role="PCDetails" EntitySet="PCDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_PrinterDetails_DeviceTypes" Association="Self.FK_PrinterDetails_DeviceTypes">
-            <End Role="DeviceTypes" EntitySet="DeviceTypes" />
+          <AssociationSet Name="FK_PrinterDetails_Devices" Association="Self.FK_PrinterDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
             <End Role="PrinterDetails" EntitySet="PrinterDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_ScannerDetails_DeviceTypes" Association="Self.FK_ScannerDetails_DeviceTypes">
-            <End Role="DeviceTypes" EntitySet="DeviceTypes" />
+          <AssociationSet Name="FK_ScannerDetails_Devices" Association="Self.FK_ScannerDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
             <End Role="ScannerDetails" EntitySet="ScannerDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_ServerDetails_DeviceTypes" Association="Self.FK_ServerDetails_DeviceTypes">
-            <End Role="DeviceTypes" EntitySet="DeviceTypes" />
+          <AssociationSet Name="FK_ServerDetails_Devices" Association="Self.FK_ServerDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
             <End Role="ServerDetails" EntitySet="ServerDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Employers_Office" Association="Self.FK_Employers_Office">
@@ -745,7 +745,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ITAdminModelContainer" CdmEntityContainer="ITAdminEntities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ITAdminModelContainer" CdmEntityContainer="ITAdminEntities">
           <EntitySetMapping Name="Category">
             <EntityTypeMapping TypeName="ITAdminModel.Category">
               <MappingFragment StoreEntitySet="Category">

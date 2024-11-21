@@ -14,6 +14,15 @@ namespace KursachIT.DataFolder
     
     public partial class Devices
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Devices()
+        {
+            this.PCDetails = new HashSet<PCDetails>();
+            this.PrinterDetails = new HashSet<PrinterDetails>();
+            this.ScannerDetails = new HashSet<ScannerDetails>();
+            this.ServerDetails = new HashSet<ServerDetails>();
+        }
+    
         public int IdDevice { get; set; }
         public string SerialNumber { get; set; }
         public System.DateTime PurchaseDate { get; set; }
@@ -21,5 +30,13 @@ namespace KursachIT.DataFolder
         public Nullable<int> IdDeviceType { get; set; }
     
         public virtual DeviceTypes DeviceTypes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PCDetails> PCDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PrinterDetails> PrinterDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ScannerDetails> ScannerDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ServerDetails> ServerDetails { get; set; }
     }
 }

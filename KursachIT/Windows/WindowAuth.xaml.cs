@@ -36,12 +36,9 @@ namespace KursachIT.Windows
             ClassFolder.MBClass.ExitMB();
         }
 
-        private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-                startPoint = e.GetPosition(this);
-
-                DragMove();
-            
+            DragMove();
         }
     }
 }
