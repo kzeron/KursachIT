@@ -23,7 +23,7 @@ namespace KursachIT.PageFolder.AdminFolder
     /// </summary>
     public partial class RequestList : Page
     {
-        private ObservableCollection<ClassDevice>ModelDevices { get; set; }
+        private ObservableCollection<ClassDevice> ModelDevices;
 
         public RequestList()
         {
@@ -38,17 +38,23 @@ namespace KursachIT.PageFolder.AdminFolder
         {
             using (var context = new ITAdminEntities())
             {
-                var devicesData = (from Devices in context.Devices
+                var devicesData = (from Devices in context.Devices 
                                    join DeviceTypes in context.DeviceTypes on Devices.IdDeviceType equals DeviceTypes.IdDeviceType
-                                   join PCDetails in context.PCDetails on DeviceTypes.IdDeviceType equals PCDetails.IdDevice
-                                   join ServerDetails in context.ServerDetails on DeviceTypes.IdDeviceType equals ServerDetails.IdDevice
-                                   join ScannerDetails in context.ScannerDetails on DeviceTypes.IdDeviceType equals ScannerDetails.IdScanner
-                                   join PrinterDetails in context.PrinterDetails on DeviceTypes.IdDeviceType equals PrinterDetails.IdDevice
+                                   join PCDetails in context.PCDetails on Devices.IdDevice equals PCDetails.IdDevice into pcDetailsGroup
+                                   from PCDetails in pcDetailsGroup.DefaultIfEmpty()
+                                   join ServerDetails in context.ServerDetails on Devices.IdDevice equals ServerDetails.IdDevice into serverDetailsGroup
+                                   from ServerDetails in serverDetailsGroup.DefaultIfEmpty()
+                                   join ScannerDetails in context.ScannerDetails on Devices.IdDevice equals ScannerDetails.IdScanner into scannerDetailsGroup
+                                   from ScannerDetails in scannerDetailsGroup.DefaultIfEmpty()
+                                   join PrinterDetails in context.PrinterDetails on Devices.IdDevice equals PrinterDetails.IdDevice into printerDetailsGroup
+                                   from PrinterDetails in printerDetailsGroup.DefaultIfEmpty()
                                    select new
                                    {
                                        Devices.IdDevice,
                                        DeviceTypes.DeviceTypeName,
-                                       PCDetails.Devices
+                                       Devices.SerialNumber,
+                                       Devices.PurchaseDate,
+                                       Devices.WarrantyEndDate
                                    }).OrderBy(u => u.IdDevice)
                                    .ToList();
                 ModelDevices.Clear();
@@ -57,7 +63,10 @@ namespace KursachIT.PageFolder.AdminFolder
                     ModelDevices.Add(new ClassDevice
                     {
                         IdDevice = device.IdDevice,
-                        DeviceName = device.DeviceTypeName
+                        DeviceTypeName = device.DeviceTypeName,
+                        SerialNumber = device.SerialNumber,
+                        PurchaseDate = device.PurchaseDate,
+                        WarrantyEndDate = device.WarrantyEndDate
                     });
                 }
                 ReqestDgList.ItemsSource = ModelDevices;

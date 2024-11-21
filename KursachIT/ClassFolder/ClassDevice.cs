@@ -10,12 +10,11 @@ namespace KursachIT.ClassFolder
     internal class ClassDevice
     {
         public int IdDevice {  get; set; }
-        public string DeviceName { get; set; }
         public string DeviceTypeName { get; set; }
         public int DeviceTypeId { get; set; }
         public string SerialNumber {  get; set; }
-        public string PurchaseDate { get; set; }
-        public string WarrantyEndDate { get; set; }
+        public DateTime PurchaseDate { get; set; }
+        public DateTime WarrantyEndDate { get; set; }
         public string CPU {  get; set; }
         public int RAM { get; set; }
         public string Storage {  get; set; }
