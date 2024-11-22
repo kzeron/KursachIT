@@ -76,7 +76,8 @@
                        Margin="60 10 40 10"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
-                       Style="{StaticResource StandartText}"/>
+                       Style="{StaticResource HoverText}"
+                       MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
             <materialDesign:PackIcon Kind="ListBoxOutline" Grid.Row="2"
                                      Height="35"
                                      Width="35"
