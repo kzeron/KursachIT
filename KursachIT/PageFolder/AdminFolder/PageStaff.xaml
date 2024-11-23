@@ -33,7 +33,8 @@
                   FontFamily="Cascadia Mono SemiLight"
                   Padding="Auto"
                   Style="{StaticResource MaterialDesignDataGrid}"
-                  IsReadOnly="True">
+                  IsReadOnly="True"
+                  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№ п/п"
                                     Binding="{Binding IdUser}"/>

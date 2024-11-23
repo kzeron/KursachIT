@@ -43,7 +43,9 @@
                 <DataGridTextColumn Header="индификационный номер"
                                     Binding="{Binding SerialNumber}"/>
                 <DataGridTextColumn Header="дата производства"
-                                    Binding="{Binding PurchaseDate, StringFormat='dd.MM.yyyy'}"/>
+                                    Binding="{Binding PurchaseDate, StringFormat='dd.MM.yyyy'}">
+                    
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Окончание Заявки"
                                     Binding="{Binding WarrantyEndDate, StringFormat='dd.MM.yyyy'}"/>
             </DataGrid.Columns>
