@@ -143,6 +143,9 @@
     <Compile Include="DataFolder\User.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\AddPages\PageAddEmploye.xaml.cs">
+      <DependentUpon>PageAddEmploye.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\AdminFolder\PageHistory.xaml.cs">
       <DependentUpon>PageHistory.xaml</DependentUpon>
     </Compile>
@@ -207,6 +210,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assets\Resource\GlobleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\AddPages\PageAddEmploye.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
