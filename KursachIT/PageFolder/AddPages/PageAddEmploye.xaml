@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:KursachIT.PageFolder.AddPages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageAddEmploye">
@@ -14,19 +15,57 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <TextBlock x:Name="NameEmTb"/>
-            <TextBlock x:Name="SurnameEmTb"/>
-            <TextBlock x:Name="PathronymicEmTb"/>
-            <TextBlock x:Name="EmailEmTb"/>
-            <TextBlock x:Name="PhoneEmTb"/>
+            <TextBox x:Name="NameEmTb"
+                       Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                       materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="30 20"/>
+            <TextBox x:Name="SurnameEmTb"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                     VerticalAlignment="Center"
+                     FontSize="20"
+                     Margin="30 20"/>
+            <TextBox x:Name="PathronymicEmTb"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                     VerticalAlignment="Center"
+                     FontSize="20"
+                     Margin="30 20"/>
+            <TextBox x:Name="EmailEmTb"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                     VerticalAlignment="Center"
+                     FontSize="20"
+                     Margin="30 20"/>
         </StackPanel>
         <StackPanel Grid.Column="1">
-            <ComboBox>
+            <TextBox x:Name="PhoneEmTb"
+                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                      materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                      VerticalAlignment="Center"
+                      FontSize="20"
+                      Margin="30 20"/>
+            <ComboBox x:Name="NameOfficeCb"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                      Margin="30 20">
                 <ComboBoxItem/>
                 <ComboBoxItem/>
             </ComboBox>
-            <TextBlock x:Name="LoginEmTb"/>
-            <TextBlock x:Name="OfficeEmTb"/>
+            <TextBox x:Name="LoginEmTb"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                     VerticalAlignment="Center"
+                     FontSize="20"
+                     Margin="30 20"/>
+            <TextBox x:Name="OfficeEmTb"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                     VerticalAlignment="Center"
+                     FontSize="20"
+                     Margin="30 20"/>
             
         </StackPanel>
     </Grid>

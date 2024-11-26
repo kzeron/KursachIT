@@ -49,6 +49,7 @@ namespace KursachIT.PageFolder.AdminFolder
                                          Employers.Lastname,
                                          Employers.Patronymic,
                                          Employers.Office,
+                                         Office.NameOffice,
                                          Employers.numberOffice,
                                          Employers.email,
                                          Employers.numberPhone
@@ -63,7 +64,7 @@ namespace KursachIT.PageFolder.AdminFolder
                             Name = user.Name,
                             LastName = user.Lastname,
                             Patronymic = user.Patronymic,
-                            NameOffice = user.numberOffice,
+                             = user.numberOffice,
                         });
                     }
                     StaffDgList.ItemsSource = _users;

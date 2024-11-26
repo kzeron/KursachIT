@@ -15,6 +15,7 @@ namespace KursachIT.ClassFolder
         public string Patronymic { get; set; }
         public int IdOffice { get; set; }
         public string NameOffice { get; set; }
+        public string NumberOffice { get; set; }
         public string NumberPhone { get; set; }
         public string Email {  get; set; } 
         public string Login { get; set; }

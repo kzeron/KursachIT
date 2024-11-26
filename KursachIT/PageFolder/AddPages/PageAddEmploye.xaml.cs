@@ -24,5 +24,10 @@ namespace KursachIT.PageFolder.AddPages
         {
             InitializeComponent();
         }
+
+        private void PhoneEmTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
