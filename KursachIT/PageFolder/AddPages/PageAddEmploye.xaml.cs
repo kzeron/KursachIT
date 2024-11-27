@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KursachIT.DataFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,11 +24,34 @@ namespace KursachIT.PageFolder.AddPages
         public PageAddEmploye()
         {
             InitializeComponent();
+            LoadOffice();
+        }
+        private void LoadOffice()
+        {
+            using (var context = new ITAdminEntities())
+            {
+                var offices = context.Office.ToList();
+                NameOfficeCb.ItemsSource = offices;
+                NameOfficeCb.DisplayMemberPath = "NameOffice";
+                NameOfficeCb.SelectedValuePath = "IdOffice";
+            }
         }
 
-        private void PhoneEmTb_TextChanged(object sender, TextChangedEventArgs e)
+        private void AddBt_Click(object sender, RoutedEventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(NameEmTb.Text))
+            {
+                if(string.IsNullOrWhiteSpace(SurnameEmTb.Text))
+                {
+                    if(string.IsNullOrWhiteSpace(PathronymicEmTb.Text))
+                    {
+                        if(string.IsNullOrWhiteSpace(LoginEmTb.Text))
+                        {
 
+                        }
+                    }
+                }    
+            }
         }
     }
 }

@@ -39,6 +39,19 @@
                      VerticalAlignment="Center"
                      FontSize="20"
                      Margin="30 20"/>
+            <Button x:Name="BackBt"
+                    materialDesign:ButtonAssist.CornerRadius="5"
+                    Width="100"
+                    Background="DarkGray"
+                    FontSize="20"
+                    Content="Назад"
+                    Foreground="WhiteSmoke"
+                    Height="40"
+                    HorizontalAlignment="Left"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="MaterialDesignRaisedButton with Round Corners"
+                    Margin="30 00 10 0" Cursor="Hand"/>
         </StackPanel>
         <StackPanel Grid.Column="1">
             <TextBox x:Name="PhoneEmTb"
@@ -50,6 +63,7 @@
             <ComboBox x:Name="NameOfficeCb"
                       Style="{StaticResource MaterialDesignOutlinedComboBox}"
                       materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                      Height="60"
                       Margin="30 20">
                 <ComboBoxItem/>
                 <ComboBoxItem/>
@@ -66,7 +80,20 @@
                      VerticalAlignment="Center"
                      FontSize="20"
                      Margin="30 20"/>
-            
+            <Button x:Name="AddBt"
+                    materialDesign:ButtonAssist.CornerRadius="5"
+                    Width="150"
+                    Background="#3DAB28"
+                    FontSize="20"
+                    Content="Добавить"
+                    Foreground="WhiteSmoke"
+                    Height="40"
+                    HorizontalAlignment="Right"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="MaterialDesignRaisedButton with Round Corners"
+                    Margin="10 0 30 0"
+                    Cursor="Hand" Click="AddBt_Click"/>
         </StackPanel>
     </Grid>
 </Page>

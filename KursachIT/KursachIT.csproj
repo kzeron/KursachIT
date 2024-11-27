@@ -146,6 +146,9 @@
     <Compile Include="PageFolder\AddPages\PageAddEmploye.xaml.cs">
       <DependentUpon>PageAddEmploye.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\AddPages\PageAddLogin.xaml.cs">
+      <DependentUpon>PageAddLogin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\AdminFolder\PageHistory.xaml.cs">
       <DependentUpon>PageHistory.xaml</DependentUpon>
     </Compile>
@@ -214,6 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageFolder\AddPages\PageAddEmploye.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\AddPages\PageAddLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
