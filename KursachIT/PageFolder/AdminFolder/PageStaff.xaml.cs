@@ -64,7 +64,7 @@ namespace KursachIT.PageFolder.AdminFolder
                             Name = user.Name,
                             LastName = user.Lastname,
                             Patronymic = user.Patronymic,
-                             = user.numberOffice,
+                            NumberOffice = user.numberOffice,
                         });
                     }
                     StaffDgList.ItemsSource = _users;

@@ -1,4 +1,5 @@
 ﻿using System;
+using KursachIT.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,20 @@ namespace KursachIT.PageFolder.AddPages
         public PageAddLogin()
         {
             InitializeComponent();
+        }
+        private void LoadRole()
+        {
+
+        }
+        private void AddBt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BackBt_Click(object sender, RoutedEventArgs e)
+        {
+            AnketWin anketWin = new AnketWin();
+            anketWin.Close();    
         }
     }
 }

@@ -53,5 +53,10 @@ namespace KursachIT.PageFolder.AddPages
                 }    
             }
         }
+
+        private void BackBt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

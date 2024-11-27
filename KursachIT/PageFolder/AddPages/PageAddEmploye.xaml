@@ -51,7 +51,8 @@
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     ToolTip="MaterialDesignRaisedButton with Round Corners"
-                    Margin="30 00 10 0" Cursor="Hand"/>
+                    Margin="30 00 10 0" Cursor="Hand"
+                    Click="BackBt_Click"/>
         </StackPanel>
         <StackPanel Grid.Column="1">
             <TextBox x:Name="PhoneEmTb"
@@ -64,10 +65,8 @@
                       Style="{StaticResource MaterialDesignOutlinedComboBox}"
                       materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
                       Height="60"
-                      Margin="30 20">
-                <ComboBoxItem/>
-                <ComboBoxItem/>
-            </ComboBox>
+                      Margin="30 20"
+                      SelectedItem="{Binding Role}"/>
             <TextBox x:Name="LoginEmTb"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"

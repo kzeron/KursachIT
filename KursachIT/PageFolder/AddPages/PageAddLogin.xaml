@@ -9,19 +9,61 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageAddLogin">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3.2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <StackPanel>
             <TextBox x:Name="NameEmTb"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
                      VerticalAlignment="Center"
                      FontSize="20"
-                     Margin="30 20"/>
+                     Margin="120 70 120 20"/>
             <PasswordBox x:Name="PassowordEmTb"
-                     
-                     materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
-                     VerticalAlignment="Center"
-                     FontSize="20"
-                     Margin="30 20"/>
+                         Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
+                         materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                         VerticalAlignment="Center"
+                         FontSize="20"
+                         Margin="120 20"/>
+            <ComboBox x:Name="NameOfficeCb"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                      Height="60"
+                      Margin="120 20"
+                      SelectedItem="{Binding Role}"
+                      SelectedValuePath="IdRole"
+                      DisplayMemberPath="NameRole"/>
+            
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="BackBt"
+                    materialDesign:ButtonAssist.CornerRadius="5"
+                    Width="100"
+                    Background="DarkGray"
+                    FontSize="20"
+                    Content="Назад"
+                    Foreground="WhiteSmoke"
+                    Height="45"
+                    HorizontalAlignment="Left"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="MaterialDesignRaisedButton with Round Corners"
+                    Margin="30 00 10 0" Cursor="Hand" Click="BackBt_Click"/>
+            <Button x:Name="AddBt"
+                    materialDesign:ButtonAssist.CornerRadius="5"
+                    Width="150"
+                    Background="#3DAB28"
+                    FontSize="20"
+                    Content="Добавить"
+                    Foreground="WhiteSmoke"
+                    Height="40"
+                    HorizontalAlignment="Right"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="MaterialDesignRaisedButton with Round Corners"
+                    Margin="10 0 30 0"
+                    Cursor="Hand" Click="AddBt_Click"/>
         </StackPanel>
     </Grid>
 </Page>
