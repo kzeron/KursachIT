@@ -14,7 +14,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel>
-            <TextBox x:Name="NameEmTb"
+            <TextBox x:Name="LoginEmTb"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
                      VerticalAlignment="Center"
@@ -26,7 +26,7 @@
                          VerticalAlignment="Center"
                          FontSize="20"
                          Margin="120 20"/>
-            <ComboBox x:Name="NameOfficeCb"
+            <ComboBox x:Name="RoleCb"
                       Style="{StaticResource MaterialDesignOutlinedComboBox}"
                       materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
                       Height="60"
@@ -57,7 +57,7 @@
                     FontSize="20"
                     Content="Добавить"
                     Foreground="WhiteSmoke"
-                    Height="40"
+                    Height="45"
                     HorizontalAlignment="Right"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"

@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using KursachIT.DataFolder;
+using KursachIT.ClassFolder;
 
 namespace KursachIT.PageFolder.AddPages
 {
@@ -24,14 +26,26 @@ namespace KursachIT.PageFolder.AddPages
         public PageAddLogin()
         {
             InitializeComponent();
-        }
-        private void LoadRole()
-        {
-
+            RoleCb.ItemsSource = ITAdminEntities.GetContext().Role.ToList(); 
         }
         private void AddBt_Click(object sender, RoutedEventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(LoginEmTb.Text))
+            {
+                MBClass.ErrorMB("Введите логин");
+            }
+            else if (string.IsNullOrEmpty(PassowordEmTb.Password))
+            {
+                MBClass.ErrorMB("Введите данные пароль"); 
+            }
+            else if (RoleCb.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Выбирите Уровень доступа");
+            }
+            else 
+            {
 
+            }
         }
 
         private void BackBt_Click(object sender, RoutedEventArgs e)
