@@ -19,9 +19,10 @@ namespace KursachIT.Windows
     /// </summary>
     public partial class AnketWin : Window
     {
-        public AnketWin()
+        public AnketWin(Page pageToLoad)
         {
             InitializeComponent();
+            NavigationAdding.Navigate(pageToLoad);
         }
 
         private void PackIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

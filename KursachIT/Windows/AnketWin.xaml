@@ -36,9 +36,10 @@
                                              MouseLeftButtonDown="PackIcon_MouseLeftButtonDown_1"
                                              
                         />
-                    <Frame x:Name="NavigationAdding" 
-                           NavigationUIVisibility="Hidden"/>
                 </StackPanel>
+                <Frame x:Name="NavigationAdding" 
+                       NavigationUIVisibility="Hidden"
+                       Grid.Row="1"/>
      
             </Grid>
         </materialDesign:Card>

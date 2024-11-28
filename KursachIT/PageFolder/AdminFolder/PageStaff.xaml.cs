@@ -1,5 +1,6 @@
 ﻿using KursachIT.ClassFolder;
 using KursachIT.DataFolder;
+using KursachIT.PageFolder.AddPages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,8 +40,9 @@ namespace KursachIT.PageFolder.AdminFolder
                                      join User in context.User on Employers.IdUser equals User.IdLogin
                                      join Role in context.Role on User.IdRole equals Role.IdRole into UserGroup
                                      from Role in UserGroup.DefaultIfEmpty()
-                                     join Office in context.Office on Employers.IdOffice equals Office.IdOffice into OfficeGroup
-                                     from Office in OfficeGroup.DefaultIfEmpty()
+                                     join Office in context.Office on Employers.IdOffice equals Office.IdOffice
+                                     join Cabinet in context.Cabinet on Employers.IdCab equals Cabinet.IdNumberCab into OfficeGroup
+                                     from Cabinet in OfficeGroup.DefaultIfEmpty()
                                      select new
                                      {
                                          User.IdLogin,
@@ -50,7 +52,7 @@ namespace KursachIT.PageFolder.AdminFolder
                                          Employers.Patronymic,
                                          Employers.Office,
                                          Office.NameOffice,
-                                         Employers.numberOffice,
+                                         Cabinet.numberCab,
                                          Employers.email,
                                          Employers.numberPhone
                                      }).OrderBy(u => u.IdLogin)
@@ -64,11 +66,17 @@ namespace KursachIT.PageFolder.AdminFolder
                             Name = user.Name,
                             LastName = user.Lastname,
                             Patronymic = user.Patronymic,
-                            NumberOffice = user.numberOffice,
+                            NumberOffice = user.numberCab,
                         });
                     }
                     StaffDgList.ItemsSource = _users;
                 }
             }
+
+        private void AddBt_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.AnketWin anketWin = new Windows.AnketWin(new PageAddLogin());
+            anketWin.Show(); 
+        }
     }
 }

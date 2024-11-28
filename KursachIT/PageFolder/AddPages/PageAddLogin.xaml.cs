@@ -44,14 +44,37 @@ namespace KursachIT.PageFolder.AddPages
             }
             else 
             {
+                try
+                {
+                    using(var context = new ITAdminEntities())
+                    {
+                        var selectedRole = (DataFolder.Role)RoleCb.SelectedItem;
+                        var user = new User
 
+                        {
+                            Login = LoginEmTb.Text,
+                            Password = PassowordEmTb.Password,
+                        };
+
+                        context.User.Add(user);
+                        context.SaveChanges();
+                    };
+                }
+                catch(Exception ex)
+                {
+                    MBClass.ErrorMB(ex);
+                }
+                NavigationService.Navigate(new PageAddEmploye());
             }
         }
 
         private void BackBt_Click(object sender, RoutedEventArgs e)
         {
-            AnketWin anketWin = new AnketWin();
-            anketWin.Close();    
+            var parentWindow = Window.GetWindow(this);
+            if (parentWindow != null)
+            {
+                parentWindow.Close();
+            }
         }
     }
 }

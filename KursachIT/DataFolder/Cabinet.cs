@@ -12,28 +12,18 @@ namespace KursachIT.DataFolder
     using System;
     using System.Collections.Generic;
     
-    public partial class Employers
+    public partial class Cabinet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employers()
+        public Cabinet()
         {
-            this.Requests = new HashSet<Requests>();
+            this.Employers = new HashSet<Employers>();
         }
     
-        public int IdEmployers { get; set; }
-        public string Name { get; set; }
-        public string Lastname { get; set; }
-        public string Patronymic { get; set; }
-        public int IdOffice { get; set; }
-        public string numberPhone { get; set; }
-        public string email { get; set; }
-        public int IdUser { get; set; }
-        public Nullable<int> IdCab { get; set; }
+        public int IdNumberCab { get; set; }
+        public int numberCab { get; set; }
     
-        public virtual Cabinet Cabinet { get; set; }
-        public virtual Office Office { get; set; }
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Requests> Requests { get; set; }
+        public virtual ICollection<Employers> Employers { get; set; }
     }
 }

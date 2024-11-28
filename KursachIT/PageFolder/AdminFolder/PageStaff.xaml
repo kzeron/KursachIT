@@ -34,6 +34,7 @@
                   Padding="Auto"
                   Style="{StaticResource MaterialDesignDataGrid}"
                   IsReadOnly="True"
+                  Margin="0 0 0 60"
                   >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№ п/п"
@@ -45,9 +46,25 @@
                 <DataGridTextColumn Header="Отчество"
                                     Binding="{Binding Patronymic}"/>
                 <DataGridTextColumn Header="Номер кабинета"
-                                    Binding="{Binding NameOffice}"/>
+                                    Binding="{Binding NumberOffice}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="AddBt"
+                Grid.Column="1" Grid.Row="1"
+                materialDesign:ButtonAssist.CornerRadius="5"
+                Width="150"
+                Background="#3DAB28"
+                FontSize="20"
+                Content="Добавить"
+                Foreground="WhiteSmoke"
+                Height="40"
+                HorizontalAlignment="Right"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="MaterialDesignRaisedButton with Round Corners"
+                VerticalAlignment="Bottom"
+                Cursor="Hand" Click="AddBt_Click"
+                Margin="20 10"/>
         <Grid Grid.Row="1"
               Grid.Column="0">
             <Grid.RowDefinitions>

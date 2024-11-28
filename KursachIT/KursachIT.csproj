@@ -82,66 +82,81 @@
     <Compile Include="ClassFolder\ClassDevice.cs" />
     <Compile Include="ClassFolder\ClassUser.cs" />
     <Compile Include="ClassFolder\MBClass.cs" />
+    <Compile Include="DataFolder\Brand.cs">
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataFolder\Cabinet.cs">
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataFolder\Category.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\ContextClass.cs" />
     <Compile Include="DataFolder\Devices.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\DeviceTypes.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Employers.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataFolder\EntityModel.Context.cs">
+    <Compile Include="DataFolder\ITServiceModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EntityModel.Context.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataFolder\EntityModel.cs">
+    <Compile Include="DataFolder\ITServiceModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataFolder\EntityModel.Designer.cs">
+    <Compile Include="DataFolder\ITServiceModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EntityModel.edmx</DependentUpon>
+      <DependentUpon>ITServiceModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Office.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataFolder\OperationHistory.cs">
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\PCDetails.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\PrinterDetails.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Priority.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Requests.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Role.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\ScannerDetails.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\ServerDetails.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataFolder\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataFolder\sp_helpdiagrams_Result.cs">
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Status.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\sysdiagrams.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\User.cs">
-      <DependentUpon>EntityModel.tt</DependentUpon>
+      <DependentUpon>ITServiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\AddPages\PageAddEmploye.xaml.cs">
       <DependentUpon>PageAddEmploye.xaml</DependentUpon>
@@ -195,12 +210,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DataFolder\EntityModel.edmx">
+    <EntityDeploy Include="DataFolder\ITServiceModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EntityModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ITServiceModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DataFolder\EntityModel.edmx.diagram">
-      <DependentUpon>EntityModel.edmx</DependentUpon>
+    <None Include="DataFolder\ITServiceModel.edmx.diagram">
+      <DependentUpon>ITServiceModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -268,15 +283,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataFolder\EntityModel.Context.tt">
+    <Content Include="DataFolder\ITServiceModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntityModel.edmx</DependentUpon>
-      <LastGenOutput>EntityModel.Context.cs</LastGenOutput>
+      <DependentUpon>ITServiceModel.edmx</DependentUpon>
+      <LastGenOutput>ITServiceModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DataFolder\EntityModel.tt">
+    <Content Include="DataFolder\ITServiceModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntityModel.edmx</DependentUpon>
-      <LastGenOutput>EntityModel.cs</LastGenOutput>
+      <DependentUpon>ITServiceModel.edmx</DependentUpon>
+      <LastGenOutput>ITServiceModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
