@@ -78,5 +78,10 @@ namespace KursachIT.PageFolder.AdminFolder
             Windows.AnketWin anketWin = new Windows.AnketWin(new PageAddLogin());
             anketWin.Show(); 
         }
+
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new RequestList());
+        }
     }
 }

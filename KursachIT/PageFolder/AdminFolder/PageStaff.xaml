@@ -83,7 +83,7 @@
                        Margin="60 10 40 10"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
-                       Style="{StaticResource StandartText}"/>
+                       Style="{StaticResource HoverText}"/>
             <materialDesign:PackIcon Kind="FormatListBulleted" Grid.Row="1"
                                      Height="35"
                                      Width="35"
@@ -93,7 +93,7 @@
                        Margin="60 10 40 10"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
-                       Style="{StaticResource StandartText}"/>
+                       Style="{StaticResource HoverText}"/>
             <materialDesign:PackIcon Kind="ListBoxOutline" Grid.Row="2"
                                      Height="35"
                                      Width="35"
@@ -103,7 +103,8 @@
                        Margin="60 10 40 10"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
-                       Style="{StaticResource StandartText}"/>
+                       Style="{StaticResource HoverText}"
+                       MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
             <materialDesign:PackIcon Kind="History" Grid.Row="3"
                                      Height="35"
                                      Width="35"

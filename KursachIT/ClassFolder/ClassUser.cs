@@ -29,5 +29,12 @@ namespace KursachIT.ClassFolder
         User, 
         Technician
     }
-
+    public static class AuthUser
+    {
+        public static int IdCurretUser { get; set; }
+    }
+    public static class SharedData
+    {
+        public static int LastUserId { get; set; }
+    }
 }

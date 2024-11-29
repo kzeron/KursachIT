@@ -1,4 +1,5 @@
-﻿using KursachIT.DataFolder;
+﻿using KursachIT.ClassFolder;
+using KursachIT.DataFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,11 @@ namespace KursachIT.PageFolder.AddPages
     /// </summary>
     public partial class PageAddEmploye : Page
     {
-        public PageAddEmploye()
+        int _newIdUser;
+        public PageAddEmploye(int userId)
         {
             InitializeComponent();
+            _newIdUser = userId;
             LoadOffice();
         }
         private void LoadOffice()
@@ -31,32 +34,81 @@ namespace KursachIT.PageFolder.AddPages
             using (var context = new ITAdminEntities())
             {
                 var offices = context.Office.ToList();
+                var numbers = context.Cabinet.ToList();
                 NameOfficeCb.ItemsSource = offices;
-                NameOfficeCb.DisplayMemberPath = "NameOffice";
-                NameOfficeCb.SelectedValuePath = "IdOffice";
+                NamberOfficeCb.ItemsSource = numbers;
+                
             }
         }
 
         private void AddBt_Click(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(NameEmTb.Text))
+            if (string.IsNullOrWhiteSpace(NameEmTb.Text))
             {
-                if(string.IsNullOrWhiteSpace(SurnameEmTb.Text))
-                {
-                    if(string.IsNullOrWhiteSpace(PathronymicEmTb.Text))
-                    {
-                        if(string.IsNullOrWhiteSpace(LoginEmTb.Text))
-                        {
 
-                        }
-                    }
-                }    
             }
+            else if (string.IsNullOrWhiteSpace(SurnameEmTb.Text))
+            {
+
+            }
+            else if (string.IsNullOrWhiteSpace(PathronymicEmTb.Text))
+            {
+
+            }
+            else if (NamberOfficeCb.SelectedItem == null)
+            {
+
+            }
+            else if (NameOfficeCb.SelectedItem == null)
+            {
+
+            }
+            else if (string.IsNullOrWhiteSpace(EmailEmTb.Text))
+            {
+
+            }
+            else if (string.IsNullOrWhiteSpace(PhoneEmTb.Text))
+            {
+
+            }
+            else
+            {
+                try
+                {
+                    using (var context = new ITAdminEntities())
+                    {
+                        var selectedOffice = (Office)NameOfficeCb.SelectedItem;
+                        var selectedNumberOffice = (Cabinet)NamberOfficeCb.SelectedItem;
+                        var employer = new Employers
+                        {
+                            Name = NameEmTb.Text,
+                            Lastname= SurnameEmTb.Text,
+                            Patronymic = PhoneEmTb.Text,
+                            numberPhone = PhoneEmTb.Text,
+                            email = EmailEmTb.Text,
+                            Office = selectedOffice,
+                            Cabinet = selectedNumberOffice,
+                        };
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MBClass.ErrorMB(ex);
+                }
+            }
+        }
+        public static class SharedData
+        {
+            public static int LastUserId { get; set; }
         }
 
         private void BackBt_Click(object sender, RoutedEventArgs e)
         {
-
+            var parentWindow = Window.GetWindow(this);
+            if (parentWindow != null)
+            {
+                parentWindow.Close();
+            }
         }
     }
 }

@@ -48,23 +48,25 @@ namespace KursachIT.PageFolder.AddPages
                 {
                     using(var context = new ITAdminEntities())
                     {
-                        var selectedRole = (DataFolder.Role)RoleCb.SelectedItem;
+                        var selectedRole = context.Role.FirstOrDefault(r => r.IdRole == ((DataFolder.Role)RoleCb.SelectedItem).IdRole);
                         var user = new User
 
                         {
                             Login = LoginEmTb.Text,
                             Password = PassowordEmTb.Password,
+                            Role = selectedRole,
                         };
-
                         context.User.Add(user);
                         context.SaveChanges();
+                        int lastUserId = user.IdLogin;
+
+                        NavigationService.Navigate(new PageAddEmploye(lastUserId));
                     };
                 }
                 catch(Exception ex)
                 {
                     MBClass.ErrorMB(ex);
                 }
-                NavigationService.Navigate(new PageAddEmploye());
             }
         }
 
