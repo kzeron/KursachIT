@@ -48,6 +48,12 @@
                 <DataGridTextColumn Header="Номер кабинета"
                                     Binding="{Binding NumberOffice}"/>
             </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Изменить" Click="MenuItem_Click"/>
+                    <MenuItem Header="Удалить" Click="DeleteClick"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
         <Button x:Name="AddBt"
                 Grid.Column="1" Grid.Row="1"

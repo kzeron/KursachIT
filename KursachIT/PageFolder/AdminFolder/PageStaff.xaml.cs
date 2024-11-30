@@ -81,7 +81,19 @@ namespace KursachIT.PageFolder.AdminFolder
 
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            NavigationService.Navigate(new RequestList());
+            NavigationService.Navigate(new DevicesList());
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void DeleteClick(object sender, RoutedEventArgs e)
+        {
+            if(StaffDgList.SelectedItem is ClassUser selectedUser)
+            {
+
+            }
         }
     }
 }

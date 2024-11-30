@@ -80,6 +80,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ClassFolder\ClassDevice.cs" />
+    <Compile Include="ClassFolder\ClassRequest.cs" />
     <Compile Include="ClassFolder\ClassUser.cs" />
     <Compile Include="ClassFolder\MBClass.cs" />
     <Compile Include="DataFolder\Brand.cs">
@@ -164,6 +165,9 @@
     <Compile Include="PageFolder\AddPages\PageAddLogin.xaml.cs">
       <DependentUpon>PageAddLogin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\AdminFolder\DevicesList.xaml.cs">
+      <DependentUpon>DevicesList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\AdminFolder\PageHistory.xaml.cs">
       <DependentUpon>PageHistory.xaml</DependentUpon>
     </Compile>
@@ -236,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageFolder\AddPages\PageAddLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\AdminFolder\DevicesList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
