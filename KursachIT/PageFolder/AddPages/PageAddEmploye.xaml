@@ -85,7 +85,7 @@
             <ComboBox x:Name="NamberOfficeCb"
                       Style="{StaticResource MaterialDesignOutlinedComboBox}"
                       Foreground="#FFABADB3"
-                      materialDesign:HintAssist.Hint="Укажите отдел"
+                      materialDesign:HintAssist.Hint="Укажите номер кабинета"
                       materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
                       Height="60"
                       FontSize="20"

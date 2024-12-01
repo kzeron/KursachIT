@@ -6,7 +6,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:KursachIT.PageFolder.AdminFolder"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="900"
       Title="RequestList">
 
     <Grid>
@@ -27,7 +27,9 @@
         <StackPanel Grid.Row="1"
                     Grid.Column="0"/>
         <DataGrid Grid.Column="1"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   x:Name="ReqestDgList"
+                  ColumnWidth="*"
                   Grid.Row="1"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
@@ -38,15 +40,15 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№ п/п"
                                     Binding="{Binding IdDevice}"/>
-                <DataGridTextColumn Header="устройство"
+                <DataGridTextColumn Header="Приоритет"
                                     Binding="{Binding DeviceTypeName}"/>
-                <DataGridTextColumn Header="индификационный номер"
+                <DataGridTextColumn Header="Выполнить до"
                                     Binding="{Binding SerialNumber}"/>
-                <DataGridTextColumn Header="дата производства"
+                <DataGridTextColumn Header="Тип задачи"
                                     Binding="{Binding PurchaseDate, StringFormat='dd.MM.yyyy'}">
                     
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Окончание Заявки"
+                <DataGridTextColumn Header="Статус заявки"
                                     Binding="{Binding WarrantyEndDate, StringFormat='dd.MM.yyyy'}"/>
             </DataGrid.Columns>
         </DataGrid>

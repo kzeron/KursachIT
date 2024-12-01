@@ -89,6 +89,8 @@ namespace KursachIT.PageFolder.AddPages
                             Office = selectedOffice,
                             Cabinet = selectedNumberOffice,
                         };
+                        context.Employers.Add(employer);
+                        context.SaveChanges();
                     }
                 }
                 catch(Exception ex)

@@ -183,6 +183,12 @@
     <Compile Include="PageFolder\AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\EditPages\PageEditEmployer.xaml.cs">
+      <DependentUpon>PageEditEmployer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\EditPages\PageUserEdit.xaml.cs">
+      <DependentUpon>PageUserEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\PersAcc.xaml.cs">
       <DependentUpon>PersAcc.xaml</DependentUpon>
     </Compile>
@@ -264,6 +270,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageFolder\AuthPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\EditPages\PageEditEmployer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\EditPages\PageUserEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

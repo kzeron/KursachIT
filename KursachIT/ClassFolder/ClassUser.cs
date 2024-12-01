@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KursachIT.ClassFolder
 {
-    internal class ClassUser
+    public class ClassUser
     {
         public int IdUser { get; set; }
         public string Name { get; set; }
