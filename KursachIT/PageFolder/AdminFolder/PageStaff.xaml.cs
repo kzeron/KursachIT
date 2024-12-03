@@ -47,13 +47,12 @@ namespace KursachIT.PageFolder.AdminFolder
                                  from Cabinet in OfficeGroup.DefaultIfEmpty()
                                  select new
                                  {
+                                     Employers.IdEmployers,   
                                      User.IdLogin,
                                      Role.NameRole,
                                      Employers.Name,
                                      Employers.Lastname,
                                      Employers.Patronymic,
-                                     Employers.Office,
-                                     Office.NameOffice,
                                      Cabinet.numberCab,
                                      Employers.email,
                                      Employers.numberPhone
@@ -66,6 +65,7 @@ namespace KursachIT.PageFolder.AdminFolder
                     _users.Add(new ClassUser
                     {
                         IdUser = user.IdLogin,
+                        IdEmployers = user.IdEmployers, 
                         Name = user.Name,
                         LastName = user.Lastname,
                         Patronymic = user.Patronymic,
@@ -77,6 +77,7 @@ namespace KursachIT.PageFolder.AdminFolder
                 StaffDgList.ItemsSource = _users;
             }
         }
+
 
 
         private void AddBt_Click(object sender, RoutedEventArgs e)
@@ -107,45 +108,62 @@ namespace KursachIT.PageFolder.AdminFolder
         }
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
-            if(StaffDgList.SelectedItem is ClassUser selectedUser)
+            if (StaffDgList.SelectedItem is ClassUser selectedUser)
             {
                 var result = MessageBox.Show(
-                $"Вы уверены, что хотите удалить сотрудника {selectedUser.Name} {selectedUser.LastName}?",
-                "Подтверждение удаления",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
+                    $"Вы уверены, что хотите удалить сотрудника {selectedUser.Name} {selectedUser.LastName}?",
+                    "Подтверждение удаления",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+
                 if (result == MessageBoxResult.Yes)
                 {
                     try
                     {
-                        var context = ITAdminEntities.GetContext();
+                        using (var context = new ITAdminEntities())
                         {
-                            var emplouerDelete = context.Employers.FirstOrDefault(emp => emp.IdEmployers == selectedUser.IdUser);
-                            if (emplouerDelete != null)
-                            {
-                                context.Employers.Remove(emplouerDelete);
+                            // Manual deletion of related entities (e.g., Projects)
+                            var projectsToDelete = context.Employers.Where(p => p.IdEmployers == selectedUser.IdEmployers).ToList();
+                            context.Employers.RemoveRange(projectsToDelete);
 
-                                var userDelete = context.User.FirstOrDefault(u => u.IdLogin == emplouerDelete.IdUser);
-                                if(userDelete != null)
-                                {
-                                    context.User.Remove(userDelete);
-                                }    
-                                context.SaveChanges();
-                                MBClass.InformationMB("Пользователь удален");
-                                LoadData();
+                            // Delete the Employer
+                            var employerToDelete = context.Employers.FirstOrDefault(emp => emp.IdEmployers == selectedUser.IdEmployers);
+                            if (employerToDelete == null)
+                            {
+                                MBClass.ErrorMB("Сотрудник не найден.");
+                                return;
                             }
+
+                            context.Employers.Remove(employerToDelete);
+
+                            // Delete the User (if applicable)
+                            var userToDelete = context.User.FirstOrDefault(u => u.IdLogin == employerToDelete.IdUser);
+                            if (userToDelete != null)
+                            {
+                                context.User.Remove(userToDelete);
+                            }
+
+                            // Save changes
+                            context.SaveChanges();
+                            MBClass.InformationMB("Сотрудник успешно удален.");
+                            LoadData();
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
-                        MBClass.ErrorMB(ex);
+                        MBClass.ErrorMB($"Произошла ошибка при удалении: {ex.Message}");
                     }
                 }
             }
             else
             {
-                MBClass.ErrorMB("Выберете сотрудника для удаления");
+                MBClass.ErrorMB("Выберите сотрудника для удаления.");
             }
+        }
+
+        private void Tasks_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

@@ -57,7 +57,7 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     ToolTip="MaterialDesignRaisedButton with Round Corners"
                     Margin="30 00 10 0" Cursor="Hand" Click="BackBt_Click"/>
-            <Button x:Name="AddBt"
+            <Button x:Name="EditBt"
                     materialDesign:ButtonAssist.CornerRadius="5"
                     Width="150"
                     Background="#3DAB28"
@@ -70,7 +70,7 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     ToolTip="MaterialDesignRaisedButton with Round Corners"
                     Margin="10 0 30 0"
-                    Cursor="Hand" Click="AddBt_Click"/>
+                    Cursor="Hand" Click="EditBt_Click"/>
         </StackPanel>
     </Grid>
 </Page>

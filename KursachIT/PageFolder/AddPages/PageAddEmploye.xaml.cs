@@ -82,16 +82,18 @@ namespace KursachIT.PageFolder.AddPages
                         var employer = new Employers
                         {
                             Name = NameEmTb.Text,
-                            Lastname= SurnameEmTb.Text,
+                            Lastname = SurnameEmTb.Text,
                             Patronymic = PhoneEmTb.Text,
                             numberPhone = PhoneEmTb.Text,
                             email = EmailEmTb.Text,
                             Office = selectedOffice,
                             Cabinet = selectedNumberOffice,
+                            IdUser = _newIdUser
                         };
                         context.Employers.Add(employer);
                         context.SaveChanges();
                     }
+                    Window.GetWindow(this).Close();
                 }
                 catch(Exception ex)
                 {

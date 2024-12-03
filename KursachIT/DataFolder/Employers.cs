@@ -18,6 +18,7 @@ namespace KursachIT.DataFolder
         public Employers()
         {
             this.Requests = new HashSet<Requests>();
+            this.Requests1 = new HashSet<Requests>();
         }
     
         public int IdEmployers { get; set; }
@@ -35,5 +36,7 @@ namespace KursachIT.DataFolder
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Requests> Requests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Requests> Requests1 { get; set; }
     }
 }

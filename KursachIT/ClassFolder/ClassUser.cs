@@ -10,6 +10,7 @@ namespace KursachIT.ClassFolder
     public class ClassUser
     {
         public int IdUser { get; set; }
+        public int IdEmployers { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Patronymic { get; set; }

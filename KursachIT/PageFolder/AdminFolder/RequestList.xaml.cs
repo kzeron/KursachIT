@@ -23,13 +23,13 @@ namespace KursachIT.PageFolder.AdminFolder
     /// </summary>
     public partial class RequestList : Page
     {
-        private ObservableCollection<ClassDevice> ModelDevices;
+        private ObservableCollection<ClassRequest> ModelDevices;
 
         public RequestList()
         {
             
             InitializeComponent();
-            ModelDevices = new ObservableCollection<ClassDevice>();
+            ModelDevices = new ObservableCollection<ClassRequest>();
             LoadData();
             ReqestDgList.ItemsSource = ModelDevices;
 
@@ -38,39 +38,37 @@ namespace KursachIT.PageFolder.AdminFolder
         {
             using (var context = new ITAdminEntities())
             {
-                var devicesData = (from Devices in context.Devices 
-                                   join DeviceTypes in context.DeviceTypes on Devices.IdDeviceType equals DeviceTypes.IdDeviceType
-                                   join PCDetails in context.PCDetails on Devices.IdDevice equals PCDetails.IdDevice into pcDetailsGroup
-                                   from PCDetails in pcDetailsGroup.DefaultIfEmpty()
-                                   join ServerDetails in context.ServerDetails on Devices.IdDevice equals ServerDetails.IdDevice into serverDetailsGroup
-                                   from ServerDetails in serverDetailsGroup.DefaultIfEmpty()
-                                   join ScannerDetails in context.ScannerDetails on Devices.IdDevice equals ScannerDetails.IdScanner into scannerDetailsGroup
-                                   from ScannerDetails in scannerDetailsGroup.DefaultIfEmpty()
-                                   join PrinterDetails in context.PrinterDetails on Devices.IdDevice equals PrinterDetails.IdDevice into printerDetailsGroup
-                                   from PrinterDetails in printerDetailsGroup.DefaultIfEmpty()
+                var requestsData = (from Requests in context.Requests 
+                                   join Status in context.Status on Requests.IdStatus equals Status.IdStatus
+                                   join Category in context.Category on Requests.IdCategory equals Category.IdCategory
+                                   join Priority in context.Priority on Requests.IdPriority equals Priority.IdPriority into PriorityGroup
+                                   from Priority in PriorityGroup.DefaultIfEmpty()
+                                   join Executor in context.Employers on Requests.IdExcutor equals Executor.IdEmployers
+                                   join RequestSender in context.Employers on Requests.IdRequestSender equals RequestSender.IdEmployers into RequestSenderGroup
+                                   from RequestSender in RequestSenderGroup.DefaultIfEmpty()
                                    select new
                                    {
-                                       Devices.IdDevice,
-                                       DeviceTypes.DeviceTypeName,
-                                       Devices.SerialNumber,
-                                       Devices.PurchaseDate,
-                                       Devices.WarrantyEndDate
-                                   }).OrderBy(u => u.IdDevice)
+                                       Requests.Idrequest,
+                                       Requests.IdStatus,
+                                       Requests.IdCategory,
+                                       Requests.IdPriority,
+                                       Requests.PlanDate,
+                                   }).OrderBy(u => u.Idrequest)
                                    .ToList();
                 ModelDevices.Clear();
-                foreach (var device in devicesData)
+                foreach (var requests in requestsData)
                 {
-                    ModelDevices.Add(new ClassDevice
+                    ModelDevices.Add(new ClassRequest
                     {
-                        IdDevice = device.IdDevice,
-                        DeviceTypeName = device.DeviceTypeName,
-                        SerialNumber = device.SerialNumber,
-                        PurchaseDate = device.PurchaseDate,
-                        WarrantyEndDate = device.WarrantyEndDate
+                       IdRequst = requests.Idrequest,
+                       IdStatus = requests.IdStatus,
+                       IdCategory = requests.IdCategory,
+                       IdPriority = requests.IdPriority,
+                       PlanDate = requests.PlanDate,
                     });
                 }
                 ReqestDgList.ItemsSource = ModelDevices;
-
+                
             }
         }
 

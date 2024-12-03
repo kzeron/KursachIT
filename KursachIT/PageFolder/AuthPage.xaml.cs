@@ -59,7 +59,7 @@ namespace KursachIT.PageFolder
                         switch (user.IdRole)
                         {
                             case 1:
-                                NavigationService.Navigate(new AdminFolder.RequestList());
+                                NavigationService.Navigate(new AdminFolder.DevicesList());
                                 break;
                             case 2:
                                 MBClass.InformationMB("Помощник");

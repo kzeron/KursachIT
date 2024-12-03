@@ -84,80 +84,80 @@
     <Compile Include="ClassFolder\ClassUser.cs" />
     <Compile Include="ClassFolder\MBClass.cs" />
     <Compile Include="DataFolder\Brand.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Cabinet.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Category.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\ContextClass.cs" />
     <Compile Include="DataFolder\Devices.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\DeviceTypes.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Employers.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataFolder\ITServiceModel.Context.cs">
+    <Compile Include="DataFolder\ITdeportametModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ITServiceModel.Context.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataFolder\ITServiceModel.cs">
+    <Compile Include="DataFolder\ITdeportametModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataFolder\ITServiceModel.Designer.cs">
+    <Compile Include="DataFolder\ITdeportametModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ITServiceModel.edmx</DependentUpon>
+      <DependentUpon>ITdeportametModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Office.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\OperationHistory.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\PCDetails.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\PrinterDetails.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Priority.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Requests.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Role.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\ScannerDetails.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\ServerDetails.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\sp_helpdiagrams_Result.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Status.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\sysdiagrams.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\User.cs">
-      <DependentUpon>ITServiceModel.tt</DependentUpon>
+      <DependentUpon>ITdeportametModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\AddPages\PageAddEmploye.xaml.cs">
       <DependentUpon>PageAddEmploye.xaml</DependentUpon>
@@ -220,12 +220,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DataFolder\ITServiceModel.edmx">
+    <EntityDeploy Include="DataFolder\ITdeportametModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ITServiceModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ITdeportametModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DataFolder\ITServiceModel.edmx.diagram">
-      <DependentUpon>ITServiceModel.edmx</DependentUpon>
+    <None Include="DataFolder\ITdeportametModel.edmx.diagram">
+      <DependentUpon>ITdeportametModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -305,15 +305,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataFolder\ITServiceModel.Context.tt">
+    <Content Include="DataFolder\ITdeportametModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ITServiceModel.edmx</DependentUpon>
-      <LastGenOutput>ITServiceModel.Context.cs</LastGenOutput>
+      <DependentUpon>ITdeportametModel.edmx</DependentUpon>
+      <LastGenOutput>ITdeportametModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DataFolder\ITServiceModel.tt">
+    <Content Include="DataFolder\ITdeportametModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ITServiceModel.edmx</DependentUpon>
-      <LastGenOutput>ITServiceModel.cs</LastGenOutput>
+      <DependentUpon>ITdeportametModel.edmx</DependentUpon>
+      <LastGenOutput>ITdeportametModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

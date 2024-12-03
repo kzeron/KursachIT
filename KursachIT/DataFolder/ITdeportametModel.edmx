@@ -115,10 +115,10 @@
           <Property Name="IdCategory" Type="int" Nullable="false" />
           <Property Name="IdPriority" Type="int" Nullable="false" />
           <Property Name="PlanDate" Type="date" Nullable="false" />
-          <Property Name="IdReq" Type="int" Nullable="false" />
+          <Property Name="Transcription" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateRealize" Type="date" />
+          <Property Name="IdRequestSender" Type="int" Nullable="false" />
           <Property Name="IdExcutor" Type="int" Nullable="false" />
-          <Property Name="Transcription" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="DateRealize" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -279,6 +279,18 @@
               <PropertyRef Name="IdEmployers" />
             </Principal>
             <Dependent Role="Requests">
+              <PropertyRef Name="IdRequestSender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Employers1">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="IdEmployers" />
+            </Principal>
+            <Dependent Role="Requests">
               <PropertyRef Name="IdExcutor" />
             </Dependent>
           </ReferentialConstraint>
@@ -429,6 +441,10 @@
             <End Role="Employers" EntitySet="Employers" />
             <End Role="Requests" EntitySet="Requests" />
           </AssociationSet>
+          <AssociationSet Name="FK_Requests_Employers1" Association="Self.FK_Requests_Employers1">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
           <AssociationSet Name="FK_Requests_Priority" Association="Self.FK_Requests_Priority">
             <End Role="Priority" EntitySet="Priority" />
             <End Role="Requests" EntitySet="Requests" />
@@ -521,6 +537,7 @@
           <NavigationProperty Name="Office" Relationship="Self.FK_Employers_Office" FromRole="Employers" ToRole="Office" />
           <NavigationProperty Name="User" Relationship="Self.FK_Employers_User" FromRole="Employers" ToRole="User" />
           <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Employers" FromRole="Employers" ToRole="Requests" />
+          <NavigationProperty Name="Requests1" Relationship="Self.FK_Requests_Employers1" FromRole="Employers" ToRole="Requests" />
         </EntityType>
         <EntityType Name="Office">
           <Key>
@@ -583,12 +600,13 @@
           <Property Name="IdCategory" Type="Int32" Nullable="false" />
           <Property Name="IdPriority" Type="Int32" Nullable="false" />
           <Property Name="PlanDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IdReq" Type="Int32" Nullable="false" />
+          <Property Name="Transcription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateRealize" Type="DateTime" Precision="0" />
+          <Property Name="IdRequestSender" Type="Int32" Nullable="false" />
           <Property Name="IdExcutor" Type="Int32" Nullable="false" />
-          <Property Name="Transcription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DateRealize" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Requests_Category" FromRole="Requests" ToRole="Category" />
           <NavigationProperty Name="Employers" Relationship="Self.FK_Requests_Employers" FromRole="Requests" ToRole="Employers" />
+          <NavigationProperty Name="Employers1" Relationship="Self.FK_Requests_Employers1" FromRole="Requests" ToRole="Employers" />
           <NavigationProperty Name="Priority" Relationship="Self.FK_Requests_Priority" FromRole="Requests" ToRole="Priority" />
           <NavigationProperty Name="Status" Relationship="Self.FK_Requests_Status" FromRole="Requests" ToRole="Status" />
         </EntityType>
@@ -781,6 +799,18 @@
               <PropertyRef Name="IdEmployers" />
             </Principal>
             <Dependent Role="Requests">
+              <PropertyRef Name="IdRequestSender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Employers1">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="IdEmployers" />
+            </Principal>
+            <Dependent Role="Requests">
               <PropertyRef Name="IdExcutor" />
             </Dependent>
           </ReferentialConstraint>
@@ -881,6 +911,10 @@
             <End Role="Employers" EntitySet="Employers" />
           </AssociationSet>
           <AssociationSet Name="FK_Requests_Employers" Association="Self.FK_Requests_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Employers1" Association="Self.FK_Requests_Employers1">
             <End Role="Employers" EntitySet="Employers" />
             <End Role="Requests" EntitySet="Requests" />
           </AssociationSet>
@@ -1064,10 +1098,10 @@
                 <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
                 <ScalarProperty Name="IdPriority" ColumnName="IdPriority" />
                 <ScalarProperty Name="PlanDate" ColumnName="PlanDate" />
-                <ScalarProperty Name="IdReq" ColumnName="IdReq" />
-                <ScalarProperty Name="IdExcutor" ColumnName="IdExcutor" />
                 <ScalarProperty Name="Transcription" ColumnName="Transcription" />
                 <ScalarProperty Name="DateRealize" ColumnName="DateRealize" />
+                <ScalarProperty Name="IdRequestSender" ColumnName="IdRequestSender" />
+                <ScalarProperty Name="IdExcutor" ColumnName="IdExcutor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

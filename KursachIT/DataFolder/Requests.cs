@@ -20,13 +20,14 @@ namespace KursachIT.DataFolder
         public int IdCategory { get; set; }
         public int IdPriority { get; set; }
         public System.DateTime PlanDate { get; set; }
-        public int IdReq { get; set; }
-        public int IdExcutor { get; set; }
         public string Transcription { get; set; }
-        public System.DateTime DateRealize { get; set; }
+        public Nullable<System.DateTime> DateRealize { get; set; }
+        public int IdRequestSender { get; set; }
+        public int IdExcutor { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual Employers Employers { get; set; }
+        public virtual Employers Employers1 { get; set; }
         public virtual Priority Priority { get; set; }
         public virtual Status Status { get; set; }
     }

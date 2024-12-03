@@ -31,5 +31,15 @@ namespace KursachIT.PageFolder.EditPages
         {
             
         }
+
+        private void BackBt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditBt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
