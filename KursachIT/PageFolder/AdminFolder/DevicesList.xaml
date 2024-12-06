@@ -6,7 +6,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:KursachIT.PageFolder.AdminFolder"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="DevicesList">
 
     <Grid>
@@ -27,14 +27,16 @@
         <StackPanel Grid.Row="1"
                 Grid.Column="0"/>
         <DataGrid Grid.Column="1"
-              x:Name="ReqestDgList"
-              Grid.Row="1"
-              AutoGenerateColumns="False"
-              CanUserAddRows="False"
-              FontFamily="Cascadia Mono SemiLight"
-              Padding="Auto"
-              Style="{StaticResource MaterialDesignDataGrid}"
-              IsReadOnly="True">
+                  x:Name="ReqestDgList"
+                  Grid.Row="1"
+                  Width="Auto"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  FontFamily="Cascadia Mono SemiLight"
+                  Padding="Auto"
+                  Style="{StaticResource MaterialDesignDataGrid}"
+                  IsReadOnly="True"
+                  Margin="0 0 0 60">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№ п/п"
                                 Binding="{Binding IdDevice}"/>
@@ -50,6 +52,22 @@
                                 Binding="{Binding WarrantyEndDate, StringFormat='dd.MM.yyyy'}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="AddBt"
+         Grid.Column="1" Grid.Row="1"
+         materialDesign:ButtonAssist.CornerRadius="5"
+         Width="150"
+         Background="#3DAB28"
+         FontSize="20"
+         Content="Добавить"
+         Foreground="WhiteSmoke"
+         Height="40"
+         HorizontalAlignment="Right"
+         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+         Style="{StaticResource MaterialDesignRaisedButton}"
+         ToolTip="MaterialDesignRaisedButton with Round Corners"
+         VerticalAlignment="Bottom"
+         Cursor="Hand" Click="AddBt_Click"
+         Margin="20 10"/>
         <Grid Grid.Row="1"
           Grid.Column="0">
             <Grid.RowDefinitions>
@@ -61,62 +79,64 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <materialDesign:PackIcon Kind="Account" Grid.Row="0"
-                                 Height="35"
-                                 Width="35"
-                                 Margin="10"/>
+                 Height="35"
+                 Width="35"
+                 Margin="10"/>
             <TextBlock Grid.Row="0" 
-                   Text="Личный кабинет"
-                   Margin="60 10 40 10"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Style="{StaticResource StandartText}"/>
+   Text="Личный кабинет"
+   Margin="60 10 40 10"
+   VerticalAlignment="Center"
+   HorizontalAlignment="Left"
+   Style="{StaticResource StandartText}"/>
             <materialDesign:PackIcon Kind="FormatListBulleted" Grid.Row="1"
-                                 Height="35"
-                                 Width="35"
-                                 Margin="10"/>
+                 Height="35"
+                 Width="35"
+                 Margin="10"/>
             <TextBlock Grid.Row="1" 
-                   Text="Сотрудники"
-                   Margin="60 10 40 10"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Style="{StaticResource HoverText}"
-                   MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+   Text="Сотрудники"
+   Margin="60 10 40 10"
+   VerticalAlignment="Center"
+   HorizontalAlignment="Left"
+   Style="{StaticResource HoverText}"
+   MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
             <materialDesign:PackIcon Kind="ServerOutline" Grid.Row="2" 
-                                     Height="35"
-                                     Width="35"
-                                     Margin="10"/>
+                     Height="35"
+                     Width="35"
+                     Margin="10"/>
             <TextBlock Grid.Row="2" 
-                       Text="Устройства"
-                       Margin="60 10 40 10"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Left"
-                       Style="{StaticResource HoverText}"
-                       />
+       Text="Устройства"
+       Margin="60 10 40 10"
+       VerticalAlignment="Center"
+       HorizontalAlignment="Left"
+       Style="{StaticResource HoverText}"
+       />
             <materialDesign:PackIcon Kind="ListBoxOutline" Grid.Row="3"
-                                 Height="35"
-                                 Width="35"
-                                 Margin="10"/>
+                 Height="35"
+                 Width="35"
+                 Margin="10"/>
             <TextBlock Grid.Row="3" 
-                   Text="Задачи"
-                   Margin="60 10 40 10"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Style="{StaticResource StandartText}"/>
+           x:Name="Tasks"
+           Text="Задачи"
+           Margin="60 10 40 10"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Left"
+           Style="{StaticResource HoverText}"
+           MouseLeftButtonDown="Tasks_MouseLeftButtonDown"/>
             <materialDesign:PackIcon Kind="History" Grid.Row="4"
-                                 Height="35"
-                                 Width="35"
-                                 Margin="10"/>
+                 Height="35"
+                 Width="35"
+                 Margin="10"/>
             <TextBlock Grid.Row="4" 
-                   Text="История заявок"
-                   Margin="60 10 40 10"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Style="{StaticResource StandartText}"/>
+   Text="История заявок"
+   Margin="60 10 40 10"
+   VerticalAlignment="Center"
+   HorizontalAlignment="Left"
+   Style="{StaticResource StandartText}"/>
 
             <materialDesign:PackIcon Kind="LocationExit" Grid.Row="5"
-                                 Height="35"
-                                 Width="35"
-                                 Margin="10 40 10 10"/>
+                 Height="35"
+                 Width="35"
+                 Margin="10 40 10 10"/>
         </Grid>
     </Grid>
 </Page>

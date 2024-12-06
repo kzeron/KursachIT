@@ -14,16 +14,15 @@ namespace KursachIT.DataFolder
     
     public partial class Requests
     {
-        public int Idrequest { get; set; }
+        public int IdRequest { get; set; }
         public int IdStatus { get; set; }
-        public string NameRequest { get; set; }
         public int IdCategory { get; set; }
         public int IdPriority { get; set; }
         public System.DateTime PlanDate { get; set; }
         public string Transcription { get; set; }
         public Nullable<System.DateTime> DateRealize { get; set; }
         public int IdRequestSender { get; set; }
-        public int IdExcutor { get; set; }
+        public Nullable<int> IdExcutor { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual Employers Employers { get; set; }

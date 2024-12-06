@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KursachIT.PageFolder.AdminFolder
+namespace KursachIT.PageFolder.MoreFolder
 {
     /// <summary>
     /// Логика взаимодействия для PageRequestMore.xaml

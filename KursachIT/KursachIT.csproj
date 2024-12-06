@@ -83,81 +83,88 @@
     <Compile Include="ClassFolder\ClassRequest.cs" />
     <Compile Include="ClassFolder\ClassUser.cs" />
     <Compile Include="ClassFolder\MBClass.cs" />
+    <Compile Include="ClassFolder\RequestHelper.cs" />
     <Compile Include="DataFolder\Brand.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Cabinet.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Category.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\ContextClass.cs" />
     <Compile Include="DataFolder\Devices.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\DeviceTypes.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Employers.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataFolder\ITdeportametModel.Context.cs">
+    <Compile Include="DataFolder\EntityModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ITdeportametModel.Context.tt</DependentUpon>
+      <DependentUpon>EntityModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataFolder\ITdeportametModel.cs">
+    <Compile Include="DataFolder\EntityModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataFolder\ITdeportametModel.Designer.cs">
+    <Compile Include="DataFolder\EntityModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ITdeportametModel.edmx</DependentUpon>
+      <DependentUpon>EntityModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Office.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\OperationHistory.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\PCDetails.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\PrinterDetails.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Priority.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Requests.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Role.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\ScannerDetails.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\ServerDetails.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\sp_helpdiagrams_Result.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Status.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\sysdiagrams.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\User.cs">
-      <DependentUpon>ITdeportametModel.tt</DependentUpon>
+      <DependentUpon>EntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\AddPages\AddDevice.xaml.cs">
+      <DependentUpon>AddDevice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\AddPages\AddRequest.xaml.cs">
+      <DependentUpon>AddRequest.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\AddPages\PageAddEmploye.xaml.cs">
       <DependentUpon>PageAddEmploye.xaml</DependentUpon>
@@ -170,9 +177,6 @@
     </Compile>
     <Compile Include="PageFolder\AdminFolder\PageHistory.xaml.cs">
       <DependentUpon>PageHistory.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PageFolder\AdminFolder\PageRequestMore.xaml.cs">
-      <DependentUpon>PageRequestMore.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\AdminFolder\PageStaff.xaml.cs">
       <DependentUpon>PageStaff.xaml</DependentUpon>
@@ -188,6 +192,15 @@
     </Compile>
     <Compile Include="PageFolder\EditPages\PageUserEdit.xaml.cs">
       <DependentUpon>PageUserEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\MoreFolder\MoreDevice.xaml.cs">
+      <DependentUpon>MoreDevice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\MoreFolder\MoreEployer.xaml.cs">
+      <DependentUpon>MoreEployer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\MoreFolder\PageRequestMore.xaml.cs">
+      <DependentUpon>PageRequestMore.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\PersAcc.xaml.cs">
       <DependentUpon>PersAcc.xaml</DependentUpon>
@@ -220,12 +233,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DataFolder\ITdeportametModel.edmx">
+    <EntityDeploy Include="DataFolder\EntityModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ITdeportametModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>EntityModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DataFolder\ITdeportametModel.edmx.diagram">
-      <DependentUpon>ITdeportametModel.edmx</DependentUpon>
+    <None Include="DataFolder\EntityModel.edmx.diagram">
+      <DependentUpon>EntityModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -238,6 +251,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assets\Resource\GlobleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\AddPages\AddDevice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\AddPages\AddRequest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -254,10 +275,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageFolder\AdminFolder\PageHistory.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PageFolder\AdminFolder\PageRequestMore.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,6 +295,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageFolder\EditPages\PageUserEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\MoreFolder\MoreDevice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\MoreFolder\MoreEployer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\MoreFolder\PageRequestMore.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -305,15 +334,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataFolder\ITdeportametModel.Context.tt">
+    <Content Include="DataFolder\EntityModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ITdeportametModel.edmx</DependentUpon>
-      <LastGenOutput>ITdeportametModel.Context.cs</LastGenOutput>
+      <DependentUpon>EntityModel.edmx</DependentUpon>
+      <LastGenOutput>EntityModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DataFolder\ITdeportametModel.tt">
+    <Content Include="DataFolder\EntityModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ITdeportametModel.edmx</DependentUpon>
-      <LastGenOutput>ITdeportametModel.cs</LastGenOutput>
+      <DependentUpon>EntityModel.edmx</DependentUpon>
+      <LastGenOutput>EntityModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

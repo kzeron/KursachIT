@@ -23,58 +23,66 @@ namespace KursachIT.PageFolder.AdminFolder
     /// </summary>
     public partial class RequestList : Page
     {
-        private ObservableCollection<ClassRequest> ModelDevices;
+        private ObservableCollection<ClassRequest> ModelRequest;
 
         public RequestList()
         {
-            
             InitializeComponent();
-            ModelDevices = new ObservableCollection<ClassRequest>();
+            ModelRequest = new ObservableCollection<ClassRequest>();
             LoadData();
-            ReqestDgList.ItemsSource = ModelDevices;
 
         }
         public void LoadData()
         {
+            RequestHelper.UpdateOverdueRequests();
+
             using (var context = new ITAdminEntities())
             {
-                var requestsData = (from Requests in context.Requests 
-                                   join Status in context.Status on Requests.IdStatus equals Status.IdStatus
-                                   join Category in context.Category on Requests.IdCategory equals Category.IdCategory
-                                   join Priority in context.Priority on Requests.IdPriority equals Priority.IdPriority into PriorityGroup
-                                   from Priority in PriorityGroup.DefaultIfEmpty()
-                                   join Executor in context.Employers on Requests.IdExcutor equals Executor.IdEmployers
-                                   join RequestSender in context.Employers on Requests.IdRequestSender equals RequestSender.IdEmployers into RequestSenderGroup
-                                   from RequestSender in RequestSenderGroup.DefaultIfEmpty()
-                                   select new
-                                   {
-                                       Requests.Idrequest,
-                                       Requests.IdStatus,
-                                       Requests.IdCategory,
-                                       Requests.IdPriority,
-                                       Requests.PlanDate,
-                                   }).OrderBy(u => u.Idrequest)
-                                   .ToList();
-                ModelDevices.Clear();
-                foreach (var requests in requestsData)
+                var requestsData = (from Requests in context.Requests
+                                    join Status in context.Status on Requests.IdStatus equals Status.IdStatus into StatusGroup
+                                    from Status in StatusGroup.DefaultIfEmpty()
+                                    join Category in context.Category on Requests.IdCategory equals Category.IdCategory into CategoryGroup
+                                    from Category in CategoryGroup.DefaultIfEmpty()
+                                    join Priority in context.Priority on Requests.IdPriority equals Priority.IdPriority into PriorityGroup
+                                    from Priority in PriorityGroup.DefaultIfEmpty()
+                                        //join Executor in context.Employers on Requests.IdExcutor equals Executor.IdEmployers
+                                        //join RequestSender in context.Employers on Requests.IdRequestSender equals RequestSender.IdEmployers into RequestSenderGroup
+                                        //from RequestSender in RequestSenderGroup.DefaultIfEmpty()
+                                    select new
+                                    {
+                                        Requests.IdRequest,
+                                        Status.NameStatus,
+                                        Category.NameCategory,
+                                        Priority.NamePriority,
+                                        Requests.PlanDate,
+                                    }).OrderBy(u => u.IdRequest)
+                                    .ToList();
+
+                ModelRequest.Clear();
+                foreach (var request in requestsData)
                 {
-                    ModelDevices.Add(new ClassRequest
+                    ModelRequest.Add(new ClassRequest
                     {
-                       IdRequst = requests.Idrequest,
-                       IdStatus = requests.IdStatus,
-                       IdCategory = requests.IdCategory,
-                       IdPriority = requests.IdPriority,
-                       PlanDate = requests.PlanDate,
+                        IdRequst = request.IdRequest,
+                        NameStatus = request.NameStatus,
+                        NameCategory = request.NameCategory,
+                        NamePriority = request.NamePriority,
+                        PlanDate = request.PlanDate,
                     });
                 }
-                ReqestDgList.ItemsSource = ModelDevices;
-                
+                ReqestDgList.ItemsSource = ModelRequest;
             }
         }
+
 
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             NavigationService.Navigate(new PageStaff());
+        }
+
+        private void PackIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

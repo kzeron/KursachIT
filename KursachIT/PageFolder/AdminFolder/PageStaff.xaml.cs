@@ -53,6 +53,7 @@ namespace KursachIT.PageFolder.AdminFolder
                                      Employers.Name,
                                      Employers.Lastname,
                                      Employers.Patronymic,
+                                     Office.NameOffice,
                                      Cabinet.numberCab,
                                      Employers.email,
                                      Employers.numberPhone
@@ -110,13 +111,9 @@ namespace KursachIT.PageFolder.AdminFolder
         {
             if (StaffDgList.SelectedItem is ClassUser selectedUser)
             {
-                var result = MessageBox.Show(
-                    $"Вы уверены, что хотите удалить сотрудника {selectedUser.Name} {selectedUser.LastName}?",
-                    "Подтверждение удаления",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question);
+                bool result = MBClass.QuestionMB($"Вы уверены, что хотите удалить сотрудника {selectedUser.Name} {selectedUser.LastName}?");
 
-                if (result == MessageBoxResult.Yes)
+                if (result == true)
                 {
                     try
                     {
@@ -163,7 +160,7 @@ namespace KursachIT.PageFolder.AdminFolder
 
         private void Tasks_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            NavigationService.Navigate(new RequestList());
         }
     }
 }

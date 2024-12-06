@@ -6,7 +6,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:KursachIT.PageFolder.AdminFolder"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="900"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="RequestList">
 
     <Grid>
@@ -29,14 +29,14 @@
         <DataGrid Grid.Column="1"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   x:Name="ReqestDgList"
-                  ColumnWidth="*"
                   Grid.Row="1"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   FontFamily="Cascadia Mono SemiLight"
                   Padding="Auto"
                   Style="{StaticResource MaterialDesignDataGrid}"
-                  IsReadOnly="True">
+                  IsReadOnly="True"
+                  Margin="0 0 0 60">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№ п/п"
                                     Binding="{Binding IdRequst}"/>
@@ -45,13 +45,21 @@
                 <DataGridTextColumn Header="Выполнить до"
                                     Binding="{Binding PlanDate, StringFormat='dd.MM.yyyy'}"/>
                 <DataGridTextColumn Header="Тип задачи"
-                                    Binding="{Binding PurchaseDate, StringFormat='dd.MM.yyyy'}">
-                    
+                                    Binding="{Binding NamePriority}">
+
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Статус заявки"
                                     Binding="{Binding NameStatus}"/>
             </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu Background="WhiteSmoke">
+                    <MenuItem Header="Принять"/>
+                    <MenuItem Header="Отклонить"/>
+                    <MenuItem Header="Выполнено"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
+        
         <Grid Grid.Row="1"
       Grid.Column="0">
             <Grid.RowDefinitions>
@@ -103,7 +111,7 @@
                Margin="60 10 40 10"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
-               Style="{StaticResource StandartText}"/>
+               Style="{StaticResource HoverText}"/>
             <materialDesign:PackIcon Kind="History" Grid.Row="4"
                              Height="35"
                              Width="35"
@@ -113,12 +121,13 @@
                Margin="60 10 40 10"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
-               Style="{StaticResource StandartText}"/>
+               Style="{StaticResource HoverText}"/>
 
             <materialDesign:PackIcon Kind="LocationExit" Grid.Row="5"
-                             Height="35"
-                             Width="35"
-                             Margin="10 40 10 10"/>
+                                     Height="35"
+                                     Width="35"
+                                     Margin="10 40 10 10"
+                                     MouseLeftButtonDown="PackIcon_MouseLeftButtonDown"/>
         </Grid>
     </Grid>
 </Page>

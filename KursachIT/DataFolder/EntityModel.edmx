@@ -107,18 +107,17 @@
         </EntityType>
         <EntityType Name="Requests">
           <Key>
-            <PropertyRef Name="Idrequest" />
+            <PropertyRef Name="IdRequest" />
           </Key>
-          <Property Name="Idrequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdStatus" Type="int" Nullable="false" />
-          <Property Name="NameRequest" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="IdCategory" Type="int" Nullable="false" />
           <Property Name="IdPriority" Type="int" Nullable="false" />
           <Property Name="PlanDate" Type="date" Nullable="false" />
           <Property Name="Transcription" Type="nvarchar" MaxLength="500" />
           <Property Name="DateRealize" Type="date" />
           <Property Name="IdRequestSender" Type="int" Nullable="false" />
-          <Property Name="IdExcutor" Type="int" Nullable="false" />
+          <Property Name="IdExcutor" Type="int" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -284,7 +283,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Requests_Employers1">
-          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="0..1" />
           <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employers">
@@ -592,18 +591,17 @@
         </EntityType>
         <EntityType Name="Requests">
           <Key>
-            <PropertyRef Name="Idrequest" />
+            <PropertyRef Name="IdRequest" />
           </Key>
-          <Property Name="Idrequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdStatus" Type="Int32" Nullable="false" />
-          <Property Name="NameRequest" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdCategory" Type="Int32" Nullable="false" />
           <Property Name="IdPriority" Type="Int32" Nullable="false" />
           <Property Name="PlanDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Transcription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="DateRealize" Type="DateTime" Precision="0" />
           <Property Name="IdRequestSender" Type="Int32" Nullable="false" />
-          <Property Name="IdExcutor" Type="Int32" Nullable="false" />
+          <Property Name="IdExcutor" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Requests_Category" FromRole="Requests" ToRole="Category" />
           <NavigationProperty Name="Employers" Relationship="Self.FK_Requests_Employers" FromRole="Requests" ToRole="Employers" />
           <NavigationProperty Name="Employers1" Relationship="Self.FK_Requests_Employers1" FromRole="Requests" ToRole="Employers" />
@@ -804,7 +802,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Requests_Employers1">
-          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="0..1" />
           <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employers">
@@ -1092,9 +1090,8 @@
           <EntitySetMapping Name="Requests">
             <EntityTypeMapping TypeName="ITAdminModel.Requests">
               <MappingFragment StoreEntitySet="Requests">
-                <ScalarProperty Name="Idrequest" ColumnName="Idrequest" />
+                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
                 <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
-                <ScalarProperty Name="NameRequest" ColumnName="NameRequest" />
                 <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
                 <ScalarProperty Name="IdPriority" ColumnName="IdPriority" />
                 <ScalarProperty Name="PlanDate" ColumnName="PlanDate" />

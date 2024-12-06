@@ -29,8 +29,8 @@
         </StackPanel>
         <StackPanel Grid.Column="1">
             <TextBlock Text="Авторизация"
-                       Margin="50"
-                       HorizontalAlignment="Center"
+                       Margin="150 50"
+                       HorizontalAlignment="Left"
                        FontSize="37" 
                        FontFamily="Cascadia Mono"
                        />

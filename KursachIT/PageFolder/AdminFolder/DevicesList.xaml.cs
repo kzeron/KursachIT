@@ -78,5 +78,15 @@ namespace KursachIT.PageFolder.AdminFolder
         {
             NavigationService.Navigate(new PageStaff());
         }
+
+        private void Tasks_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new RequestList());
+        }
+
+        private void AddBt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
