@@ -6,14 +6,10 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:KursachIT.PageFolder.AdminFolder"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1000"
+      d:DesignHeight="450" d:DesignWidth="800"
       Title="RequestList">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.45*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.26*"/>
             <RowDefinition/>
@@ -27,6 +23,9 @@
         <StackPanel Grid.Row="1"
                     Grid.Column="0"/>
         <DataGrid Grid.Column="1"
+                  ColumnWidth="Auto"
+                  HorizontalGridLinesBrush="Green"
+                  HorizontalContentAlignment="Center"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   x:Name="ReqestDgList"
                   Grid.Row="1"
@@ -59,75 +58,7 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
-        
-        <Grid Grid.Row="1"
-      Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <materialDesign:PackIcon Kind="Account" Grid.Row="0"
-                             Height="35"
-                             Width="35"
-                             Margin="10"/>
-            <TextBlock Grid.Row="0" 
-               Text="Личный кабинет"
-               Margin="60 10 40 10"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Left"
-               Style="{StaticResource StandartText}"/>
-            <materialDesign:PackIcon Kind="FormatListBulleted" Grid.Row="1"
-                             Height="35"
-                             Width="35"
-                             Margin="10"/>
-            <TextBlock Grid.Row="1" 
-               Text="Сотрудники"
-               Margin="60 10 40 10"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Left"
-               Style="{StaticResource HoverText}"
-               MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
-            <materialDesign:PackIcon Kind="ServerOutline" Grid.Row="2" 
-                                 Height="35"
-                                 Width="35"
-                                 Margin="10"/>
-            <TextBlock Grid.Row="2" 
-                   Text="Устройства"
-                   Margin="60 10 40 10"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Style="{StaticResource HoverText}"
-                   />
-            <materialDesign:PackIcon Kind="ListBoxOutline" Grid.Row="3"
-                             Height="35"
-                             Width="35"
-                             Margin="10"/>
-            <TextBlock Grid.Row="3" 
-               Text="Задачи"
-               Margin="60 10 40 10"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Left"
-               Style="{StaticResource HoverText}"/>
-            <materialDesign:PackIcon Kind="History" Grid.Row="4"
-                             Height="35"
-                             Width="35"
-                             Margin="10"/>
-            <TextBlock Grid.Row="4" 
-               Text="История заявок"
-               Margin="60 10 40 10"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Left"
-               Style="{StaticResource HoverText}"/>
 
-            <materialDesign:PackIcon Kind="LocationExit" Grid.Row="5"
-                                     Height="35"
-                                     Width="35"
-                                     Margin="10 40 10 10"
-                                     MouseLeftButtonDown="PackIcon_MouseLeftButtonDown"/>
-        </Grid>
+       
     </Grid>
 </Page>

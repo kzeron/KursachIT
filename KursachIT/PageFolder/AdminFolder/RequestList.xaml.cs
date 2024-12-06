@@ -45,9 +45,6 @@ namespace KursachIT.PageFolder.AdminFolder
                                     from Category in CategoryGroup.DefaultIfEmpty()
                                     join Priority in context.Priority on Requests.IdPriority equals Priority.IdPriority into PriorityGroup
                                     from Priority in PriorityGroup.DefaultIfEmpty()
-                                        //join Executor in context.Employers on Requests.IdExcutor equals Executor.IdEmployers
-                                        //join RequestSender in context.Employers on Requests.IdRequestSender equals RequestSender.IdEmployers into RequestSenderGroup
-                                        //from RequestSender in RequestSenderGroup.DefaultIfEmpty()
                                     select new
                                     {
                                         Requests.IdRequest,
