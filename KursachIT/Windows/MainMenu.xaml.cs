@@ -28,5 +28,15 @@ namespace KursachIT.Windows
         {
 
         }
+
+        private void DeviceTbl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

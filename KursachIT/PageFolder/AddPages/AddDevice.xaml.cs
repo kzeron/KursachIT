@@ -24,5 +24,15 @@ namespace KursachIT.PageFolder.AddPages
         {
             InitializeComponent();
         }
+
+        private void AddBt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BackBt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

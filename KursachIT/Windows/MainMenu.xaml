@@ -98,7 +98,7 @@ Grid.Column="0">
              VerticalAlignment="Center"
              HorizontalAlignment="Left"
              Style="{StaticResource HoverText}"
-                               MouseLeftButtonDown=""
+                               MouseLeftButtonDown="DeviceTbl_MouseLeftButtonDown"
              />
                     <materialDesign:PackIcon Kind="ListBoxOutline" Grid.Row="3"
                        Height="35"
@@ -109,7 +109,8 @@ Grid.Column="0">
                              Margin="60 10 40 10"
                              VerticalAlignment="Center"
                              HorizontalAlignment="Left"
-                             Style="{StaticResource HoverText}"/>
+                             Style="{StaticResource HoverText}"
+                               MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
                     <materialDesign:PackIcon Kind="History" Grid.Row="4"
                        Height="35"
                        Width="35"

@@ -10,11 +10,92 @@
       Title="AddDevice">
 
     <Grid>
-        <DatePicker x:Name="PurchaseDatePicker"
-                    Width="140"
-                    materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
-                    materialDesign:HintAssist.FloatingOffset="0,-22"
-                    materialDesign:HintAssist.Hint="Pick Date"
-                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.3*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0">
+            <TextBox x:Name="NameEmTb"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                     materialDesign:HintAssist.Hint="Введите имя"
+                     VerticalAlignment="Center"
+                     FontSize="20"
+                     Margin="30 20" 
+                     Foreground="#FFABADB3"/>
+            <DatePicker x:Name="PurchaseDatePicker"
+                        FontSize="20"
+                        Margin="30 20"
+                        materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
+                        materialDesign:HintAssist.FloatingOffset="0,-22"
+                        materialDesign:HintAssist.Hint="Pick Date"
+                        Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+            <DatePicker x:Name="WarrantyEndDatePicker"
+            FontSize="20"
+            Margin="30 20"
+            materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
+            materialDesign:HintAssist.FloatingOffset="0,-22"
+            materialDesign:HintAssist.Hint="Pick Date"
+            Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <ComboBox x:Name="DeviceTypeCb"
+          Style="{StaticResource MaterialDesignOutlinedComboBox}"
+          Foreground="#FFABADB3"
+          materialDesign:HintAssist.Hint="Укажите номер кабинета"
+          materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+          Height="60"
+          FontSize="20"
+          Margin="30 20"
+          DisplayMemberPath = "numberCab"
+          SelectedValuePath = "IdNumberCab"
+          SelectedItem="{Binding DeviceType}"/>
+            <ComboBox x:Name="BrandCb"
+          Style="{StaticResource MaterialDesignOutlinedComboBox}"
+          Foreground="#FFABADB3"
+          materialDesign:HintAssist.Hint="Укажите номер кабинета"
+          materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+          Height="60"
+          FontSize="20"
+          Margin="30 20"
+          DisplayMemberPath = "numberCab"
+          SelectedValuePath = "IdNumberCab"
+          SelectedItem="{Binding Brand}"/>
+        </StackPanel>
+        <Button x:Name="BackBt"
+                Grid.Column="0"
+                Grid.Row="1"
+            materialDesign:ButtonAssist.CornerRadius="5"
+            Width="100"
+            Background="DarkGray"
+            FontSize="20"
+            Content="Назад"
+            Foreground="WhiteSmoke"
+            Height="45"
+            HorizontalAlignment="Left"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            ToolTip="MaterialDesignRaisedButton with Round Corners"
+            Margin="30 00 10 0" Cursor="Hand" Click="BackBt_Click"/>
+        <Button x:Name="AddBt"
+                Grid.Column="1"
+                Grid.Row="1"
+            materialDesign:ButtonAssist.CornerRadius="5"
+            Width="150"
+            Background="#3DAB28"
+            FontSize="20"
+            Content="Далее"
+            Foreground="WhiteSmoke"
+            Height="45"
+            HorizontalAlignment="Right"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            ToolTip="MaterialDesignRaisedButton with Round Corners"
+            Margin="10 0 30 0"
+            Cursor="Hand" Click="AddBt_Click"/>
     </Grid>
 </Page>

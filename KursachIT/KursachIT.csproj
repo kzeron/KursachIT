@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="ClassFolder\ClassDevice.cs" />
     <Compile Include="ClassFolder\ClassRequest.cs" />
+    <Compile Include="ClassFolder\ClassSaveSassion.cs" />
     <Compile Include="ClassFolder\ClassUser.cs" />
     <Compile Include="ClassFolder\MBClass.cs" />
     <Compile Include="ClassFolder\RequestHelper.cs" />
@@ -253,6 +254,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Assets\Resource\FieldDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Resource\GlobleDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
