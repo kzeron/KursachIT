@@ -21,8 +21,41 @@ namespace KursachIT.PageFolder
         public AuthPage()
         {
             InitializeComponent();
+            this.Loaded += AuthPage_Loaded;
         }
 
+        private void AuthPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            var parentWindow = Window.GetWindow(this);
+            if (parentWindow == null)
+            {
+                MBClass.ErrorMB("Окно не найдено.");
+            }
+            else
+            {
+                var currentUser = ClassSaveSassion.LoadSession();
+                if (currentUser != null)
+                {
+                    switch (currentUser.IdRole)
+                    {
+                        case 1:
+                            MainMenu main = new MainMenu();
+                            main.Show();
+                            if (parentWindow != null)
+                            {
+                                parentWindow.Close();
+                            }
+                            break;
+                        case 2:
+                            MBClass.InformationMB("Помощник");
+                            break;
+                        case 3:
+                            MBClass.InformationMB("Пользователь");
+                            break;
+                    }
+                }
+            }
+        }
         private void AuthButton_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(LoginTb.Text))
@@ -56,7 +89,9 @@ namespace KursachIT.PageFolder
                         switch (user.IdRole)
                         {
                             case 1:
-                                NavigationService.Navigate(new AdminFolder.DevicesList());
+                                MainMenu main = new MainMenu();
+                                main.Show();
+                                Window.GetWindow(this).Close();
                                 break;
                             case 2:
                                 MBClass.InformationMB("Помощник");
