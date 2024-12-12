@@ -30,22 +30,64 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="CustomCalendarDayButton"
-           TargetType="CalendarDayButton"
-           BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
-        <Setter Property="materialDesign:CalendarAssist.SelectionColor"
-                Value="#B2F39B" />
-        <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor"
-                Value="Black" />
-    </Style>
 
-    <!-- Стили для CalendarButton -->
-    <Style x:Key="CustomCalendarButton"
-           TargetType="CalendarButton"
+        <!-- Custom Style for Calendar Day Button -->
+        <Style x:Key="CustomCalendarDayButton" 
+           TargetType="CalendarDayButton" 
+           BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
+        <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="#3DAB28" />
+            <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="White" />
+        </Style>
+
+        <!-- Custom Style for Calendar Button -->
+        <Style x:Key="CustomCalendarButton" 
+           TargetType="CalendarButton" 
            BasedOn="{StaticResource MaterialDesignCalendarButton}">
-        <Setter Property="materialDesign:CalendarAssist.SelectionColor"
-                Value="#B2F39B" />
-        <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor"
-                Value="Black" />
+        <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="#3DAB28" />
+            <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="White" />
+        </Style>
+
+        <!-- Custom Style for Calendar -->
+        <Style x:Key="CustomCalendar" 
+           TargetType="{x:Type Calendar}" 
+           BasedOn="{StaticResource MaterialDesignDatePickerCalendarPortrait}">
+        <Setter Property="Background" Value="White" />
+            <Setter Property="CalendarButtonStyle" Value="{StaticResource CustomCalendarButton}" />
+            <Setter Property="CalendarDayButtonStyle" Value="{StaticResource CustomCalendarDayButton}" />
+            <Setter Property="Foreground" Value="Black" />
+        <Setter Property="materialDesign:CalendarAssist.HeaderBackground" Value="#3DAB28" />
+            <Setter Property="materialDesign:CalendarAssist.HeaderForeground" Value="White" />
+        </Style>
+
+        <!-- Custom Style for Outlined DatePicker -->
+    <Style x:Key="CustomOutlinedDatePicker" 
+           TargetType="DatePicker" 
+           BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
+        <Setter Property="CalendarStyle" Value="{StaticResource CustomCalendar}" />
+    </Style>
+   <!-- Определение цветов -->
+    <Color x:Key="ComboBoxForegroundColor">Black</Color>
+    <Color x:Key="ComboBoxUnderlineBrushColor">#3DAB28</Color>
+    <Color x:Key="ComboBoxBackgroundColor">WhiteSmoke</Color>
+    <Color x:Key="ComboBoxDisabledUnderlineBrushColor">LightGray</Color>
+
+    <!-- Определение кистей -->
+    <SolidColorBrush x:Key="ComboBoxForegroundBrush" Color="{StaticResource ComboBoxForegroundColor}" />
+    <SolidColorBrush x:Key="ComboBoxUnderlineBrush" Color="{StaticResource ComboBoxUnderlineBrushColor}" />
+    <SolidColorBrush x:Key="ComboBoxBackgroundBrush" Color="{StaticResource ComboBoxBackgroundColor}" />
+    <SolidColorBrush x:Key="ComboBoxDisabledUnderlineBrush" Color="{StaticResource ComboBoxDisabledUnderlineBrushColor}" />
+
+    <!-- Стиль ComboBox -->
+    <Style x:Key="CustomComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
+        <Setter Property="Foreground" Value="{StaticResource ComboBoxForegroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource ComboBoxBackgroundBrush}" />
+        <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="{StaticResource ComboBoxUnderlineBrush}" />
+
+        <!-- Настройка для отключенного состояния -->
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="{StaticResource ComboBoxDisabledUnderlineBrush}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

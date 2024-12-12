@@ -27,35 +27,53 @@
                     materialDesign:HintAssist.Hint="Введите название"
                     VerticalAlignment="Center"
                     FontSize="20"
-                    Margin="30 20" 
+                    Margin="30 10" 
                     Foreground="Black"/>
             <DatePicker x:Name="PurchaseDatePicker"
+                        FontSize="20"
+                        Margin="30 10"
+                        materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
+                        materialDesign:HintAssist.Foreground="#3DAB28"
+                        materialDesign:HintAssist.Background="WhiteSmoke"
+                        
+                        materialDesign:HintAssist.FloatingOffset="0,-22"
+                        materialDesign:HintAssist.Hint="Укажите дату покупки"
+                        Style="{DynamicResource CustomOutlinedDatePicker}">
+                <DatePicker.Resources>
+                    
+                </DatePicker.Resources>
+            </DatePicker>
+            <DatePicker x:Name="DateOfReceiptDatePicker"
                         Background="WhiteSmoke"
                         materialDesign:CalendarAssist.SelectionColor="#3DAB28"
-                        
                         materialDesign:CalendarAssist.HeaderBackground="#3DAB28"
                         materialDesign:CalendarAssist.HeaderForeground="WhiteSmoke"
                         materialDesign:DatePickerAssist.OutlinedBorderActiveThickness="2"
                         materialDesign:CalendarAssist.SelectionForegroundColor="WhiteSmoke"
                         FontSize="20"
-                        Margin="30 20"
+                        Margin="30 10"
                         materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
                         materialDesign:HintAssist.FloatingOffset="0,-22"
-                        materialDesign:HintAssist.Hint="Укажите дату покупки"
+                        materialDesign:HintAssist.Hint="Дату получения"
                         materialDesign:HintAssist.Background="White"
                         materialDesign:HintAssist.Foreground="#3DAB28"
-                        Style="{DynamicResource MaterialDesignOutlinedDatePicker}">
-
-            </DatePicker>
+                        Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
             <DatePicker x:Name="WarrantyEndDatePicker"
-            FontSize="20"
-            Margin="30 20"
-            materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
-            materialDesign:HintAssist.FloatingOffset="0,-22"
-                        Foreground="Black"
-                        materialDesign:HintAssist.Foreground="Gray"
-            materialDesign:HintAssist.Hint="Укажите гарантийный срок"
-            Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                        Background="WhiteSmoke"
+                        materialDesign:CalendarAssist.SelectionColor="#3DAB28"
+                        materialDesign:CalendarAssist.HeaderBackground="#3DAB28"
+                        materialDesign:CalendarAssist.HeaderForeground="WhiteSmoke"
+                        materialDesign:DatePickerAssist.OutlinedBorderActiveThickness="2"
+                        materialDesign:CalendarAssist.SelectionForegroundColor="WhiteSmoke"
+                        FontSize="20"
+                        Margin="30 10"
+                        materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
+                        materialDesign:HintAssist.FloatingOffset="0,-22"
+                        materialDesign:HintAssist.Background="WhiteSmoke"
+                        materialDesign:HintAssist.Foreground="#3DAB28"
+                         materialDesign:HintAssist.Hint="Укажите гарантийный срок"
+                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+
         </StackPanel>
         <StackPanel Grid.Column="1">
             <ComboBox x:Name="DeviceTypeCb"
@@ -64,24 +82,24 @@
           Style="{StaticResource MaterialDesignOutlinedComboBox}"
           Foreground="Black"
           materialDesign:HintAssist.Hint="Укажите тип устроства"
+                      DisplayMemberPath = "DeviceTypeName"
+                      SelectedValuePath = "IdDeviceType"
           materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
           Height="60"
           FontSize="20"
-          Margin="30 20"
-          DisplayMemberPath = "NameBrand"
-          SelectedValuePath = "IdBrand"
+          Margin="30 10"
+         
           SelectedItem="{Binding DeviceType}"/>
             <ComboBox x:Name="BrandCb"
-          Style="{StaticResource MaterialDesignOutlinedComboBox}"
-          Foreground="Black"
-          materialDesign:HintAssist.Hint="Бренд устройства"
-          materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
-          Height="60"
-          FontSize="20"
-          Margin="30 20"
+                      Style="{StaticResource CustomComboBoxStyle}"
+                      materialDesign:HintAssist.Hint="Бренд устройства"
+                      Height="60"
+                      FontSize="20"
+                      Margin="30 10"
+                      DisplayMemberPath = "NameBrand"
+          SelectedValuePath = "IdBrand"
                       Background="WhiteSmoke"
-          DisplayMemberPath = "DeviceTypeName"
-          SelectedValuePath = "IdDeviceType"
+          
           SelectedItem="{Binding Brand}"/>
             <ComboBox x:Name="EmplCb"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}"
@@ -90,7 +108,7 @@
                         materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
                         Height="60"
                         FontSize="20"
-                        Margin="30 20"
+                        Margin="30 10"
                         Background="WhiteSmoke"
                         DisplayMemberPath = "Lastname"
                         SelectedValuePath = "IdEmployer"

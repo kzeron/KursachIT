@@ -2,13 +2,92 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:KursachIT.PageFolder.AddPages.AddDeviceMore"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddPC">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <TextBox x:Name="CPUTb"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     materialDesign:HintAssist.Background="WhiteSmoke"
+                    materialDesign:HintAssist.Foreground="#3DAB28"
+                    Foreground="Black"
+                    FontSize="20"
+                    HorizontalContentAlignment="Stretch"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                     materialDesign:HintAssist.Hint="Введите данные о процессоре"
+                     VerticalAlignment="Center"
+                     Margin="30 30" />
+            <TextBox x:Name="RAMTb"
+             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+ materialDesign:HintAssist.Background="WhiteSmoke"
+materialDesign:HintAssist.Foreground="#3DAB28"
+Foreground="Black"
+FontSize="20"
+HorizontalContentAlignment="Stretch"
+ materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+ materialDesign:HintAssist.Hint="Введите объем ОЗУ"
+ VerticalAlignment="Center"
+ Margin="30 20" />
+            <Button x:Name="BackBt"
+            materialDesign:ButtonAssist.CornerRadius="5"
+            Width="100"
+            Background="DarkGray"
+            FontSize="20"
+            Content="Назад"
+            Foreground="WhiteSmoke"
+            Height="40"
+            HorizontalAlignment="Left"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            ToolTip="MaterialDesignRaisedButton with Round Corners"
+            Margin="30 200 10 0" Cursor="Hand"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBox x:Name="StorageTb"
+                           Style="{StaticResource MaterialDesignOutlinedTextBox}"
+ materialDesign:HintAssist.Background="WhiteSmoke"
+materialDesign:HintAssist.Foreground="#3DAB28"
+Foreground="Black"
+FontSize="20"
+HorizontalContentAlignment="Stretch"
+ materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+ materialDesign:HintAssist.Hint="Введите объем памяти"
+ VerticalAlignment="Center"
+ Margin="30 20"/>
+            <TextBox x:Name="GPUTb"
+               Style="{StaticResource MaterialDesignOutlinedTextBox}"
+ materialDesign:HintAssist.Background="WhiteSmoke"
+materialDesign:HintAssist.Foreground="#3DAB28"
+Foreground="Black"
+FontSize="20"
+HorizontalContentAlignment="Stretch"
+ materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+ materialDesign:HintAssist.Hint="Введите видео карту"
+ VerticalAlignment="Center"
+ Margin="30 20"/>
+            <Button x:Name="EditBt"
+            materialDesign:ButtonAssist.CornerRadius="5"
+            Width="150"
+            Background="#3DAB28"
+            FontSize="20"
+            Content="Добавить"
+            Foreground="WhiteSmoke"
+            Height="40"
+            HorizontalAlignment="Right"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            ToolTip="MaterialDesignRaisedButton with Round Corners"
+            Margin="60 200 30 0"
+            Cursor="Hand" />
+        </StackPanel>
     </Grid>
 </Page>
