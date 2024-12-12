@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using KursachIT.DataFolder;
 using KursachIT.ClassFolder;
+using System.Collections.ObjectModel;
 
 namespace KursachIT.PageFolder.AddPages
 {
@@ -23,6 +24,7 @@ namespace KursachIT.PageFolder.AddPages
     /// </summary>
     public partial class PageAddLogin : Page
     {
+
         public PageAddLogin()
         {
             InitializeComponent();
@@ -50,7 +52,6 @@ namespace KursachIT.PageFolder.AddPages
                     {
                         var selectedRole = context.Role.FirstOrDefault(r => r.IdRole == ((DataFolder.Role)RoleCb.SelectedItem).IdRole);
                         var user = new User
-
                         {
                             Login = LoginEmTb.Text,
                             Password = PassowordEmTb.Password,

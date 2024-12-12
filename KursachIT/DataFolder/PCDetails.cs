@@ -19,7 +19,7 @@ namespace KursachIT.DataFolder
         public int RAM { get; set; }
         public string Storage { get; set; }
         public string GPU { get; set; }
-        public Nullable<int> IdDevice { get; set; }
+        public int IdDevice { get; set; }
     
         public virtual Devices Devices { get; set; }
     }

@@ -24,14 +24,18 @@ namespace KursachIT.DataFolder
         }
     
         public int IdDevice { get; set; }
+        public string NameDevice { get; set; }
         public string SerialNumber { get; set; }
         public System.DateTime PurchaseDate { get; set; }
         public System.DateTime WarrantyEndDate { get; set; }
+        public Nullable<System.DateTime> DateOfReceipt { get; set; }
         public int IdDeviceType { get; set; }
-        public Nullable<int> IdBrand { get; set; }
+        public int IdBrand { get; set; }
+        public Nullable<int> IdEmployer { get; set; }
     
         public virtual Brand Brand { get; set; }
         public virtual DeviceTypes DeviceTypes { get; set; }
+        public virtual Requests Requests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PCDetails> PCDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

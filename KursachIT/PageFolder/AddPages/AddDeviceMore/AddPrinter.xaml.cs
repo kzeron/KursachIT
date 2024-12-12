@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using KursachIT.ClassFolder;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -14,29 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KursachIT.PageFolder.EditPages
+namespace KursachIT.PageFolder.AddPages.AddDeviceMore
 {
     /// <summary>
-    /// Логика взаимодействия для PageUserEdit.xaml
+    /// Логика взаимодействия для AddPrinter.xaml
     /// </summary>
-    public partial class PageUserEdit : Page
+    public partial class AddPrinter : Page
     {
-        private ClassUser _user;
-
-        public PageUserEdit(int classUser)
+        public AddPrinter()
         {
             InitializeComponent();
-            _user.IdUser = classUser;
-        }
-
-        private void EditBt_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BackBt_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

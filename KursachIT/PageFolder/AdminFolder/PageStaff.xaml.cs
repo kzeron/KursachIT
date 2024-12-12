@@ -68,6 +68,7 @@ namespace KursachIT.PageFolder.AdminFolder
                         Name = user.Name,
                         LastName = user.Lastname,
                         Patronymic = user.Patronymic,
+                        NameOffice = user.NameOffice,
                         NumberOffice = user.numberCab,
                     });
                 }

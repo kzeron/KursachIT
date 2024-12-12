@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -164,6 +165,18 @@
     <Compile Include="PageFolder\AddPages\AddDevice.xaml.cs">
       <DependentUpon>AddDevice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\AddPages\AddDeviceMore\AddPC.xaml.cs">
+      <DependentUpon>AddPC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\AddPages\AddDeviceMore\AddPrinter.xaml.cs">
+      <DependentUpon>AddPrinter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\AddPages\AddDeviceMore\AddScanner.xaml.cs">
+      <DependentUpon>AddScanner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\AddPages\AddDeviceMore\AddServer.xaml.cs">
+      <DependentUpon>AddServer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\AddPages\AddRequest.xaml.cs">
       <DependentUpon>AddRequest.xaml</DependentUpon>
     </Compile>
@@ -188,19 +201,37 @@
     <Compile Include="PageFolder\AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\EditPages\EditDevice.xaml.cs">
+      <DependentUpon>EditDevice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\EditPages\EditDeviceMore\EditPC.xaml.cs">
+      <DependentUpon>EditPC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\EditPages\EditDeviceMore\EditPrinter.xaml.cs">
+      <DependentUpon>EditPrinter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\EditPages\EditDeviceMore\EditScanner.xaml.cs">
+      <DependentUpon>EditScanner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\EditPages\EditDeviceMore\EditServer.xaml.cs">
+      <DependentUpon>EditServer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\EditPages\EditRequest.xaml.cs">
+      <DependentUpon>EditRequest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\EditPages\PageEditEmployer.xaml.cs">
       <DependentUpon>PageEditEmployer.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\EditPages\PageUserEdit.xaml.cs">
       <DependentUpon>PageUserEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageFolder\MoreFolder\MoreDevice.xaml.cs">
+    <Compile Include="PageFolder\MoreInfoFolder\MoreDevice.xaml.cs">
       <DependentUpon>MoreDevice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageFolder\MoreFolder\MoreEployer.xaml.cs">
+    <Compile Include="PageFolder\MoreInfoFolder\MoreEployer.xaml.cs">
       <DependentUpon>MoreEployer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageFolder\MoreFolder\PageRequestMore.xaml.cs">
+    <Compile Include="PageFolder\MoreInfoFolder\PageRequestMore.xaml.cs">
       <DependentUpon>PageRequestMore.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\PersAcc.xaml.cs">
@@ -266,6 +297,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\AddPages\AddDeviceMore\AddPC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\AddPages\AddDeviceMore\AddPrinter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\AddPages\AddDeviceMore\AddScanner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\AddPages\AddDeviceMore\AddServer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\AddPages\AddRequest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -298,6 +345,30 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\EditPages\EditDevice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\EditPages\EditDeviceMore\EditPC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\EditPages\EditDeviceMore\EditPrinter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\EditPages\EditDeviceMore\EditScanner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\EditPages\EditDeviceMore\EditServer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\EditPages\EditRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\EditPages\PageEditEmployer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -306,15 +377,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageFolder\MoreFolder\MoreDevice.xaml">
+    <Page Include="PageFolder\MoreInfoFolder\MoreDevice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageFolder\MoreFolder\MoreEployer.xaml">
+    <Page Include="PageFolder\MoreInfoFolder\MoreEployer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageFolder\MoreFolder\PageRequestMore.xaml">
+    <Page Include="PageFolder\MoreInfoFolder\PageRequestMore.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -356,9 +427,6 @@
       <DependentUpon>EntityModel.edmx</DependentUpon>
       <LastGenOutput>EntityModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PageFolder\AddPages\AddDeviceMore\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets')" />

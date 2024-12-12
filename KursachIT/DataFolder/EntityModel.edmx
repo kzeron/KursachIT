@@ -31,11 +31,14 @@
             <PropertyRef Name="IdDevice" />
           </Key>
           <Property Name="IdDevice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameDevice" Type="nvarchar" MaxLength="150" />
           <Property Name="SerialNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="PurchaseDate" Type="date" Nullable="false" />
           <Property Name="WarrantyEndDate" Type="date" Nullable="false" />
+          <Property Name="DateOfReceipt" Type="date" />
           <Property Name="IdDeviceType" Type="int" Nullable="false" />
-          <Property Name="IdBrand" Type="int" />
+          <Property Name="IdBrand" Type="int" Nullable="false" />
+          <Property Name="IdEmployer" Type="int" />
         </EntityType>
         <EntityType Name="DeviceTypes">
           <Key>
@@ -85,7 +88,7 @@
           <Property Name="RAM" Type="int" Nullable="false" />
           <Property Name="Storage" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="GPU" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="IdDevice" Type="int" />
+          <Property Name="IdDevice" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PrinterDetails">
           <Key>
@@ -175,7 +178,7 @@
           <Property Name="IdRole" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Devices_Brand">
-          <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
           <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Brand">
@@ -195,6 +198,18 @@
             </Principal>
             <Dependent Role="Devices">
               <PropertyRef Name="IdDeviceType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Devices_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="0..1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="IdEmployer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -235,7 +250,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PCDetails_Devices">
-          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
           <End Role="PCDetails" Type="Self.PCDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Devices">
@@ -412,6 +427,10 @@
             <End Role="DeviceTypes" EntitySet="DeviceTypes" />
             <End Role="Devices" EntitySet="Devices" />
           </AssociationSet>
+          <AssociationSet Name="FK_Devices_Requests" Association="Self.FK_Devices_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employers_Cabinet" Association="Self.FK_Employers_Cabinet">
             <End Role="Cabinet" EntitySet="Cabinet" />
             <End Role="Employers" EntitySet="Employers" />
@@ -499,13 +518,17 @@
             <PropertyRef Name="IdDevice" />
           </Key>
           <Property Name="IdDevice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameDevice" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="SerialNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="WarrantyEndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateOfReceipt" Type="DateTime" Precision="0" />
           <Property Name="IdDeviceType" Type="Int32" Nullable="false" />
-          <Property Name="IdBrand" Type="Int32" />
+          <Property Name="IdBrand" Type="Int32" Nullable="false" />
+          <Property Name="IdEmployer" Type="Int32" />
           <NavigationProperty Name="Brand" Relationship="Self.FK_Devices_Brand" FromRole="Devices" ToRole="Brand" />
           <NavigationProperty Name="DeviceTypes" Relationship="Self.FK_Devices_DeviceTypes" FromRole="Devices" ToRole="DeviceTypes" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Devices_Requests" FromRole="Devices" ToRole="Requests" />
           <NavigationProperty Name="PCDetails" Relationship="Self.FK_PCDetails_Devices" FromRole="Devices" ToRole="PCDetails" />
           <NavigationProperty Name="PrinterDetails" Relationship="Self.FK_PrinterDetails_Devices" FromRole="Devices" ToRole="PrinterDetails" />
           <NavigationProperty Name="ScannerDetails" Relationship="Self.FK_ScannerDetails_Devices" FromRole="Devices" ToRole="ScannerDetails" />
@@ -566,7 +589,7 @@
           <Property Name="RAM" Type="Int32" Nullable="false" />
           <Property Name="Storage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GPU" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdDevice" Type="Int32" />
+          <Property Name="IdDevice" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Devices" Relationship="Self.FK_PCDetails_Devices" FromRole="PCDetails" ToRole="Devices" />
         </EntityType>
         <EntityType Name="PrinterDetails">
@@ -603,6 +626,7 @@
           <Property Name="IdRequestSender" Type="Int32" Nullable="false" />
           <Property Name="IdExcutor" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Requests_Category" FromRole="Requests" ToRole="Category" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_Devices_Requests" FromRole="Requests" ToRole="Devices" />
           <NavigationProperty Name="Employers" Relationship="Self.FK_Requests_Employers" FromRole="Requests" ToRole="Employers" />
           <NavigationProperty Name="Employers1" Relationship="Self.FK_Requests_Employers1" FromRole="Requests" ToRole="Employers" />
           <NavigationProperty Name="Priority" Relationship="Self.FK_Requests_Priority" FromRole="Requests" ToRole="Priority" />
@@ -670,7 +694,7 @@
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Devices_Brand">
-          <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
           <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Brand">
@@ -717,8 +741,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Devices_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="0..1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="IdEmployer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PCDetails_Devices">
-          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
           <End Role="PCDetails" Type="Self.PCDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Devices">
@@ -884,6 +920,10 @@
             <End Role="DeviceTypes" EntitySet="DeviceTypes" />
             <End Role="Devices" EntitySet="Devices" />
           </AssociationSet>
+          <AssociationSet Name="FK_Devices_Requests" Association="Self.FK_Devices_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
           <AssociationSet Name="FK_PCDetails_Devices" Association="Self.FK_PCDetails_Devices">
             <End Role="Devices" EntitySet="Devices" />
             <End Role="PCDetails" EntitySet="PCDetails" />
@@ -1004,11 +1044,14 @@
             <EntityTypeMapping TypeName="ITAdminModel.Devices">
               <MappingFragment StoreEntitySet="Devices">
                 <ScalarProperty Name="IdDevice" ColumnName="IdDevice" />
+                <ScalarProperty Name="NameDevice" ColumnName="NameDevice" />
                 <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
                 <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
                 <ScalarProperty Name="WarrantyEndDate" ColumnName="WarrantyEndDate" />
+                <ScalarProperty Name="DateOfReceipt" ColumnName="DateOfReceipt" />
                 <ScalarProperty Name="IdDeviceType" ColumnName="IdDeviceType" />
                 <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
+                <ScalarProperty Name="IdEmployer" ColumnName="IdEmployer" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -6,7 +6,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:KursachIT.PageFolder.AdminFolder"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="779" d:DesignWidth="872"
       Title="RequestList">
 
     <Grid>
@@ -28,6 +28,7 @@
                   HorizontalContentAlignment="Center"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   x:Name="ReqestDgList"
+                  Background="WhiteSmoke"
                   Grid.Row="1"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
@@ -37,8 +38,6 @@
                   IsReadOnly="True"
                   Margin="0 0 0 60">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="№ п/п"
-                                    Binding="{Binding IdRequst}"/>
                 <DataGridTextColumn Header="Категория"
                                     Binding="{Binding NameCategory}"/>
                 <DataGridTextColumn Header="Выполнить до"

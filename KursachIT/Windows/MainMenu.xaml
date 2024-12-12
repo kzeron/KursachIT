@@ -53,6 +53,8 @@
                     />
                 <StackPanel Grid.Row="1" Grid.Column="1">
                     <Frame x:Name="FrameConnect"
+                           Height="779"
+                           Width="872"
                        HorizontalAlignment="Center"
                        NavigationUIVisibility="Hidden"
                        />

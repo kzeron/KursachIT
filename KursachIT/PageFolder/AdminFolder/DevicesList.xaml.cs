@@ -1,5 +1,7 @@
 ﻿using KursachIT.ClassFolder;
 using KursachIT.DataFolder;
+using KursachIT.PageFolder.AddPages;
+using KursachIT.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -86,7 +88,10 @@ namespace KursachIT.PageFolder.AdminFolder
 
         private void AddBt_Click(object sender, RoutedEventArgs e)
         {
+            AnketWin anketWin = new AnketWin(new AddDevice());
+            anketWin.Show();
 
+            LoadData();
         }
     }
 }
