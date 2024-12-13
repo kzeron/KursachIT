@@ -66,7 +66,7 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
                             GPU = RAMTb.Text,
                             IdDevice = IdDevice
                         };
-                        context.Employers.Add(pc);
+                        context.PCDetails.Add(pc);
                         context.SaveChanges();
                     }
                     Window.GetWindow(this).Close();
@@ -77,6 +77,5 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
                 }
             }
         }
-    }
     }
 }
