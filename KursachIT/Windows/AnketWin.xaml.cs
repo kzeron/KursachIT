@@ -32,7 +32,11 @@ namespace KursachIT.Windows
 
         private void PackIcon_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
-            ClassFolder.MBClass.ExitMB();
+            bool result = ClassFolder.MBClass.QuestionMB("Закрыть окно?");
+            if (result) 
+            {
+                Close();
+            }
         }
     }
 }

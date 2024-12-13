@@ -72,10 +72,8 @@
                   FontSize="20"
                   Margin="30 20"/>
             <ComboBox x:Name="NameOfficeCb"
-                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                  Foreground="#FFABADB3"
+                  Style="{StaticResource CustomComboBoxStyle}"
                   materialDesign:HintAssist.Hint="Укажите отдел"
-                  materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
                   DisplayMemberPath = "NameOffice"
                   SelectedValuePath = "IdOffice"
                   Height="60"
@@ -83,10 +81,8 @@
                   Margin="30 20"
                   SelectedItem="{Binding Office}"/>
             <ComboBox x:Name="NamberOfficeCb"
-                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                  Foreground="#FFABADB3"
+                  Style="{StaticResource CustomComboBoxStyle}"
                   materialDesign:HintAssist.Hint="Укажите номер кабинета"
-                  materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
                   Height="60"
                   FontSize="20"
                   Margin="30 20"

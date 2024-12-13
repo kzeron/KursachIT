@@ -132,10 +132,11 @@ Grid.Column="0">
          Style="{StaticResource HoverText}"/>
 
                     <materialDesign:PackIcon Kind="LocationExit" Grid.Row="5"
-                               Height="35"
-                               Width="35"
-                               Margin="10 40 10 10"
-                               MouseLeftButtonDown="PackIcon_MouseLeftButtonDown_1"/>
+                                             x:Name="LogOut"
+                                             Height="35"
+                                             Width="35"
+                                             Margin="10 40 10 10"
+                                             MouseLeftButtonDown="LogOut_MouseLeftButtonDown"/>
                 </Grid>
             </Grid>
         </materialDesign:Card>

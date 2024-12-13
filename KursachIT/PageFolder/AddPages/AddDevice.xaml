@@ -77,17 +77,14 @@
         </StackPanel>
         <StackPanel Grid.Column="1">
             <ComboBox x:Name="DeviceTypeCb"
-                      Background="White"
                       SelectionChanged="DeviceTypeCb_SelectionChanged"  
-          Style="{StaticResource MaterialDesignOutlinedComboBox}"
-          Foreground="Black"
-          materialDesign:HintAssist.Hint="Укажите тип устроства"
+                      Style="{StaticResource CustomComboBoxStyle}"
+                      materialDesign:HintAssist.Hint="Укажите тип устроства"
                       DisplayMemberPath = "DeviceTypeName"
                       SelectedValuePath = "IdDeviceType"
-          materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
-          Height="60"
-          FontSize="20"
-          Margin="30 10"
+                      Height="60"
+                      FontSize="20"
+                      Margin="30 10"
          
           SelectedItem="{Binding DeviceType}"/>
             <ComboBox x:Name="BrandCb"
@@ -102,14 +99,11 @@
           
           SelectedItem="{Binding Brand}"/>
             <ComboBox x:Name="EmplCb"
-                        Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                        Foreground="Black"
+                        Style="{StaticResource CustomComboBoxStyle}"
+                      FontSize="20"
                         materialDesign:HintAssist.Hint="Владелец устройства"
-                        materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
                         Height="60"
-                        FontSize="20"
                         Margin="30 10"
-                        Background="WhiteSmoke"
                         DisplayMemberPath = "Lastname"
                         SelectedValuePath = "IdEmployer"
                         SelectedItem="{Binding Brand}"/>

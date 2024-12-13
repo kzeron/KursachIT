@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KursachIT.ClassFolder;
+using KursachIT.DataFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,61 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
     /// </summary>
     public partial class AddPC : Page
     {
-        public AddPC()
+        private int IdDevice;
+        public AddPC(int idDivece)
         {
+            IdDevice = idDivece;
             InitializeComponent();
         }
+
+        private void EditBt_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(CPUTb.Text))
+            {
+                MBClass.ErrorMB("Введите имя");
+            }
+            else if (string.IsNullOrWhiteSpace(RAMTb.Text))
+            {
+                MBClass.ErrorMB("Введите Фамилию");
+            }
+            else if (string.IsNullOrWhiteSpace(StorageTb.Text))
+            {
+                MBClass.ErrorMB("Введите почту");
+            }
+            else if (string.IsNullOrWhiteSpace(RAMTb.Text))
+            {
+                MBClass.ErrorMB("Укажите телефон");
+            }
+            else
+            {
+                try
+                {
+                    using (var context = new ITAdminEntities())
+                    {
+                        int ramSize;
+                        if(!int.TryParse(RAMTb.Text, out ramSize))
+                        {
+                            return;
+                        }
+                        var pc = new PCDetails
+                        {
+                            CPU = CPUTb.Text,
+                            RAM = ramSize,
+                            Storage = StorageTb.Text,
+                            GPU = RAMTb.Text,
+                            IdDevice = IdDevice
+                        };
+                        context.Employers.Add(pc);
+                        context.SaveChanges();
+                    }
+                    Window.GetWindow(this).Close();
+                }
+                catch (Exception ex)
+                {
+                    MBClass.ErrorMB(ex);
+                }
+            }
+        }
+    }
     }
 }

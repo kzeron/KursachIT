@@ -25,6 +25,7 @@ namespace KursachIT.PageFolder.AddPages
     /// </summary>
     public partial class AddDevice : Page
     {
+        int selectDevice;
         public AddDevice()
         {
             InitializeComponent();
@@ -73,16 +74,12 @@ namespace KursachIT.PageFolder.AddPages
                         };
                         context.Devices.Add(deivece);
                         context.SaveChanges();
-                        NameDevice.Clear();
-                        PurchaseDatePicker.SelectedDate = null;
-                        WarrantyEndDatePicker.SelectedDate = null;
-                        BrandCb.SelectedItem = null;
-                        DeviceTypeCb.SelectedItem = null;
+                        selectDevice = deivece.IdDevice;
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
-
+                    MBClass.ErrorMB(ex);
                 }
             }
         }
@@ -99,7 +96,7 @@ namespace KursachIT.PageFolder.AddPages
                 switch (selectedDeviceType)
                 {
                     case DeviceType.PC:
-                        NavigationService.Navigate(new AddPC());
+                        NavigationService.Navigate(new AddPC(selectDevice));
                         break;
                     case DeviceType.Server:
                         NavigationService.Navigate(new AddServer());

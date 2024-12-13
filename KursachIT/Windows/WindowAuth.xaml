@@ -45,10 +45,6 @@
                 </StackPanel>
                 <StackPanel Grid.Row="1">
                     <Frame x:Name="FrameConnect"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           Width="900"
-                           Height="550"
                            NavigationUIVisibility="Hidden"
                            />
                 </StackPanel>

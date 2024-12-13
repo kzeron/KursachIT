@@ -80,7 +80,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ClassFolder\ClassDataValidator.cs" />
     <Compile Include="ClassFolder\ClassDevice.cs" />
+    <Compile Include="ClassFolder\ClassRecord.cs" />
     <Compile Include="ClassFolder\ClassRequest.cs" />
     <Compile Include="ClassFolder\ClassSaveSassion.cs" />
     <Compile Include="ClassFolder\ClassUser.cs" />

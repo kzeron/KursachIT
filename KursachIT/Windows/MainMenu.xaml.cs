@@ -52,14 +52,17 @@ namespace KursachIT.Windows
         {
             MBClass.ExitMB();
         }
-
-        private void PackIcon_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
-        {
-            ClassSaveSassion.ClearSession();
-        }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
+        }
+
+        private void LogOut_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ClassSaveSassion.ClearSession();
+            new WindowAuth().Show();
+            Close();
+
         }
     }
 }

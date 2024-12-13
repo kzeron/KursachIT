@@ -36,6 +36,7 @@ namespace KursachIT.ClassFolder
         public string DocumentFeeder { get; set; }
         public int RackUnit { get; set; }
         public string NetworkInterface { get; set; }
+        public int IdEmployer { get; set; }
     }
     public class DeviceTypeModel
     {

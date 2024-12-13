@@ -24,7 +24,6 @@
                     Grid.Column="0"/>
         <DataGrid Grid.Column="1"
                   ColumnWidth="Auto"
-                  HorizontalGridLinesBrush="Green"
                   HorizontalContentAlignment="Center"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   x:Name="ReqestDgList"
@@ -51,9 +50,15 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu Background="WhiteSmoke">
-                    <MenuItem Header="Принять"/>
-                    <MenuItem Header="Отклонить"/>
-                    <MenuItem Header="Выполнено"/>
+                    <MenuItem Header="Принять"
+                              x:Name="AcceptRequest"
+                              Click="AcceptRequest_Click"/>
+                    <MenuItem Header="Отклонить"
+                              x:Name="Reject"
+                              Click="Reject_Click"/>
+                    <MenuItem Header="Выполнено"
+                              x:Name="CompliteRequest"
+                              Click="CompliteRequest_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

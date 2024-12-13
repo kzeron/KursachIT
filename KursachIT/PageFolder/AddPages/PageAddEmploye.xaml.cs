@@ -45,31 +45,27 @@ namespace KursachIT.PageFolder.AddPages
         {
             if (string.IsNullOrWhiteSpace(NameEmTb.Text))
             {
-
+                MBClass.ErrorMB("Введите имя");
             }
             else if (string.IsNullOrWhiteSpace(SurnameEmTb.Text))
             {
-
-            }
-            else if (string.IsNullOrWhiteSpace(PathronymicEmTb.Text))
-            {
-
+                MBClass.ErrorMB("Введите Фамилию");
             }
             else if (NamberOfficeCb.SelectedItem == null)
             {
-
+                MBClass.ErrorMB("Выберете кабинет");
             }
             else if (NameOfficeCb.SelectedItem == null)
             {
-
+                MBClass.ErrorMB("Выберете кабинет");
             }
             else if (string.IsNullOrWhiteSpace(EmailEmTb.Text))
             {
-
+                MBClass.ErrorMB("Введите почту");
             }
             else if (string.IsNullOrWhiteSpace(PhoneEmTb.Text))
             {
-
+                MBClass.ErrorMB("Укажите телефон");
             }
             else
             {

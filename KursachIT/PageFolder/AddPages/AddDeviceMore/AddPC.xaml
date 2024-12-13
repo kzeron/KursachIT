@@ -87,7 +87,7 @@ HorizontalContentAlignment="Stretch"
             Style="{StaticResource MaterialDesignRaisedButton}"
             ToolTip="MaterialDesignRaisedButton with Round Corners"
             Margin="60 200 30 0"
-            Cursor="Hand" />
+            Cursor="Hand" Click="EditBt_Click" />
         </StackPanel>
     </Grid>
 </Page>

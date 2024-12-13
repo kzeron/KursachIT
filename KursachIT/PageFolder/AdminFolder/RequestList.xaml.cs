@@ -23,6 +23,7 @@ namespace KursachIT.PageFolder.AdminFolder
     /// </summary>
     public partial class RequestList : Page
     {
+        
         private ObservableCollection<ClassRequest> ModelRequest;
 
         public RequestList()
@@ -77,7 +78,52 @@ namespace KursachIT.PageFolder.AdminFolder
             NavigationService.Navigate(new PageStaff());
         }
 
-        private void PackIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void AcceptRequest_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedRequest = ReqestDgList.SelectedItem as ClassRequest;
+            if (selectedRequest == null)
+            {
+                MBClass.ErrorMB("Выбирете заявку");
+                return;
+            }
+            else
+            {
+                using (var context = new ITAdminEntities())
+                {
+                    var request = context.Requests.FirstOrDefault(r => r.IdRequest == selectedRequest.IdRequst);
+                    if (request != null)
+                    {
+                        request.IdStatus = (int)RequestHelper.StatusEnum.InProgress;
+                        request.IdExcutor = AuthUser.IdCurretUser;
+                        context.SaveChanges();
+                        LoadData();
+                    }
+                }
+            }
+        }
+
+        private void CompliteRequest_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedRequest = ReqestDgList.SelectedItem as ClassRequest;
+            if (selectedRequest == null)
+            {
+                MBClass.ErrorMB("Выбирете заявку");
+                return;
+            }
+            else
+            {
+                using (var context = new ITAdminEntities())
+                {
+                    var request = context.Requests.FirstOrDefault(r => r.IdRequest == selectedRequest.IdRequst);
+                    if (request != null)
+                    {
+
+                    }
+                }
+            }
+        }
+
+        private void Reject_Click(object sender, RoutedEventArgs e)
         {
 
         }
