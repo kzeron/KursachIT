@@ -94,7 +94,7 @@
                 Width="150"
                 Background="#3DAB28"
                 FontSize="20"
-                Content="изменить"
+                Content="Добавить"
                 Foreground="WhiteSmoke"
                 Height="40"
                 HorizontalAlignment="Right"

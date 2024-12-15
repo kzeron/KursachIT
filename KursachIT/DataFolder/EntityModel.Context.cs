@@ -13,7 +13,6 @@ namespace KursachIT.DataFolder
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
     public partial class ITAdminEntities : DbContext
     {
@@ -30,13 +29,16 @@ namespace KursachIT.DataFolder
         public virtual DbSet<Brand> Brand { get; set; }
         public virtual DbSet<Cabinet> Cabinet { get; set; }
         public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<ColorTechology> ColorTechology { get; set; }
         public virtual DbSet<Devices> Devices { get; set; }
         public virtual DbSet<DeviceTypes> DeviceTypes { get; set; }
+        public virtual DbSet<DocumentFeeder> DocumentFeeder { get; set; }
         public virtual DbSet<Employers> Employers { get; set; }
         public virtual DbSet<Office> Office { get; set; }
         public virtual DbSet<OperationHistory> OperationHistory { get; set; }
         public virtual DbSet<PCDetails> PCDetails { get; set; }
         public virtual DbSet<PrinterDetails> PrinterDetails { get; set; }
+        public virtual DbSet<PrintTechonogy> PrintTechonogy { get; set; }
         public virtual DbSet<Priority> Priority { get; set; }
         public virtual DbSet<Requests> Requests { get; set; }
         public virtual DbSet<Role> Role { get; set; }

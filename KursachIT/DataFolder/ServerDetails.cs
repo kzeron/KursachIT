@@ -20,7 +20,7 @@ namespace KursachIT.DataFolder
         public string Storage { get; set; }
         public int RackUnit { get; set; }
         public string NetworkInterface { get; set; }
-        public Nullable<int> IdDevice { get; set; }
+        public int IdDevice { get; set; }
     
         public virtual Devices Devices { get; set; }
     }

@@ -22,10 +22,10 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
     /// </summary>
     public partial class AddPC : Page
     {
-        private int IdDevice;
+        private int _idDevice;
         public AddPC(int idDivece)
         {
-            IdDevice = idDivece;
+            _idDevice = idDivece;
             InitializeComponent();
         }
 
@@ -64,7 +64,7 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
                             RAM = ramSize,
                             Storage = StorageTb.Text,
                             GPU = RAMTb.Text,
-                            IdDevice = IdDevice
+                            IdDevice = _idDevice
                         };
                         context.PCDetails.Add(pc);
                         context.SaveChanges();

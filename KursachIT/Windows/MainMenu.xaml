@@ -133,9 +133,10 @@ Grid.Column="0">
 
                     <materialDesign:PackIcon Kind="LocationExit" Grid.Row="5"
                                              x:Name="LogOut"
+                                             VerticalAlignment="Stretch"
+                                             Margin="10,458,0,-438"
                                              Height="35"
                                              Width="35"
-                                             Margin="10 40 10 10"
                                              MouseLeftButtonDown="LogOut_MouseLeftButtonDown"/>
                 </Grid>
             </Grid>

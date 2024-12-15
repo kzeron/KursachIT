@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KursachIT.ClassFolder;
+using KursachIT.DataFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,59 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
     /// </summary>
     public partial class AddScanner : Page
     {
-        public AddScanner()
+        private int _idDevice;
+        public AddScanner(int idDevice)
         {
             InitializeComponent();
+            _idDevice = idDevice;
+        }
+
+        private void AddBt_Click(object sender, RoutedEventArgs e)
+        {
+            if(FeederCb.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Укажите наличие подачика");
+            }
+            else if(string.IsNullOrWhiteSpace(MaxScanSpeedTb.Text))
+            {
+                MBClass.ErrorMB("Укажите максимальную скорость сканирования");
+            }
+            else if(string.IsNullOrWhiteSpace(MaxResolutionTb.Text))
+            {
+                MBClass.ErrorMB("Укажите максимальное разрешение");
+            }
+            else
+            {
+                try
+                {
+                    using (var context = new ITAdminEntities())
+                    {
+                        double maxSpeed;
+                        if (!double.TryParse(MaxScanSpeedTb.Text, out maxSpeed))
+                        {
+                            return;
+                        }
+                        var selectedFeeder = context.DocumentFeeder.FirstOrDefault(f => f.IdDocumentFeeder == ((DocumentFeeder)FeederCb.SelectedItem).IdDocumentFeeder);
+                        var scanner = new ScannerDetails
+                        {
+                            IdDocumentFeeder = selectedFeeder.IdDocumentFeeder,
+                            ScanSpeed = maxSpeed,
+                            MaxScanResolution = MaxResolutionTb.Text
+                        };
+                    }
+
+                }
+                catch(Exception ex)
+                {
+                    MBClass.ErrorMB(ex);
+                }
+            }
+
+        }
+
+        private void BackBt_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

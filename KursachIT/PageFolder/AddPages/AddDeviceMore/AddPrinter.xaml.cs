@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KursachIT.ClassFolder;
+using KursachIT.DataFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,65 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
     /// </summary>
     public partial class AddPrinter : Page
     {
-        public AddPrinter()
+        private int _idDevice;
+        public AddPrinter(int idDevice)
         {
             InitializeComponent();
+            _idDevice = idDevice;
+            PrintCb.ItemsSource = ITAdminEntities.GetContext().PrintTechonogy.ToList();
+            ColorCb.ItemsSource =ITAdminEntities.GetContext().ColorTechology.ToList();
+        }
+
+        private void AddBt_Click(object sender, RoutedEventArgs e)
+        {
+            if (PrintCb.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Укажите технологию печати");
+            }
+            else if (ColorCb.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Укажите поддерживаемые цвета");
+            }
+            else if (string.IsNullOrWhiteSpace(MaxResolutionTb.Text))
+            {
+                MBClass.ErrorMB("Укажите максимальное разрешение");
+            }
+            else if (string.IsNullOrWhiteSpace(MaxPrintSpeedTb.Text)) 
+            {
+                MBClass.ErrorMB("Укажите максимальное");
+            }
+            else
+            {
+                try
+                {
+                    using(var context = new ITAdminEntities())
+                    {
+                        double maxSpeed;
+                        if(!double.TryParse(MaxPrintSpeedTb.Text, out maxSpeed))
+                        {
+                            return;
+                        }
+                        var selectedPrintTech = context.PrintTechonogy.FirstOrDefault(p => p.IdPrintTechonogy == ((PrintTechonogy)PrintCb.SelectedItem).IdPrintTechonogy);
+                        var selectedColorTech = context.ColorTechology.FirstOrDefault(c => c.IdColorTech == ((ColorTechology)ColorCb.SelectedItem).IdColorTech);
+                        var printer = new PrinterDetails
+                        {
+                            IdPrintTechnology = selectedPrintTech.IdPrintTechonogy,
+                            IdColorTech = selectedColorTech.IdColorTech,
+                            MaxResolution = MaxResolutionTb.Text,
+                            MaxPrintSpeed = maxSpeed
+                        };
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MBClass.ErrorMB(ex);
+                }
+            }
+        }
+
+        private void BackBt_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

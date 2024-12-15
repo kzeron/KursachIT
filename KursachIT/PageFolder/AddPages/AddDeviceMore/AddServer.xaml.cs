@@ -20,9 +20,21 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
     /// </summary>
     public partial class AddServer : Page
     {
-        public AddServer()
+        private int _idDevice;
+        public AddServer(int idDevice)
         {
             InitializeComponent();
+            _idDevice = idDevice;
+        }
+
+        private void AddBt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BackBt_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

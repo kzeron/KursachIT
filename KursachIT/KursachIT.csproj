@@ -82,10 +82,12 @@
     </Compile>
     <Compile Include="ClassFolder\ClassDataValidator.cs" />
     <Compile Include="ClassFolder\ClassDevice.cs" />
+    <Compile Include="ClassFolder\ClassHistory.cs" />
     <Compile Include="ClassFolder\ClassRecord.cs" />
     <Compile Include="ClassFolder\ClassRequest.cs" />
     <Compile Include="ClassFolder\ClassSaveSassion.cs" />
     <Compile Include="ClassFolder\ClassUser.cs" />
+    <Compile Include="ClassFolder\DevicePageSelectorcs.cs" />
     <Compile Include="ClassFolder\MBClass.cs" />
     <Compile Include="ClassFolder\RequestHelper.cs" />
     <Compile Include="DataFolder\Brand.cs">
@@ -97,11 +99,17 @@
     <Compile Include="DataFolder\Category.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataFolder\ColorTechology.cs">
+      <DependentUpon>EntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataFolder\ContextClass.cs" />
     <Compile Include="DataFolder\Devices.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\DeviceTypes.cs">
+      <DependentUpon>EntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataFolder\DocumentFeeder.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Employers.cs">
@@ -132,6 +140,9 @@
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\PrinterDetails.cs">
+      <DependentUpon>EntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataFolder\PrintTechonogy.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Priority.cs">

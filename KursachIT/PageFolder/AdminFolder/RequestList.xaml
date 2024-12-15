@@ -62,7 +62,5 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
-
-       
     </Grid>
 </Page>

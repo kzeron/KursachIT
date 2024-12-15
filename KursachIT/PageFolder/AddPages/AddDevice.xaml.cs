@@ -31,84 +31,106 @@ namespace KursachIT.PageFolder.AddPages
             InitializeComponent();
             BrandCb.ItemsSource = ITAdminEntities.GetContext().Brand.ToList();
             DeviceTypeCb.ItemsSource = ITAdminEntities.GetContext().DeviceTypes.ToList();
+            EmplCb.ItemsSource = ITAdminEntities.GetContext().Employers.ToList();
         }
 
         private void AddBt_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(NameDevice.Text))
             {
-
+                MBClass.ErrorMB("Пожалуйста, введите название устройства.");
+                return;
             }
             else if (string.IsNullOrWhiteSpace(PurchaseDatePicker.Text))
             {
-
+                MBClass.ErrorMB("Пожалуйста, выберите дату покупки.");
+                return;
             }
             else if (string.IsNullOrWhiteSpace(WarrantyEndDatePicker.Text))
             {
-
+                MBClass.ErrorMB("Пожалуйста, выберите дату окончания гарантии.");
+                return;
+            }
+            else if (string.IsNullOrWhiteSpace(SerialNumberDevice.Text))
+            {
+                MBClass.ErrorMB("Пожалуйста, введите серийный номер устройства.");
+                return;
             }
             else if (BrandCb.SelectedItem == null)
             {
-
+                MBClass.ErrorMB("Пожалуйста, выберите бренд.");
+                return;
             }
             else if (DeviceTypeCb.SelectedItem == null)
             {
-
+                MBClass.ErrorMB("Пожалуйста, выберите тип устройства.");
+                return;
             }
             else
             {
                 try
                 {
-                    using(var context = new ITAdminEntities())
+                    using (var context = new ITAdminEntities())
                     {
                         var selectedIdTypeDevice = context.DeviceTypes.FirstOrDefault(type => type.IdDeviceType == ((DeviceTypes)DeviceTypeCb.SelectedItem).IdDeviceType);
                         var selectedIdBrand = context.Brand.FirstOrDefault(b => b.IdBrand == ((Brand)BrandCb.SelectedItem).IdBrand);
-                        var deivece = new Devices
+                        var selectedIdEmployer = context.Employers.FirstOrDefault(emp => emp.IdEmployers == ((Employers)EmplCb.SelectedItem).IdEmployers);
+
+                        //if (selectedIdTypeDevice == null || selectedIdBrand == null)
+                        //{
+                        //    MBClass.ErrorMB("Выберите корректный тип устройства и бренд.");
+                        //    return;
+                        //}
+
+                        var device = new Devices
                         {
                             NameDevice = NameDevice.Text,
                             PurchaseDate = PurchaseDatePicker.SelectedDate.Value,
-                            WarrantyEndDate = PurchaseDatePicker.SelectedDate.Value,
+                            WarrantyEndDate = WarrantyEndDatePicker.SelectedDate.Value,
+                            SerialNumber = SerialNumberDevice.Text,
                             IdDeviceType = selectedIdTypeDevice.IdDeviceType,
-                            IdBrand = selectedIdBrand.IdBrand
-
+                            IdBrand = selectedIdBrand.IdBrand,
+                            IdEmployer = selectedIdEmployer?.IdEmployers
                         };
-                        context.Devices.Add(deivece);
+
+                        context.Devices.Add(device);
                         context.SaveChanges();
-                        selectDevice = deivece.IdDevice;
+
+                        selectDevice = device.IdDevice;
+
+
+                        // Переход на соответствующую страницу
+                        NavigateToPage(selectedIdTypeDevice.IdDeviceType);
                     }
                 }
-                catch(Exception ex)
+                catch (System.Data.Entity.Validation.DbEntityValidationException ex)
                 {
-                    MBClass.ErrorMB(ex);
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MBClass.ErrorMB($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                        }
+                    }
                 }
             }
         }
+        private void NavigateToPage(int idDeviceType)
+        {
+            Page targetPage = DevicePageSelectorcs.GetPageForDeviceType(idDeviceType, selectDevice);
 
+            if (targetPage != null)
+            {
+                NavigationService?.Navigate(targetPage);
+            }
+            else
+            {
+                MBClass.ErrorMB("Неизвестный тип устройства.");
+            }
+        }
         private void BackBt_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();
-        }
-
-        private void DeviceTypeCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if(DeviceTypeCb.SelectedItem is DeviceType selectedDeviceType)
-            {
-                switch (selectedDeviceType)
-                {
-                    case DeviceType.PC:
-                        NavigationService.Navigate(new AddPC(selectDevice));
-                        break;
-                    case DeviceType.Server:
-                        NavigationService.Navigate(new AddServer());
-                        break;
-                    case DeviceType.Scanner:
-                        NavigationService.Navigate(new AddScanner());
-                        break;
-                    case DeviceType.Printer:
-                        NavigationService.Navigate(new AddPrinter());
-                        break;
-                }
-            }
         }
     }
 }

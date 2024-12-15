@@ -25,8 +25,8 @@ namespace KursachIT.DataFolder
         public int IdCategory { get; set; }
         public int IdPriority { get; set; }
         public System.DateTime PlanDate { get; set; }
-        public string Transcription { get; set; }
         public Nullable<System.DateTime> DateRealize { get; set; }
+        public string Transcription { get; set; }
         public int IdRequestSender { get; set; }
         public Nullable<int> IdExcutor { get; set; }
     

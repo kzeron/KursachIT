@@ -73,17 +73,19 @@ namespace KursachIT.PageFolder.AddPages
                 {
                     using (var context = new ITAdminEntities())
                     {
-                        var selectedOffice = (Office)NameOfficeCb.SelectedItem;
-                        var selectedNumberOffice = (Cabinet)NamberOfficeCb.SelectedItem;
+                        var selectedOfficeId = ((Office)NameOfficeCb.SelectedItem).IdOffice;
+                        var selectedCabinetId = ((Cabinet)NamberOfficeCb.SelectedItem).IdNumberCab;
+
+                        // Создаем нового сотрудника
                         var employer = new Employers
                         {
                             Name = NameEmTb.Text,
                             Lastname = SurnameEmTb.Text,
-                            Patronymic = PhoneEmTb.Text,
+                            Patronymic = PathronymicEmTb.Text,
                             numberPhone = PhoneEmTb.Text,
                             email = EmailEmTb.Text,
-                            Office = selectedOffice,
-                            Cabinet = selectedNumberOffice,
+                            IdOffice = selectedOfficeId, // Передаем ID отдела
+                            IdCab = selectedCabinetId, // Передаем ID кабинета
                             IdUser = _newIdUser
                         };
                         context.Employers.Add(employer);

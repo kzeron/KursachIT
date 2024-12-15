@@ -12,15 +12,18 @@ namespace KursachIT.DataFolder
     using System;
     using System.Collections.Generic;
     
-    public partial class ScannerDetails
+    public partial class PrintTechonogy
     {
-        public int IdScanner { get; set; }
-        public string MaxScanResolution { get; set; }
-        public double ScanSpeed { get; set; }
-        public int IdDocumentFeeder { get; set; }
-        public int IdDevice { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PrintTechonogy()
+        {
+            this.PrinterDetails = new HashSet<PrinterDetails>();
+        }
     
-        public virtual Devices Devices { get; set; }
-        public virtual DocumentFeeder DocumentFeeder { get; set; }
+        public int IdPrintTechonogy { get; set; }
+        public string PrintTechonogyName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PrinterDetails> PrinterDetails { get; set; }
     }
 }

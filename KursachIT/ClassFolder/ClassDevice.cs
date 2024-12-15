@@ -36,14 +36,15 @@ namespace KursachIT.ClassFolder
         public string DocumentFeeder { get; set; }
         public int RackUnit { get; set; }
         public string NetworkInterface { get; set; }
-        public int IdEmployer { get; set; }
+        public int? IdEmployer { get; set; }
+        public int IdPrintTechnology {  get; set; }
+        public int IdColorTech {  get; set; }
     }
     public class DeviceTypeModel
     {
         public string Name { get; set; }
         public DeviceType Type { get; set; }
     }
-
     public enum DeviceType
     {
         PC,

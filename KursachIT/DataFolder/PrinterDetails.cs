@@ -15,12 +15,14 @@ namespace KursachIT.DataFolder
     public partial class PrinterDetails
     {
         public int IdPrinter { get; set; }
-        public string PrintTechnology { get; set; }
+        public int IdPrintTechnology { get; set; }
         public string MaxResolution { get; set; }
         public double MaxPrintSpeed { get; set; }
-        public string ColorPrinting { get; set; }
-        public Nullable<int> IdDevice { get; set; }
+        public Nullable<int> IdColorTech { get; set; }
+        public int IdDevice { get; set; }
     
+        public virtual ColorTechology ColorTechology { get; set; }
         public virtual Devices Devices { get; set; }
+        public virtual PrintTechonogy PrintTechonogy { get; set; }
     }
 }

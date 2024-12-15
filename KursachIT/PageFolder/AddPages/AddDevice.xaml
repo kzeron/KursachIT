@@ -38,10 +38,7 @@
                         
                         materialDesign:HintAssist.FloatingOffset="0,-22"
                         materialDesign:HintAssist.Hint="Укажите дату покупки"
-                        Style="{DynamicResource CustomOutlinedDatePicker}">
-                <DatePicker.Resources>
-                    
-                </DatePicker.Resources>
+                        Style="{StaticResource CustomOutlinedDatePicker}">
             </DatePicker>
             <DatePicker x:Name="DateOfReceiptDatePicker"
                         Background="WhiteSmoke"
@@ -57,7 +54,7 @@
                         materialDesign:HintAssist.Hint="Дату получения"
                         materialDesign:HintAssist.Background="White"
                         materialDesign:HintAssist.Foreground="#3DAB28"
-                        Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                        Style="{StaticResource CustomOutlinedDatePicker}"/>
             <DatePicker x:Name="WarrantyEndDatePicker"
                         Background="WhiteSmoke"
                         materialDesign:CalendarAssist.SelectionColor="#3DAB28"
@@ -72,23 +69,31 @@
                         materialDesign:HintAssist.Background="WhiteSmoke"
                         materialDesign:HintAssist.Foreground="#3DAB28"
                          materialDesign:HintAssist.Hint="Укажите гарантийный срок"
-                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                         Style="{StaticResource CustomOutlinedDatePicker}"/>
 
         </StackPanel>
         <StackPanel Grid.Column="1">
+            <TextBox x:Name="SerialNumberDevice"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                     materialDesign:HintAssist.Foreground="#3DAB28"
+                     materialDesign:HintAssist.Background="WhiteSmoke"
+                     materialDesign:HintAssist.Hint="Введите серийный номер"
+                     VerticalAlignment="Center"
+                     FontSize="20"
+                     Margin="30 10" 
+                     Foreground="Black"/>
             <ComboBox x:Name="DeviceTypeCb"
-                      SelectionChanged="DeviceTypeCb_SelectionChanged"  
-                      Style="{StaticResource CustomComboBoxStyle}"
-                      materialDesign:HintAssist.Hint="Укажите тип устроства"
-                      DisplayMemberPath = "DeviceTypeName"
-                      SelectedValuePath = "IdDeviceType"
-                      Height="60"
-                      FontSize="20"
-                      Margin="30 10"
-         
-          SelectedItem="{Binding DeviceType}"/>
+          Style="{StaticResource CustomComboBoxStyle}"
+          materialDesign:HintAssist.Hint="Укажите тип устроства"
+          DisplayMemberPath = "DeviceTypeName"
+          SelectedValuePath = "IdDeviceType"
+          Height="60"
+          FontSize="20"
+          Margin="30 10"
+          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
             <ComboBox x:Name="BrandCb"
-                      Style="{StaticResource CustomComboBoxStyle}"
+                      Style="{DynamicResource CustomComboBoxStyle}"
                       materialDesign:HintAssist.Hint="Бренд устройства"
                       Height="60"
                       FontSize="20"
@@ -106,7 +111,7 @@
                         Margin="30 10"
                         DisplayMemberPath = "Lastname"
                         SelectedValuePath = "IdEmployer"
-                        SelectedItem="{Binding Brand}"/>
+                        SelectedItem="{Binding Employers}"/>
         </StackPanel>
         <Button x:Name="BackBt"
                 Grid.Column="0"
@@ -119,8 +124,7 @@
             Foreground="WhiteSmoke"
             Height="45"
             HorizontalAlignment="Left"
-            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-            Style="{StaticResource MaterialDesignRaisedButton}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
             ToolTip="MaterialDesignRaisedButton with Round Corners"
             Margin="30 00 10 0" Cursor="Hand" Click="BackBt_Click"/>
         <Button x:Name="AddBt"
@@ -134,7 +138,6 @@
             Foreground="WhiteSmoke"
             Height="45"
             HorizontalAlignment="Right"
-            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
             Style="{StaticResource MaterialDesignRaisedButton}"
             ToolTip="MaterialDesignRaisedButton with Round Corners"
             Margin="10 0 30 0"
