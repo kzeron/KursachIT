@@ -253,11 +253,17 @@
     <Compile Include="PageFolder\UserFolder\PageRequestAdd.xaml.cs">
       <DependentUpon>PageRequestAdd.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\UserFolder\UserRequestList.xaml.cs">
+      <DependentUpon>UserRequestList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AnketWin.xaml.cs">
       <DependentUpon>AnketWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserWindowMain.xaml.cs">
+      <DependentUpon>UserWindowMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\WindowAuth.xaml.cs">
       <DependentUpon>WindowAuth.xaml</DependentUpon>
@@ -410,11 +416,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\UserFolder\UserRequestList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AnketWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserWindowMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

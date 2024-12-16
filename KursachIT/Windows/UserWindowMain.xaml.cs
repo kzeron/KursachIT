@@ -10,29 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KursachIT.PageFolder.UserFolder
+namespace KursachIT.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для PageRequestAdd.xaml
+    /// Логика взаимодействия для UserWindowMain.xaml
     /// </summary>
-    public partial class PageRequestAdd : Page
+    public partial class UserWindowMain : Window
     {
-        public PageRequestAdd()
+        public UserWindowMain()
         {
             InitializeComponent();
-        }
-
-        private void AddBt_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BackBt_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

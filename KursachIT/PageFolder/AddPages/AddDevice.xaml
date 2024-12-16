@@ -35,8 +35,6 @@
                         materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
                         materialDesign:HintAssist.Foreground="#3DAB28"
                         materialDesign:HintAssist.Background="WhiteSmoke"
-                        
-                        materialDesign:HintAssist.FloatingOffset="0,-22"
                         materialDesign:HintAssist.Hint="Укажите дату покупки"
                         Style="{StaticResource CustomOutlinedDatePicker}">
             </DatePicker>
@@ -50,7 +48,6 @@
                         FontSize="20"
                         Margin="30 10"
                         materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
-                        materialDesign:HintAssist.FloatingOffset="0,-22"
                         materialDesign:HintAssist.Hint="Дату получения"
                         materialDesign:HintAssist.Background="White"
                         materialDesign:HintAssist.Foreground="#3DAB28"
@@ -65,7 +62,6 @@
                         FontSize="20"
                         Margin="30 10"
                         materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
-                        materialDesign:HintAssist.FloatingOffset="0,-22"
                         materialDesign:HintAssist.Background="WhiteSmoke"
                         materialDesign:HintAssist.Foreground="#3DAB28"
                          materialDesign:HintAssist.Hint="Укажите гарантийный срок"

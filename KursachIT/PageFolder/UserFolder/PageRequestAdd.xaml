@@ -3,12 +3,109 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:KursachIT.PageFolder.UserFolder"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageRequestAdd">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="2.2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="TranscritionTb"
+                 Grid.Row="1"
+                 Grid.ColumnSpan="2"
+                  materialDesign:HintAssist.Background="WhiteSmoke"
+                  materialDesign:HintAssist.Foreground="#3DAB28"
+                  Foreground="Black"
+                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                  materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                 Height="90"
+                  VerticalAlignment="Stretch"
+                  FontSize="20"
+                  Margin="120 70 120 20"
+                  HorizontalContentAlignment="Stretch"
+                  materialDesign:HintAssist.Hint="Опишите проблему"
+                  materialDesign:HintAssist.FloatingHintHorizontalAlignment="Left"
+                  />
+            <ComboBox x:Name="CategoryCb"
+                      Grid.Column="1"
+                      Grid.Row="0"
+                   materialDesign:HintAssist.Hint="Выбирите категорию"
+                   FontSize="20"
+                   Foreground="Black"
+                   Style="{StaticResource CustomComboBoxStyle}"
+                   Height="60"
+                   Margin="20 20"
+                   SelectedItem="{Binding Category}"
+                   SelectedValuePath="IdRole"
+                   DisplayMemberPath="NameRole"/>
+        <ComboBox x:Name="PriorityCb"
+                  Grid.Column="0"
+                  Grid.Row="0"
+                  materialDesign:HintAssist.Hint="Укажите уровень прироритета"
+                  FontSize="20"
+                  Foreground="Black"
+                  Style="{StaticResource CustomComboBoxStyle}"
+                  Height="60"
+                  Margin="20 20"
+                  SelectedItem="{Binding Role}"
+                  SelectedValuePath="IdRole"
+                  DisplayMemberPath="NameRole"/>
+        <DatePicker x:Name="WarrantyEndDatePicker"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    VerticalAlignment="Top"
+            Background="WhiteSmoke"
+            materialDesign:CalendarAssist.SelectionColor="#3DAB28"
+            materialDesign:CalendarAssist.HeaderBackground="#3DAB28"
+            materialDesign:CalendarAssist.HeaderForeground="WhiteSmoke"
+            materialDesign:DatePickerAssist.OutlinedBorderActiveThickness="2"
+            materialDesign:CalendarAssist.SelectionForegroundColor="WhiteSmoke"
+            FontSize="20"
+            Margin="120 10"
+            materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
+            materialDesign:HintAssist.Background="WhiteSmoke"
+            materialDesign:HintAssist.Foreground="#3DAB28"
+             materialDesign:HintAssist.Hint="Укажите гарантийный срок"
+             Style="{StaticResource CustomOutlinedDatePicker}"/>
+            <Button x:Name="BackBt"
+                Grid.Column="0"
+                Grid.Row="2"
+                 materialDesign:ButtonAssist.CornerRadius="5"
+                 Width="100"
+                 Background="DarkGray"
+                 FontSize="20"
+                 Content="Назад"
+                 Foreground="WhiteSmoke"
+                 Height="45"
+                 HorizontalAlignment="Left"
+                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                 Style="{StaticResource MaterialDesignRaisedButton}"
+                 ToolTip="MaterialDesignRaisedButton with Round Corners"
+                 Margin="30 00 10 0" Cursor="Hand" Click="BackBt_Click"/>
+        <Button x:Name="AddBt"
+                Grid.Column="1"
+                Grid.Row="2"
+                 materialDesign:ButtonAssist.CornerRadius="5"
+                 Width="120"
+                 Background="#3DAB28"
+                 FontSize="20"
+                 Content="Далее"
+                 Foreground="WhiteSmoke"
+                 Height="45"
+                 HorizontalAlignment="Right"
+                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                 Style="{StaticResource MaterialDesignRaisedButton}"
+                 ToolTip="MaterialDesignRaisedButton with Round Corners"
+                 Margin="10 0 30 0"
+                 Cursor="Hand" Click="AddBt_Click"/>
     </Grid>
 </Page>

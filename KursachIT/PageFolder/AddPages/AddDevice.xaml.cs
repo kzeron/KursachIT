@@ -74,29 +74,24 @@ namespace KursachIT.PageFolder.AddPages
                     {
                         var selectedIdTypeDevice = context.DeviceTypes.FirstOrDefault(type => type.IdDeviceType == ((DeviceTypes)DeviceTypeCb.SelectedItem).IdDeviceType);
                         var selectedIdBrand = context.Brand.FirstOrDefault(b => b.IdBrand == ((Brand)BrandCb.SelectedItem).IdBrand);
-                        var selectedIdEmployer = context.Employers.FirstOrDefault(emp => emp.IdEmployers == ((Employers)EmplCb.SelectedItem).IdEmployers);
-
-                        //if (selectedIdTypeDevice == null || selectedIdBrand == null)
-                        //{
-                        //    MBClass.ErrorMB("Выберите корректный тип устройства и бренд.");
-                        //    return;
-                        //}
+                        var selectedIdIdTypeDevice = context.Employers.FirstOrDefault(b => b != null && b.IdEmployers == ((Employers)EmplCb.SelectedItem).IdEmployers);
 
                         var device = new Devices
                         {
                             NameDevice = NameDevice.Text,
                             PurchaseDate = PurchaseDatePicker.SelectedDate.Value,
+                            DateOfReceipt = DateOfReceiptDatePicker.SelectedDate.Value,
                             WarrantyEndDate = WarrantyEndDatePicker.SelectedDate.Value,
+                        
                             SerialNumber = SerialNumberDevice.Text,
                             IdDeviceType = selectedIdTypeDevice.IdDeviceType,
                             IdBrand = selectedIdBrand.IdBrand,
-                            IdEmployer = selectedIdEmployer?.IdEmployers
+                            IdEmployer = selectedIdTypeDevice?.IdDeviceType // null, если сотрудник не выбран
                         };
 
                         context.Devices.Add(device);
                         context.SaveChanges();
 
-                        selectDevice = device.IdDevice;
 
 
                         // Переход на соответствующую страницу
