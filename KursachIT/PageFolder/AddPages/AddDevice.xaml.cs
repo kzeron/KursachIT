@@ -74,25 +74,24 @@ namespace KursachIT.PageFolder.AddPages
                     {
                         var selectedIdTypeDevice = context.DeviceTypes.FirstOrDefault(type => type.IdDeviceType == ((DeviceTypes)DeviceTypeCb.SelectedItem).IdDeviceType);
                         var selectedIdBrand = context.Brand.FirstOrDefault(b => b.IdBrand == ((Brand)BrandCb.SelectedItem).IdBrand);
-                        var selectedIdIdTypeDevice = context.Employers.FirstOrDefault(b => b != null && b.IdEmployers == ((Employers)EmplCb.SelectedItem).IdEmployers);
-
+                        var selectedIdEmployer = EmplCb.SelectedValue != null? Int32.Parse(EmplCb.SelectedValue.ToString()): (int?)null; 
                         var device = new Devices
                         {
                             NameDevice = NameDevice.Text,
                             PurchaseDate = PurchaseDatePicker.SelectedDate.Value,
                             DateOfReceipt = DateOfReceiptDatePicker.SelectedDate.Value,
                             WarrantyEndDate = WarrantyEndDatePicker.SelectedDate.Value,
-                        
                             SerialNumber = SerialNumberDevice.Text,
                             IdDeviceType = selectedIdTypeDevice.IdDeviceType,
                             IdBrand = selectedIdBrand.IdBrand,
-                            IdEmployer = selectedIdTypeDevice?.IdDeviceType // null, если сотрудник не выбран
+                            IdEmployer = selectedIdEmployer
+                            // null, если сотрудник не выбран
                         };
 
                         context.Devices.Add(device);
                         context.SaveChanges();
 
-
+                        selectDevice = device.IdDevice;
 
                         // Переход на соответствующую страницу
                         NavigateToPage(selectedIdTypeDevice.IdDeviceType);

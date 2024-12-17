@@ -33,14 +33,14 @@
                                          HorizontalAlignment="Right"
                                          Margin="5 10"
                                          Foreground="Black"
-                                         MouseLeftButtonDown="Minimize_MouseLeftButtonDown"/>
+                                         MouseLeftButtonDown="WinMinIcon_MouseLeftButtonDown"/>
                     <materialDesign:PackIcon Kind="WindowClose" 
                                          Height="20"
                                          Width="20"
                                          Margin="10 10"
                                          Foreground="Black"
                                          HorizontalAlignment="Right"
-                                         MouseLeftButtonDown="Close_MouseLeftButtonDown"
+                                         MouseLeftButtonDown="WinCloseIcon_MouseLeftButtonDown"
                     />
                 </StackPanel>
                 <StackPanel Grid.Row="1">

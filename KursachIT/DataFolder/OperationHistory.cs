@@ -14,7 +14,7 @@ namespace KursachIT.DataFolder
     
     public partial class OperationHistory
     {
-        public int Id { get; set; }
+        public int IdHistory { get; set; }
         public string TableName { get; set; }
         public string OperationType { get; set; }
         public System.DateTime OperationTime { get; set; }

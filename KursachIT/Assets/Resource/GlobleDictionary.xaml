@@ -26,7 +26,7 @@
         <Setter Property="FontFamily" Value="Cascadia Mono SemiLight"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="LawnGreen"/>
+                <Setter Property="Foreground" Value="#3DAB28"/>
             </Trigger>
         </Style.Triggers>
     </Style>

@@ -84,9 +84,9 @@
         </EntityType>
         <EntityType Name="OperationHistory">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdHistory" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdHistory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TableName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="OperationType" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="OperationTime" Type="datetime" Nullable="false" />
@@ -222,12 +222,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Devices_Requests">
-          <End Role="Requests" Type="Self.Requests" Multiplicity="0..1" />
+        <Association Name="FK_Devices_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="0..1" />
           <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Requests">
-              <PropertyRef Name="IdRequest" />
+            <Principal Role="Employers">
+              <PropertyRef Name="IdEmployers" />
             </Principal>
             <Dependent Role="Devices">
               <PropertyRef Name="IdEmployer" />
@@ -339,18 +339,6 @@
             </Principal>
             <Dependent Role="Requests">
               <PropertyRef Name="IdRequestSender" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Requests_Employers1">
-          <End Role="Employers" Type="Self.Employers" Multiplicity="0..1" />
-          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employers">
-              <PropertyRef Name="IdEmployers" />
-            </Principal>
-            <Dependent Role="Requests">
-              <PropertyRef Name="IdExcutor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -487,8 +475,8 @@
             <End Role="DeviceTypes" EntitySet="DeviceTypes" />
             <End Role="Devices" EntitySet="Devices" />
           </AssociationSet>
-          <AssociationSet Name="FK_Devices_Requests" Association="Self.FK_Devices_Requests">
-            <End Role="Requests" EntitySet="Requests" />
+          <AssociationSet Name="FK_Devices_Employers" Association="Self.FK_Devices_Employers">
+            <End Role="Employers" EntitySet="Employers" />
             <End Role="Devices" EntitySet="Devices" />
           </AssociationSet>
           <AssociationSet Name="FK_Employers_Cabinet" Association="Self.FK_Employers_Cabinet">
@@ -524,10 +512,6 @@
             <End Role="Requests" EntitySet="Requests" />
           </AssociationSet>
           <AssociationSet Name="FK_Requests_Employers" Association="Self.FK_Requests_Employers">
-            <End Role="Employers" EntitySet="Employers" />
-            <End Role="Requests" EntitySet="Requests" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Requests_Employers1" Association="Self.FK_Requests_Employers1">
             <End Role="Employers" EntitySet="Employers" />
             <End Role="Requests" EntitySet="Requests" />
           </AssociationSet>
@@ -608,7 +592,7 @@
           <Property Name="IdEmployer" Type="Int32" />
           <NavigationProperty Name="Brand" Relationship="Self.FK_Devices_Brand" FromRole="Devices" ToRole="Brand" />
           <NavigationProperty Name="DeviceTypes" Relationship="Self.FK_Devices_DeviceTypes" FromRole="Devices" ToRole="DeviceTypes" />
-          <NavigationProperty Name="Requests" Relationship="Self.FK_Devices_Requests" FromRole="Devices" ToRole="Requests" />
+          <NavigationProperty Name="Employers" Relationship="Self.FK_Devices_Employers" FromRole="Devices" ToRole="Employers" />
           <NavigationProperty Name="PCDetails" Relationship="Self.FK_PCDetails_Devices" FromRole="Devices" ToRole="PCDetails" />
           <NavigationProperty Name="PrinterDetails" Relationship="Self.FK_PrinterDetails_Devices" FromRole="Devices" ToRole="PrinterDetails" />
           <NavigationProperty Name="ScannerDetails" Relationship="Self.FK_ScannerDetails_Devices" FromRole="Devices" ToRole="ScannerDetails" />
@@ -644,10 +628,10 @@
           <Property Name="IdUser" Type="Int32" Nullable="false" />
           <Property Name="IdCab" Type="Int32" />
           <NavigationProperty Name="Cabinet" Relationship="Self.FK_Employers_Cabinet" FromRole="Employers" ToRole="Cabinet" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_Devices_Employers" FromRole="Employers" ToRole="Devices" />
           <NavigationProperty Name="Office" Relationship="Self.FK_Employers_Office" FromRole="Employers" ToRole="Office" />
           <NavigationProperty Name="User" Relationship="Self.FK_Employers_User" FromRole="Employers" ToRole="User" />
           <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Employers" FromRole="Employers" ToRole="Requests" />
-          <NavigationProperty Name="Requests1" Relationship="Self.FK_Requests_Employers1" FromRole="Employers" ToRole="Requests" />
         </EntityType>
         <EntityType Name="Office">
           <Key>
@@ -659,9 +643,9 @@
         </EntityType>
         <EntityType Name="OperationHistory">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdHistory" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdHistory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TableName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="OperationType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="OperationTime" Type="DateTime" Nullable="false" Precision="3" />
@@ -724,9 +708,7 @@
           <Property Name="IdRequestSender" Type="Int32" Nullable="false" />
           <Property Name="IdExcutor" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Requests_Category" FromRole="Requests" ToRole="Category" />
-          <NavigationProperty Name="Devices" Relationship="Self.FK_Devices_Requests" FromRole="Requests" ToRole="Devices" />
           <NavigationProperty Name="Employers" Relationship="Self.FK_Requests_Employers" FromRole="Requests" ToRole="Employers" />
-          <NavigationProperty Name="Employers1" Relationship="Self.FK_Requests_Employers1" FromRole="Requests" ToRole="Employers" />
           <NavigationProperty Name="Priority" Relationship="Self.FK_Requests_Priority" FromRole="Requests" ToRole="Priority" />
           <NavigationProperty Name="Status" Relationship="Self.FK_Requests_Status" FromRole="Requests" ToRole="Status" />
         </EntityType>
@@ -852,12 +834,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Devices_Requests">
-          <End Role="Requests" Type="Self.Requests" Multiplicity="0..1" />
+        <Association Name="FK_Devices_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="0..1" />
           <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Requests">
-              <PropertyRef Name="IdRequest" />
+            <Principal Role="Employers">
+              <PropertyRef Name="IdEmployers" />
             </Principal>
             <Dependent Role="Devices">
               <PropertyRef Name="IdEmployer" />
@@ -960,18 +942,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Requests_Employers1">
-          <End Role="Employers" Type="Self.Employers" Multiplicity="0..1" />
-          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employers">
-              <PropertyRef Name="IdEmployers" />
-            </Principal>
-            <Dependent Role="Requests">
-              <PropertyRef Name="IdExcutor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PrinterDetails_PrintTechonogy">
           <End Role="PrintTechonogy" Type="Self.PrintTechonogy" Multiplicity="1" />
           <End Role="PrinterDetails" Type="Self.PrinterDetails" Multiplicity="*" />
@@ -1062,8 +1032,8 @@
             <End Role="DeviceTypes" EntitySet="DeviceTypes" />
             <End Role="Devices" EntitySet="Devices" />
           </AssociationSet>
-          <AssociationSet Name="FK_Devices_Requests" Association="Self.FK_Devices_Requests">
-            <End Role="Requests" EntitySet="Requests" />
+          <AssociationSet Name="FK_Devices_Employers" Association="Self.FK_Devices_Employers">
+            <End Role="Employers" EntitySet="Employers" />
             <End Role="Devices" EntitySet="Devices" />
           </AssociationSet>
           <AssociationSet Name="FK_PCDetails_Devices" Association="Self.FK_PCDetails_Devices">
@@ -1095,10 +1065,6 @@
             <End Role="Employers" EntitySet="Employers" />
           </AssociationSet>
           <AssociationSet Name="FK_Requests_Employers" Association="Self.FK_Requests_Employers">
-            <End Role="Employers" EntitySet="Employers" />
-            <End Role="Requests" EntitySet="Requests" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Requests_Employers1" Association="Self.FK_Requests_Employers1">
             <End Role="Employers" EntitySet="Employers" />
             <End Role="Requests" EntitySet="Requests" />
           </AssociationSet>
@@ -1255,7 +1221,7 @@
           <EntitySetMapping Name="OperationHistory">
             <EntityTypeMapping TypeName="ITAdminModel.OperationHistory">
               <MappingFragment StoreEntitySet="OperationHistory">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdHistory" ColumnName="IdHistory" />
                 <ScalarProperty Name="TableName" ColumnName="TableName" />
                 <ScalarProperty Name="OperationType" ColumnName="OperationType" />
                 <ScalarProperty Name="OperationTime" ColumnName="OperationTime" />

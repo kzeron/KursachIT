@@ -14,12 +14,6 @@ namespace KursachIT.DataFolder
     
     public partial class Requests
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Requests()
-        {
-            this.Devices = new HashSet<Devices>();
-        }
-    
         public int IdRequest { get; set; }
         public int IdStatus { get; set; }
         public int IdCategory { get; set; }
@@ -31,10 +25,7 @@ namespace KursachIT.DataFolder
         public Nullable<int> IdExcutor { get; set; }
     
         public virtual Category Category { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Devices> Devices { get; set; }
         public virtual Employers Employers { get; set; }
-        public virtual Employers Employers1 { get; set; }
         public virtual Priority Priority { get; set; }
         public virtual Status Status { get; set; }
     }

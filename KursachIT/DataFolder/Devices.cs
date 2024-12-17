@@ -35,7 +35,7 @@ namespace KursachIT.DataFolder
     
         public virtual Brand Brand { get; set; }
         public virtual DeviceTypes DeviceTypes { get; set; }
-        public virtual Requests Requests { get; set; }
+        public virtual Employers Employers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PCDetails> PCDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

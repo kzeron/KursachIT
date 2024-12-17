@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KursachIT.ClassFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,27 @@ namespace KursachIT.Windows
         public UserWindowMain()
         {
             InitializeComponent();
+        }
+        private void WinMinIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void WinCloseIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MBClass.ExitMB();
+        }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void LogOut_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ClassSaveSassion.ClearSession();
+            new WindowAuth().Show();
+            Close();
+
         }
     }
 }
