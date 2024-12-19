@@ -14,7 +14,7 @@
             <RowDefinition Height="0.26*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Список заявок"
+        <TextBlock Text="Список устройств"
                Grid.Column="1"
                Grid.Row="0"
                VerticalAlignment="Center"
@@ -35,8 +35,6 @@
                   IsReadOnly="True"
                   Margin="0 0 0 60">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="№ п/п"
-                                Binding="{Binding IdDevice}"/>
                 <DataGridTextColumn Header="устройство"
                                 Binding="{Binding DeviceTypeName}"/>
                 <DataGridTextColumn Header="индификационный номер"

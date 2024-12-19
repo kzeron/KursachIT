@@ -10,12 +10,16 @@
     WindowStyle="None"
     WindowStartupLocation="CenterScreen"
     AllowsTransparency="True"
-    Title="UserWindow" Height="700" Width="1000">
+    Title="UserWindow" Height="700" Width="1200">
     <Grid>
         <materialDesign:Card UniformCornerRadius="15"
                          Margin="5" Background="WhiteSmoke"
                          MouseDoubleClick="Window_MouseDown">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="313*"/>
+                    <ColumnDefinition Width="877*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.08*"/>
                     <RowDefinition/>
@@ -27,23 +31,70 @@
                        Height="60"
                        Margin="20 0 835 0"
                        HorizontalAlignment="Left"/>
-                    <materialDesign:PackIcon Kind="WindowMinimize" 
-                                         Height="20"
-                                         Width="20"
-                                         HorizontalAlignment="Right"
-                                         Margin="5 10"
-                                         Foreground="Black"
-                                         MouseLeftButtonDown="WinMinIcon_MouseLeftButtonDown"/>
-                    <materialDesign:PackIcon Kind="WindowClose" 
-                                         Height="20"
-                                         Width="20"
-                                         Margin="10 10"
-                                         Foreground="Black"
-                                         HorizontalAlignment="Right"
-                                         MouseLeftButtonDown="WinCloseIcon_MouseLeftButtonDown"
-                    />
+                    
                 </StackPanel>
-                <StackPanel Grid.Row="1">
+                <materialDesign:PackIcon Kind="WindowMinimize" 
+                         x:Name="WinMinIcon"
+                             Height="20"
+                             Width="20"
+                             HorizontalAlignment="Right"
+                             Grid.Column="1"
+                             Margin="0,20,40,0"
+                             Foreground="Black"
+                             MouseLeftButtonDown="WinMinIcon_MouseLeftButtonDown"/>
+                <materialDesign:PackIcon Kind="WindowClose" 
+                         x:Name="WinCloseIcon"
+                         Height="20"
+                         Width="20"
+                         Margin="0,20,10,0"
+                         Foreground="Black"
+                         HorizontalAlignment="Right"
+                         Grid.Row="0"
+                         Grid.Column="1"
+                         MouseLeftButtonDown="WinCloseIcon_MouseLeftButtonDown"
+    />
+                <Grid Grid.Row="1"
+Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon Kind="Account" Grid.Row="0"
+                       Height="35"
+                       Width="35"
+                       Margin="10"/>
+                    <TextBlock Grid.Row="0" 
+         Text="Личный кабинет"
+         Margin="60 10 40 10"
+         VerticalAlignment="Center"
+         HorizontalAlignment="Left"
+         Style="{StaticResource StandartText}"
+                               PreviewMouseLeftButtonDown="TextBlock_PreviewMouseLeftButtonDown"/>
+                 
+                    <materialDesign:PackIcon Kind="ListBoxOutline" Grid.Row="3"
+                       Height="35"
+                       Width="35"
+                       Margin="10"/>
+                    <TextBlock Grid.Row="3" 
+                             Text="Мои заявки"
+                             Margin="60 10 40 10"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Style="{StaticResource HoverText}"
+                               MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                    <materialDesign:PackIcon Kind="LocationExit" Grid.Row="5"
+                          x:Name="LogOut"
+                          VerticalAlignment="Stretch"
+                          Margin="10,458,0,-438"
+                          Height="35"
+                          Width="35"
+                          MouseLeftButtonDown="LogOut_MouseLeftButtonDown"/>
+                </Grid>
+                <StackPanel Grid.Row="1" Grid.Column="1">
                     <Frame x:Name="FrameConnect"
                        NavigationUIVisibility="Hidden"
                        />

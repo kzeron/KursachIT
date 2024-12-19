@@ -1,4 +1,5 @@
-﻿using KursachIT.ClassFolder;
+﻿using KursachIT.PageFolder.MoreFolder;
+using KursachIT.ClassFolder;
 using KursachIT.DataFolder;
 using KursachIT.PageFolder.AddPages;
 using KursachIT.PageFolder.EditPages;
@@ -24,14 +25,14 @@ namespace KursachIT.PageFolder.AdminFolder
     /// </summary>
     public partial class PageStaff : Page
     {
-            private ObservableCollection<ClassUser> _users;
-            public PageStaff()
-            { 
+        private ObservableCollection<ClassUser> _users;
+        public PageStaff()
+        { 
                 InitializeComponent();
                 _users = new ObservableCollection<ClassUser>();
                 LoadData();
                 StaffDgList.ItemsSource = _users;
-            }
+        }
         private void LoadData()
         {
             using (var context = new ITAdminEntities())
@@ -70,6 +71,8 @@ namespace KursachIT.PageFolder.AdminFolder
                         Patronymic = user.Patronymic,
                         NameOffice = user.NameOffice,
                         NumberOffice = user.numberCab,
+                        Email = user.email,
+                        NumberPhone = user.numberPhone
                     });
                 }
 
@@ -95,15 +98,18 @@ namespace KursachIT.PageFolder.AdminFolder
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if(StaffDgList.SelectedItem is ClassUser selectUser)
+            if (StaffDgList.SelectedItem is ClassUser selectedUser)
             {
-                var editUser = new AnketWin(new PageUserEdit(selectUser.IdUser));
-                editUser.Show();
-                LoadData();
+                // Создаем экземпляр страницы с деталями и передаем данные
+                PageUserEdit userDetailsPage = new PageUserEdit(selectedUser);
+
+                // Открываем новую страницу в окне
+                AnketWin detailsWindow = new AnketWin(userDetailsPage);
+                detailsWindow.Show();
             }
             else
             {
-                MBClass.ErrorMB("Выберете сотрудника");
+                MBClass.ErrorMB("Выберите сотрудника для просмотра.");
             }
         }
         private void DeleteClick(object sender, RoutedEventArgs e)
@@ -161,5 +167,111 @@ namespace KursachIT.PageFolder.AdminFolder
         {
             NavigationService.Navigate(new RequestList());
         }
+
+        private void StaffDgList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (StaffDgList.SelectedItem is ClassUser selectedUser)
+            {
+                // Создаем экземпляр страницы с деталями и передаем данные
+                MoreEployer userDetailsPage = new MoreEployer(selectedUser);
+
+                // Открываем новую страницу в окне
+                AnketWin detailsWindow = new AnketWin(userDetailsPage);
+                detailsWindow.Show();
+            }
+            else
+            {
+                MBClass.ErrorMB("Выберите сотрудника для просмотра.");
+            }
+        }
+        private void OpenFilterPopup_Click(object sender, RoutedEventArgs e)
+        {
+            // Открытие/закрытие Popup
+            FilterPopup.IsOpen = !FilterPopup.IsOpen;
+        }
+
+        private void ApplyFilters_Click(object sender, RoutedEventArgs e)
+        {
+            // Сбор данных фильтров
+            var selectedDepartments = new List<string>();
+            if (ITDepartmentCheckBox.IsChecked == true) selectedDepartments.Add("ИТ");
+            if (TechSupportCheckBox.IsChecked == true) selectedDepartments.Add("Техническая поддержка");
+            if (FinanceCheckBox.IsChecked == true) selectedDepartments.Add("Бухгалтерия");
+            if (MarketingCheckBox.IsChecked == true) selectedDepartments.Add("Маркетинг");
+            if (SalesDepartmentCheckBox.IsChecked == true) selectedDepartments.Add("Отдел продаж");
+
+            var searchText = SearchTextBox.Text;
+
+            // Применение фильтра
+            ApplyFilters(selectedDepartments, searchText);
+
+            // Закрытие Popup
+            FilterPopup.IsOpen = false;
+        }
+
+        private void ApplyFilters(List<string> departments, string searchText)
+        {
+            using (var context = new ITAdminEntities())
+            {
+                var query = from Employers in context.Employers
+                            join User in context.User on Employers.IdUser equals User.IdLogin
+                            join Role in context.Role on User.IdRole equals Role.IdRole into UserGroup
+                            from Role in UserGroup.DefaultIfEmpty()
+                            join Office in context.Office on Employers.IdOffice equals Office.IdOffice
+                            join Cabinet in context.Cabinet on Employers.IdCab equals Cabinet.IdNumberCab into OfficeGroup
+                            from Cabinet in OfficeGroup.DefaultIfEmpty()
+                            select new
+                            {
+                                Employers.IdEmployers,
+                                User.IdLogin,
+                                Role.NameRole,
+                                Employers.Name,
+                                Employers.Lastname,
+                                Employers.Patronymic,
+                                Office.NameOffice,
+                                Cabinet.numberCab,
+                                Employers.numberPhone,
+                                Employers.email
+                            };
+
+                // Применение фильтрации по отделам
+                if (departments.Any())
+                {
+                    query = query.Where(u => departments.Contains(u.NameOffice));
+                }
+
+                // Применение фильтрации по тексту
+                if (!string.IsNullOrWhiteSpace(searchText))
+                {
+                    query = query.Where(u => u.Name.Contains(searchText) ||
+                                             u.Lastname.Contains(searchText) ||
+                                             u.Patronymic.Contains(searchText) ||
+                                             u.NameOffice.Contains(searchText));
+                }
+
+                // Обновление данных DataGrid
+                var filteredData = query.OrderBy(u => u.IdLogin).ToList();
+                _users.Clear();
+                foreach (var user in filteredData)
+                {
+                    _users.Add(new ClassUser
+                    {
+                        IdUser = user.IdLogin,
+                        IdEmployers = user.IdEmployers,
+                        Name = user.Name,
+                        LastName = user.Lastname,
+                        Patronymic = user.Patronymic,
+                        NameOffice = user.NameOffice,
+                        NumberOffice = user.numberCab,
+                        Email = user.email,
+                        NumberPhone = user.numberPhone
+                    });
+                }
+
+                StaffDgList.ItemsSource = _users;
+            }
+
+        }
+
     }
 }

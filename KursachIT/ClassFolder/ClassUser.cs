@@ -33,6 +33,7 @@ namespace KursachIT.ClassFolder
     public static class AuthUser
     {
         public static int IdCurretUser { get; set; }
+        public static int IdEmployer { get; set; }
     }
     public static class SharedData
     {

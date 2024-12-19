@@ -9,6 +9,7 @@
         Background="{x:Null}"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
         AllowsTransparency="True"
         Title="AnketWin" Height="600" Width="800">
     <Grid>

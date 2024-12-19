@@ -50,7 +50,9 @@ namespace KursachIT.PageFolder
                             MBClass.InformationMB("Помощник");
                             break;
                         case 3:
-                            MBClass.InformationMB("Пользователь");
+                            UserWindowMain user = new UserWindowMain();
+                            user.Show();
+                            parentWindow.Close();
                             break;
                     }
                 }
@@ -97,7 +99,9 @@ namespace KursachIT.PageFolder
                                 MBClass.InformationMB("Помощник");
                                 break;
                             case 3:
-                                MBClass.InformationMB("Пользователь");
+                                UserWindowMain userWin = new UserWindowMain();
+                                userWin.Show();
+                                Window.GetWindow(this).Close();
                                 break;
 
                         }

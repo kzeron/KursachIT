@@ -32,7 +32,7 @@
                   FontSize="20"
                   Margin="120 70 120 20"
                   HorizontalContentAlignment="Stretch"
-                  materialDesign:HintAssist.Hint="Опишите проблему"
+                  materialDesign:HintAssist.Hint="Опишите задачу"
                   materialDesign:HintAssist.FloatingHintHorizontalAlignment="Left"
                   />
             <ComboBox x:Name="CategoryCb"
@@ -45,8 +45,8 @@
                    Height="60"
                    Margin="20 20"
                    SelectedItem="{Binding Category}"
-                   SelectedValuePath="IdRole"
-                   DisplayMemberPath="NameRole"/>
+                   SelectedValuePath="IdCategory"
+                   DisplayMemberPath="NameCategory"/>
         <ComboBox x:Name="PriorityCb"
                   Grid.Column="0"
                   Grid.Row="0"
@@ -56,10 +56,10 @@
                   Style="{StaticResource CustomComboBoxStyle}"
                   Height="60"
                   Margin="20 20"
-                  SelectedItem="{Binding Role}"
-                  SelectedValuePath="IdRole"
-                  DisplayMemberPath="NameRole"/>
-        <DatePicker x:Name="WarrantyEndDatePicker"
+                  SelectedItem="{Binding Priority}"
+                  SelectedValuePath="IdPriority"
+                  DisplayMemberPath="NamePriority"/>
+        <DatePicker x:Name="PlanDatePicker"
                     Grid.Row="1"
                     Grid.ColumnSpan="2"
                     VerticalAlignment="Top"
@@ -74,7 +74,7 @@
             materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
             materialDesign:HintAssist.Background="WhiteSmoke"
             materialDesign:HintAssist.Foreground="#3DAB28"
-             materialDesign:HintAssist.Hint="Укажите гарантийный срок"
+             materialDesign:HintAssist.Hint="Укажите ожидаемый срок выполнения"
              Style="{StaticResource CustomOutlinedDatePicker}"/>
             <Button x:Name="BackBt"
                 Grid.Column="0"

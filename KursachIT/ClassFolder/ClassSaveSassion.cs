@@ -12,6 +12,7 @@ namespace KursachIT.ClassFolder
     {
         public static void SaveSession(User user)
         {
+            
             string filePath = "session.txt"; // путь к файлу
             using (StreamWriter writer = new StreamWriter(filePath, false)) // false - перезаписывать файл
             {

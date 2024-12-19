@@ -1,4 +1,6 @@
 ﻿using KursachIT.ClassFolder;
+using KursachIT.PageFolder.AdminFolder;
+using KursachIT.PageFolder.UserFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,7 @@ namespace KursachIT.Windows
         public UserWindowMain()
         {
             InitializeComponent();
+            FrameConnect.NavigationService.Navigate(new UserRequestList());
         }
         private void WinMinIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -43,6 +46,16 @@ namespace KursachIT.Windows
             ClassSaveSassion.ClearSession();
             new WindowAuth().Show();
             Close();
+
+        }
+
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
 
         }
     }

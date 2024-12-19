@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using KursachIT.ClassFolder;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -20,9 +21,15 @@ namespace KursachIT.PageFolder.MoreFolder
     /// </summary>
     public partial class MoreEployer : Page
     {
-        public MoreEployer()
+        public MoreEployer(ClassUser selectedUser)
         {
             InitializeComponent();
+            DataContext = selectedUser;
+        }
+
+        private void BackBt_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
