@@ -29,12 +29,15 @@ namespace KursachIT.ClassFolder
         }
         public enum StatusEnum
         {
-            New = 1,
-            Completed = 2,
-            Denied = 3,
-            Canceled = 4,
-            Overdue = 5,
-            InProgress = 6
+                New = 1,
+                Completed = 2,
+                Denied = 3,
+                Canceled = 4,
+                Overdue = 5,
+                InProgress = 6,
+                Worked = 7,
+                Deleted = 8
+
         }
     }
 }

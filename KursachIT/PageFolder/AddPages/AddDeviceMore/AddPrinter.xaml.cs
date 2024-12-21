@@ -67,7 +67,8 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
                             IdPrintTechnology = selectedPrintTech.IdPrintTechonogy,
                             IdColorTech = selectedColorTech.IdColorTech,
                             MaxResolution = MaxResolutionTb.Text,
-                            MaxPrintSpeed = maxSpeed
+                            MaxPrintSpeed = maxSpeed, 
+                            IdDevice = _idDevice
                         };
                     }
                 }

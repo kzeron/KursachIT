@@ -43,7 +43,8 @@
                 Style="{StaticResource MaterialDesignFloatingActionButton}"/>
 
             <!-- Popup для фильтров -->
-            <Popup x:Name="FilterPopup" Placement="Bottom" StaysOpen="False">
+            <Popup x:Name="FilterPopup" Placement="Bottom" StaysOpen="False"
+                   HorizontalAlignment="Right">
                 <Border Background="White" Padding="10" CornerRadius="5">
                     <StackPanel>
                         <!-- Фильтр по приоритету -->

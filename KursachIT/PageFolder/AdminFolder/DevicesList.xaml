@@ -11,57 +11,113 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.26*"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+
         <TextBlock Text="Список устройств"
-               Grid.Column="1"
-               Grid.Row="0"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Center"
-               Style="{StaticResource TitleText}"/>
-        <StackPanel Grid.Row="1"
-                Grid.Column="0"/>
-        <DataGrid Grid.Column="1"
-                  x:Name="ReqestDgList"
-                  Grid.Row="1"
+                   Grid.Row="0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Style="{StaticResource TitleText}"/>
+
+        <!-- Панель с фильтрами и поиском -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <!-- TextBox для поиска -->
+            <TextBox x:Name="SearchTextBox" 
+                     Width="700"
+                     Margin="0,0,20,0"
+                     VerticalAlignment="Center"
+                     materialDesign:HintAssist.Hint="Поиск устройства"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+            <!-- Кнопка с иконкой фильтра -->
+            <Button Content="{materialDesign:PackIcon Kind=Filter}" 
+                    VerticalAlignment="Center"
+                    Click="OpenFilterPopup_Click" 
+                    Width="40" 
+                    Height="40" 
+                    Background="#3DAB28"
+                    Margin="0,0,10,0" 
+                    Style="{StaticResource MaterialDesignFloatingActionButton}"/>
+
+            <!-- Popup для фильтров -->
+            <Popup x:Name="FilterPopup" Placement="Bottom" StaysOpen="False">
+                <Border Background="White" Padding="10" CornerRadius="5">
+                    <StackPanel>
+                        <!-- Фильтр по типу устройства -->
+                        <TextBlock Text="Тип устройства:" FontWeight="Bold"/>
+                        <CheckBox Content="ПК" x:Name="PCCheckBox" Margin="0,5"/>
+                        <CheckBox Content="Сервер" x:Name="ServerCheckBox" Margin="0,5"/>
+                        <CheckBox Content="Принтер" x:Name="PrinterCheckBox" Margin="0,5"/>
+                        <CheckBox Content="Сканер" x:Name="ScannerCheckBox" Margin="0,5"/>
+
+                        <!-- Фильтр по бренду -->
+                        <TextBlock Text="Бренд:" FontWeight="Bold" Margin="0,10,0,0"/>
+                        <CheckBox Content="Ginzzu" x:Name="GinzzuCheckBox" Margin="0,5"/>
+                        <CheckBox Content="HP" x:Name="HPCheckBox" Margin="0,5"/>
+                        <CheckBox Content="AURORA" x:Name="AURORACheckBox" Margin="0,5"/>
+                        <CheckBox Content="TREIDCOMPUTERS" x:Name="TREIDCheckBox" Margin="0,5"/>
+                        <CheckBox Content="Panasonic" x:Name="PanasonicCheckBox" Margin="0,5"/>
+                        <CheckBox Content="Dell" x:Name="DellCheckBox" Margin="0,5"/>
+                        <CheckBox Content="IBM" x:Name="IBMCheckBox" Margin="0,5"/>
+                        <CheckBox Content="Canon" x:Name="CanonCheckBox" Margin="0,5"/>
+                        <CheckBox Content="Xerox" x:Name="XeroxCheckBox" Margin="0,5"/>
+
+                        <!-- Кнопка применения фильтров -->
+                        <Button Content="Применить" 
+                                Click="ApplyFilters_Click" 
+                                Style="{StaticResource MaterialDesignRaisedButton}" 
+                                Background="#3DAB28"
+                                Margin="0,10,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
+        </StackPanel>
+
+        <!-- DataGrid для отображения списка устройств -->
+        <DataGrid Grid.Row="2"
+                  x:Name="DevicesDgList"
                   ColumnWidth="Auto"
+                  HorizontalContentAlignment="Center"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   Background="WhiteSmoke"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
-                  FontFamily="Cascadia Mono SemiLight"
-                  Padding="Auto"
-                  Style="{StaticResource MaterialDesignDataGrid}"
-                  IsReadOnly="True"
-                  Margin="0 0 0 60">
+                  IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="устройство"
-                                Binding="{Binding DeviceTypeName}"/>
-                <DataGridTextColumn Header="индификационный номер"
-                                Binding="{Binding SerialNumber}"/>
-                <DataGridTextColumn Header="дата производства"
-                                Binding="{Binding PurchaseDate, StringFormat='dd.MM.yyyy'}">
-
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Окончание грантии"
-                                Binding="{Binding WarrantyEndDate, StringFormat='dd.MM.yyyy'}"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding DeviceName}"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding DeviceType}"/>
+                <DataGridTextColumn Header="Бренд" Binding="{Binding Brand}"/>
+                <DataGridTextColumn Header="Серийный номер" Binding="{Binding SerialNumber}"/>
+                <DataGridTextColumn Header="Дата приобретения" Binding="{Binding PurchaseDate}"/>
             </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Изменить" Click="MenuItem_Click"/>
+                    <MenuItem Header="Удалить" Click="DeleteClick"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
-        <Button x:Name="AddBt"
-         Grid.Column="1" Grid.Row="1"
-         materialDesign:ButtonAssist.CornerRadius="5"
-         Width="150"
-         Background="#3DAB28"
-         FontSize="20"
-         Content="Добавить"
-         Foreground="WhiteSmoke"
-         Height="40"
-         HorizontalAlignment="Right"
-         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-         Style="{StaticResource MaterialDesignRaisedButton}"
-         ToolTip="MaterialDesignRaisedButton with Round Corners"
-         VerticalAlignment="Bottom"
-         Cursor="Hand" Click="AddBt_Click"
-         Margin="20 10"/>
+
+        <!-- Кнопка добавления -->
+        <Button x:Name="AddDeviceBt"
+                Grid.Column="1" Grid.Row="3"
+                materialDesign:ButtonAssist.CornerRadius="5"
+                Width="150"
+                Background="#3DAB28"
+                FontSize="20"
+                Content="Добавить"
+                Foreground="WhiteSmoke"
+                Height="40"
+                HorizontalAlignment="Right"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="Добавить устройство"
+                VerticalAlignment="Bottom"
+                Cursor="Hand" 
+                Click="AddDeviceBt_Click"
+                Margin="20 10"/>
     </Grid>
 </Page>

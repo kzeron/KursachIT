@@ -97,7 +97,6 @@
                 Foreground="WhiteSmoke"
                 Height="40"
                 HorizontalAlignment="Right"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 ToolTip="MaterialDesignRaisedButton with Round Corners"
                 VerticalAlignment="Bottom"

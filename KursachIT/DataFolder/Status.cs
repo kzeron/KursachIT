@@ -17,12 +17,15 @@ namespace KursachIT.DataFolder
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Status()
         {
+            this.Employers = new HashSet<Employers>();
             this.Requests = new HashSet<Requests>();
         }
     
         public int IdStatus { get; set; }
         public string NameStatus { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Employers> Employers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Requests> Requests { get; set; }
     }

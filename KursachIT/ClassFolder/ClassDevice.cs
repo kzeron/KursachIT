@@ -11,7 +11,7 @@ namespace KursachIT.ClassFolder
     {
         public static int IdDeviceShare { get; set; }
     }
-    internal class ClassDevice
+    public class ClassDevice
     {
         public int IdDevice {  get; set; }
         public string NameDevice { get; set; }
@@ -39,6 +39,9 @@ namespace KursachIT.ClassFolder
         public int? IdEmployer { get; set; }
         public int IdPrintTechnology {  get; set; }
         public int IdColorTech {  get; set; }
+        public int IdDeviceType { get; set; }
+        public int IdBrand { get; set; }    
+        public string BrandName { get; set; }
     }
     public class DeviceTypeModel
     {

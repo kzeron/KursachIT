@@ -20,9 +20,11 @@ namespace KursachIT.PageFolder.EditPages.EditDeviceMore
     /// </summary>
     public partial class EditServer : Page
     {
-        public EditServer()
+        private int _idDevice;
+        public EditServer(int idDevice)
         {
             InitializeComponent();
+            _idDevice = idDevice;
         }
     }
 }

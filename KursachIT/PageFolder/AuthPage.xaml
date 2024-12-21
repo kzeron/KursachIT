@@ -26,6 +26,7 @@
                      materialDesign:HintAssist.FloatingHintHorizontalAlignment="Left"
                      materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
                      VerticalAlignment="Center"
+                     FontFamily="Cascadia Mono"
                      FontSize="20"
                      Margin="180 60"/>
             <PasswordBox x:Name="PasswordPb"
@@ -35,6 +36,7 @@
                          materialDesign:HintAssist.Hint="Введите пароль"
                          Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                          materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                         FontFamily="Cascadia Mono"
                          VerticalAlignment="Center"
                          FontSize="20"
                          Margin="180 60"/>
@@ -46,7 +48,6 @@
                     Content="Авторизоваться"
                     Foreground="WhiteSmoke"
                     Height="55"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     ToolTip="MaterialDesignRaisedButton with Round Corners"
                     Margin="60"

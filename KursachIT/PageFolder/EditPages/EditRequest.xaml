@@ -1,14 +1,99 @@
 ﻿<Page x:Class="KursachIT.PageFolder.EditPages.EditRequest"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:KursachIT.PageFolder.EditPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EditRequest">
-
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="2.2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="TranscriptionTb"
+                 Grid.Row="1"
+                 Grid.ColumnSpan="2"
+                 materialDesign:HintAssist.Background="WhiteSmoke"
+                 materialDesign:HintAssist.Foreground="#3DAB28"
+                 Foreground="Black"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                 Height="90"
+                 VerticalAlignment="Stretch"
+                 FontSize="20"
+                 Margin="120 70 120 20"
+                 HorizontalContentAlignment="Stretch"
+                 materialDesign:HintAssist.Hint="Опишите задачу"
+                 materialDesign:HintAssist.FloatingHintHorizontalAlignment="Left" />
+        <ComboBox x:Name="CategoryCb"
+                  Grid.Column="1"
+                  Grid.Row="0"
+                  materialDesign:HintAssist.Hint="Выберите категорию"
+                  FontSize="20"
+                  Foreground="Black"
+                  Style="{StaticResource CustomComboBoxStyle}"
+                  Height="60"
+                  Margin="20 20"
+                  SelectedValuePath="IdCategory"
+                  DisplayMemberPath="NameCategory" />
+        <ComboBox x:Name="PriorityCb"
+                  Grid.Column="0"
+                  Grid.Row="0"
+                  materialDesign:HintAssist.Hint="Укажите уровень приоритета"
+                  FontSize="20"
+                  Foreground="Black"
+                  Style="{StaticResource CustomComboBoxStyle}"
+                  Height="60"
+                  Margin="20 20"
+                  SelectedValuePath="IdPriority"
+                  DisplayMemberPath="NamePriority" />
+        <DatePicker x:Name="PlanDatePicker"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    VerticalAlignment="Top"
+                    Background="WhiteSmoke"
+                    materialDesign:CalendarAssist.SelectionColor="#3DAB28"
+                    materialDesign:CalendarAssist.HeaderBackground="#3DAB28"
+                    materialDesign:CalendarAssist.HeaderForeground="WhiteSmoke"
+                    FontSize="20"
+                    Margin="120 10"
+                    materialDesign:HintAssist.Hint="Укажите ожидаемый срок выполнения"
+                    Style="{StaticResource CustomOutlinedDatePicker}" />
+        <Button x:Name="BackBt"
+                Grid.Column="0"
+                Grid.Row="2"
+                materialDesign:ButtonAssist.CornerRadius="5"
+                Width="100"
+                Background="DarkGray"
+                FontSize="20"
+                Content="Назад"
+                Foreground="WhiteSmoke"
+                Height="45"
+                HorizontalAlignment="Left"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                Margin="30 0 10 0"
+                Cursor="Hand" Click="BackBt_Click" />
+        <Button x:Name="SaveBt"
+                Grid.Column="1"
+                Grid.Row="2"
+                materialDesign:ButtonAssist.CornerRadius="5"
+                Width="120"
+                Background="#3DAB28"
+                FontSize="20"
+                Content="Сохранить"
+                Foreground="WhiteSmoke"
+                Height="45"
+                HorizontalAlignment="Right"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                Margin="10 0 30 0"
+                Cursor="Hand" Click="SaveBt_Click" />
     </Grid>
 </Page>

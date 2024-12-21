@@ -30,11 +30,13 @@ namespace KursachIT.DataFolder
         public string email { get; set; }
         public int IdUser { get; set; }
         public Nullable<int> IdCab { get; set; }
+        public Nullable<int> IdStatus { get; set; }
     
         public virtual Cabinet Cabinet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Devices> Devices { get; set; }
         public virtual Office Office { get; set; }
+        public virtual Status Status { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Requests> Requests { get; set; }

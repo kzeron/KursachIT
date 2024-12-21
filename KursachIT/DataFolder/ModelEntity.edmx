@@ -74,6 +74,7 @@
           <Property Name="email" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="IdUser" Type="int" Nullable="false" />
           <Property Name="IdCab" Type="int" />
+          <Property Name="IdStatus" Type="int" />
         </EntityType>
         <EntityType Name="Office">
           <Key>
@@ -255,6 +256,18 @@
             </Principal>
             <Dependent Role="Employers">
               <PropertyRef Name="IdOffice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employers_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatus" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="IdStatus" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -487,6 +500,10 @@
             <End Role="Office" EntitySet="Office" />
             <End Role="Employers" EntitySet="Employers" />
           </AssociationSet>
+          <AssociationSet Name="FK_Employers_Status" Association="Self.FK_Employers_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employers_User" Association="Self.FK_Employers_User">
             <End Role="User" EntitySet="User" />
             <End Role="Employers" EntitySet="Employers" />
@@ -627,9 +644,11 @@
           <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdUser" Type="Int32" Nullable="false" />
           <Property Name="IdCab" Type="Int32" />
+          <Property Name="IdStatus" Type="Int32" />
           <NavigationProperty Name="Cabinet" Relationship="Self.FK_Employers_Cabinet" FromRole="Employers" ToRole="Cabinet" />
           <NavigationProperty Name="Devices" Relationship="Self.FK_Devices_Employers" FromRole="Employers" ToRole="Devices" />
           <NavigationProperty Name="Office" Relationship="Self.FK_Employers_Office" FromRole="Employers" ToRole="Office" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Employers_Status" FromRole="Employers" ToRole="Status" />
           <NavigationProperty Name="User" Relationship="Self.FK_Employers_User" FromRole="Employers" ToRole="User" />
           <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Employers" FromRole="Employers" ToRole="Requests" />
         </EntityType>
@@ -751,6 +770,7 @@
           </Key>
           <Property Name="IdStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employers" Relationship="Self.FK_Employers_Status" FromRole="Status" ToRole="Employers" />
           <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Status" FromRole="Status" ToRole="Requests" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -918,6 +938,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Employers_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatus" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employers_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
@@ -1058,6 +1090,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Employers_Office" Association="Self.FK_Employers_Office">
             <End Role="Office" EntitySet="Office" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employers_Status" Association="Self.FK_Employers_Status">
+            <End Role="Status" EntitySet="Status" />
             <End Role="Employers" EntitySet="Employers" />
           </AssociationSet>
           <AssociationSet Name="FK_Employers_User" Association="Self.FK_Employers_User">
@@ -1207,6 +1243,7 @@
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="IdCab" ColumnName="IdCab" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

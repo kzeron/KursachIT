@@ -74,6 +74,9 @@
             <ComboBox x:Name="NameOfficeCb"
                   Style="{StaticResource CustomComboBoxStyle}"
                   materialDesign:HintAssist.Hint="Укажите отдел"
+                      materialDesign:HintAssist.Background="WhiteSmoke"
+                       materialDesign:HintAssist.Foreground="#3DAB28"
+                      
                   DisplayMemberPath = "NameOffice"
                   SelectedValuePath = "IdOffice"
                   Height="60"
@@ -85,6 +88,9 @@
                   materialDesign:HintAssist.Hint="Укажите номер кабинета"
                   Height="60"
                   FontSize="20"
+                     
+                      materialDesign:HintAssist.Background="WhiteSmoke"
+                      materialDesign:HintAssist.Foreground="#3DAB28"
                   Margin="30 20"
                   DisplayMemberPath = "numberCab"
                   SelectedValuePath = "IdNumberCab"

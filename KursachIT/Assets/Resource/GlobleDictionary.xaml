@@ -36,8 +36,9 @@
            TargetType="CalendarDayButton" 
            BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
         <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="#3DAB28" />
-            <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="White" />
-        </Style>
+        <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="White" />
+        <Setter Property="FontFamily" Value="Cascadia Mono SemiLight"/>
+    </Style>
 
         <!-- Custom Style for Calendar Button -->
         <Style x:Key="CustomCalendarButton" 
@@ -64,6 +65,7 @@
            TargetType="DatePicker" 
            BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
         <Setter Property="CalendarStyle" Value="{StaticResource CustomCalendar}" />
+        <Setter Property="FontFamily" Value="Cascadia Mono SemiLight"/>
     </Style>
    <!-- Определение цветов -->
     <Color x:Key="ComboBoxForegroundColor">Black</Color>

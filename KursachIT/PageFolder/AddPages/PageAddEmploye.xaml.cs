@@ -7,13 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace KursachIT.PageFolder.AddPages
 {
@@ -106,11 +99,32 @@ namespace KursachIT.PageFolder.AddPages
 
         private void BackBt_Click(object sender, RoutedEventArgs e)
         {
+            
+            using (var context = new ITAdminEntities())
+            {
+                // Проверяем, связан ли логин с сотрудником
+                var userHasEmployee = context.Employers.Any(emp => emp.IdUser == _newIdUser);
+
+                if (!userHasEmployee)
+                {
+                    // Удаляем логин, если сотрудник не был создан
+                    var userToDelete = context.User.Find(_newIdUser);
+                    if (userToDelete != null)
+                    {
+                        context.User.Remove(userToDelete);
+                        context.SaveChanges();
+                        MBClass.InformationMB("Логин удалён, так как сотрудник не был добавлен.");
+                    }
+                }
+            }
+
+            // Закрываем окно
             var parentWindow = Window.GetWindow(this);
             if (parentWindow != null)
             {
                 parentWindow.Close();
             }
         }
+
     }
 }

@@ -36,23 +36,28 @@ namespace KursachIT.PageFolder.UserFolder
         {
             RequestHelper.UpdateOverdueRequests();
 
+            // Get the ID of the authorized user (replace with your logic to retrieve user ID)
+            int authorizedUserId = GetAuthorizedUserId();
+
             using (var context = new ITAdminEntities())
             {
-                var requestsData = (from Requests in context.Requests
-                                    join Status in context.Status on Requests.IdStatus equals Status.IdStatus into StatusGroup
-                                    from Status in StatusGroup.DefaultIfEmpty()
-                                    join Category in context.Category on Requests.IdCategory equals Category.IdCategory into CategoryGroup
-                                    from Category in CategoryGroup.DefaultIfEmpty()
-                                    join Priority in context.Priority on Requests.IdPriority equals Priority.IdPriority into PriorityGroup
-                                    from Priority in PriorityGroup.DefaultIfEmpty()
+                var requestsData = (from request in context.Requests
+                                    where request.IdRequestSender == authorizedUserId // Filter by authorized user ID
+                                    join status in context.Status on request.IdStatus equals status.IdStatus into statusGroup
+                                    from status in statusGroup.DefaultIfEmpty()
+                                    join category in context.Category on request.IdCategory equals category.IdCategory into categoryGroup
+                                    from category in categoryGroup.DefaultIfEmpty()
+                                    join priority in context.Priority on request.IdPriority equals priority.IdPriority into priorityGroup
+                                    from priority in priorityGroup.DefaultIfEmpty()
                                     select new
                                     {
-                                        Requests.IdRequest,
-                                        Status.NameStatus,
-                                        Category.NameCategory,
-                                        Priority.NamePriority,
-                                        Requests.PlanDate,
-                                    }).OrderBy(u => u.IdRequest)
+                                        request.IdRequest,
+                                        status.NameStatus,
+                                        category.NameCategory,
+                                        priority.NamePriority,
+                                        request.PlanDate
+                                    })
+                                    .OrderBy(u => u.IdRequest)
                                     .ToList();
 
                 ModelRequest.Clear();
@@ -64,13 +69,20 @@ namespace KursachIT.PageFolder.UserFolder
                         NameStatus = request.NameStatus,
                         NameCategory = request.NameCategory,
                         NamePriority = request.NamePriority,
-                        PlanDate = request.PlanDate,
+                        PlanDate = request.PlanDate
                     });
                 }
                 ReqestDgList.ItemsSource = ModelRequest;
             }
         }
 
+        // Replace this with your logic to retrieve the ID of the authorized user
+        private int GetAuthorizedUserId()
+        {
+            // Implement your logic here to get the authorized user ID
+            // This could involve checking session data, cookies, or user credentials
+            return 1; // Replace with the actual authorized user ID
+        }
         private void AddBt_Click(object sender, RoutedEventArgs e)
         {
             AnketWin anketWin = new AnketWin(new PageRequestAdd());

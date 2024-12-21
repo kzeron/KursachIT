@@ -59,7 +59,8 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
                         {
                             IdDocumentFeeder = selectedFeeder.IdDocumentFeeder,
                             ScanSpeed = maxSpeed,
-                            MaxScanResolution = MaxResolutionTb.Text
+                            MaxScanResolution = MaxResolutionTb.Text,
+                            IdDevice = _idDevice
                         };
                     }
 

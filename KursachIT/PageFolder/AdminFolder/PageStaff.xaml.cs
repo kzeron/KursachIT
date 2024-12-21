@@ -15,8 +15,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace KursachIT.PageFolder.AdminFolder
 {
@@ -46,7 +44,7 @@ namespace KursachIT.PageFolder.AdminFolder
                                  from Cabinet in OfficeGroup.DefaultIfEmpty()
                                  select new
                                  {
-                                     Employers.IdEmployers,   
+                                     Employers.IdEmployers,
                                      User.IdLogin,
                                      Role.NameRole,
                                      Employers.Name,
@@ -65,7 +63,7 @@ namespace KursachIT.PageFolder.AdminFolder
                     _users.Add(new ClassUser
                     {
                         IdUser = user.IdLogin,
-                        IdEmployers = user.IdEmployers, 
+                        IdEmployers = user.IdEmployers,
                         Name = user.Name,
                         LastName = user.Lastname,
                         Patronymic = user.Patronymic,
@@ -75,8 +73,6 @@ namespace KursachIT.PageFolder.AdminFolder
                         NumberPhone = user.numberPhone
                     });
                 }
-
-                StaffDgList.ItemsSource = null;
                 StaffDgList.ItemsSource = _users;
             }
         }
@@ -89,11 +85,6 @@ namespace KursachIT.PageFolder.AdminFolder
             anketWin.Show();
 
             LoadData();
-        }
-
-        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            NavigationService.Navigate(new DevicesList());
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -116,57 +107,46 @@ namespace KursachIT.PageFolder.AdminFolder
         {
             if (StaffDgList.SelectedItem is ClassUser selectedUser)
             {
-                bool result = MBClass.QuestionMB($"Вы уверены, что хотите удалить сотрудника {selectedUser.Name} {selectedUser.LastName}?");
+                bool result = MBClass.QuestionMB($"Вы уверены, что хотите изменить статус сотрудника {selectedUser.Name} {selectedUser.LastName} на 'Удален'?");
 
-                if (result == true)
+                if (result)
                 {
                     try
                     {
                         using (var context = new ITAdminEntities())
                         {
-                            // Manual deletion of related entities (e.g., Projects)
-                            var projectsToDelete = context.Employers.Where(p => p.IdEmployers == selectedUser.IdEmployers).ToList();
-                            context.Employers.RemoveRange(projectsToDelete);
+                            // Найти запись сотрудника в таблице Employers
+                            var employerToUpdate = context.Employers.FirstOrDefault(emp => emp.IdEmployers == selectedUser.IdEmployers);
 
-                            // Delete the Employer
-                            var employerToDelete = context.Employers.FirstOrDefault(emp => emp.IdEmployers == selectedUser.IdEmployers);
-                            if (employerToDelete == null)
+                            if (employerToUpdate != null)
+                            {
+                                // Изменить статус сотрудника
+                                employerToUpdate.IdStatus = 8;
+
+                                // Сохранить изменения
+                                context.SaveChanges();
+
+                                MBClass.InformationMB("Статус сотрудника успешно изменен.");
+                                LoadData(); // Обновить данные после изменения
+                            }
+                            else
                             {
                                 MBClass.ErrorMB("Сотрудник не найден.");
-                                return;
                             }
-
-                            context.Employers.Remove(employerToDelete);
-
-                            // Delete the User (if applicable)
-                            var userToDelete = context.User.FirstOrDefault(u => u.IdLogin == employerToDelete.IdUser);
-                            if (userToDelete != null)
-                            {
-                                context.User.Remove(userToDelete);
-                            }
-
-                            // Save changes
-                            context.SaveChanges();
-                            MBClass.InformationMB("Сотрудник успешно удален.");
-                            LoadData();
                         }
                     }
                     catch (Exception ex)
                     {
-                        MBClass.ErrorMB($"Произошла ошибка при удалении: {ex.Message}");
+                        MBClass.ErrorMB($"Произошла ошибка при изменении статуса: {ex.Message}");
                     }
                 }
             }
             else
             {
-                MBClass.ErrorMB("Выберите сотрудника для удаления.");
+                MBClass.ErrorMB("Выберите сотрудника для изменения статуса.");
             }
         }
 
-        private void Tasks_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            NavigationService.Navigate(new RequestList());
-        }
 
         private void StaffDgList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

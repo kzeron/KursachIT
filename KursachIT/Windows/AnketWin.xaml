@@ -20,24 +20,6 @@
                     <RowDefinition Height="0.08*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="WindowMinimize" 
-                                             Height="20"
-                                             Width="20"
-                                             HorizontalAlignment="Right"
-                                             Margin="5 0"
-                                             Foreground="Black"
-                                             MouseLeftButtonDown="PackIcon_MouseLeftButtonDown"/>
-                    <materialDesign:PackIcon Kind="WindowClose" 
-                                             Height="20"
-                                             Width="20"
-                                             Margin="5 0"
-                                             Foreground="Black"
-                                             HorizontalAlignment="Right"
-                                             MouseLeftButtonDown="PackIcon_MouseLeftButtonDown_1"
-                                             
-                        />
-                </StackPanel>
                 <Frame x:Name="NavigationAdding" 
                        NavigationUIVisibility="Hidden"
                        Grid.Row="1"/>

@@ -20,9 +20,11 @@ namespace KursachIT.PageFolder.EditPages.EditDeviceMore
     /// </summary>
     public partial class EditPrinter : Page
     {
-        public EditPrinter()
+        private int _idDevice;
+        public EditPrinter(int idDevice)
         {
             InitializeComponent();
+            _idDevice = idDevice;
         }
     }
 }

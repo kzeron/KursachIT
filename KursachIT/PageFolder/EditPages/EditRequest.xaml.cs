@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KursachIT.ClassFolder;
+using KursachIT.DataFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,59 @@ namespace KursachIT.PageFolder.EditPages
     /// </summary>
     public partial class EditRequest : Page
     {
-        public EditRequest()
+        private readonly Requests _currentRequest;
+        public EditRequest(Requests currentRequest)
         {
             InitializeComponent();
+            currentRequest = _currentRequest;
+
+            PriorityCb.ItemsSource = ITAdminEntities.GetContext().Priority.ToList();
+            CategoryCb.ItemsSource = ITAdminEntities.GetContext().Category.ToList();
+
+            LoadRequestData();
+            this._currentRequest = currentRequest;
+        }
+
+        private void LoadRequestData()
+        {
+            TranscriptionTb.Text = _currentRequest.Transcription;
+            PriorityCb.SelectedValue = _currentRequest.IdPriority;
+            CategoryCb.SelectedValue = _currentRequest.IdCategory;
+            PlanDatePicker.SelectedDate = _currentRequest.PlanDate;
+        }
+
+        private void SaveBt_Click(object sender, RoutedEventArgs e)
+        {
+            if (PriorityCb.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Укажите уровень приоритетности");
+                return;
+            }
+            if (CategoryCb.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Укажите категорию");
+                return;
+            }
+
+            try
+            {
+                _currentRequest.IdPriority = (int)PriorityCb.SelectedValue;
+                _currentRequest.IdCategory = (int)CategoryCb.SelectedValue;
+                _currentRequest.Transcription = TranscriptionTb.Text;
+                _currentRequest.PlanDate = (DateTime)PlanDatePicker.SelectedDate;
+
+                ITAdminEntities.GetContext().SaveChanges();
+                MBClass.InformationMB("Заявка успешно обновлена.");
+            }
+            catch (Exception ex)
+            {
+                MBClass.ErrorMB(ex.Message);
+            }
+        }
+
+        private void BackBt_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close();
         }
     }
 }
