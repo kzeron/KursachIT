@@ -72,7 +72,8 @@
           Background="WhiteSmoke"
           AutoGenerateColumns="False"
           CanUserAddRows="False"
-          IsReadOnly="True">
+          IsReadOnly="True"
+                      MouseDoubleClick="StaffDgList_MouseDoubleClick">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>

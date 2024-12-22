@@ -36,28 +36,23 @@ namespace KursachIT.PageFolder.UserFolder
         {
             RequestHelper.UpdateOverdueRequests();
 
-            // Get the ID of the authorized user (replace with your logic to retrieve user ID)
-            int authorizedUserId = GetAuthorizedUserId();
-
             using (var context = new ITAdminEntities())
             {
-                var requestsData = (from request in context.Requests
-                                    where request.IdRequestSender == authorizedUserId // Filter by authorized user ID
-                                    join status in context.Status on request.IdStatus equals status.IdStatus into statusGroup
-                                    from status in statusGroup.DefaultIfEmpty()
-                                    join category in context.Category on request.IdCategory equals category.IdCategory into categoryGroup
-                                    from category in categoryGroup.DefaultIfEmpty()
-                                    join priority in context.Priority on request.IdPriority equals priority.IdPriority into priorityGroup
-                                    from priority in priorityGroup.DefaultIfEmpty()
+                var requestsData = (from Requests in context.Requests
+                                    join Status in context.Status on Requests.IdStatus equals Status.IdStatus into StatusGroup
+                                    from Status in StatusGroup.DefaultIfEmpty()
+                                    join Category in context.Category on Requests.IdCategory equals Category.IdCategory into CategoryGroup
+                                    from Category in CategoryGroup.DefaultIfEmpty()
+                                    join Priority in context.Priority on Requests.IdPriority equals Priority.IdPriority into PriorityGroup
+                                    from Priority in PriorityGroup.DefaultIfEmpty()
                                     select new
                                     {
-                                        request.IdRequest,
-                                        status.NameStatus,
-                                        category.NameCategory,
-                                        priority.NamePriority,
-                                        request.PlanDate
-                                    })
-                                    .OrderBy(u => u.IdRequest)
+                                        Requests.IdRequest,
+                                        Status.NameStatus,
+                                        Category.NameCategory,
+                                        Priority.NamePriority,
+                                        Requests.PlanDate,
+                                    }).OrderBy(u => u.IdRequest)
                                     .ToList();
 
                 ModelRequest.Clear();
@@ -69,19 +64,108 @@ namespace KursachIT.PageFolder.UserFolder
                         NameStatus = request.NameStatus,
                         NameCategory = request.NameCategory,
                         NamePriority = request.NamePriority,
-                        PlanDate = request.PlanDate
+                        PlanDate = request.PlanDate,
                     });
                 }
                 ReqestDgList.ItemsSource = ModelRequest;
             }
         }
-
-        // Replace this with your logic to retrieve the ID of the authorized user
-        private int GetAuthorizedUserId()
+        private void OpenFilterPopup_Click(object sender, RoutedEventArgs e)
         {
-            // Implement your logic here to get the authorized user ID
-            // This could involve checking session data, cookies, or user credentials
-            return 1; // Replace with the actual authorized user ID
+            // Открытие/закрытие Popup
+            FilterPopup.IsOpen = !FilterPopup.IsOpen;
+        }
+
+        private void ApplyFilters_Click(object sender, RoutedEventArgs e)
+        {
+            // Сбор данных фильтров
+            var selectedPriorities = new List<string>();
+            if (HighPriorityCheckBox.IsChecked == true) selectedPriorities.Add("Высокий");
+            if (MediumPriorityCheckBox.IsChecked == true) selectedPriorities.Add("Средний");
+            if (LowPriorityCheckBox.IsChecked == true) selectedPriorities.Add("Низкий");
+
+            var selectedStatuses = new List<string>();
+            if (PendingStatusCheckBox.IsChecked == true) selectedStatuses.Add("На рассмотрении");
+            if (CompletedStatusCheckBox.IsChecked == true) selectedStatuses.Add("Выполнено");
+            if (RejectedStatusCheckBox.IsChecked == true) selectedStatuses.Add("Отклонено");
+            if (CancelledStatusCheckBox.IsChecked == true) selectedStatuses.Add("Отменено");
+            if (OverdueStatusCheckBox.IsChecked == true) selectedStatuses.Add("Просрочено");
+            if (InProgressStatusCheckBox.IsChecked == true) selectedStatuses.Add("Выполняется");
+
+            var searchText = SearchTextBox.Text;
+
+            // Применение фильтра
+            ApplyFilters(selectedPriorities, selectedStatuses, searchText);
+
+            // Закрытие Popup
+            FilterPopup.IsOpen = false;
+        }
+
+        private void ApplyFilters(List<string> priorities, List<string> statuses, string searchText)
+        {
+            try
+            {
+                var currentUser = ClassSaveSassion.LoadSession();
+                if (currentUser == null)
+                {
+                    MBClass.ErrorMB("Не удалось получить данные текущей сессии.");
+                    return;
+                }
+
+                using (var context = new ITAdminEntities())
+                {
+                    var user = context.Employers.FirstOrDefault(emp => emp.IdUser == currentUser.IdLogin);
+                    if (user == null)
+                    {
+                        MBClass.ErrorMB("Не найден сотрудник, связанный с текущим пользователем.");
+                        return;
+                    }
+
+                    var query = from request in context.Requests
+                                join status in context.Status on request.IdStatus equals status.IdStatus into statusGroup
+                                from status in statusGroup.DefaultIfEmpty()
+                                join category in context.Category on request.IdCategory equals category.IdCategory into categoryGroup
+                                from category in categoryGroup.DefaultIfEmpty()
+                                join priority in context.Priority on request.IdPriority equals priority.IdPriority into priorityGroup
+                                from priority in priorityGroup.DefaultIfEmpty()
+                                where request.IdRequestSender == user.IdEmployers
+                                select new
+                                {
+                                    request.IdRequest,
+                                    status.NameStatus,
+                                    category.NameCategory,
+                                    priority.NamePriority,
+                                    request.PlanDate,
+                                };
+
+                    // Применение фильтров
+                    if (priorities.Any())
+                    {
+                        query = query.Where(r => priorities.Contains(r.NamePriority));
+                    }
+
+                    if (statuses.Any())
+                    {
+                        query = query.Where(r => statuses.Contains(r.NameStatus));
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(searchText))
+                    {
+                        query = query.Where(r => r.NameCategory.Contains(searchText) ||
+                                                 r.NameStatus.Contains(searchText) ||
+                                                 r.NamePriority.Contains(searchText));
+                    }
+
+                    var filteredData = query.OrderBy(r => r.IdRequest).ToList();
+
+                    // Обновление DataGrid
+                    ReqestDgList.ItemsSource = filteredData;
+                }
+            }
+            catch (Exception ex)
+            {
+                MBClass.ErrorMB($"Ошибка фильтрации: {ex.Message}");
+            }
         }
         private void AddBt_Click(object sender, RoutedEventArgs e)
         {
@@ -89,6 +173,11 @@ namespace KursachIT.PageFolder.UserFolder
             anketWin.Show();
 
             LoadData();
+        }
+
+        private void EditRequest_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using KursachIT.PageFolder.AddPages.AddDeviceMore;
 using KursachIT.PageFolder.EditPages.EditDeviceMore;
+using KursachIT.PageFolder.MoreInfoFolder;
 using System.Windows.Controls;
 
 namespace KursachIT.ClassFolder
@@ -36,6 +37,22 @@ namespace KursachIT.ClassFolder
                     return new EditServer(deviceId);
                 default:
                     return null; // Неизвестный тип устройства
+            }
+        }
+        public static Page GetMorePageForDeviceType(int idDeviceType, int deviceId)
+        {
+            switch (idDeviceType)
+            {
+                case 1:
+                    return new MorePC();
+                case 2:
+                    return new MorePrinter();
+                case 3:
+                    return new MoreScanner();
+                case 4:
+                    return new MoreServer();
+                default:
+                    return null;
             }
         }
     }

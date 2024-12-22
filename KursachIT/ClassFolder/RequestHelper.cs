@@ -1,11 +1,33 @@
 ﻿using KursachIT.DataFolder;
 using System;
+using System.Data.Entity;
 using System.Linq;
 
 namespace KursachIT.ClassFolder
 {
     internal class RequestHelper
     {
+        public static void AssignExecutor(int currentUser, ClassRequest request)
+        {
+            using(var context = new ITAdminEntities())
+            {
+                // Находим сотрудника с таким же Id, как у пользователя
+                var matchingEmployer = context.Employers
+                    .FirstOrDefault(emp => emp.IdUser == currentUser);
+
+                if (matchingEmployer != null)
+                {
+                    // Устанавливаем IdExcutor в запросе
+                    request.IdExcutor = matchingEmployer.IdEmployers;
+                }
+                else
+                {
+                    throw new Exception("Исполнитель не найден для текущего пользователя.");
+                }
+            }
+            
+        }
+
         public static void UpdateOverdueRequests()
         {
             using (var context = new ITAdminEntities())

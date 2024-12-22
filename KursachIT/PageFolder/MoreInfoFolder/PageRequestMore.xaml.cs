@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KursachIT.ClassFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace KursachIT.PageFolder.MoreFolder
     /// </summary>
     public partial class PageRequestMore : Page
     {
-        public PageRequestMore()
+        public PageRequestMore(ClassRequest selectedRequest)
         {
             InitializeComponent();
+            DataContext = selectedRequest;
+        }
+        private void BackBt_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close(); // Закрываем окно
         }
     }
 }

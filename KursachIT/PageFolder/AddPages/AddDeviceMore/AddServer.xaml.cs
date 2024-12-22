@@ -1,4 +1,5 @@
-﻿using KursachIT.DataFolder;
+﻿using KursachIT.ClassFolder;
+using KursachIT.DataFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,7 +83,35 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
 
         private void BackBt_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                using (var context = new ITAdminEntities())
+                {
+                    // Находим устройство по его IdDevice
+                    var deviceToRemove = context.Devices.FirstOrDefault(d => d.IdDevice == _idDevice);
 
+                    if (deviceToRemove != null)
+                    {
+                        // Удаляем устройство
+                        context.Devices.Remove(deviceToRemove);
+                        context.SaveChanges();
+
+                        MBClass.InformationMB("Устройство успешно удалено.");
+                    }
+                    else
+                    {
+                        MBClass.ErrorMB("Устройство с указанным Id не найдено.");
+                    }
+                }
+
+                // Возвращение на предыдущую страницу
+                NavigationService.GoBack();
+            }
+            catch (Exception ex)
+            {
+                MBClass.ErrorMB($"Ошибка при удалении устройства: {ex.Message}");
+            }
         }
+
     }
 }

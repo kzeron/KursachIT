@@ -64,35 +64,21 @@
                       Height="60"
                       FontSize="20"
                       Margin="30 10"/>
+
             <ComboBox x:Name="BrandCb"
                       Style="{DynamicResource CustomComboBoxStyle}"
                       materialDesign:HintAssist.Hint="Бренд устройства"
                       Height="60"
                       FontSize="20"
                       Margin="30 10"
-                      DisplayMemberPath="NameBrand"
-                      SelectedValuePath="IdBrand"/>
+/>
             <ComboBox x:Name="EmplCb"
                       Style="{StaticResource CustomComboBoxStyle}"
                       FontSize="20"
                       materialDesign:HintAssist.Hint="Владелец устройства"
                       Height="60"
                       Margin="30 10"
-                      SelectedValuePath="IdEmployers">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1} {2}">
-                                    <Binding Path="Lastname"/>
-                                    <Binding Path="Name"/>
-                                    <Binding Path="Patronymic"/>
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                     />
         </StackPanel>
         <Button x:Name="BackBt"
                 Grid.Column="0"

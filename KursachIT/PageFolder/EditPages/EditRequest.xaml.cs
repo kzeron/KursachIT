@@ -1,19 +1,9 @@
 ﻿using KursachIT.ClassFolder;
 using KursachIT.DataFolder;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace KursachIT.PageFolder.EditPages
 {
@@ -22,49 +12,80 @@ namespace KursachIT.PageFolder.EditPages
     /// </summary>
     public partial class EditRequest : Page
     {
-        private readonly Requests _currentRequest;
-        public EditRequest(Requests currentRequest)
+        private Requests _request;
+        public int RequestId { get; set; }
+
+        public EditRequest(int requestId)
         {
             InitializeComponent();
-            currentRequest = _currentRequest;
-
-            PriorityCb.ItemsSource = ITAdminEntities.GetContext().Priority.ToList();
-            CategoryCb.ItemsSource = ITAdminEntities.GetContext().Category.ToList();
-
-            LoadRequestData();
-            this._currentRequest = currentRequest;
+            this.RequestId = requestId;
+            LoadRequest();
         }
 
-        private void LoadRequestData()
+        private void LoadRequest()
         {
-            TranscriptionTb.Text = _currentRequest.Transcription;
-            PriorityCb.SelectedValue = _currentRequest.IdPriority;
-            CategoryCb.SelectedValue = _currentRequest.IdCategory;
-            PlanDatePicker.SelectedDate = _currentRequest.PlanDate;
+            var request = ITAdminEntities.GetContext().Requests
+                .FirstOrDefault(r => r.IdRequest == this.RequestId);
+
+            _request = request;
+            DataContext = request;
+
+            LoadPriority();
+            LoadCategory();
+
+            TranscriptionTb.Text = request.Transcription;
+            PriorityCb.SelectedValue = request.IdPriority;
+            CategoryCb.SelectedValue = request.IdCategory;
+            PlanDatePicker.SelectedDate = request.PlanDate;
+        }
+
+        private void LoadPriority()
+        {
+            var priorityList = ITAdminEntities.GetContext().Priority.ToList();
+            PriorityCb.ItemsSource = priorityList;
+            PriorityCb.DisplayMemberPath = "NamePriority";
+            PriorityCb.SelectedValuePath = "IdPriority";
+        }
+
+        private void LoadCategory()
+        {
+            var categoryList = ITAdminEntities.GetContext().Category.ToList();
+            CategoryCb.ItemsSource = categoryList;
+            CategoryCb.DisplayMemberPath = "NameCategory";
+            CategoryCb.SelectedValuePath = "IdCategory";
         }
 
         private void SaveBt_Click(object sender, RoutedEventArgs e)
         {
             if (PriorityCb.SelectedItem == null)
             {
-                MBClass.ErrorMB("Укажите уровень приоритетности");
+                MBClass.ErrorMB("Пожалуйста, выберите приоритет.");
                 return;
             }
             if (CategoryCb.SelectedItem == null)
             {
-                MBClass.ErrorMB("Укажите категорию");
+                MBClass.ErrorMB("Пожалуйста, выберите категорию.");
                 return;
             }
 
             try
             {
-                _currentRequest.IdPriority = (int)PriorityCb.SelectedValue;
-                _currentRequest.IdCategory = (int)CategoryCb.SelectedValue;
-                _currentRequest.Transcription = TranscriptionTb.Text;
-                _currentRequest.PlanDate = (DateTime)PlanDatePicker.SelectedDate;
+                if (PriorityCb.SelectedItem is Priority selectedPriority)
+                {
+                    _request.IdPriority = selectedPriority.IdPriority;
+                }
+
+                if (CategoryCb.SelectedItem is Category selectedCategory)
+                {
+                    _request.IdCategory = selectedCategory.IdCategory;
+                }
+
+                _request.Transcription = TranscriptionTb.Text;
+                _request.PlanDate = PlanDatePicker.SelectedDate.Value;
 
                 ITAdminEntities.GetContext().SaveChanges();
-                MBClass.InformationMB("Заявка успешно обновлена.");
+
+                MessageBox.Show("Изменения сохранены", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {

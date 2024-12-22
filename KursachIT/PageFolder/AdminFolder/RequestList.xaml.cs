@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using KursachIT.PageFolder.MoreFolder;
+using KursachIT.Windows;
 
 namespace KursachIT.PageFolder.AdminFolder
 {
@@ -90,9 +92,11 @@ namespace KursachIT.PageFolder.AdminFolder
             {
                 using (var context = new ITAdminEntities())
                 {
+                    var currentUser = ClassSaveSassion.LoadSession();
                     var request = context.Requests.FirstOrDefault(r => r.IdRequest == selectedRequest.IdRequst);
                     if (request != null)
                     {
+                        RequestHelper.AssignExecutor(currentUser.IdLogin, selectedRequest);
                         request.IdStatus = (int)RequestHelper.StatusEnum.InProgress;
                         request.IdExcutor = AuthUser.IdCurretUser;
                         context.SaveChanges();
@@ -249,5 +253,23 @@ namespace KursachIT.PageFolder.AdminFolder
                 }
             }
         }
+
+        private void ReqestDgList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ReqestDgList.SelectedItem is ClassRequest selectedRequest)
+            {
+                // Создаем экземпляр страницы с деталями и передаем данные
+                PageRequestMore requestMore = new PageRequestMore(selectedRequest);
+
+                // Открываем новую страницу в окне
+                AnketWin detailsWindow = new AnketWin(requestMore);
+                detailsWindow.Show();
+            }
+            else
+            {
+                MBClass.ErrorMB("Выберите сотрудника для просмотра.");
+            }
+        }
+
     }
 }

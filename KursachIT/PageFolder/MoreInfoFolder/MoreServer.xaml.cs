@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using KursachIT.ClassFolder;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -14,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KursachIT.PageFolder.MoreFolder
+namespace KursachIT.PageFolder.MoreInfoFolder
 {
     /// <summary>
-    /// Логика взаимодействия для MoreEployer.xaml
+    /// Логика взаимодействия для MoreServer.xaml
     /// </summary>
-    public partial class MoreEployer : Page
+    public partial class MoreServer : Page
     {
-        public MoreEployer(ClassUser selectedUser)
+        public MoreServer()
         {
             InitializeComponent();
-            DataContext = selectedUser;
         }
 
         private void BackBt_Click(object sender, RoutedEventArgs e)

@@ -106,7 +106,7 @@ namespace KursachIT.PageFolder.AdminFolder
         {
             if (DevicesDgList.SelectedItem is ClassDevice selectedDevice)
             {
-                var editDeviceWindow = new AnketWin(new EditDevice(selectedDevice));
+                var editDeviceWindow = new AnketWin(new EditDevice(selectedDevice.IdDevice));
                 editDeviceWindow.Show();
                 LoadData();
             }
@@ -115,6 +115,7 @@ namespace KursachIT.PageFolder.AdminFolder
                 MBClass.ErrorMB("Выберите устройство для редактирования.");
             }
         }
+
 
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
@@ -242,6 +243,11 @@ namespace KursachIT.PageFolder.AdminFolder
                 // Обновляем источник данных для DataGrid
                 DevicesDgList.ItemsSource = ModelDevices;
             }
+        }
+
+        private void DevicesDgList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

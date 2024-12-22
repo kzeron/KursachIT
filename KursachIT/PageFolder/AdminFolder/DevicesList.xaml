@@ -86,7 +86,8 @@
                   Background="WhiteSmoke"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
-                  IsReadOnly="True">
+                  IsReadOnly="True"
+                  MouseDoubleClick="DevicesDgList_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding DeviceName}"/>
                 <DataGridTextColumn Header="Тип" Binding="{Binding DeviceType}"/>
@@ -117,7 +118,7 @@
                 ToolTip="Добавить устройство"
                 VerticalAlignment="Bottom"
                 Cursor="Hand" 
-                Click="AddDeviceBt_Click"
+                Click="AddBt_Click"
                 Margin="20 10"/>
     </Grid>
 </Page>

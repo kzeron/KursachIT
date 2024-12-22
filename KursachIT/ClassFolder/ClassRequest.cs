@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KursachIT.ClassFolder
 {
-    internal class ClassRequest
+    public class ClassRequest
     {
         public int IdRequst {  get; set; }
         public int IdStatus {  get; set; }

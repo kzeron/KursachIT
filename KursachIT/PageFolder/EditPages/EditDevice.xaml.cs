@@ -22,26 +22,69 @@ namespace KursachIT.PageFolder.EditPages
     /// </summary>
     public partial class EditDevice : Page
     {
-        private int selectedDeviceId;
-        private ClassDevice selectedDevice;
-        public EditDevice(ClassDevice device)
+        Devices _devices;
+        public int DeviceId { get; set; }
+        public EditDevice(int device)
         {
             InitializeComponent();
-            BrandCb.ItemsSource = ITAdminEntities.GetContext().Brand.ToList();
-            DeviceTypeCb.ItemsSource = ITAdminEntities.GetContext().DeviceTypes.ToList();
-            EmplCb.ItemsSource = ITAdminEntities.GetContext().Employers.ToList();
+            DeviceId = device;
+            LoadDevice();
+        }
 
-            selectedDeviceId = device.IdDevice;
-            selectedDevice = device;
+        private void LoadDevice()
+        {
+            var devices = ITAdminEntities.GetContext().Devices
+                .FirstOrDefault(i => i.IdDevice == this.DeviceId);
 
-            NameDevice.Text = selectedDevice.NameDevice;
-            PurchaseDatePicker.SelectedDate = selectedDevice.PurchaseDate;
-            DateOfReceiptDatePicker.SelectedDate = selectedDevice.DateOfReceipt;
-            WarrantyEndDatePicker.SelectedDate = selectedDevice.WarrantyEndDate;
-            SerialNumberDevice.Text = selectedDevice.SerialNumber;
-            DeviceTypeCb.SelectedItem = DeviceTypeCb.Items.Cast<DeviceTypes>().FirstOrDefault(t => t.IdDeviceType == selectedDevice.IdDeviceType);
-            BrandCb.SelectedItem = BrandCb.Items.Cast<Brand>().FirstOrDefault(b => b.IdBrand == selectedDevice.IdBrand);
-            EmplCb.SelectedValue = selectedDevice.IdEmployer;
+            _devices = devices;
+            DataContext = devices;
+
+            LoadBrand();
+            LoadDeviceType();
+            LoadEmployer();
+            BrandCb.SelectedValue = devices.IdBrand;
+            DeviceTypeCb.SelectedValue = devices.IdDeviceType;
+            EmplCb.SelectedValue = devices.IdEmployer;
+            NameDevice.Text = devices.NameDevice;
+            PurchaseDatePicker.SelectedDate = devices.PurchaseDate;
+            DateOfReceiptDatePicker.SelectedDate = devices.DateOfReceipt;
+            WarrantyEndDatePicker.SelectedDate = devices.WarrantyEndDate;
+            SerialNumberDevice.Text = devices.SerialNumber;
+        }
+
+        private void LoadBrand()
+        {
+            var brand = ITAdminEntities.GetContext().Brand.ToList(); // Предполагается, что у вас есть таблица Suppliers
+            BrandCb.ItemsSource = brand;
+            BrandCb.DisplayMemberPath = "NameBrand"; // Убедитесь, что это поле существует
+            BrandCb.SelectedValuePath = "IdBrand";
+        }
+        private void LoadDeviceType()
+        {
+            var deviceType = ITAdminEntities.GetContext().DeviceTypes.ToList(); // Предполагается, что у вас есть таблица Suppliers
+            DeviceTypeCb.ItemsSource = deviceType;
+            DeviceTypeCb.DisplayMemberPath = "DeviceTypeName"; // Убедитесь, что это поле существует
+            DeviceTypeCb.SelectedValuePath = "IdDeviceType";
+        }
+        private void LoadEmployer()
+        {
+            var employer = ITAdminEntities.GetContext().Employers
+        .Select(e => new {
+            e.Name,
+            e.Lastname,
+            e.Patronymic,
+            e.IdEmployers
+        })
+        .ToList()
+        .Select(e => new {
+            FullName = $"{e.Lastname} {e.Name} {e.Patronymic}",
+            e.IdEmployers
+        });
+
+            EmplCb.ItemsSource = employer.ToList();
+            EmplCb.DisplayMemberPath = "FullName";
+            EmplCb.SelectedValuePath = "IdEmployers";
+
         }
 
 
@@ -81,27 +124,30 @@ namespace KursachIT.PageFolder.EditPages
             {
                 try
                 {
-                    using (var context = new ITAdminEntities())
+
+                    if (BrandCb.SelectedItem is Brand selectedBrand)
                     {
-                        var selectedIdTypeDevice = context.DeviceTypes.FirstOrDefault(type => type.IdDeviceType == ((DeviceTypes)DeviceTypeCb.SelectedItem).IdDeviceType);
-                        var selectedIdBrand = context.Brand.FirstOrDefault(b => b.IdBrand == ((Brand)BrandCb.SelectedItem).IdBrand);
-                        var selectedIdEmployer = EmplCb.SelectedValue != null ? Int32.Parse(EmplCb.SelectedValue.ToString()) : (int?)null;
-
-                        // Update existing device data
-                        selectedDevice.NameDevice = NameDevice.Text;
-                        selectedDevice.PurchaseDate = PurchaseDatePicker.SelectedDate.Value;
-                        selectedDevice.DateOfReceipt = DateOfReceiptDatePicker.SelectedDate.Value;
-                        selectedDevice.WarrantyEndDate = WarrantyEndDatePicker.SelectedDate.Value;
-                        selectedDevice.SerialNumber = SerialNumberDevice.Text;
-                        selectedDevice.IdDeviceType = selectedIdTypeDevice.IdDeviceType;
-                        selectedDevice.IdBrand = selectedIdBrand.IdBrand;
-                        selectedDevice.IdEmployer = selectedIdEmployer;
-
-                        context.SaveChanges();
-
-                        MBClass.InformationMB("Устройство успешно обновлено.");
-                        // Consider closing the edit window or reloading data in the parent window
+                        _devices.IdBrand = selectedBrand.IdBrand;
                     }
+
+                    if (DeviceTypeCb.SelectedItem is DeviceTypes selectedDeviceType)
+                    {
+                        _devices.IdDeviceType = selectedDeviceType.IdDeviceType;
+                    }
+
+                    if (EmplCb.SelectedItem is Employers selectedEmployers)
+                    {
+                        _devices.IdEmployer = selectedEmployers.IdEmployers;
+                    }
+
+                    _devices.NameDevice = NameDevice.Text;
+                    _devices.PurchaseDate = PurchaseDatePicker.SelectedDate.Value;
+                    _devices.DateOfReceipt = DateOfReceiptDatePicker.SelectedDate.Value;
+                    _devices.WarrantyEndDate = WarrantyEndDatePicker.SelectedDate.Value;
+                    _devices.SerialNumber = SerialNumberDevice.Text;
+                    ITAdminEntities.GetContext().SaveChanges();
+
+                    MessageBox.Show("Изменения сохранены", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (System.Data.Entity.Validation.DbEntityValidationException ex)
                 {
@@ -121,4 +167,5 @@ namespace KursachIT.PageFolder.EditPages
             Window.GetWindow(this).Close();
         }
     }
+
 }

@@ -66,6 +66,6 @@
      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
      Style="{StaticResource MaterialDesignRaisedButton}"
      ToolTip="MaterialDesignRaisedButton with Round Corners"
-     Margin="0 40" Cursor="Hand" Click="BackBt_Click"/>
+     Margin="0 390" Cursor="Hand" Click="BackBt_Click"/>
     </StackPanel>
 </Page>

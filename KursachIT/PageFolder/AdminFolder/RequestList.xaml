@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Список пользователей"
+        <TextBlock Text="Список запросов"
            Grid.Column="1"
            Grid.Row="0"
            VerticalAlignment="Center"
@@ -84,7 +84,8 @@
                   Padding="Auto"
                   Style="{StaticResource MaterialDesignDataGrid}"
                   IsReadOnly="True"
-                  Margin="0 0 0 60">
+                  Margin="0 0 0 60"
+                  MouseDoubleClick="ReqestDgList_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Категория"
                                     Binding="{Binding NameCategory}"/>

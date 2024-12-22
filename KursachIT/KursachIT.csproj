@@ -235,11 +235,20 @@
     <Compile Include="PageFolder\EditPages\PageUserEdit.xaml.cs">
       <DependentUpon>PageUserEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageFolder\MoreInfoFolder\MoreDevice.xaml.cs">
-      <DependentUpon>MoreDevice.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PageFolder\MoreInfoFolder\MoreEployer.xaml.cs">
       <DependentUpon>MoreEployer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\MoreInfoFolder\MorePC.xaml.cs">
+      <DependentUpon>MorePC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\MoreInfoFolder\MorePrinter.xaml.cs">
+      <DependentUpon>MorePrinter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\MoreInfoFolder\MoreScanner.xaml.cs">
+      <DependentUpon>MoreScanner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\MoreInfoFolder\MoreServer.xaml.cs">
+      <DependentUpon>MoreServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\MoreInfoFolder\PageRequestMore.xaml.cs">
       <DependentUpon>PageRequestMore.xaml</DependentUpon>
@@ -389,11 +398,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageFolder\MoreInfoFolder\MoreDevice.xaml">
+    <Page Include="PageFolder\MoreInfoFolder\MoreEployer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageFolder\MoreInfoFolder\MoreEployer.xaml">
+    <Page Include="PageFolder\MoreInfoFolder\MorePC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\MoreInfoFolder\MorePrinter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\MoreInfoFolder\MoreScanner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\MoreInfoFolder\MoreServer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
