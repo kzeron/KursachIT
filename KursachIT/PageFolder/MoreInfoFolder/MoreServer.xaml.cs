@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KursachIT.PageFolder.MoreFolder
+namespace KursachIT.PageFolder.MoreInfoFolder
 {
     /// <summary>
-    /// Логика взаимодействия для MoreDevice.xaml
+    /// Логика взаимодействия для MoreServer.xaml
     /// </summary>
-    public partial class MoreDevice : Page
+    public partial class MoreServer : Page
     {
-        public MoreDevice()
+        public MoreServer()
         {
             InitializeComponent();
         }

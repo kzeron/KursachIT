@@ -1,0 +1,70 @@
+﻿<Page x:Class="KursachIT.PageFolder.MoreInfoFolder.MoreScanner"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:KursachIT.PageFolder.MoreInfoFolder"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MoreScanner">
+
+    <StackPanel Margin="20" HorizontalAlignment="Center">
+        <TextBlock Text="Информация об устройстве" FontSize="20" FontWeight="Bold" FontFamily="Cascadia Mono SemiLight" Margin="0,0,0,20" />
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Название устройства:" FontWeight="Bold"
+                Style="{StaticResource StandartText}"/>
+            <Label Content="{Binding NameDevice, TargetNullValue=Не указано}" 
+            FontFamily="Cascadia Mono SemiLight"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Серийный номер:" FontWeight="Bold"
+                Style="{StaticResource StandartText}"/>
+            <Label Content="{Binding SerialNumber, TargetNullValue=Не указано}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Дата покупки:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+            <Label Content="{Binding PurchaseDate, StringFormat='dd.MM.yyyy', TargetNullValue=Не указано}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Дата окончания гарантии:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+            <Label Content="{Binding WarrantyEndDate, StringFormat='dd.MM.yyyy', TargetNullValue=Не указано}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Дата поступления:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+            <Label Content="{Binding DateOfReceipt, StringFormat='dd.MM.yyyy', TargetNullValue=Не указано}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Тип устройства:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+            <Label Content="{Binding DeviceType.Name, TargetNullValue=Не указано}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Бренд:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+            <Label Content="{Binding Brand.Name, TargetNullValue=Не указано}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Ответственный сотрудник:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+            <Label Content="{Binding Employer.Name, TargetNullValue=Не указано}" />
+        </StackPanel>
+
+        <Button x:Name="BackBt"
+         materialDesign:ButtonAssist.CornerRadius="5"
+         Width="100"
+         Background="DarkGray"
+         FontSize="20"
+         Content="Назад"
+         Foreground="WhiteSmoke"
+         Height="45"
+         HorizontalAlignment="Center"
+         Style="{StaticResource MaterialDesignRaisedButton}"
+         Margin="0 40" Cursor="Hand" Click="BackBt_Click"/>
+    </StackPanel>
+</Page>

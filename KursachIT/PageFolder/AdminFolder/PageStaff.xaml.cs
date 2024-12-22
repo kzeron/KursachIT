@@ -253,5 +253,9 @@ namespace KursachIT.PageFolder.AdminFolder
 
         }
 
+        private void StaffDgList_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

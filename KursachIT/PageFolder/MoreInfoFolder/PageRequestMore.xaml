@@ -8,7 +8,64 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageRequestMore">
 
-    <Grid>
-        
-    </Grid>
+    <StackPanel Margin="20" HorizontalAlignment="Center">
+        <TextBlock Text="Информация о запросе" FontSize="37"/>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Название запроса:" FontWeight="Bold"/>
+            <Label Content="{Binding NameRequest, TargetNullValue='Не указано'}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Статус запроса:" FontWeight="Bold"/>
+            <Label Content="{Binding NameStatus, TargetNullValue='Не указано'}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Категория:" FontWeight="Bold"/>
+            <Label Content="{Binding NameCategory, TargetNullValue='Не указано'}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Приоритет:" FontWeight="Bold"/>
+            <Label Content="{Binding NamePriority, TargetNullValue='Не указано'}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Дата выполнения (план):" FontWeight="Bold"/>
+            <Label Content="{Binding PlanDate, StringFormat='dd.MM.yyyy', TargetNullValue='Не указано'}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Отправитель:" FontWeight="Bold"/>
+            <Label Content="{Binding NameRequestSender, TargetNullValue='Не указано'}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Исполнитель:" FontWeight="Bold"/>
+            <Label Content="{Binding NameExcutor, TargetNullValue='Не указано'}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Описание:" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Transcription, TargetNullValue='Не указано'}" 
+                           TextWrapping="Wrap" 
+                           Width="400"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <TextBlock Text="Дата реализации:" FontWeight="Bold"/>
+            <Label Content="{Binding DateRealize, StringFormat='dd.MM.yyyy', TargetNullValue=Не указано}" />
+        </StackPanel>
+
+        <Button x:Name="BackBt"
+                Width="100"
+                Height="45"
+                Content="Назад"
+                Background="DarkGray"
+                Foreground="WhiteSmoke"
+                HorizontalAlignment="Center"
+                Margin="0,20,0,0"
+                Click="BackBt_Click"/>
+    </StackPanel>
 </Page>

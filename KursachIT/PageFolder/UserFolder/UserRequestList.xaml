@@ -11,31 +11,81 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.26*"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Список заявок"
-                Grid.Column="1"
-                Grid.Row="0"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                Style="{StaticResource TitleText}"/>
-        <StackPanel Grid.Row="1"
-                 Grid.Column="0"/>
+        <TextBlock Text="Список запросов"
+        Grid.Column="1"
+        Grid.Row="0"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Center"
+        Style="{StaticResource TitleText}"/>
+
+        <!-- Фильтры -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <!-- TextBox для поиска -->
+            <TextBox x:Name="SearchTextBox" 
+              Width="700"
+              Margin="0,0,20,0"
+              VerticalAlignment="Center"
+                  materialDesign:HintAssist.Hint="Поиск"
+              Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+            <!-- Кнопка с иконкой фильтра -->
+            <Button Content="{materialDesign:PackIcon Kind=Filter}" 
+             VerticalAlignment="Center"
+             Click="OpenFilterPopup_Click" 
+             Width="40" 
+             Height="40" 
+                 Background="#3DAB28"
+             Margin="0,0,10,0" 
+             Style="{StaticResource MaterialDesignFloatingActionButton}"/>
+
+            <!-- Popup для фильтров -->
+            <Popup x:Name="FilterPopup" Placement="Bottom" StaysOpen="False"
+                HorizontalAlignment="Right">
+                <Border Background="White" Padding="10" CornerRadius="5">
+                    <StackPanel>
+                        <!-- Фильтр по приоритету -->
+                        <TextBlock Text="Приоритет:" FontWeight="Bold"/>
+                        <CheckBox Content="Высокий" x:Name="HighPriorityCheckBox" Margin="0,5"/>
+                        <CheckBox Content="Средний" x:Name="MediumPriorityCheckBox" Margin="0,5"/>
+                        <CheckBox Content="Низкий" x:Name="LowPriorityCheckBox" Margin="0,5"/>
+
+                        <!-- Фильтр по статусу -->
+                        <TextBlock Text="Статус:" FontWeight="Bold" Margin="0,10,0,0"/>
+                        <CheckBox Content="На рассмотрении" x:Name="PendingStatusCheckBox" Margin="0,5"/>
+                        <CheckBox Content="Выполнено" x:Name="CompletedStatusCheckBox" Margin="0,5"/>
+                        <CheckBox Content="Отклонено" x:Name="RejectedStatusCheckBox" Margin="0,5"/>
+                        <CheckBox Content="Отменено" x:Name="CancelledStatusCheckBox" Margin="0,5"/>
+                        <CheckBox Content="Просрочено" x:Name="OverdueStatusCheckBox" Margin="0,5"/>
+                        <CheckBox Content="Выполняется" x:Name="InProgressStatusCheckBox" Margin="0,5"/>
+
+                        <!-- Кнопка применения фильтров -->
+                        <Button Content="Применить" 
+                         Click="ApplyFilters_Click" 
+                         Style="{StaticResource MaterialDesignRaisedButton}" 
+                         Margin="0,10,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
+        </StackPanel>
         <DataGrid Grid.Column="1"
                ColumnWidth="Auto"
                HorizontalContentAlignment="Center"
                ScrollViewer.HorizontalScrollBarVisibility="Auto"
                x:Name="ReqestDgList"
                Background="WhiteSmoke"
-               Grid.Row="1"
+               Grid.Row="2"
                AutoGenerateColumns="False"
                CanUserAddRows="False"
                FontFamily="Cascadia Mono SemiLight"
                Padding="Auto"
                Style="{StaticResource MaterialDesignDataGrid}"
                IsReadOnly="True"
-               Margin="0 0 0 60">
+               Margin="0 0 0 60"
+                  MouseDoubleClick="ReqestDgList_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Категория"
                                  Binding="{Binding NameCategory}"/>
@@ -48,22 +98,13 @@
                 <DataGridTextColumn Header="Статус заявки"
                                  Binding="{Binding NameStatus}"/>
             </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu Background="WhiteSmoke">
+                    <MenuItem Header="Принять"
+                           x:Name="EditRequest"
+                           Click="EditRequest_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
-        <Button x:Name="AddBt"
-         Grid.Column="1" Grid.Row="1"
-         materialDesign:ButtonAssist.CornerRadius="5"
-         Width="150"
-         Background="#3DAB28"
-         FontSize="20"
-         Content="Добавить"
-         Foreground="WhiteSmoke"
-         Height="40"
-         HorizontalAlignment="Right"
-         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-         Style="{StaticResource MaterialDesignRaisedButton}"
-         ToolTip="MaterialDesignRaisedButton with Round Corners"
-         VerticalAlignment="Bottom"
-         Cursor="Hand" Click="AddBt_Click"
-         Margin="20 10"/>
     </Grid>
 </Page>
