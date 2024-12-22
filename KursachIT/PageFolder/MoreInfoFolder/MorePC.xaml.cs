@@ -16,11 +16,19 @@ using System.Windows.Shapes;
 namespace KursachIT.PageFolder.MoreInfoFolder
 {
     /// <summary>
+<<<<<<<< HEAD:KursachIT/PageFolder/MoreInfoFolder/MorePrinter.xaml.cs
+    /// Логика взаимодействия для MorePrinter.xaml
+    /// </summary>
+    public partial class MorePrinter : Page
+    {
+        public MorePrinter()
+========
     /// Логика взаимодействия для MorePC.xaml
     /// </summary>
     public partial class MorePC : Page
     {
         public MorePC()
+>>>>>>>> ea3e41d804a44bf6a5b8440be9579bc25df97f4f:KursachIT/PageFolder/MoreInfoFolder/MorePC.xaml.cs
         {
             InitializeComponent();
         }
