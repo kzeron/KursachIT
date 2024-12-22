@@ -174,10 +174,5 @@ namespace KursachIT.PageFolder.UserFolder
 
             LoadData();
         }
-
-        private void EditRequest_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
