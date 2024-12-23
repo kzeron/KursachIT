@@ -247,7 +247,49 @@ namespace KursachIT.PageFolder.AdminFolder
 
         private void DevicesDgList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (DevicesDgList.SelectedItem is ClassDevice selectedDevice)
+            {
+                // Получение типа устройства
+                using (var context = new ITAdminEntities())
+                {
+                    var deviceType = context.Devices
+                                            .Where(d => d.IdDevice == selectedDevice.IdDevice)
+                                            .Select(d => d.IdDeviceType)
+                                            .FirstOrDefault();
 
+                    // Проверяем, что тип устройства найден
+                    if (deviceType != 0)
+                    {
+                        // Получение страницы для выбранного типа устройства
+                        var page = DevicePageSelectorcs.GetMorePageForDeviceType(deviceType, selectedDevice);
+
+                        if (page != null)
+                        {
+                            // Открываем окно с нужной страницей
+                            AnketWin window = new AnketWin(page);
+                            window.Show();
+                        }
+                        else
+                        {
+                            MBClass.ErrorMB("Не удалось определить страницу для данного типа устройства.");
+                        }
+                    }
+                    else
+                    {
+                        MBClass.ErrorMB("Тип устройства не найден.");
+                    }
+                }
+            }
+            else
+            {
+                MBClass.ErrorMB("Выберите устройство из списка.");
+            }
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var searchText = SearchTextBox.Text;
+            ApplyFilters(new List<string>(), new List<string>(), searchText);
         }
     }
 }

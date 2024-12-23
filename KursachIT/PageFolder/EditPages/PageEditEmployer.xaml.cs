@@ -82,7 +82,8 @@ namespace KursachIT.PageFolder.EditPages
                         email = EmailEmTb.Text,
                         IdOffice = (int)NameOfficeCb.SelectedValue,
                         IdCab = (int)NamberOfficeCb.SelectedValue,
-                        IdUser = _idUser
+                        IdUser = _idUser,
+                        IdStatus = 7
                     };
 
                     context.Employers.Add(employer);

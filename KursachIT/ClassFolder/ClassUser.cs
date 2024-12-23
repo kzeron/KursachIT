@@ -23,6 +23,8 @@ namespace KursachIT.ClassFolder
         public string PasswordHash { get; set; }
         public Role Role { get; set; }
         public int IdRole {  get; set; }
+        public int IdStatus { get; set; }
+        public string NameStatus { get; set; }
     }
     public enum Role
     {

@@ -1,5 +1,6 @@
 ﻿using KursachIT.PageFolder.AdminFolder;
 using KursachIT.ClassFolder;
+using KursachIT.PageFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +64,11 @@ namespace KursachIT.Windows
             new WindowAuth().Show();
             Close();
 
+        }
+
+        private void PersCabTb_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            FrameConnect.NavigationService.Navigate(new PersAcc());
         }
     }
 }

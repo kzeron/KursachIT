@@ -75,17 +75,6 @@
                  materialDesign:HintAssist.Hint="Введите объем памяти"
                  VerticalAlignment="Center"
                  Margin="30 30"/>
-            <TextBox x:Name="GPUTb"
-                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                 materialDesign:HintAssist.Background="WhiteSmoke"
-                 materialDesign:HintAssist.Foreground="#3DAB28"
-                 Foreground="Black"
-                 FontSize="20"
-                 HorizontalContentAlignment="Stretch"
-                 materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
-                 materialDesign:HintAssist.Hint="Введите видео карту"
-                 VerticalAlignment="Center"
-                 Margin="30 30"/>
             <TextBox x:Name="NetworkInterfaceTb"
 Style="{StaticResource MaterialDesignOutlinedTextBox}"
 materialDesign:HintAssist.Background="WhiteSmoke"
@@ -109,7 +98,7 @@ Margin="30 30" />
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 ToolTip="MaterialDesignRaisedButton with Round Corners"
-                Margin="60 40 30 0"
+                Margin="60 160 30 0"
                 Cursor="Hand" Click="AddBt_Click" />
         </StackPanel>
     </Grid>

@@ -30,7 +30,8 @@
                  Margin="0,0,20,0"
                  VerticalAlignment="Center"
                      materialDesign:HintAssist.Hint="Поиск"
-                 Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     TextChanged="SearchTextBox_TextChanged"/>
 
             <!-- Кнопка с иконкой фильтра -->
             <Button Content="{materialDesign:PackIcon Kind=Filter}" 

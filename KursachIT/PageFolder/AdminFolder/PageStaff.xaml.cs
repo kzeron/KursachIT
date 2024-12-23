@@ -42,6 +42,8 @@ namespace KursachIT.PageFolder.AdminFolder
                                  join Office in context.Office on Employers.IdOffice equals Office.IdOffice
                                  join Cabinet in context.Cabinet on Employers.IdCab equals Cabinet.IdNumberCab into OfficeGroup
                                  from Cabinet in OfficeGroup.DefaultIfEmpty()
+                                 join Status in context.Status on Employers.IdStatus equals Status.IdStatus into StatusGroup
+                                 from Status in StatusGroup.DefaultIfEmpty()
                                  select new
                                  {
                                      Employers.IdEmployers,
@@ -53,7 +55,8 @@ namespace KursachIT.PageFolder.AdminFolder
                                      Office.NameOffice,
                                      Cabinet.numberCab,
                                      Employers.email,
-                                     Employers.numberPhone
+                                     Employers.numberPhone,
+                                     Status.NameStatus
                                  }).OrderBy(u => u.IdLogin)
                                  .ToList();
 
@@ -92,7 +95,7 @@ namespace KursachIT.PageFolder.AdminFolder
             if (StaffDgList.SelectedItem is ClassUser selectedUser)
             {
                 // Создаем экземпляр страницы с деталями и передаем данные
-                PageUserEdit userDetailsPage = new PageUserEdit(selectedUser);
+                PageUserEdit userDetailsPage = new PageUserEdit(selectedUser.IdUser);
 
                 // Открываем новую страницу в окне
                 AnketWin detailsWindow = new AnketWin(userDetailsPage);
@@ -253,9 +256,10 @@ namespace KursachIT.PageFolder.AdminFolder
 
         }
 
-        private void StaffDgList_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            var searchText = SearchTextBox.Text;
+            ApplyFilters(new List<string>(), searchText);
         }
     }
 }

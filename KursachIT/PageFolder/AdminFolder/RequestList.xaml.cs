@@ -271,5 +271,10 @@ namespace KursachIT.PageFolder.AdminFolder
             }
         }
 
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var searchedText = SearchTextBox.Text;
+            ApplyFilters(new List<string>(), new List<string>(), searchedText);
+        }
     }
 }

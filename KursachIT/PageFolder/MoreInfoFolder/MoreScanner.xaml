@@ -70,10 +70,7 @@
             Height="40"
          Background="DarkGray"
          FontSize="20"
-         Content="Назад"
          Foreground="WhiteSmoke"
-         Height="45"
-         HorizontalAlignment="Center"
          Style="{StaticResource MaterialDesignRaisedButton}"
             Margin="0,10,0,0"
             Click="BackBt_Click"/>

@@ -1,6 +1,8 @@
 ﻿using KursachIT.ClassFolder;
 using KursachIT.DataFolder;
 using KursachIT.PageFolder.AddPages;
+using KursachIT.PageFolder.EditPages;
+using KursachIT.PageFolder.MoreFolder;
 using KursachIT.Windows;
 using System;
 using System.Collections.Generic;
@@ -173,6 +175,48 @@ namespace KursachIT.PageFolder.UserFolder
             anketWin.Show();
 
             LoadData();
+        }
+
+        private void ReqestDgList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if(ReqestDgList.SelectedItem is ClassRequest selectedRequest)
+            {
+                // Создаем экземпляр страницы с деталями и передаем данные
+                PageRequestMore requestMore = new PageRequestMore(selectedRequest);
+
+                // Открываем новую страницу в окне
+                AnketWin detailsWindow = new AnketWin(requestMore);
+                detailsWindow.Show();
+            }
+            else
+            {
+                MBClass.ErrorMB("Выберите сотрудника для просмотра.");
+            }
+        }
+
+        private void EditRequest_Click(object sender, RoutedEventArgs e)
+        {
+            if (ReqestDgList.SelectedItem is ClassRequest selectedRequest)
+            {
+                // Создаем экземпляр страницы с деталями и передаем данные
+                EditRequest editRequest = new EditRequest(selectedRequest.IdRequst);
+
+                // Открываем новую страницу в окне
+                AnketWin detailsWindow = new AnketWin(editRequest);
+                detailsWindow.Show();
+            }
+            else
+            {
+                MBClass.ErrorMB("Выберите сотрудника для просмотра.");
+            }
+        }
+
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var searchedText = SearchTextBox.Text;
+            ApplyFilters(new List<string>(), new List<string>(), searchedText);
+
         }
     }
 }

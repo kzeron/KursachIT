@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KursachIT.ClassFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace KursachIT.PageFolder.MoreInfoFolder
     /// </summary>
     public partial class MoreServer : Page
     {
-        public MoreServer()
+        public MoreServer(ClassDevice selectedServer)
         {
             InitializeComponent();
+            DataContext = selectedServer;
         }
 
         private void BackBt_Click(object sender, RoutedEventArgs e)

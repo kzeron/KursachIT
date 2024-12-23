@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KursachIT.ClassFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace KursachIT.PageFolder.MoreInfoFolder
     /// </summary>
     public partial class MoreScanner : Page
     {
-        public MoreScanner()
+        public MoreScanner(ClassDevice selectedScanner)
         {
             InitializeComponent();
+            DataContext = selectedScanner;
         }
 
         private void BackBt_Click(object sender, RoutedEventArgs e)

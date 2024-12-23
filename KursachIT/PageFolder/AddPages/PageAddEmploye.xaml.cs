@@ -79,7 +79,9 @@ namespace KursachIT.PageFolder.AddPages
                             email = EmailEmTb.Text,
                             IdOffice = selectedOfficeId, // Передаем ID отдела
                             IdCab = selectedCabinetId, // Передаем ID кабинета
-                            IdUser = _newIdUser
+                            IdUser = _newIdUser,
+                            IdStatus = 7
+                            
                         };
                         context.Employers.Add(employer);
                         context.SaveChanges();

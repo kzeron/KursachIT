@@ -12,36 +12,36 @@ namespace KursachIT.PageFolder.EditPages
     /// </summary>
     public partial class PageUserEdit : Page
     {
-        private readonly int _idUser;
-        private User _currentUser;
+        User _currentUser;
+        public int UserId { get; set; }
 
         public PageUserEdit(int idUser)
         {
             InitializeComponent();
-            _idUser = idUser;
+            this.UserId = idUser;
             LoadUserData();
         }
 
         private void LoadUserData()
         {
-            using (var context = ITAdminEntities.GetContext())
-            {
-                _currentUser = context.User.FirstOrDefault(u => u.IdLogin == _idUser);
+            var user = ITAdminEntities.GetContext().User
+             .FirstOrDefault(i => i.IdLogin == this.UserId);
 
-                if (_currentUser == null)
-                {
-                    MBClass.ErrorMB("Пользователь не найден.");
-                    return;
-                }
+            _currentUser = user;
+            DataContext = user;
 
-                LoginEmTb.Text = _currentUser.Login;
-                PassowordEmTb.Password = _currentUser.Password;
+            LoadRole();
+            RoleCb.SelectedValue = user.IdRole;
+            LoginEmTb.Text = user.Login;
+            PassowordEmTb.Password = user.Password;
+        }
 
-                RoleCb.ItemsSource = context.Role.ToList();
-                RoleCb.DisplayMemberPath = "NameRole";
-                RoleCb.SelectedValuePath = "IdRole";
-                RoleCb.SelectedValue = _currentUser.Role?.IdRole;
-            }
+        private void LoadRole()
+        {
+            var role = ITAdminEntities.GetContext().Role.ToList(); // Предполагается, что у вас есть таблица Suppliers
+            RoleCb.ItemsSource = role;
+            RoleCb.DisplayMemberPath = "NameRole"; // Убедитесь, что это поле существует
+            RoleCb.SelectedValuePath = "IdRole";
         }
 
         private void SaveBt_Click(object sender, RoutedEventArgs e)
@@ -66,20 +66,16 @@ namespace KursachIT.PageFolder.EditPages
 
             try
             {
-                using (var context = ITAdminEntities.GetContext())
+                _currentUser.Login = LoginEmTb.Text;
+                _currentUser.Password = PassowordEmTb.Password;
+                if (RoleCb.SelectedItem is DataFolder.Role selectedRole)
                 {
-                    var user = context.User.FirstOrDefault(u => u.IdLogin == _idUser);
-
-                    if (user != null)
-                    {
-                        user.Login = LoginEmTb.Text;
-                        user.Password = PassowordEmTb.Password;
-                        user.IdRole = (int)RoleCb.SelectedValue;
-
-                        context.SaveChanges();
-                        MBClass.InformationMB("Данные успешно сохранены.");
-                    }
+                    _currentUser.IdRole = selectedRole.IdRole;
                 }
+
+                ITAdminEntities.GetContext().SaveChanges();
+                MBClass.InformationMB("Данные успешно сохранены.");
+
             }
             catch (Exception ex)
             {
@@ -89,7 +85,7 @@ namespace KursachIT.PageFolder.EditPages
 
         private void BackBt_Click(object sender, RoutedEventArgs e)
         {
-            Window.GetWindow(this).Close();
+            Window.GetWindow(this).Close(); 
         }
     }
 }

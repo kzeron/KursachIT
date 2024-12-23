@@ -29,6 +29,7 @@
              Margin="0,0,20,0"
              VerticalAlignment="Center"
              materialDesign:HintAssist.Hint="Поиск"
+                         TextChanged="SearchTextBox_TextChanged"
              Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
 
                 <!-- Кнопка с иконкой фильтра -->
@@ -80,7 +81,8 @@
                     <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
                     <DataGridTextColumn Header="Отдел" Binding="{Binding NameOffice}"/>
                     <DataGridTextColumn Header="Номер кабинета" Binding="{Binding NumberOffice}"/>
-                </DataGrid.Columns>
+                <DataGridTextColumn Header="Статус работника" Binding="{Binding NameStatus}"/>
+            </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Изменить" Click="MenuItem_Click"/>

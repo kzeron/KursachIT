@@ -1,4 +1,5 @@
 ﻿using KursachIT.ClassFolder;
+using KursachIT.PageFolder;
 using KursachIT.PageFolder.AdminFolder;
 using KursachIT.PageFolder.UserFolder;
 using System;
@@ -49,12 +50,12 @@ namespace KursachIT.Windows
 
         }
 
-        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void TextBlock_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
-
+            FrameConnect.NavigationService.Navigate(new PersAcc());
         }
 
-        private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
         }

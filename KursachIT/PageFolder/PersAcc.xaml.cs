@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KursachIT.ClassFolder;
+using KursachIT.DataFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,27 @@ namespace KursachIT.PageFolder
         public PersAcc()
         {
             InitializeComponent();
+            var currentUser = ClassSaveSassion.LoadSession();
+
+            if (currentUser != null)
+            {
+                // Получаем данные сотрудника, связанного с текущим пользователем
+                var employee = ITAdminEntities.GetContext().Employers
+                    .FirstOrDefault(emp => emp.IdUser == currentUser.IdLogin);
+
+                if (employee != null)
+                {
+                    DataContext = employee;
+                }
+                else
+                {
+                    MBClass.ErrorMB("Информация о сотруднике не найдена.");
+                }
+            }
+            else
+            {
+                MBClass.ErrorMB("Сессия пользователя не найдена. Проверьте вход в систему.");
+            }
         }
     }
 }
