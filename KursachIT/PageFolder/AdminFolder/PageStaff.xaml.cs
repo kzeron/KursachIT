@@ -40,7 +40,7 @@ namespace KursachIT.PageFolder.AdminFolder
                                  join Role in context.Role on User.IdRole equals Role.IdRole into UserGroup
                                  from Role in UserGroup.DefaultIfEmpty()
                                  join Office in context.Office on Employers.IdOffice equals Office.IdOffice
-                                 join Cabinet in context.Cabinet on Employers.IdCab equals Cabinet.IdNumberCab into OfficeGroup
+                                 join Cabinet in context.Cabinet on Employers.IdCab equals Cabinet.IdNumberCabinet into OfficeGroup
                                  from Cabinet in OfficeGroup.DefaultIfEmpty()
                                  join Status in context.Status on Employers.IdStatus equals Status.IdStatus into StatusGroup
                                  from Status in StatusGroup.DefaultIfEmpty()
@@ -53,7 +53,7 @@ namespace KursachIT.PageFolder.AdminFolder
                                      Employers.Lastname,
                                      Employers.Patronymic,
                                      Office.NameOffice,
-                                     Cabinet.numberCab,
+                                     Cabinet.NumberCabinet,
                                      Employers.email,
                                      Employers.numberPhone,
                                      Status.NameStatus
@@ -71,9 +71,10 @@ namespace KursachIT.PageFolder.AdminFolder
                         LastName = user.Lastname,
                         Patronymic = user.Patronymic,
                         NameOffice = user.NameOffice,
-                        NumberOffice = user.numberCab,
+                        NumberOffice = user.NumberCabinet,
                         Email = user.email,
-                        NumberPhone = user.numberPhone
+                        NumberPhone = user.numberPhone,
+                        NameStatus = user.NameStatus
                     });
                 }
                 StaffDgList.ItemsSource = _users;
@@ -201,8 +202,10 @@ namespace KursachIT.PageFolder.AdminFolder
                             join Role in context.Role on User.IdRole equals Role.IdRole into UserGroup
                             from Role in UserGroup.DefaultIfEmpty()
                             join Office in context.Office on Employers.IdOffice equals Office.IdOffice
-                            join Cabinet in context.Cabinet on Employers.IdCab equals Cabinet.IdNumberCab into OfficeGroup
+                            join Cabinet in context.Cabinet on Employers.IdCab equals Cabinet.IdNumberCabinet into OfficeGroup
                             from Cabinet in OfficeGroup.DefaultIfEmpty()
+                            join Status in context.Status on Employers.IdStatus equals Status.IdStatus into StatusGroup
+                            from Status in StatusGroup.DefaultIfEmpty()
                             select new
                             {
                                 Employers.IdEmployers,
@@ -212,9 +215,10 @@ namespace KursachIT.PageFolder.AdminFolder
                                 Employers.Lastname,
                                 Employers.Patronymic,
                                 Office.NameOffice,
-                                Cabinet.numberCab,
+                                Cabinet.NumberCabinet,
                                 Employers.numberPhone,
-                                Employers.email
+                                Employers.email,
+                                Status.NameStatus
                             };
 
                 // Применение фильтрации по отделам
@@ -245,9 +249,10 @@ namespace KursachIT.PageFolder.AdminFolder
                         LastName = user.Lastname,
                         Patronymic = user.Patronymic,
                         NameOffice = user.NameOffice,
-                        NumberOffice = user.numberCab,
+                        NumberOffice = user.NumberCabinet,
                         Email = user.email,
-                        NumberPhone = user.numberPhone
+                        NumberPhone = user.numberPhone,
+                        NameStatus = user.NameStatus
                     });
                 }
 

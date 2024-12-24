@@ -27,6 +27,7 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
         {
             InitializeComponent();
             _idDevice = idDevice;
+            FeederCb.ItemsSource = ITAdminEntities.GetContext().DocumentFeeder.ToList();
         }
 
         private void AddBt_Click(object sender, RoutedEventArgs e)
@@ -63,7 +64,7 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
                             IdDevice = _idDevice
                         };
                     }
-
+                    Window.GetWindow(this).Close();
                 }
                 catch(Exception ex)
                 {

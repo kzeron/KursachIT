@@ -14,10 +14,10 @@
         </EntityType>
         <EntityType Name="Cabinet">
           <Key>
-            <PropertyRef Name="IdNumberCab" />
+            <PropertyRef Name="IdNumberCabinet" />
           </Key>
-          <Property Name="IdNumberCab" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="numberCab" Type="int" Nullable="false" />
+          <Property Name="IdNumberCabinet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberCabinet" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -38,7 +38,7 @@
             <PropertyRef Name="IdDevice" />
           </Key>
           <Property Name="IdDevice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NameDevice" Type="nvarchar" MaxLength="150" />
+          <Property Name="NameDevice" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="SerialNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="PurchaseDate" Type="date" Nullable="false" />
           <Property Name="WarrantyEndDate" Type="date" Nullable="false" />
@@ -240,7 +240,7 @@
           <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cabinet">
-              <PropertyRef Name="IdNumberCab" />
+              <PropertyRef Name="IdNumberCabinet" />
             </Principal>
             <Dependent Role="Employers">
               <PropertyRef Name="IdCab" />
@@ -572,10 +572,10 @@
         </EntityType>
         <EntityType Name="Cabinet">
           <Key>
-            <PropertyRef Name="IdNumberCab" />
+            <PropertyRef Name="IdNumberCabinet" />
           </Key>
-          <Property Name="IdNumberCab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="numberCab" Type="Int32" Nullable="false" />
+          <Property Name="IdNumberCabinet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberCabinet" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Employers" Relationship="Self.FK_Employers_Cabinet" FromRole="Cabinet" ToRole="Employers" />
         </EntityType>
         <EntityType Name="Category">
@@ -599,7 +599,7 @@
             <PropertyRef Name="IdDevice" />
           </Key>
           <Property Name="IdDevice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameDevice" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NameDevice" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SerialNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="WarrantyEndDate" Type="DateTime" Nullable="false" Precision="0" />
@@ -811,7 +811,7 @@
           <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cabinet">
-              <PropertyRef Name="IdNumberCab" />
+              <PropertyRef Name="IdNumberCabinet" />
             </Principal>
             <Dependent Role="Employers">
               <PropertyRef Name="IdCab" />
@@ -1179,8 +1179,8 @@
           <EntitySetMapping Name="Cabinet">
             <EntityTypeMapping TypeName="ITAdminModel.Cabinet">
               <MappingFragment StoreEntitySet="Cabinet">
-                <ScalarProperty Name="IdNumberCab" ColumnName="IdNumberCab" />
-                <ScalarProperty Name="numberCab" ColumnName="numberCab" />
+                <ScalarProperty Name="IdNumberCabinet" ColumnName="IdNumberCabinet" />
+                <ScalarProperty Name="NumberCabinet" ColumnName="NumberCabinet" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -90,11 +90,11 @@
                   IsReadOnly="True"
                   MouseDoubleClick="DevicesDgList_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Binding="{Binding DeviceName}"/>
-                <DataGridTextColumn Header="Тип" Binding="{Binding DeviceType}"/>
-                <DataGridTextColumn Header="Бренд" Binding="{Binding Brand}"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding NameDevice}"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding DeviceTypeName}"/>
+                <DataGridTextColumn Header="Бренд" Binding="{Binding BrandName}"/>
                 <DataGridTextColumn Header="Серийный номер" Binding="{Binding SerialNumber}"/>
-                <DataGridTextColumn Header="Дата приобретения" Binding="{Binding PurchaseDate}"/>
+                <DataGridTextColumn Header="Дата приобретения" Binding="{Binding PurchaseDate, StringFormat='dd.MM.yyyy'}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>

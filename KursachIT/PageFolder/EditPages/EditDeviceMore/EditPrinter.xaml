@@ -1,7 +1,8 @@
 ﻿<Page x:Class="KursachIT.PageFolder.EditPages.EditDeviceMore.EditPrinter"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:KursachIT.PageFolder.EditPages.EditDeviceMore"
       mc:Ignorable="d" 
@@ -9,6 +10,81 @@
       Title="EditPrinter">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <ComboBox x:Name="PrintCb"
+                  Style="{StaticResource CustomComboBoxStyle}"
+                  FontSize="20"
+                  materialDesign:HintAssist.Hint="Технология печати"
+                  Height="60"
+                  Margin="30 30"
+                  DisplayMemberPath = "PrintTechonogyName"
+                  SelectedValuePath = "IdPrintTechnology"
+                  SelectedItem="{Binding PrintTechonogy}"/>
+            <ComboBox x:Name="ColorCb"
+        Style="{StaticResource CustomComboBoxStyle}"
+      FontSize="20"
+        materialDesign:HintAssist.Hint="Цвет печати"
+        Height="60"
+        Margin="30 30"
+        DisplayMemberPath = "ColorTech"
+        SelectedValuePath = "IdColorTech"
+        SelectedItem="{Binding ColorTechology}"/>
+            <Button x:Name="BackBt"
+                materialDesign:ButtonAssist.CornerRadius="5"
+                Width="100"
+                Background="DarkGray"
+                FontSize="20"
+                Content="Назад"
+                Foreground="WhiteSmoke"
+                Height="40"
+                HorizontalAlignment="Left"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="MaterialDesignRaisedButton with Round Corners"
+                Margin="30 160 10 0" Cursor="Hand"
+                Click="BackBt_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBox x:Name="MaxResolutionTb"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 materialDesign:HintAssist.Background="WhiteSmoke"
+                 materialDesign:HintAssist.Foreground="#3DAB28"
+                 Foreground="Black"
+                 FontSize="20"
+                 HorizontalContentAlignment="Stretch"
+                 materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                 materialDesign:HintAssist.Hint="Максимальное разрешение"
+                 VerticalAlignment="Center"
+                 Margin="30 30"/>
+            <TextBox x:Name="MaxPrintSpeedTb"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 materialDesign:HintAssist.Background="WhiteSmoke"
+                 materialDesign:HintAssist.Foreground="#3DAB28"
+                 Foreground="Black"
+                 FontSize="20"
+                 HorizontalContentAlignment="Stretch"
+                 materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                 materialDesign:HintAssist.Hint="Введите скорость печати"
+                 VerticalAlignment="Center"
+                 Margin="30 30"/>
+            <Button x:Name="EditBt"
+                materialDesign:ButtonAssist.CornerRadius="5"
+                Width="150"
+                Background="#3DAB28"
+                FontSize="20"
+                Content="Изменить"
+                Foreground="WhiteSmoke"
+                Height="40"
+                HorizontalAlignment="Right"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="MaterialDesignRaisedButton with Round Corners"
+                Margin="60 160 30 0"
+                Cursor="Hand" Click="EditBt_Click" />
+        </StackPanel>
     </Grid>
 </Page>

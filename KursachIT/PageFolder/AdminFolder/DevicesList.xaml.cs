@@ -77,7 +77,7 @@ namespace KursachIT.PageFolder.AdminFolder
                         SerialNumber = device.SerialNumber,
                         PurchaseDate = device.PurchaseDate,
                         WarrantyEndDate = device.WarrantyEndDate,
-                        BrandName = device.NameDevice
+                        BrandName = device.NameBrand
                     });
                 }
                 DevicesDgList.ItemsSource = ModelDevices;
@@ -100,7 +100,7 @@ namespace KursachIT.PageFolder.AdminFolder
             AnketWin anketWin = new AnketWin(new AddDevice());
             anketWin.Show();
 
-            LoadData();
+            anketWin.Closed += OnAnketWinClosed;
         }
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -108,7 +108,7 @@ namespace KursachIT.PageFolder.AdminFolder
             {
                 var editDeviceWindow = new AnketWin(new EditDevice(selectedDevice.IdDevice));
                 editDeviceWindow.Show();
-                LoadData();
+                editDeviceWindow.Closed += OnAnketWinClosed;
             }
             else
             {
@@ -210,7 +210,7 @@ namespace KursachIT.PageFolder.AdminFolder
                                     from Brand in brandDetailsGroup.DefaultIfEmpty()
                                     where (selectedTypes.Count == 0 || selectedTypes.Contains(DeviceTypes.DeviceTypeName)) &&
                                           (selectedBrands.Count == 0 || selectedBrands.Contains(Brand.NameBrand)) &&
-                                          (string.IsNullOrWhiteSpace(searchText) || Devices.NameDevice.Contains(searchText))
+                                          (searchText == null || searchText.Trim() == "" || Devices.NameDevice.Contains(searchText))
                                     select new
                                     {
                                         Devices.IdDevice,
@@ -244,6 +244,7 @@ namespace KursachIT.PageFolder.AdminFolder
                 DevicesDgList.ItemsSource = ModelDevices;
             }
         }
+
 
         private void DevicesDgList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -285,7 +286,10 @@ namespace KursachIT.PageFolder.AdminFolder
                 MBClass.ErrorMB("Выберите устройство из списка.");
             }
         }
-
+        private void OnAnketWinClosed(object sender, EventArgs e)
+        {
+            LoadData();
+        }
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var searchText = SearchTextBox.Text;

@@ -23,7 +23,7 @@
                       Margin="30 30"
                       DisplayMemberPath = "DocumentFeederName"
                       SelectedValuePath = "IdDocumentFeeder"
-                      SelectedItem="{Binding PrintTechonogy}"/>
+                      SelectedItem="{Binding DocumentFeeder}"/>
             <TextBox x:Name="MaxScanSpeedTb"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      materialDesign:HintAssist.Background="WhiteSmoke"

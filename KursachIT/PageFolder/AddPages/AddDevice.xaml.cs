@@ -70,22 +70,39 @@ namespace KursachIT.PageFolder.AddPages
             {
                 try
                 {
+                    // Получение и проверка дат
+                    var purchaseDate = PurchaseDatePicker.SelectedDate.Value;
+                    var warrantyEndDate = WarrantyEndDatePicker.SelectedDate.Value;
+                    var receiptDate = DateOfReceiptDatePicker.SelectedDate.HasValue ? DateOfReceiptDatePicker.SelectedDate.Value : (DateTime?)null;
+
+                    if (!ClassDataValidator.IsPurchaseBeforeWarranty(purchaseDate, warrantyEndDate))
+                    {
+                        MBClass.ErrorMB("Дата покупки не может быть позже окончания гарантии.");
+                        return;
+                    }
+
+                    if (receiptDate.HasValue && !ClassDataValidator.IsReceiptInRange(receiptDate.Value, purchaseDate, warrantyEndDate))
+                    {
+                        MBClass.ErrorMB("Дата получения должна находиться в диапазоне между датой покупки и датой окончания гарантии.");
+                        return;
+                    }
+
                     using (var context = new ITAdminEntities())
                     {
                         var selectedIdTypeDevice = context.DeviceTypes.FirstOrDefault(type => type.IdDeviceType == ((DeviceTypes)DeviceTypeCb.SelectedItem).IdDeviceType);
                         var selectedIdBrand = context.Brand.FirstOrDefault(b => b.IdBrand == ((Brand)BrandCb.SelectedItem).IdBrand);
-                        var selectedIdEmployer = EmplCb.SelectedValue != null? Int32.Parse(EmplCb.SelectedValue.ToString()): (int?)null; 
+                        var selectedIdEmployer = EmplCb.SelectedValue != null ? Int32.Parse(EmplCb.SelectedValue.ToString()) : (int?)null;
+
                         var device = new Devices
                         {
                             NameDevice = NameDevice.Text,
-                            PurchaseDate = PurchaseDatePicker.SelectedDate.Value,
-                            DateOfReceipt = DateOfReceiptDatePicker.SelectedDate.Value,
-                            WarrantyEndDate = WarrantyEndDatePicker.SelectedDate.Value,
+                            PurchaseDate = purchaseDate,
+                            DateOfReceipt = receiptDate,
+                            WarrantyEndDate = warrantyEndDate,
                             SerialNumber = SerialNumberDevice.Text,
                             IdDeviceType = selectedIdTypeDevice.IdDeviceType,
                             IdBrand = selectedIdBrand.IdBrand,
-                            IdEmployer = selectedIdEmployer
-                            // null, если сотрудник не выбран
+                            IdEmployer = selectedIdEmployer // null, если сотрудник не выбран
                         };
 
                         context.Devices.Add(device);
@@ -109,6 +126,7 @@ namespace KursachIT.PageFolder.AddPages
                 }
             }
         }
+
         private void NavigateToPage(int idDeviceType)
         {
             Page targetPage = DevicePageSelectorcs.GetPageForDeviceType(idDeviceType, selectDevice);

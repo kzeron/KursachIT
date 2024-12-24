@@ -67,7 +67,7 @@ namespace KursachIT.PageFolder.AddPages
                     using (var context = new ITAdminEntities())
                     {
                         var selectedOfficeId = ((Office)NameOfficeCb.SelectedItem).IdOffice;
-                        var selectedCabinetId = ((Cabinet)NamberOfficeCb.SelectedItem).IdNumberCab;
+                        var selectedCabinetId = ((Cabinet)NamberOfficeCb.SelectedItem).IdNumberCabinet;
 
                         // Создаем нового сотрудника
                         var employer = new Employers

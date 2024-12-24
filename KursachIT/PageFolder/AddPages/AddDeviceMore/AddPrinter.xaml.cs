@@ -71,6 +71,7 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
                             IdDevice = _idDevice
                         };
                     }
+                    Window.GetWindow(this).Close();
                 }
                 catch(Exception ex)
                 {
@@ -101,9 +102,6 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
                         MBClass.ErrorMB("Устройство с указанным Id не найдено.");
                     }
                 }
-
-                // Возвращение на предыдущую страницу
-                NavigationService.GoBack();
             }
             catch (Exception ex)
             {

@@ -30,19 +30,19 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
         {
             if (string.IsNullOrWhiteSpace(CPUTb.Text))
             {
-                MBClass.ErrorMB("Введите имя");
+                MBClass.ErrorMB("Введите процессор");
             }
             else if (string.IsNullOrWhiteSpace(RAMTb.Text))
             {
-                MBClass.ErrorMB("Введите Фамилию");
+                MBClass.ErrorMB("Введите объем ОЗУ");
             }
             else if (string.IsNullOrWhiteSpace(StorageTb.Text))
             {
-                MBClass.ErrorMB("Введите почту");
+                MBClass.ErrorMB("Введите объем памяти");
             }
-            else if (string.IsNullOrWhiteSpace(RAMTb.Text))
+            else if (string.IsNullOrWhiteSpace(GPUTb.Text))
             {
-                MBClass.ErrorMB("Укажите телефон");
+                MBClass.ErrorMB("Введите модель видеокарты");
             }
             else
             {
@@ -60,7 +60,7 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
                             CPU = CPUTb.Text,
                             RAM = ramSize,
                             Storage = StorageTb.Text,
-                            GPU = RAMTb.Text,
+                            GPU = GPUTb.Text,
                             IdDevice = _idDevice
                         };
                         context.PCDetails.Add(pc);
@@ -97,9 +97,6 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
                         MBClass.ErrorMB("Устройство с указанным Id не найдено.");
                     }
                 }
-
-                // Возвращение на предыдущую страницу
-                NavigationService.GoBack();
             }
             catch (Exception ex)
             {

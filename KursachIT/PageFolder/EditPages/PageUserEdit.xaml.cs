@@ -75,7 +75,7 @@ namespace KursachIT.PageFolder.EditPages
 
                 ITAdminEntities.GetContext().SaveChanges();
                 MBClass.InformationMB("Данные успешно сохранены.");
-
+                NavigationService.Navigate(new PageEditEmployer(_currentUser.IdLogin));
             }
             catch (Exception ex)
             {

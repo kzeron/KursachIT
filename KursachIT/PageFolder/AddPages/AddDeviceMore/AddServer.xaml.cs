@@ -72,7 +72,7 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
                     MessageBox.Show("Сервер успешно добавлен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     // Переход назад или обновление страницы
-                    NavigationService.GoBack();
+                    Window.GetWindow(this).Close();
                 }
             }
             catch (Exception ex)

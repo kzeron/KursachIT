@@ -41,7 +41,7 @@ namespace KursachIT.PageFolder.EditPages.EditDeviceMore
                     CPUTb.Text = _currentPC.CPU;
                     RAMTb.Text = _currentPC.RAM.ToString();
                     StorageTb.Text = _currentPC.Storage;
-                    RAMTb.Text = _currentPC.GPU;
+                    GPUTb.Text = _currentPC.GPU;
                 }
             }
         }
@@ -62,7 +62,7 @@ namespace KursachIT.PageFolder.EditPages.EditDeviceMore
                 MBClass.ErrorMB("Введите Storage");
                 return;
             }
-            else if (string.IsNullOrWhiteSpace(RAMTb.Text)) // Assuming a typo here, using the existing RAMTb for GPU
+            else if (string.IsNullOrWhiteSpace(GPUTb.Text)) // Assuming a typo here, using the existing RAMTb for GPU
             {
                 MBClass.ErrorMB("Введите GPU");
                 return;
@@ -87,7 +87,7 @@ namespace KursachIT.PageFolder.EditPages.EditDeviceMore
                     _currentPC.CPU = CPUTb.Text;
                     _currentPC.RAM = ramSize;
                     _currentPC.Storage = StorageTb.Text;
-                    _currentPC.GPU = RAMTb.Text; // Assuming a typo here, using the existing RAMTb for GPU
+                    _currentPC.GPU = GPUTb.Text; // Assuming a typo here, using the existing RAMTb for GPU
                     _currentPC.IdDevice = _idDevice;
 
                     context.PCDetails.Attach(_currentPC);
@@ -100,6 +100,35 @@ namespace KursachIT.PageFolder.EditPages.EditDeviceMore
             catch (Exception ex)
             {
                 MBClass.ErrorMB(ex.Message);
+            }
+        }
+
+        private void BackBt_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var context = new ITAdminEntities())
+                {
+                    // Находим устройство по его IdDevice
+                    var deviceToRemove = context.Devices.FirstOrDefault(d => d.IdDevice == _idDevice);
+
+                    if (deviceToRemove != null)
+                    {
+                        // Удаляем устройство
+                        context.Devices.Remove(deviceToRemove);
+                        context.SaveChanges();
+
+                        MBClass.InformationMB("Устройство успешно удалено.");
+                    }
+                    else
+                    {
+                        MBClass.ErrorMB("Устройство с указанным Id не найдено.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MBClass.ErrorMB($"Ошибка при удалении устройства: {ex.Message}");
             }
         }
     }

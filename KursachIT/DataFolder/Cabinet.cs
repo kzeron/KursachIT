@@ -20,8 +20,8 @@ namespace KursachIT.DataFolder
             this.Employers = new HashSet<Employers>();
         }
     
-        public int IdNumberCab { get; set; }
-        public int numberCab { get; set; }
+        public int IdNumberCabinet { get; set; }
+        public int NumberCabinet { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employers> Employers { get; set; }

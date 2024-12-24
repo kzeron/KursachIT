@@ -124,7 +124,6 @@ namespace KursachIT.PageFolder.EditPages
             {
                 try
                 {
-
                     if (BrandCb.SelectedItem is Brand selectedBrand)
                     {
                         _devices.IdBrand = selectedBrand.IdBrand;
@@ -145,9 +144,22 @@ namespace KursachIT.PageFolder.EditPages
                     _devices.DateOfReceipt = DateOfReceiptDatePicker.SelectedDate.Value;
                     _devices.WarrantyEndDate = WarrantyEndDatePicker.SelectedDate.Value;
                     _devices.SerialNumber = SerialNumberDevice.Text;
+
                     ITAdminEntities.GetContext().SaveChanges();
 
                     MessageBox.Show("Изменения сохранены", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    // Вызов метода GetEditPageForDeviceType для перехода на страницу редактирования
+                    var editPage = DevicePageSelectorcs.GetEditPageForDeviceType(_devices.IdDeviceType, _devices.IdDevice);
+
+                    if (editPage != null)
+                    {
+                        NavigationService?.Navigate(editPage);
+                    }
+                    else
+                    {
+                        MBClass.ErrorMB("Неизвестный тип устройства. Переход невозможен.");
+                    }
                 }
                 catch (System.Data.Entity.Validation.DbEntityValidationException ex)
                 {
@@ -161,6 +173,7 @@ namespace KursachIT.PageFolder.EditPages
                 }
             }
         }
+
 
         private void BackBt_Click(object sender, RoutedEventArgs e)
         {
