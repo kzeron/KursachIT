@@ -21,7 +21,7 @@
                       materialDesign:HintAssist.Hint="Технология печати"
                       Height="60"
                       Margin="30 30"
-                      DisplayMemberPath = "PrintTechonogyName"
+                      DisplayMemberPath = "PrintTechnologyName"
                       SelectedValuePath = "IdPrintTechnology"
                       SelectedItem="{Binding PrintTechonogy}"/>
             <ComboBox x:Name="ColorCb"

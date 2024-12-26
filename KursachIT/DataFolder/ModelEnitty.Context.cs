@@ -39,7 +39,7 @@ namespace KursachIT.DataFolder
         public virtual DbSet<OperationHistory> OperationHistory { get; set; }
         public virtual DbSet<PCDetails> PCDetails { get; set; }
         public virtual DbSet<PrinterDetails> PrinterDetails { get; set; }
-        public virtual DbSet<PrintTechonogy> PrintTechonogy { get; set; }
+        public virtual DbSet<PrintTechonology> PrintTechonology { get; set; }
         public virtual DbSet<Priority> Priority { get; set; }
         public virtual DbSet<Requests> Requests { get; set; }
         public virtual DbSet<Role> Role { get; set; }

@@ -30,7 +30,13 @@ namespace KursachIT.PageFolder.EditPages.EditDeviceMore
             _idDevice = idDevice;
             LoadData();
         }
-
+        private void LoadDocumentFeeder()
+        {
+            var feeder = ITAdminEntities.GetContext().DocumentFeeder.ToList();
+            FeederCb.ItemsSource = feeder;
+            FeederCb.DisplayMemberPath = "DocumentFeederName";
+            FeederCb.SelectedValuePath = "IdDocumentFeeder";
+        }
         private void LoadData()
         {
             using (var context = new ITAdminEntities())
@@ -39,11 +45,9 @@ namespace KursachIT.PageFolder.EditPages.EditDeviceMore
 
                 if (_currentScanner != null)
                 {
-                    FeederCb.ItemsSource = context.DocumentFeeder.ToList();
-
-                    // Устанавливаем выбранное значение
-                    FeederCb.SelectedItem = context.DocumentFeeder.FirstOrDefault(f => f.IdDocumentFeeder == _currentScanner.IdDocumentFeeder);
-
+                    
+                    LoadDocumentFeeder();
+                    FeederCb.SelectedValue = _currentScanner.IdDocumentFeeder;
                     MaxScanSpeedTb.Text = _currentScanner.ScanSpeed.ToString();
                     MaxResolutionTb.Text = _currentScanner.MaxScanResolution;
                 }

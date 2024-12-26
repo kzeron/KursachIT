@@ -23,6 +23,6 @@ namespace KursachIT.DataFolder
     
         public virtual ColorTechology ColorTechology { get; set; }
         public virtual Devices Devices { get; set; }
-        public virtual PrintTechonogy PrintTechonogy { get; set; }
+        public virtual PrintTechonology PrintTechonology { get; set; }
     }
 }

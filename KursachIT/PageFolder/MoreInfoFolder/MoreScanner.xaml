@@ -15,13 +15,18 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Детали принтера" 
+        <TextBlock Text="Детали сканера" 
                FontWeight="Bold" 
                FontSize="37" 
                HorizontalAlignment="Center" 
                Style="{StaticResource StandartText}"
-               Margin="0,0,0,10"/>
+               Margin="0,0,0,10"
+               Grid.ColumnSpan="2"/>
 
         <StackPanel Grid.Row="1" Margin="10">
             <Label Content="Имя устройства:"/>
@@ -47,18 +52,17 @@
 
             <Label Content="Ответственный сотрудник:"/>
             <TextBlock x:Name="EmployerLabel" Margin="0,0,0,10"/>
+        </StackPanel>
 
-            <Label Content="Технология печати (IdPrintTechnology):"/>
-            <TextBlock x:Name="IdPrintTechnologyLabel" Margin="0,0,0,10"/>
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+            <Label Content="Максимальное разрешение сканирования:"/>
+            <TextBlock x:Name="MaxScanResolutionLabel" Margin="0,0,0,10"/>
 
-            <Label Content="Максимальное разрешение печати:"/>
-            <TextBlock x:Name="MaxResolutionLabel" Margin="0,0,0,10"/>
+            <Label Content="Скорость сканирования:"/>
+            <TextBlock x:Name="ScanSpeedLabel" Margin="0,0,0,10"/>
 
-            <Label Content="Максимальная скорость печати:"/>
-            <TextBlock x:Name="MaxPrintSpeedLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Технология цветной печати (IdColorTech):"/>
-            <TextBlock x:Name="IdColorTechLabel" Margin="0,0,0,10"/>
+            <Label Content="Наличие автоподатчика документов:"/>
+            <TextBlock x:Name="DocumentFeederLabel" Margin="0,0,0,10"/>
         </StackPanel>
 
         <Button x:Name="BackBt"
@@ -66,14 +70,14 @@
             Content="Назад"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-         Width="100"
+            Width="100"
             Height="40"
-         Background="DarkGray"
-         FontSize="20"
-         Foreground="WhiteSmoke"
-         Style="{StaticResource MaterialDesignRaisedButton}"
+            Background="DarkGray"
+            Foreground="WhiteSmoke"
+            Style="{StaticResource MaterialDesignRaisedButton}"
             Margin="0,10,0,0"
             Click="BackBt_Click"/>
     </Grid>
+
 
 </Page>

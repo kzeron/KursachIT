@@ -25,6 +25,7 @@ namespace KursachIT.ClassFolder
         public int IdRole {  get; set; }
         public int IdStatus { get; set; }
         public string NameStatus { get; set; }
+        public string PhotoPath { get; set; }
     }
     public enum Role
     {

@@ -15,14 +15,20 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
         <TextBlock Text="Детали принтера" 
-               FontWeight="Bold" 
-               FontSize="37" 
-               HorizontalAlignment="Center" 
-               Style="{StaticResource StandartText}"
-               Margin="0,0,0,10"/>
+           FontWeight="Bold" 
+           FontSize="37" 
+           HorizontalAlignment="Center" 
+           Style="{StaticResource StandartText}"
+           Margin="0,0,0,10"
+               Grid.ColumnSpan="2"/>
 
+        <!-- Левая панель -->
         <StackPanel Grid.Row="1" Margin="10">
             <Label Content="Имя устройства:"/>
             <TextBlock x:Name="DeviceNameLabel" Margin="0,0,0,10"/>
@@ -47,9 +53,12 @@
 
             <Label Content="Ответственный сотрудник:"/>
             <TextBlock x:Name="EmployerLabel" Margin="0,0,0,10"/>
+        </StackPanel>
 
-            <Label Content="Технология печати (IdPrintTechnology):"/>
-            <TextBlock x:Name="IdPrintTechnologyLabel" Margin="0,0,0,10"/>
+        <!-- Правая панель -->
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+            <Label Content="Технология печати:"/>
+            <TextBlock x:Name="PrintTechnologyLabel" Margin="0,0,0,10"/>
 
             <Label Content="Максимальное разрешение печати:"/>
             <TextBlock x:Name="MaxResolutionLabel" Margin="0,0,0,10"/>
@@ -57,21 +66,21 @@
             <Label Content="Максимальная скорость печати:"/>
             <TextBlock x:Name="MaxPrintSpeedLabel" Margin="0,0,0,10"/>
 
-            <Label Content="Технология цветной печати (IdColorTech):"/>
-            <TextBlock x:Name="IdColorTechLabel" Margin="0,0,0,10"/>
+            <Label Content="Технология цветной печати:"/>
+            <TextBlock x:Name="ColorTechLabel" Margin="0,0,0,10"/>
         </StackPanel>
 
         <Button x:Name="BackBt"
-            Grid.Row="2"
-            Content="Назад"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Width="100"
-            Height="40"
-            Background="DarkGray"
-            Foreground="WhiteSmoke"
-            Style="{StaticResource MaterialDesignRaisedButton}"
-            Margin="0,10,0,0"
-            Click="BackBt_Click"/>
+        Grid.Row="2"
+        Content="Назад"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Width="100"
+        Height="40"
+        Background="DarkGray"
+        Foreground="WhiteSmoke"
+        Style="{StaticResource MaterialDesignRaisedButton}"
+        Margin="0,10,0,0"
+        Click="BackBt_Click"/>
     </Grid>
 </Page>

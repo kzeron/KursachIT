@@ -45,7 +45,9 @@
           <Property Name="DateOfReceipt" Type="date" />
           <Property Name="IdDeviceType" Type="int" Nullable="false" />
           <Property Name="IdBrand" Type="int" Nullable="false" />
+          <Property Name="IdStatus" Type="nchar" MaxLength="10" />
           <Property Name="IdEmployer" Type="int" />
+          <Property Name="PhotoPath" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="DeviceTypes">
           <Key>
@@ -75,6 +77,7 @@
           <Property Name="IdUser" Type="int" Nullable="false" />
           <Property Name="IdCab" Type="int" />
           <Property Name="IdStatus" Type="int" />
+          <Property Name="PhotoPath" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Office">
           <Key>
@@ -116,12 +119,12 @@
           <Property Name="IdColorTech" Type="int" />
           <Property Name="IdDevice" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="PrintTechonogy">
+        <EntityType Name="PrintTechonology">
           <Key>
-            <PropertyRef Name="IdPrintTechonogy" />
+            <PropertyRef Name="IdPrintTechnology" />
           </Key>
-          <Property Name="IdPrintTechonogy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PrintTechonogyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdPrintTechnology" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrintTechnologyName" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Priority">
           <Key>
@@ -320,11 +323,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PrinterDetails_PrintTechonogy">
-          <End Role="PrintTechonogy" Type="Self.PrintTechonogy" Multiplicity="1" />
+          <End Role="PrintTechonology" Type="Self.PrintTechonology" Multiplicity="1" />
           <End Role="PrinterDetails" Type="Self.PrinterDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PrintTechonogy">
-              <PropertyRef Name="IdPrintTechonogy" />
+            <Principal Role="PrintTechonology">
+              <PropertyRef Name="IdPrintTechnology" />
             </Principal>
             <Dependent Role="PrinterDetails">
               <PropertyRef Name="IdPrintTechnology" />
@@ -471,7 +474,7 @@
           <EntitySet Name="OperationHistory" EntityType="Self.OperationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PCDetails" EntityType="Self.PCDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrinterDetails" EntityType="Self.PrinterDetails" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PrintTechonogy" EntityType="Self.PrintTechonogy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrintTechonology" EntityType="Self.PrintTechonology" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Priority" EntityType="Self.Priority" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -521,7 +524,7 @@
             <End Role="PrinterDetails" EntitySet="PrinterDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_PrinterDetails_PrintTechonogy" Association="Self.FK_PrinterDetails_PrintTechonogy">
-            <End Role="PrintTechonogy" EntitySet="PrintTechonogy" />
+            <End Role="PrintTechonology" EntitySet="PrintTechonology" />
             <End Role="PrinterDetails" EntitySet="PrinterDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Requests_Category" Association="Self.FK_Requests_Category">
@@ -606,7 +609,9 @@
           <Property Name="DateOfReceipt" Type="DateTime" Precision="0" />
           <Property Name="IdDeviceType" Type="Int32" Nullable="false" />
           <Property Name="IdBrand" Type="Int32" Nullable="false" />
+          <Property Name="IdStatus" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="IdEmployer" Type="Int32" />
+          <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Brand" Relationship="Self.FK_Devices_Brand" FromRole="Devices" ToRole="Brand" />
           <NavigationProperty Name="DeviceTypes" Relationship="Self.FK_Devices_DeviceTypes" FromRole="Devices" ToRole="DeviceTypes" />
           <NavigationProperty Name="Employers" Relationship="Self.FK_Devices_Employers" FromRole="Devices" ToRole="Employers" />
@@ -645,6 +650,7 @@
           <Property Name="IdUser" Type="Int32" Nullable="false" />
           <Property Name="IdCab" Type="Int32" />
           <Property Name="IdStatus" Type="Int32" />
+          <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cabinet" Relationship="Self.FK_Employers_Cabinet" FromRole="Employers" ToRole="Cabinet" />
           <NavigationProperty Name="Devices" Relationship="Self.FK_Devices_Employers" FromRole="Employers" ToRole="Devices" />
           <NavigationProperty Name="Office" Relationship="Self.FK_Employers_Office" FromRole="Employers" ToRole="Office" />
@@ -695,15 +701,15 @@
           <Property Name="IdDevice" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ColorTechology" Relationship="Self.FK_PrinterDetails_ColorTechology" FromRole="PrinterDetails" ToRole="ColorTechology" />
           <NavigationProperty Name="Devices" Relationship="Self.FK_PrinterDetails_Devices" FromRole="PrinterDetails" ToRole="Devices" />
-          <NavigationProperty Name="PrintTechonogy" Relationship="Self.FK_PrinterDetails_PrintTechonogy" FromRole="PrinterDetails" ToRole="PrintTechonogy" />
+          <NavigationProperty Name="PrintTechonology" Relationship="Self.FK_PrinterDetails_PrintTechonogy" FromRole="PrinterDetails" ToRole="PrintTechonology" />
         </EntityType>
-        <EntityType Name="PrintTechonogy">
+        <EntityType Name="PrintTechonology">
           <Key>
-            <PropertyRef Name="IdPrintTechonogy" />
+            <PropertyRef Name="IdPrintTechnology" />
           </Key>
-          <Property Name="IdPrintTechonogy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PrintTechonogyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PrinterDetails" Relationship="Self.FK_PrinterDetails_PrintTechonogy" FromRole="PrintTechonogy" ToRole="PrinterDetails" />
+          <Property Name="IdPrintTechnology" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrintTechnologyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PrinterDetails" Relationship="Self.FK_PrinterDetails_PrintTechonogy" FromRole="PrintTechonology" ToRole="PrinterDetails" />
         </EntityType>
         <EntityType Name="Priority">
           <Key>
@@ -975,11 +981,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PrinterDetails_PrintTechonogy">
-          <End Role="PrintTechonogy" Type="Self.PrintTechonogy" Multiplicity="1" />
+          <End Role="PrintTechonology" Type="Self.PrintTechonology" Multiplicity="1" />
           <End Role="PrinterDetails" Type="Self.PrinterDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PrintTechonogy">
-              <PropertyRef Name="IdPrintTechonogy" />
+            <Principal Role="PrintTechonology">
+              <PropertyRef Name="IdPrintTechnology" />
             </Principal>
             <Dependent Role="PrinterDetails">
               <PropertyRef Name="IdPrintTechnology" />
@@ -1035,7 +1041,7 @@
           <EntitySet Name="OperationHistory" EntityType="Self.OperationHistory" />
           <EntitySet Name="PCDetails" EntityType="Self.PCDetails" />
           <EntitySet Name="PrinterDetails" EntityType="Self.PrinterDetails" />
-          <EntitySet Name="PrintTechonogy" EntityType="Self.PrintTechonogy" />
+          <EntitySet Name="PrintTechonology" EntityType="Self.PrintTechonology" />
           <EntitySet Name="Priority" EntityType="Self.Priority" />
           <EntitySet Name="Requests" EntityType="Self.Requests" />
           <EntitySet Name="Role" EntityType="Self.Role" />
@@ -1105,7 +1111,7 @@
             <End Role="Requests" EntitySet="Requests" />
           </AssociationSet>
           <AssociationSet Name="FK_PrinterDetails_PrintTechonogy" Association="Self.FK_PrinterDetails_PrintTechonogy">
-            <End Role="PrintTechonogy" EntitySet="PrintTechonogy" />
+            <End Role="PrintTechonology" EntitySet="PrintTechonology" />
             <End Role="PrinterDetails" EntitySet="PrinterDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Requests_Priority" Association="Self.FK_Requests_Priority">
@@ -1211,7 +1217,9 @@
                 <ScalarProperty Name="DateOfReceipt" ColumnName="DateOfReceipt" />
                 <ScalarProperty Name="IdDeviceType" ColumnName="IdDeviceType" />
                 <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
                 <ScalarProperty Name="IdEmployer" ColumnName="IdEmployer" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1244,6 +1252,7 @@
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="IdCab" ColumnName="IdCab" />
                 <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1291,11 +1300,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PrintTechonogy">
-            <EntityTypeMapping TypeName="ITAdminModel.PrintTechonogy">
-              <MappingFragment StoreEntitySet="PrintTechonogy">
-                <ScalarProperty Name="IdPrintTechonogy" ColumnName="IdPrintTechonogy" />
-                <ScalarProperty Name="PrintTechonogyName" ColumnName="PrintTechonogyName" />
+          <EntitySetMapping Name="PrintTechonology">
+            <EntityTypeMapping TypeName="ITAdminModel.PrintTechonology">
+              <MappingFragment StoreEntitySet="PrintTechonology">
+                <ScalarProperty Name="IdPrintTechnology" ColumnName="IdPrintTechnology" />
+                <ScalarProperty Name="PrintTechnologyName" ColumnName="PrintTechnologyName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

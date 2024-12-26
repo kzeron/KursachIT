@@ -31,6 +31,7 @@ namespace KursachIT.DataFolder
         public int IdUser { get; set; }
         public Nullable<int> IdCab { get; set; }
         public Nullable<int> IdStatus { get; set; }
+        public string PhotoPath { get; set; }
     
         public virtual Cabinet Cabinet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

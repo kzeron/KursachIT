@@ -3,6 +3,7 @@ using KursachIT.DataFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -63,6 +64,8 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
                             MaxScanResolution = MaxResolutionTb.Text,
                             IdDevice = _idDevice
                         };
+                        context.ScannerDetails.Add(scanner);
+                        context.SaveChanges();
                     }
                     Window.GetWindow(this).Close();
                 }

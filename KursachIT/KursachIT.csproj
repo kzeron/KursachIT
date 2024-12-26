@@ -142,7 +142,7 @@
     <Compile Include="DataFolder\PrinterDetails.cs">
       <DependentUpon>ModelEnitty.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataFolder\PrintTechonogy.cs">
+    <Compile Include="DataFolder\PrintTechonology.cs">
       <DependentUpon>ModelEnitty.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Priority.cs">

@@ -1,4 +1,7 @@
 ﻿using KursachIT.ClassFolder;
+using KursachIT.DataFolder;
+using System.Data.Entity;
+using KursachIT.PageFolder.AddPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +23,56 @@ namespace KursachIT.PageFolder.MoreInfoFolder
     /// </summary>
     public partial class MorePC : Page
     {
-        public MorePC(ClassDevice selectedDevice)
+        private int _idDevice;
+        public MorePC(int idDevice)
         {
             InitializeComponent();
-            DataContext = selectedDevice;
+            _idDevice = idDevice;
+            LoadData();
+        }
+        private void LoadData()
+        {
+            try
+            {
+                using (var context = new ITAdminEntities())
+                {
+                    var pcDetails = context.PCDetails
+                        .Include(pc => pc.Devices.DeviceTypes)
+                        .Include(pc => pc.Devices.Brand)
+                        .Include(pc => pc.Devices.Employers)
+                        .Where(pc => pc.IdDevice == _idDevice)
+                        .Select(pc => new
+                        {
+                            pc.Devices.NameDevice,
+                            pc.Devices.SerialNumber,
+                            pc.Devices.PurchaseDate,
+                            pc.Devices.WarrantyEndDate,
+                            pc.Devices.DateOfReceipt,
+                            DeviceTypeName = pc.Devices.DeviceTypes.DeviceTypeName,
+                            BrandName = pc.Devices.Brand.NameBrand,
+                            EmployerLastname = pc.Devices.Employers.Lastname,
+                            pc.CPU,
+                            pc.RAM,
+                            pc.Storage,
+                            pc.GPU
+                        })
+                        .FirstOrDefault();
+
+
+                    if (pcDetails != null)
+                    {
+                        DataContext = pcDetails;
+                    }
+                    else
+                    {
+                        MBClass.ErrorMB("Информация не найдена.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MBClass.ErrorMB($"Ошибка: {ex.Message}");
+            }
         }
 
         private void BackBt_Click(object sender, RoutedEventArgs e)

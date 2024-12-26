@@ -97,6 +97,7 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
                         MBClass.ErrorMB("Устройство с указанным Id не найдено.");
                     }
                 }
+                NavigationService.GoBack();
             }
             catch (Exception ex)
             {

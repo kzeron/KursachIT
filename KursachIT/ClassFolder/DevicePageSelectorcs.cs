@@ -39,7 +39,7 @@ namespace KursachIT.ClassFolder
                     return null; // Неизвестный тип устройства
             }
         }
-        public static Page GetMorePageForDeviceType(int idDeviceType, ClassDevice deviceId)
+        public static Page GetMorePageForDeviceType(int idDeviceType, int deviceId)
         {
             switch (idDeviceType)
             {

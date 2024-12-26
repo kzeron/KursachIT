@@ -107,5 +107,21 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
+        <Button x:Name="AddDeviceBt"
+                Grid.Column="1" Grid.Row="3"
+                materialDesign:ButtonAssist.CornerRadius="5"
+                Width="150"
+                Background="#3DAB28"
+                FontSize="20"
+                Content="Добавить"
+                Foreground="WhiteSmoke"
+                Height="40"
+                HorizontalAlignment="Right"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="Добавить устройство"
+                VerticalAlignment="Bottom"
+                Cursor="Hand" 
+                Click="AddBt_Click"
+                Margin="20 10"/>
     </Grid>
 </Page>

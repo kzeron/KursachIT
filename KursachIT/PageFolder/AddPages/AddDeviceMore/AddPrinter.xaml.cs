@@ -27,7 +27,7 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
         {
             InitializeComponent();
             _idDevice = idDevice;
-            PrintCb.ItemsSource = ITAdminEntities.GetContext().PrintTechonogy.ToList();
+            PrintCb.ItemsSource = ITAdminEntities.GetContext().PrintTechonology.ToList();
             ColorCb.ItemsSource =ITAdminEntities.GetContext().ColorTechology.ToList();
         }
 
@@ -60,16 +60,18 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
                         {
                             return;
                         }
-                        var selectedPrintTech = context.PrintTechonogy.FirstOrDefault(p => p.IdPrintTechonogy == ((PrintTechonogy)PrintCb.SelectedItem).IdPrintTechonogy);
+                        var selectedPrintTech = context.PrintTechonology.FirstOrDefault(p => p.IdPrintTechnology == ((PrintTechonology)PrintCb.SelectedItem).IdPrintTechnology);
                         var selectedColorTech = context.ColorTechology.FirstOrDefault(c => c.IdColorTech == ((ColorTechology)ColorCb.SelectedItem).IdColorTech);
                         var printer = new PrinterDetails
                         {
-                            IdPrintTechnology = selectedPrintTech.IdPrintTechonogy,
+                            IdPrintTechnology = selectedPrintTech.IdPrintTechnology,
                             IdColorTech = selectedColorTech.IdColorTech,
                             MaxResolution = MaxResolutionTb.Text,
                             MaxPrintSpeed = maxSpeed, 
                             IdDevice = _idDevice
                         };
+                        context.PrinterDetails.Add(printer);
+                        context.SaveChanges();
                     }
                     Window.GetWindow(this).Close();
                 }

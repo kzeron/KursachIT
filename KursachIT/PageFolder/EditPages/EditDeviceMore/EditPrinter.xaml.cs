@@ -23,33 +23,44 @@ namespace KursachIT.PageFolder.EditPages.EditDeviceMore
     public partial class EditPrinter : Page
     {
         private int _idDevice;
+        public int PrinterId { get; set; }
         private PrinterDetails _currentPrinter;
         public EditPrinter(int idDevice)
         {
             InitializeComponent();
-            _idDevice = idDevice;
+            this.PrinterId = idDevice;
             LoadData();
+        }
+        private void LoadPrint()
+        {
+            var printer = ITAdminEntities.GetContext().PrintTechonology.ToList();
+            PrintCb.ItemsSource = printer;
+            PrintCb.DisplayMemberPath = "PrintTechnologyName";
+            PrintCb.SelectedValuePath = "IdPrintTechnology";
+        }
+        private void LoadColor()
+        {
+            var color = ITAdminEntities.GetContext().ColorTechology.ToList();
+            ColorCb.ItemsSource = color;
+            ColorCb.DisplayMemberPath = "ColorTech";
+            ColorCb.SelectedValuePath = "IdColorTech";
         }
         private void LoadData()
         {
-            using (var context = new ITAdminEntities())
-            {
-                _currentPrinter = context.PrinterDetails.FirstOrDefault(p => p.IdDevice == _idDevice);
 
-                if (_currentPrinter != null)
-                {
-                    PrintCb.ItemsSource = context.PrintTechonogy.ToList();
-                    ColorCb.ItemsSource = context.ColorTechology.ToList();
+            var printerDetails = ITAdminEntities.GetContext().PrinterDetails.FirstOrDefault(p => p.IdDevice == PrinterId);
 
-                    // Устанавливаем выбранные значения
-                    PrintCb.SelectedItem = context.PrintTechonogy.FirstOrDefault(pt => pt.IdPrintTechonogy == _currentPrinter.IdPrintTechnology);
-                    ColorCb.SelectedItem = context.ColorTechology.FirstOrDefault(ct => ct.IdColorTech == _currentPrinter.IdColorTech);
+            _currentPrinter = printerDetails;
+            DataContext = printerDetails;
 
-                    MaxResolutionTb.Text = _currentPrinter.MaxResolution;
-                    MaxPrintSpeedTb.Text = _currentPrinter.MaxPrintSpeed.ToString();
-                }
-            }
+            LoadPrint(); // Устанавливаем ItemsSource для PrintCb
+            LoadColor(); // Устанавливаем ItemsSource для ColorCb
+
+            // Устанавливаем выбранные значения только после загрузки данных
+            PrintCb.SelectedValue = _currentPrinter.IdPrintTechnology;
+            ColorCb.SelectedValue = _currentPrinter.IdColorTech;
         }
+
 
         private void EditBt_Click(object sender, RoutedEventArgs e)
         {
@@ -76,36 +87,39 @@ namespace KursachIT.PageFolder.EditPages.EditDeviceMore
 
             try
             {
-                using (var context = new ITAdminEntities())
+
+                double maxSpeed;
+                if (!double.TryParse(MaxPrintSpeedTb.Text, out maxSpeed))
                 {
-                    double maxSpeed;
-                    if (!double.TryParse(MaxPrintSpeedTb.Text, out maxSpeed))
-                    {
-                        MBClass.ErrorMB("Ошибка ввода максимальной скорости печати");
-                        return;
-                    }
-
-                    if (_currentPrinter == null)
-                    {
-                        MBClass.ErrorMB("Принтер не найден в базе данных.");
-                        return;
-                    }
-
-                    var selectedPrintTech = (PrintTechonogy)PrintCb.SelectedItem;
-                    var selectedColorTech = (ColorTechology)ColorCb.SelectedItem;
-
-                    // Обновляем данные принтера
-                    _currentPrinter.IdPrintTechnology = selectedPrintTech.IdPrintTechonogy;
-                    _currentPrinter.IdColorTech = selectedColorTech.IdColorTech;
-                    _currentPrinter.MaxResolution = MaxResolutionTb.Text;
-                    _currentPrinter.MaxPrintSpeed = maxSpeed;
-
-                    context.Entry(_currentPrinter).State = System.Data.Entity.EntityState.Modified;
-                    context.SaveChanges();
-
-                    MessageBox.Show("Изменения успешно сохранены.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Window.GetWindow(this).Close();
+                    MBClass.ErrorMB("Ошибка ввода максимальной скорости печати");
+                    return;
                 }
+
+                if (_currentPrinter == null)
+                {
+                    MBClass.ErrorMB("Принтер не найден в базе данных.");
+                    return;
+                }
+
+                if (PrintCb.SelectedItem is PrintTechonology selectedSupplier)
+                {
+                    _currentPrinter.IdPrintTechnology = selectedSupplier.IdPrintTechnology; // Обновление IdSupplier
+                }
+
+                if (ColorCb.SelectedItem is ColorTechology selectedColor)
+                {
+                    _currentPrinter.IdColorTech = selectedColor.IdColorTech; // Обновление IdSupplier
+                }
+
+                _currentPrinter.MaxResolution = MaxResolutionTb.Text;
+                _currentPrinter.MaxPrintSpeed = double.Parse(MaxPrintSpeedTb.Text);
+
+                ITAdminEntities.GetContext().Entry(_currentPrinter).State = System.Data.Entity.EntityState.Modified;
+                ITAdminEntities.GetContext().SaveChanges();
+
+                MessageBox.Show("Изменения успешно сохранены.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                Window.GetWindow(this).Close();
+
             }
             catch (Exception ex)
             {
@@ -115,31 +129,7 @@ namespace KursachIT.PageFolder.EditPages.EditDeviceMore
 
         private void BackBt_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                using (var context = new ITAdminEntities())
-                {
-                    // Находим устройство по его IdDevice
-                    var deviceToRemove = context.Devices.FirstOrDefault(d => d.IdDevice == _idDevice);
-
-                    if (deviceToRemove != null)
-                    {
-                        // Удаляем устройство
-                        context.Devices.Remove(deviceToRemove);
-                        context.SaveChanges();
-
-                        MBClass.InformationMB("Устройство успешно удалено.");
-                    }
-                    else
-                    {
-                        MBClass.ErrorMB("Устройство с указанным Id не найдено.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MBClass.ErrorMB($"Ошибка при удалении устройства: {ex.Message}");
-            }
+             NavigationService.GoBack();
         }
     }
 }

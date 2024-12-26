@@ -12,16 +12,16 @@ namespace KursachIT.DataFolder
     using System;
     using System.Collections.Generic;
     
-    public partial class PrintTechonogy
+    public partial class PrintTechonology
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PrintTechonogy()
+        public PrintTechonology()
         {
             this.PrinterDetails = new HashSet<PrinterDetails>();
         }
     
-        public int IdPrintTechonogy { get; set; }
-        public string PrintTechonogyName { get; set; }
+        public int IdPrintTechnology { get; set; }
+        public string PrintTechnologyName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PrinterDetails> PrinterDetails { get; set; }

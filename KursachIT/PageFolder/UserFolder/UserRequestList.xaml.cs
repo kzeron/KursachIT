@@ -38,8 +38,23 @@ namespace KursachIT.PageFolder.UserFolder
         {
             RequestHelper.UpdateOverdueRequests();
 
+            var currentUser = ClassSaveSassion.LoadSession();
+            if (currentUser == null)
+            {
+                MBClass.ErrorMB("Не удалось получить данные текущей сессии.");
+                return;
+            }
+
             using (var context = new ITAdminEntities())
             {
+                // Получаем IdEmployers через IdUser
+                var currentEmployer = context.Employers.FirstOrDefault(emp => emp.IdUser == currentUser.IdLogin);
+                if (currentEmployer == null)
+                {
+                    MBClass.ErrorMB("Не удалось определить сотрудника для текущего пользователя.");
+                    return;
+                }
+
                 var requestsData = (from Requests in context.Requests
                                     join Status in context.Status on Requests.IdStatus equals Status.IdStatus into StatusGroup
                                     from Status in StatusGroup.DefaultIfEmpty()
@@ -47,6 +62,7 @@ namespace KursachIT.PageFolder.UserFolder
                                     from Category in CategoryGroup.DefaultIfEmpty()
                                     join Priority in context.Priority on Requests.IdPriority equals Priority.IdPriority into PriorityGroup
                                     from Priority in PriorityGroup.DefaultIfEmpty()
+                                    where Requests.IdRequestSender == currentEmployer.IdEmployers // Проверка связи с текущим сотрудником
                                     select new
                                     {
                                         Requests.IdRequest,
@@ -72,6 +88,8 @@ namespace KursachIT.PageFolder.UserFolder
                 ReqestDgList.ItemsSource = ModelRequest;
             }
         }
+
+
         private void OpenFilterPopup_Click(object sender, RoutedEventArgs e)
         {
             // Открытие/закрытие Popup
@@ -116,10 +134,11 @@ namespace KursachIT.PageFolder.UserFolder
 
                 using (var context = new ITAdminEntities())
                 {
-                    var user = context.Employers.FirstOrDefault(emp => emp.IdUser == currentUser.IdLogin);
-                    if (user == null)
+                    // Получаем IdEmployers через IdUser
+                    var currentEmployer = context.Employers.FirstOrDefault(emp => emp.IdUser == currentUser.IdLogin);
+                    if (currentEmployer == null)
                     {
-                        MBClass.ErrorMB("Не найден сотрудник, связанный с текущим пользователем.");
+                        MBClass.ErrorMB("Не удалось определить сотрудника для текущего пользователя.");
                         return;
                     }
 
@@ -130,7 +149,7 @@ namespace KursachIT.PageFolder.UserFolder
                                 from category in categoryGroup.DefaultIfEmpty()
                                 join priority in context.Priority on request.IdPriority equals priority.IdPriority into priorityGroup
                                 from priority in priorityGroup.DefaultIfEmpty()
-                                where request.IdRequestSender == user.IdEmployers
+                                where request.IdRequestSender == currentEmployer.IdEmployers // Проверка связи с текущим сотрудником
                                 select new
                                 {
                                     request.IdRequest,
@@ -169,6 +188,7 @@ namespace KursachIT.PageFolder.UserFolder
                 MBClass.ErrorMB($"Ошибка фильтрации: {ex.Message}");
             }
         }
+
         private void AddBt_Click(object sender, RoutedEventArgs e)
         {
             AnketWin anketWin = new AnketWin(new PageRequestAdd());

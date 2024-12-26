@@ -8,7 +8,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MorePC">
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -29,32 +28,32 @@
 
         <StackPanel HorizontalAlignment="Center"
                     Grid.Row="1">
-        <StackPanel Orientation="Horizontal" Margin="0,8">
-            <TextBlock Text="Название устройства:" FontWeight="Bold"
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Название устройства:" FontWeight="Bold"
                        Style="{StaticResource StandartText}"/>
                 <Label Content="{Binding NameDevice,TargetNullValue='Не указано'}" 
                    FontFamily="Cascadia Mono SemiLight"/>
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,8">
-            <TextBlock Text="Серийный номер:" FontWeight="Bold"
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Серийный номер:" FontWeight="Bold"
                        Style="{StaticResource StandartText}"/>
                 <Label Content="{Binding SerialNumber, TargetNullValue='Не указано'}" />
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <StackPanel Orientation="Horizontal" Margin="0,8">
                 <TextBlock Text="Дата покупки:" FontWeight="Bold" 
                            Style="{StaticResource StandartText}" />
                 <Label Content="{Binding PurchaseDate, StringFormat='dd.MM.yyyy', TargetNullValue='Не указано'}" />
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <StackPanel Orientation="Horizontal" Margin="0,8">
                 <TextBlock Text="Дата окончания гарантии:" FontWeight="Bold" 
                            Style="{StaticResource StandartText}" />
                 <Label Content="{Binding WarrantyEndDate, StringFormat='dd.MM.yyyy', TargetNullValue='Не указано'}" />
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,8">
+            <StackPanel Orientation="Horizontal" Margin="0,8">
                 <TextBlock Text="Дата поступления:" FontWeight="Bold" 
                            Style="{StaticResource StandartText}" />
                 <Label Content="{Binding DateOfReceipt, StringFormat='dd.MM.yyyy', TargetNullValue='Не указано'}" />
@@ -64,19 +63,19 @@
         <!-- Правая панель характеристик -->
         <StackPanel Grid.Column="1"
                     Grid.Row="1">
-        <StackPanel Orientation="Horizontal" Margin="0,8">
-            <TextBlock Text="Тип устройства:" FontWeight="Bold" Style="{StaticResource StandartText}" />
-                <Label Content="{Binding DeviceType.Name, TargetNullValue='Не указано'}" />
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Тип устройства:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+                <Label Content="{Binding DeviceTypeName, TargetNullValue='Не указано'}" />
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,8">
-            <TextBlock Text="Бренд:" FontWeight="Bold" Style="{StaticResource StandartText}" />
-                <Label Content="{Binding Brand.Name, TargetNullValue='Не указано'}" />
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Бренд:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+                <Label Content="{Binding BrandName, TargetNullValue='Не указано'}" />
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,8">
-            <TextBlock Text="Ответственный сотрудник:" FontWeight="Bold" Style="{StaticResource StandartText}" />
-                <Label Content="{Binding Employer.Name, TargetNullValue='Не указано'}" />
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Ответственный сотрудник:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+                <Label Content="{Binding EmployerLastname, TargetNullValue='Не указано'}" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,8">
@@ -92,13 +91,14 @@
             <StackPanel Orientation="Horizontal" Margin="0,8">
                 <TextBlock Text="Накопитель (Storage):" FontWeight="Bold" Style="{StaticResource StandartText}" />
                 <Label Content="{Binding Storage, TargetNullValue='Не указано'}" />
-        </StackPanel>
+            </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,8">
                 <TextBlock Text="Графический процессор (GPU):" FontWeight="Bold" Style="{StaticResource StandartText}" />
                 <Label Content="{Binding GPU, TargetNullValue='Не указано'}" />
             </StackPanel>
         </StackPanel>
+
         <Button x:Name="BackBt"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
@@ -115,4 +115,5 @@
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 Margin="0 10" Cursor="Hand" Click="BackBt_Click"/>
     </Grid>
+
 </Page>

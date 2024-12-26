@@ -1,5 +1,6 @@
 ﻿using KursachIT.ClassFolder;
 using KursachIT.DataFolder;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace KursachIT.PageFolder.AddPages
 {
@@ -15,6 +17,7 @@ namespace KursachIT.PageFolder.AddPages
     /// </summary>
     public partial class PageAddEmploye : Page
     {
+        private string _photoPath;
         int _newIdUser;
         public PageAddEmploye(int userId)
         {
@@ -80,19 +83,21 @@ namespace KursachIT.PageFolder.AddPages
                             IdOffice = selectedOfficeId, // Передаем ID отдела
                             IdCab = selectedCabinetId, // Передаем ID кабинета
                             IdUser = _newIdUser,
-                            IdStatus = 7
-                            
+                            IdStatus = 7,
+                            PhotoPath = _photoPath // Сохраняем путь к фотографии
                         };
+
                         context.Employers.Add(employer);
                         context.SaveChanges();
                     }
                     Window.GetWindow(this).Close();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    MBClass.ErrorMB(ex);
+                    MBClass.ErrorMB(ex.Message);
                 }
             }
+
         }
         public static class SharedData
         {
@@ -127,6 +132,34 @@ namespace KursachIT.PageFolder.AddPages
                 parentWindow.Close();
             }
         }
+        private void PhotoAddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image Files (*.jpg, *.jpeg, *.png, *.gif)|*.jpg;*.jpeg;*.png;*.gif",
+                Title = "Выберите фотографию"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Сохраняем выбранный путь к изображению
+                var selectedImagePath = openFileDialog.FileName;
+
+                try
+                {
+                    // Загружаем изображение в интерфейс
+                    EmployeePhoto.Source = new BitmapImage(new Uri(selectedImagePath));
+
+                    // Сохраняем путь в переменную для дальнейшей обработки
+                    _photoPath = selectedImagePath;
+                }
+                catch (Exception ex)
+                {
+                    MBClass.ErrorMB($"Ошибка загрузки фотографии: {ex.Message}");
+                }
+            }
+        }
+
 
     }
 }

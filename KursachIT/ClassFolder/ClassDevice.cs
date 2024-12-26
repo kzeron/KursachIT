@@ -20,7 +20,7 @@ namespace KursachIT.ClassFolder
         public string SerialNumber {  get; set; }
         public DateTime PurchaseDate { get; set; }
         public DateTime WarrantyEndDate { get; set; }
-        public DateTime DateOfReceipt { get; set; }
+        public DateTime? DateOfReceipt { get; set; }
         public string CPU {  get; set; }
         public int RAM { get; set; }
         public string Storage {  get; set; }
