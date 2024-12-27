@@ -54,6 +54,8 @@
                                        from PrinterDetails in printerDetailsGroup.DefaultIfEmpty()
                                        join Brand in context.Brand on Devices.IdBrand equals Brand.IdBrand into brandDetailsGroup
                                        from Brand in brandDetailsGroup.DefaultIfEmpty()
+                                       join Status in context.Status on Devices.IdStatus equals Status.IdStatus into StatusGroup
+                                       from Status in StatusGroup.DefaultIfEmpty()
                                        select new
                                        {
                                            Devices.IdDevice,
@@ -63,7 +65,8 @@
                                            Devices.PurchaseDate,
                                            Devices.WarrantyEndDate,
                                            Devices.DateOfReceipt,
-                                           Brand.NameBrand
+                                           Brand.NameBrand,
+                                           Status.NameStatus
                                        }).OrderBy(u => u.IdDevice)
                                        .ToList();
                     ModelDevices.Clear();
@@ -77,7 +80,8 @@
                             SerialNumber = device.SerialNumber,
                             PurchaseDate = device.PurchaseDate,
                             WarrantyEndDate = device.WarrantyEndDate,
-                            BrandName = device.NameBrand
+                            BrandName = device.NameBrand,
+                            NameStatus = device.NameStatus
                         });
                     }
                     DevicesDgList.ItemsSource = ModelDevices;

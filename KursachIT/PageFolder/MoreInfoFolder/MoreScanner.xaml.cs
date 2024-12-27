@@ -2,8 +2,10 @@
 using KursachIT.DataFolder;
 using System;
 using System.Linq;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace KursachIT.PageFolder.MoreInfoFolder
 {
@@ -36,6 +38,7 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                             scanner.Devices.PurchaseDate,
                             scanner.Devices.WarrantyEndDate,
                             scanner.Devices.DateOfReceipt,
+                            scanner.Devices.PhotoPath,
                             DeviceType = scanner.Devices.DeviceTypes.DeviceTypeName,
                             Brand = scanner.Devices.Brand.NameBrand,
                             Employer = scanner.Devices.Employers.Lastname,
@@ -59,6 +62,23 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                         MaxScanResolutionLabel.Text = scannerDetails.MaxScanResolution?.ToString() ?? "Не указано";
                         ScanSpeedLabel.Text = scannerDetails.ScanSpeed.ToString() ?? "Не указано";
                         DocumentFeederLabel.Text = scannerDetails.DocumentFeeder ?? "Не указано";
+
+                        if (!string.IsNullOrWhiteSpace(scannerDetails.PhotoPath) && File.Exists(scannerDetails.PhotoPath))
+                        {
+                            try
+                            {
+                                DeviceImage.Source = new BitmapImage(new Uri(scannerDetails.PhotoPath));
+                            }
+                            catch (Exception ex)
+                            {
+                                MBClass.ErrorMB($"Ошибка загрузки изображения: {ex.Message}");
+                            }
+                        }
+                        else
+                        {
+                            DeviceImage.Source = null; // Устанавливаем пустое изображение
+                            MBClass.InformationMB("Фотография устройства отсутствует или путь неверный.");
+                        }
                     }
                     else
                     {

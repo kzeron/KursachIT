@@ -1,5 +1,6 @@
 ﻿using KursachIT.ClassFolder;
 using KursachIT.DataFolder;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace KursachIT.PageFolder.EditPages
     /// </summary>
     public partial class EditDevice : Page
     {
+        private string _photoPath;
         Devices _devices;
         public int DeviceId { get; set; }
         public EditDevice(int device)
@@ -42,6 +44,7 @@ namespace KursachIT.PageFolder.EditPages
             LoadBrand();
             LoadDeviceType();
             LoadEmployer();
+
             BrandCb.SelectedValue = devices.IdBrand;
             DeviceTypeCb.SelectedValue = devices.IdDeviceType;
             EmplCb.SelectedValue = devices.IdEmployer;
@@ -50,8 +53,21 @@ namespace KursachIT.PageFolder.EditPages
             DateOfReceiptDatePicker.SelectedDate = devices.DateOfReceipt;
             WarrantyEndDatePicker.SelectedDate = devices.WarrantyEndDate;
             SerialNumberDevice.Text = devices.SerialNumber;
-        }
 
+            // Загрузка изображения
+            if (!string.IsNullOrWhiteSpace(devices.PhotoPath))
+            {
+                try
+                {
+                    DeviceImage.Source = new BitmapImage(new Uri(devices.PhotoPath));
+                    _photoPath = devices.PhotoPath; // Сохраняем текущий путь для обновления
+                }
+                catch (Exception ex)
+                {
+                    MBClass.ErrorMB($"Ошибка загрузки изображения: {ex.Message}");
+                }
+            }
+        }
         private void LoadBrand()
         {
             var brand = ITAdminEntities.GetContext().Brand.ToList(); // Предполагается, что у вас есть таблица Suppliers
@@ -86,7 +102,35 @@ namespace KursachIT.PageFolder.EditPages
             EmplCb.SelectedValuePath = "IdEmployers";
 
         }
+        private void PhotoAddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image Files (*.jpg, *.jpeg, *.png, *.gif)|*.jpg;*.jpeg;*.png;*.gif",
+                Title = "Выберите фотографию"
+            };
 
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Сохраняем выбранный путь к изображению
+                _photoPath = openFileDialog.FileName;
+
+                try
+                {
+                    // Загружаем изображение в интерфейс
+                    DeviceImage.Source = new BitmapImage(new Uri(_photoPath));
+                }
+                catch (Exception ex)
+                {
+                    MBClass.ErrorMB($"Ошибка загрузки фотографии: {ex.Message}");
+                }
+            }
+        }
+
+        private void BackBt_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close();
+        }
 
         private void SaveBt_Click(object sender, RoutedEventArgs e)
         {
@@ -145,6 +189,12 @@ namespace KursachIT.PageFolder.EditPages
                     _devices.WarrantyEndDate = WarrantyEndDatePicker.SelectedDate.Value;
                     _devices.SerialNumber = SerialNumberDevice.Text;
 
+                    // Сохранение пути к изображению
+                    if (!string.IsNullOrWhiteSpace(_photoPath))
+                    {
+                        _devices.PhotoPath = _photoPath;
+                    }
+
                     ITAdminEntities.GetContext().SaveChanges();
 
                     MessageBox.Show("Изменения сохранены", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -174,11 +224,5 @@ namespace KursachIT.PageFolder.EditPages
             }
         }
 
-
-        private void BackBt_Click(object sender, RoutedEventArgs e)
-        {
-            Window.GetWindow(this).Close();
-        }
     }
-
 }

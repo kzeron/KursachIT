@@ -54,10 +54,10 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                             pc.CPU,
                             pc.RAM,
                             pc.Storage,
-                            pc.GPU
+                            pc.GPU,
+                            pc.Devices.PhotoPath// Поле для пути изображения
                         })
                         .FirstOrDefault();
-
 
                     if (pcDetails != null)
                     {
@@ -74,6 +74,7 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                 MBClass.ErrorMB($"Ошибка: {ex.Message}");
             }
         }
+
 
         private void BackBt_Click(object sender, RoutedEventArgs e)
         {

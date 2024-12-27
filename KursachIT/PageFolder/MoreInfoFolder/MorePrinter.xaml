@@ -30,44 +30,64 @@
 
         <!-- Левая панель -->
         <StackPanel Grid.Row="1" Margin="10">
-            <Label Content="Имя устройства:"/>
-            <TextBlock x:Name="DeviceNameLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Серийный номер:"/>
-            <TextBlock x:Name="SerialNumberLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Дата покупки:"/>
-            <TextBlock x:Name="PurchaseDateLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Окончание гарантии:"/>
-            <TextBlock x:Name="WarrantyEndDateLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Дата получения:"/>
-            <TextBlock x:Name="DateOfReceiptLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Тип устройства:"/>
-            <TextBlock x:Name="DeviceTypeLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Бренд:"/>
-            <TextBlock x:Name="BrandLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Ответственный сотрудник:"/>
-            <TextBlock x:Name="EmployerLabel" Margin="0,0,0,10"/>
+            <Image Source="{Binding PhotoPath}"
+                    Width="150"
+                   x:Name="DeviceImage"
+                    Height="150"
+                    Stretch="Uniform"
+                    Margin="0,8"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Имя устройства:"/>
+                <TextBlock x:Name="DeviceNameLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Серийный номер:"/>
+                <TextBlock x:Name="SerialNumberLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Дата покупки:"/>
+                <TextBlock x:Name="PurchaseDateLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Окончание гарантии:"/>
+                <TextBlock x:Name="WarrantyEndDateLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Дата получения:"/>
+                <TextBlock x:Name="DateOfReceiptLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Тип устройства:"/>
+                <TextBlock x:Name="DeviceTypeLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Бренд:"/>
+                <TextBlock x:Name="BrandLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Ответственный сотрудник:"/>
+                <TextBlock x:Name="EmployerLabel" Margin="5,0,0,0"/>
+            </StackPanel>
         </StackPanel>
 
         <!-- Правая панель -->
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
-            <Label Content="Технология печати:"/>
-            <TextBlock x:Name="PrintTechnologyLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Максимальное разрешение печати:"/>
-            <TextBlock x:Name="MaxResolutionLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Максимальная скорость печати:"/>
-            <TextBlock x:Name="MaxPrintSpeedLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Технология цветной печати:"/>
-            <TextBlock x:Name="ColorTechLabel" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Технология печати:"/>
+                <TextBlock x:Name="PrintTechnologyLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Максимальное разрешение печати:"/>
+                <TextBlock x:Name="MaxResolutionLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Максимальная скорость печати:"/>
+                <TextBlock x:Name="MaxPrintSpeedLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Технология цветной печати:"/>
+                <TextBlock x:Name="ColorTechLabel" Margin="5,0,0,0"/>
+            </StackPanel>
         </StackPanel>
 
         <Button x:Name="BackBt"
@@ -77,6 +97,7 @@
         VerticalAlignment="Center"
         Width="100"
         Height="40"
+                Grid.ColumnSpan="2"
         Background="DarkGray"
         Foreground="WhiteSmoke"
         Style="{StaticResource MaterialDesignRaisedButton}"

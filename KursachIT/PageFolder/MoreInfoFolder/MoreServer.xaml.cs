@@ -1,21 +1,11 @@
 ﻿using KursachIT.ClassFolder;
 using KursachIT.DataFolder;
-using KursachIT.PageFolder.AddPages;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
+using System.IO;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 namespace KursachIT.PageFolder.MoreInfoFolder
 {
     /// <summary>
@@ -48,6 +38,7 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                             DeviceType = server.Devices.DeviceTypes.DeviceTypeName,
                             Brand = server.Devices.Brand.NameBrand,
                             Employer = server.Devices.Employers.Lastname,
+                            server.Devices.PhotoPath,
                             server.CPU,
                             server.RAM,
                             server.Storage,
@@ -72,6 +63,22 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                         StorageLabel.Text = serverDetails.Storage ?? "Не указано";
                         RackUnitLabel.Text = serverDetails.RackUnit.ToString() ?? "Не указано";
                         NetworkInterfaceLabel.Text = serverDetails.NetworkInterface ?? "Не указано";
+                        if (!string.IsNullOrWhiteSpace(serverDetails.PhotoPath) && File.Exists(serverDetails.PhotoPath))
+                        {
+                            try
+                            {
+                                DeviceImage.Source = new BitmapImage(new Uri(serverDetails.PhotoPath));
+                            }
+                            catch (Exception ex)
+                            {
+                                MBClass.ErrorMB($"Ошибка загрузки изображения: {ex.Message}");
+                            }
+                        }
+                        else
+                        {
+                            DeviceImage.Source = null; // Устанавливаем пустое изображение
+                            MBClass.InformationMB("Фотография устройства отсутствует или путь неверный.");
+                        }
                     }
                     else
                     {

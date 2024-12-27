@@ -18,33 +18,85 @@
             <RowDefinition/>
             <RowDefinition Height="0.3*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="0">
-            <TextBox x:Name="NameDevice"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
-                     materialDesign:HintAssist.Foreground="#3DAB28"
-                     materialDesign:HintAssist.Background="WhiteSmoke"
-                     materialDesign:HintAssist.Hint="Название устройства"
-                     VerticalAlignment="Center"
-                     FontSize="20"
-                     Margin="30 10" 
-                     Foreground="Black"/>
-            <DatePicker x:Name="PurchaseDatePicker"
-                        FontSize="20"
-                        Margin="30 10"
-                        materialDesign:HintAssist.Hint="Дата покупки"
-                        Style="{StaticResource CustomOutlinedDatePicker}"/>
-            <DatePicker x:Name="DateOfReceiptDatePicker"
-                        FontSize="20"
-                        Margin="30 10"
-                        materialDesign:HintAssist.Hint="Дата получения"
-                        Style="{StaticResource CustomOutlinedDatePicker}"/>
-            <DatePicker x:Name="WarrantyEndDatePicker"
-                        FontSize="20"
-                        Margin="30 10"
-                        materialDesign:HintAssist.Hint="Гарантийный срок"
-                        Style="{StaticResource CustomOutlinedDatePicker}"/>
-        </StackPanel>
+        <ScrollViewer Grid.Column="0" Margin="10" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Фото устройства -->
+                <Border Margin="30 10"
+                BorderBrush="#3DAB28"
+                BorderThickness="2"
+                Height="150"
+                Width="200"
+                HorizontalAlignment="Center">
+                    <Image x:Name="DeviceImage"
+                   Stretch="UniformToFill"
+                   ToolTip="Изображение устройства"/>
+
+                </Border>
+                <Button Content="Добавить фото" Click="PhotoAddBtn_Click" Margin="10"
+                ToolTip="MaterialDesignRaisedButton with Round Corners"
+                Cursor="Hand" 
+                Background="#3DAB28"
+                FontSize="20"
+                Foreground="WhiteSmoke"
+                Height="40"
+                HorizontalAlignment="Center"
+                 Style="{StaticResource MaterialDesignRaisedButton}"/>
+                <!-- Поля ввода -->
+                <TextBox x:Name="NameDevice"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                 materialDesign:HintAssist.Foreground="#3DAB28"
+                 materialDesign:HintAssist.Background="WhiteSmoke"
+                 materialDesign:HintAssist.Hint="Введите название"
+                 VerticalAlignment="Center"
+                 FontSize="20"
+                 Margin="30 10" 
+                 Foreground="Black"/>
+
+                <!-- Дата покупки -->
+                <DatePicker x:Name="PurchaseDatePicker"
+                    FontSize="20"
+                    Margin="30 10"
+                    materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
+                    materialDesign:HintAssist.Foreground="#3DAB28"
+                    materialDesign:HintAssist.Background="WhiteSmoke"
+                    materialDesign:HintAssist.Hint="Укажите дату покупки"
+                    Style="{StaticResource CustomOutlinedDatePicker}"/>
+
+                <!-- Дата получения -->
+                <DatePicker x:Name="DateOfReceiptDatePicker"
+                    Background="WhiteSmoke"
+                    materialDesign:CalendarAssist.SelectionColor="#3DAB28"
+                    materialDesign:CalendarAssist.HeaderBackground="#3DAB28"
+                    materialDesign:CalendarAssist.HeaderForeground="WhiteSmoke"
+                    materialDesign:DatePickerAssist.OutlinedBorderActiveThickness="2"
+                    materialDesign:CalendarAssist.SelectionForegroundColor="WhiteSmoke"
+                    FontSize="20"
+                    Margin="30 10"
+                    materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
+                    materialDesign:HintAssist.Hint="Дату получения"
+                    materialDesign:HintAssist.Background="White"
+                    materialDesign:HintAssist.Foreground="#3DAB28"
+                    Style="{StaticResource CustomOutlinedDatePicker}"/>
+
+                <!-- Конец гарантии -->
+                <DatePicker x:Name="WarrantyEndDatePicker"
+                    Background="WhiteSmoke"
+                    materialDesign:CalendarAssist.SelectionColor="#3DAB28"
+                    materialDesign:CalendarAssist.HeaderBackground="#3DAB28"
+                    materialDesign:CalendarAssist.HeaderForeground="WhiteSmoke"
+                    materialDesign:DatePickerAssist.OutlinedBorderActiveThickness="2"
+                    materialDesign:CalendarAssist.SelectionForegroundColor="WhiteSmoke"
+                    FontSize="20"
+                    Margin="30 10"
+                    materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
+                    materialDesign:HintAssist.Background="WhiteSmoke"
+                    materialDesign:HintAssist.Foreground="#3DAB28"
+                    materialDesign:HintAssist.Hint="Укажите гарантийный срок"
+                    Style="{StaticResource CustomOutlinedDatePicker}"/>
+
+            </StackPanel>
+        </ScrollViewer>
         <StackPanel Grid.Column="1">
             <TextBox x:Name="SerialNumberDevice"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"

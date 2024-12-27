@@ -70,5 +70,10 @@ namespace KursachIT.Windows
         {
             FrameConnect.NavigationService.Navigate(new PersAcc());
         }
+
+        private void TextBlock_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            FrameConnect.NavigationService.Navigate(new PageHistory());
+        }
     }
 }

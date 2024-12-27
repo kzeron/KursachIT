@@ -12,70 +12,109 @@
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <!-- Заголовок -->
             <RowDefinition Height="*"/>
+            <!-- Основной контент -->
             <RowDefinition Height="Auto"/>
+            <!-- Кнопка -->
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <!-- Левая панель -->
+            <ColumnDefinition Width="2*"/>
+            <!-- Правая панель -->
+        </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Детали устройства" 
-               FontWeight="Bold" 
-               FontSize="37" 
-               HorizontalAlignment="Center" 
-               Style="{StaticResource StandartText}"
-               Margin="0,0,0,10"/>
+        <!-- Заголовок -->
+        <TextBlock Text="Детали сервера" 
+                   Grid.ColumnSpan="2"
+                   FontWeight="Bold" 
+                   FontSize="37" 
+                   HorizontalAlignment="Center" 
+                   Style="{StaticResource StandartText}"/>
 
-        <StackPanel Grid.Row="1" Margin="10">
-            <Label Content="Имя устройства:"/>
-            <TextBlock x:Name="DeviceNameLabel" Margin="0,0,0,10"/>
+        <!-- Левая панель -->
+        <StackPanel Grid.Row="1" Margin="10" Grid.Column="0" VerticalAlignment="Top">
+            <!-- Изображение устройства -->
+            <Image Source="{Binding PhotoPath}"
+                   x:Name="DeviceImage"
+                   Width="200"
+                   Height="200"
+                   Stretch="Uniform"
+                   Margin="0,8"
+                   HorizontalAlignment="Center"
+                   ToolTip="Изображение устройства"/>
 
-            <Label Content="Серийный номер:"/>
-            <TextBlock x:Name="SerialNumberLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Дата покупки:"/>
-            <TextBlock x:Name="PurchaseDateLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Окончание гарантии:"/>
-            <TextBlock x:Name="WarrantyEndDateLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Дата получения:"/>
-            <TextBlock x:Name="DateOfReceiptLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Тип устройства:"/>
+            <!-- Поле типа устройства -->
+            <Label Content="Тип устройства:" Margin="0,10,0,0"/>
             <TextBlock x:Name="DeviceTypeLabel" Margin="0,0,0,10"/>
 
+            <!-- Поле бренда -->
             <Label Content="Бренд:"/>
             <TextBlock x:Name="BrandLabel" Margin="0,0,0,10"/>
 
+            <!-- Поле ответственного сотрудника -->
             <Label Content="Ответственный сотрудник:"/>
             <TextBlock x:Name="EmployerLabel" Margin="0,0,0,10"/>
+        </StackPanel>
 
+        <!-- Правая панель -->
+        <StackPanel Grid.Row="1" Margin="10,10,10,0" Grid.Column="1" VerticalAlignment="Top" Height="317">
+            <!-- Поле имени устройства -->
+            <Label Content="Имя устройства:"/>
+            <TextBlock x:Name="DeviceNameLabel" Margin="0,0,0,10"/>
+
+            <!-- Поле серийного номера -->
+            <Label Content="Серийный номер:"/>
+            <TextBlock x:Name="SerialNumberLabel" Margin="0,0,0,10"/>
+
+            <!-- Поле даты покупки -->
+            <Label Content="Дата покупки:"/>
+            <TextBlock x:Name="PurchaseDateLabel" Margin="0,0,0,10"/>
+
+            <!-- Поле окончания гарантии -->
+            <Label Content="Окончание гарантии:"/>
+            <TextBlock x:Name="WarrantyEndDateLabel" Margin="0,0,0,10"/>
+
+            <!-- Поле даты получения -->
+            <Label Content="Дата получения:"/>
+            <TextBlock x:Name="DateOfReceiptLabel" Margin="0,0,0,10"/>
+
+            <!-- Поле процессора -->
             <Label Content="Процессор (CPU):"/>
             <TextBlock x:Name="CPULabel" Margin="0,0,0,10"/>
 
+            <!-- Поле оперативной памяти -->
             <Label Content="Оперативная память (RAM):"/>
             <TextBlock x:Name="RAMLabel" Margin="0,0,0,10"/>
 
+            <!-- Поле накопителя -->
             <Label Content="Накопитель (Storage):"/>
             <TextBlock x:Name="StorageLabel" Margin="0,0,0,10"/>
 
+            <!-- Поле места в стойке -->
             <Label Content="Место в стойке (Rack Unit):"/>
             <TextBlock x:Name="RackUnitLabel" Margin="0,0,0,10"/>
 
+            <!-- Поле сетевого интерфейса -->
             <Label Content="Сетевой интерфейс:"/>
             <TextBlock x:Name="NetworkInterfaceLabel" Margin="0,0,0,10"/>
         </StackPanel>
 
+        <!-- Кнопка "Назад" -->
         <Button x:Name="BackBt"
-            Grid.Row="2"
-            Content="Назад"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-         Width="100"
-            Height="40"
-         Background="DarkGray"
-         FontSize="20"
-         Foreground="WhiteSmoke"
-         Style="{StaticResource MaterialDesignRaisedButton}"
-            Margin="0,10,0,0"
-            Click="BackBt_Click"/>
+                Grid.Row="2"
+                Content="Назад"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="100"
+                Height="40"
+                Background="DarkGray"
+                Grid.ColumnSpan="2"
+                FontSize="20"
+                Foreground="WhiteSmoke"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                Margin="0,10,0,0"
+                Click="BackBt_Click"/>
     </Grid>
 </Page>

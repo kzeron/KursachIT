@@ -45,42 +45,57 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
             {
                 MBClass.ErrorMB("Укажите максимальное разрешение");
             }
-            else if (string.IsNullOrWhiteSpace(MaxPrintSpeedTb.Text)) 
+            else if (string.IsNullOrWhiteSpace(MaxResolutionTb.Text) && !ClassDataValidator.IsResolutionValid(MaxResolutionTb.Text))
             {
-                MBClass.ErrorMB("Укажите максимальное");
+                MBClass.ErrorMB("Разрешение должно быть указано в формате 'ширина*высота'.");
+            }
+            else if (string.IsNullOrWhiteSpace(MaxPrintSpeedTb.Text))
+            {
+                MBClass.ErrorMB("Укажите максимальную скорость печати");
             }
             else
             {
                 try
                 {
-                    using(var context = new ITAdminEntities())
+                    using (var context = new ITAdminEntities())
                     {
-                        double maxSpeed;
-                        if(!double.TryParse(MaxPrintSpeedTb.Text, out maxSpeed))
+                        // Проверяем, что скорость печати — число
+                        if (!double.TryParse(MaxPrintSpeedTb.Text, out double maxSpeed) || maxSpeed <= 0)
                         {
+                            MBClass.ErrorMB("Максимальная скорость печати должна быть положительным числом.");
                             return;
                         }
-                        var selectedPrintTech = context.PrintTechonology.FirstOrDefault(p => p.IdPrintTechnology == ((PrintTechonology)PrintCb.SelectedItem).IdPrintTechnology);
-                        var selectedColorTech = context.ColorTechology.FirstOrDefault(c => c.IdColorTech == ((ColorTechology)ColorCb.SelectedItem).IdColorTech);
+
+                        // Получаем выбранные технологии
+                        var selectedPrintTech = context.PrintTechonology
+                            .FirstOrDefault(p => p.IdPrintTechnology == ((PrintTechonology)PrintCb.SelectedItem).IdPrintTechnology);
+                        var selectedColorTech = context.ColorTechology
+                            .FirstOrDefault(c => c.IdColorTech == ((ColorTechology)ColorCb.SelectedItem).IdColorTech);
+
+                        // Создаём новый объект PrinterDetails
                         var printer = new PrinterDetails
                         {
                             IdPrintTechnology = selectedPrintTech.IdPrintTechnology,
                             IdColorTech = selectedColorTech.IdColorTech,
                             MaxResolution = MaxResolutionTb.Text,
-                            MaxPrintSpeed = maxSpeed, 
+                            MaxPrintSpeed = maxSpeed,
                             IdDevice = _idDevice
                         };
+
+                        // Добавляем и сохраняем
                         context.PrinterDetails.Add(printer);
                         context.SaveChanges();
                     }
+
                     Window.GetWindow(this).Close();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    MBClass.ErrorMB(ex);
+                    MBClass.ErrorMB($"Ошибка: {ex.Message}");
                 }
             }
         }
+
 
         private void BackBt_Click(object sender, RoutedEventArgs e)
         {

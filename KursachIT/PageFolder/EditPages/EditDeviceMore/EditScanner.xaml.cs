@@ -97,47 +97,49 @@ namespace KursachIT.PageFolder.EditPages.EditDeviceMore
                 MBClass.ErrorMB("Укажите максимальную скорость сканирования");
                 return;
             }
-            else if (string.IsNullOrWhiteSpace(MaxResolutionTb.Text))
+            else if (string.IsNullOrWhiteSpace(MaxResolutionTb.Text) && !ClassDataValidator.IsResolutionValid(MaxResolutionTb.Text))
             {
-                MBClass.ErrorMB("Укажите максимальное разрешение");
-                return;
+                MBClass.ErrorMB("Разрешение должно быть указано в формате 'ширина*высота' (например, 1920*1080).");
             }
-
-            try
+            else
             {
-                using (var context = new ITAdminEntities())
+                try
                 {
-                    double maxSpeed;
-                    if (!double.TryParse(MaxScanSpeedTb.Text, out maxSpeed))
+                    using (var context = new ITAdminEntities())
                     {
-                        MBClass.ErrorMB("Ошибка ввода скорости сканирования");
-                        return;
+                        double maxSpeed;
+                        if (!double.TryParse(MaxScanSpeedTb.Text, out maxSpeed))
+                        {
+                            MBClass.ErrorMB("Ошибка ввода скорости сканирования");
+                            return;
+                        }
+
+                        if (_currentScanner == null)
+                        {
+                            MBClass.ErrorMB("Сканер не найден в базе данных.");
+                            return;
+                        }
+
+                        var selectedFeeder = (DocumentFeeder)FeederCb.SelectedItem;
+
+                        // Обновляем данные сканера
+                        _currentScanner.IdDocumentFeeder = selectedFeeder.IdDocumentFeeder;
+                        _currentScanner.ScanSpeed = maxSpeed;
+                        _currentScanner.MaxScanResolution = MaxResolutionTb.Text;
+
+                        context.Entry(_currentScanner).State = System.Data.Entity.EntityState.Modified;
+                        context.SaveChanges();
+
+                        MBClass.InformationMB("Изменения успешно сохранены.");
+                        Window.GetWindow(this).Close();
                     }
-
-                    if (_currentScanner == null)
-                    {
-                        MBClass.ErrorMB("Сканер не найден в базе данных.");
-                        return;
-                    }
-
-                    var selectedFeeder = (DocumentFeeder)FeederCb.SelectedItem;
-
-                    // Обновляем данные сканера
-                    _currentScanner.IdDocumentFeeder = selectedFeeder.IdDocumentFeeder;
-                    _currentScanner.ScanSpeed = maxSpeed;
-                    _currentScanner.MaxScanResolution = MaxResolutionTb.Text;
-
-                    context.Entry(_currentScanner).State = System.Data.Entity.EntityState.Modified;
-                    context.SaveChanges();
-
-                    MessageBox.Show("Изменения успешно сохранены.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Window.GetWindow(this).Close();
+                }
+                catch (Exception ex)
+                {
+                    MBClass.ErrorMB($"Ошибка: {ex.Message}");
                 }
             }
-            catch (Exception ex)
-            {
-                MBClass.ErrorMB($"Ошибка: {ex.Message}");
-            }
+            
         }
     }
 }

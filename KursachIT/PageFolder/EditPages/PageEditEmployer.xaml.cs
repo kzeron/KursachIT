@@ -1,9 +1,11 @@
 ﻿using KursachIT.ClassFolder;
 using KursachIT.DataFolder;
+using Microsoft.Win32;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace KursachIT.PageFolder.EditPages
 {
@@ -12,6 +14,7 @@ namespace KursachIT.PageFolder.EditPages
     /// </summary>
     public partial class PageEditEmployer : Page
     {
+        private string _photoPath;
         private readonly int _idUser;
         private Employers _currentEmployer;
 
@@ -45,6 +48,11 @@ namespace KursachIT.PageFolder.EditPages
 
                 if (_currentEmployer != null)
                 {
+                    if (!string.IsNullOrWhiteSpace(_currentEmployer.PhotoPath))
+                    {
+                        _photoPath = _currentEmployer.PhotoPath;
+                        EmployeePhoto.Source = new BitmapImage(new Uri(_photoPath));
+                    }
                     NameEmTb.Text = _currentEmployer.Name;
                     SurnameEmTb.Text = _currentEmployer.Lastname;
                     PathronymicEmTb.Text = _currentEmployer.Patronymic;
@@ -97,7 +105,14 @@ namespace KursachIT.PageFolder.EditPages
                 MBClass.ErrorMB("Введите телефон");
                 return;
             }
-
+            else if (!ClassDataValidator.IsEmailValid(EmailEmTb.Text))
+            {
+                MBClass.ErrorMB("Некорректный формат почты или недопустимый домен (допустимы: gmail.com, yandex.ru, mail.ru).");
+            }
+            else if (!ClassDataValidator.IsPhoneNumberValid(PhoneEmTb.Text))
+            {
+                MBClass.ErrorMB("Телефон должен содержать только цифры и, возможно, знак '+' в начале.");
+            }
             try
             {
                 using (var context = new ITAdminEntities())
@@ -116,6 +131,8 @@ namespace KursachIT.PageFolder.EditPages
                         employer.IdOffice = (int)NameOfficeCb.SelectedValue;
                         employer.IdCab = (int)NamberOfficeCb.SelectedValue;
                         employer.IdStatus = 7;
+                        employer.PhotoPath = _photoPath;
+
 
                         // Сохранение изменений
                         context.SaveChanges();
@@ -139,6 +156,31 @@ namespace KursachIT.PageFolder.EditPages
 
             NavigationService.GoBack();
         }
+        private void PhotoAddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image Files (*.jpg, *.jpeg, *.png, *.gif)|*.jpg;*.jpeg;*.png;*.gif",
+                Title = "Выберите фотографию"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Сохраняем выбранный путь к изображению
+                _photoPath = openFileDialog.FileName;
+
+                try
+                {
+                    // Загружаем изображение в интерфейс
+                    EmployeePhoto.Source = new BitmapImage(new Uri(_photoPath));
+                }
+                catch (Exception ex)
+                {
+                    MBClass.ErrorMB($"Ошибка загрузки фотографии: {ex.Message}");
+                }
+            }
+        }
+
     }
 }
 

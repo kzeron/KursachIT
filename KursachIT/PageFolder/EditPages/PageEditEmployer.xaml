@@ -15,6 +15,18 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
+            <Image x:Name="EmployeePhoto" Height="150" Width="150" Margin="10"/>
+            <Button Content="Добавить фото" Click="PhotoAddBtn_Click" Margin="10"
+                ToolTip="MaterialDesignRaisedButton with Round Corners"
+                Cursor="Hand" 
+            Background="#3DAB28"
+            FontSize="20"
+            Foreground="WhiteSmoke"
+            Height="40"
+            HorizontalAlignment="Center"
+                 Style="{StaticResource MaterialDesignRaisedButton}"/>
+
+
             <TextBox x:Name="NameEmTb"
              Style="{StaticResource MaterialDesignOutlinedTextBox}"
              materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
@@ -24,7 +36,7 @@
              materialDesign:HintAssist.Hint="Введите имя"
              VerticalAlignment="Center"
              FontSize="20"
-             Margin="30 20" />
+             Margin="30 10" />
 
             <TextBox x:Name="SurnameEmTb"
              Style="{StaticResource MaterialDesignOutlinedTextBox}"
@@ -35,27 +47,8 @@ materialDesign:HintAssist.Background="WhiteSmoke"
              VerticalAlignment="Center"
              materialDesign:HintAssist.Hint="Введите фамилию"
              FontSize="20"
-             Margin="30 20"/>
-            <TextBox x:Name="PathronymicEmTb"
-             Style="{StaticResource MaterialDesignOutlinedTextBox}"
-             materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
-Foreground="Black"
-materialDesign:HintAssist.Foreground="#3DAB28"
-materialDesign:HintAssist.Background="WhiteSmoke"
-             VerticalAlignment="Center"
-             materialDesign:HintAssist.Hint="Введите отчество"
-             FontSize="20"
-             Margin="30 20"/>
-            <TextBox x:Name="EmailEmTb"
-             Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                 materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
-                Foreground="Black"
-                materialDesign:HintAssist.Foreground="#3DAB28"
-                materialDesign:HintAssist.Background="WhiteSmoke"
-             VerticalAlignment="Center"
-             materialDesign:HintAssist.Hint="Введите эл. почту"
-             FontSize="20"
-             Margin="30 20"/>
+             Margin="30 10"/>
+
             <Button x:Name="BackBt"
             materialDesign:ButtonAssist.CornerRadius="5"
             Width="100"
@@ -72,6 +65,26 @@ materialDesign:HintAssist.Background="WhiteSmoke"
             Click="BackBt_Click"/>
         </StackPanel>
         <StackPanel Grid.Column="1">
+            <TextBox x:Name="PathronymicEmTb"
+             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+             materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+Foreground="Black"
+materialDesign:HintAssist.Foreground="#3DAB28"
+materialDesign:HintAssist.Background="WhiteSmoke"
+             VerticalAlignment="Center"
+             materialDesign:HintAssist.Hint="Введите отчество"
+             FontSize="20"
+             Margin="30 10"/>
+            <TextBox x:Name="EmailEmTb"
+             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
+                Foreground="Black"
+                materialDesign:HintAssist.Foreground="#3DAB28"
+                materialDesign:HintAssist.Background="WhiteSmoke"
+             VerticalAlignment="Center"
+             materialDesign:HintAssist.Hint="Введите эл. почту"
+             FontSize="20"
+             Margin="30 10"/>
             <TextBox x:Name="PhoneEmTb"
               Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
@@ -81,17 +94,19 @@ materialDesign:HintAssist.Background="WhiteSmoke"
               VerticalAlignment="Center"
              materialDesign:HintAssist.Hint="Введите номер"
               FontSize="20"
-              Margin="30 20"/>
+              Margin="30 10"/>
             <ComboBox x:Name="NameOfficeCb"
               Style="{StaticResource CustomComboBoxStyle}"
               materialDesign:HintAssist.Hint="Укажите отдел"
                   materialDesign:HintAssist.Background="WhiteSmoke"
                    materialDesign:HintAssist.Foreground="#3DAB28"
+                  
               DisplayMemberPath = "NameOffice"
               SelectedValuePath = "IdOffice"
               Height="60"
               FontSize="20"
-              Margin="30 20"/>
+              Margin="30 10"
+              SelectedItem="{Binding Office}"/>
             <ComboBox x:Name="NamberOfficeCb"
               Style="{StaticResource CustomComboBoxStyle}"
               materialDesign:HintAssist.Hint="Укажите номер кабинета"
@@ -100,9 +115,10 @@ materialDesign:HintAssist.Background="WhiteSmoke"
                  
                   materialDesign:HintAssist.Background="WhiteSmoke"
                   materialDesign:HintAssist.Foreground="#3DAB28"
-              Margin="30 20"
+              Margin="30 10"
               DisplayMemberPath = "NumberCabinet"
-              SelectedValuePath = "IdNumberCabinet"/>
+              SelectedValuePath = "IdNumberCabinet"
+              SelectedItem="{Binding Cabinet}"/>
             <Button x:Name="EditBt"
             materialDesign:ButtonAssist.CornerRadius="5"
             Width="150"
@@ -115,7 +131,7 @@ materialDesign:HintAssist.Background="WhiteSmoke"
             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
             Style="{StaticResource MaterialDesignRaisedButton}"
             ToolTip="MaterialDesignRaisedButton with Round Corners"
-            Margin="60 95 30 0"
+            Margin="30 0"
             Cursor="Hand" Click="AddBt_Click"/>
         </StackPanel>
     </Grid>

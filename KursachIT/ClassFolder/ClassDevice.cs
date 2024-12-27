@@ -42,11 +42,17 @@ namespace KursachIT.ClassFolder
         public int IdDeviceType { get; set; }
         public int IdBrand { get; set; }    
         public string BrandName { get; set; }
+        public string NameStatus { get; set; }
     }
     public class DeviceTypeModel
     {
         public string Name { get; set; }
         public DeviceType Type { get; set; }
+    }
+    public enum DeviceStatus
+    {
+        Function = 9,
+        WrittenOff = 10
     }
     public enum DeviceType
     {

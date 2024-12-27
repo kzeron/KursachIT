@@ -27,6 +27,11 @@ namespace KursachIT.ClassFolder
         public string NameStatus { get; set; }
         public string PhotoPath { get; set; }
     }
+    public enum UserStatus
+    {
+        Working = 7,
+        Fired = 8
+    }
     public enum Role
     {
         Admin,

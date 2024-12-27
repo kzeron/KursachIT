@@ -1,9 +1,11 @@
 ﻿using KursachIT.ClassFolder;
 using KursachIT.DataFolder;
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace KursachIT.PageFolder.MoreInfoFolder
 {
@@ -36,6 +38,7 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                             printer.Devices.PurchaseDate,
                             printer.Devices.WarrantyEndDate,
                             printer.Devices.DateOfReceipt,
+                            printer.Devices.PhotoPath,
                             DeviceType = printer.Devices.DeviceTypes.DeviceTypeName,
                             Brand = printer.Devices.Brand.NameBrand,
                             Employer = printer.Devices.Employers.Lastname,
@@ -43,6 +46,7 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                             printer.MaxResolution,
                             printer.MaxPrintSpeed,
                             ColorTechnology = printer.ColorTechology.ColorTech
+                            
                         })
                         .FirstOrDefault();
 
@@ -61,11 +65,26 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                         MaxResolutionLabel.Text = printerDetails.MaxResolution?.ToString() ?? "Не указано";
                         MaxPrintSpeedLabel.Text = printerDetails.MaxPrintSpeed.ToString() ?? "Не указано";
                         ColorTechLabel.Text = printerDetails.ColorTechnology ?? "Не указано";
+
+                        // Проверка пути к фотографии
+                        if (!string.IsNullOrWhiteSpace(printerDetails.PhotoPath) && File.Exists(printerDetails.PhotoPath))
+                        {
+                            try
+                            {
+                                DeviceImage.Source = new BitmapImage(new Uri(printerDetails.PhotoPath));
+                            }
+                            catch (Exception ex)
+                            {
+                                MBClass.ErrorMB($"Ошибка загрузки изображения: {ex.Message}");
+                            }
+                        }
+                        else
+                        {
+                            DeviceImage.Source = null; // Устанавливаем пустое изображение
+                            MBClass.InformationMB("Фотография устройства отсутствует или путь неверный.");
+                        }
                     }
-                    else
-                    {
-                        MBClass.ErrorMB("Информация о принтере не найдена.");
-                    }
+
                 }
             }
             catch (Exception ex)

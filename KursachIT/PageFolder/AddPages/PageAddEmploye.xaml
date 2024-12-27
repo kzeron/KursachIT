@@ -15,15 +15,24 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <Image x:Name="EmployeePhoto" Height="150" Width="150" Margin="10"/>
+            <Border Margin="30 10"
+                    BorderBrush="#3DAB28"
+                    BorderThickness="2"
+                    Height="150"
+                    Width="200">
+                <Image x:Name="EmployeePhoto"
+                       Height="150"
+                       Width="150"
+                       Margin="10"/>
+            </Border>
             <Button Content="Добавить фото" Click="PhotoAddBtn_Click" Margin="10"
                     ToolTip="MaterialDesignRaisedButton with Round Corners"
                     Cursor="Hand" 
-                Background="#3DAB28"
-                FontSize="20"
-                Foreground="WhiteSmoke"
-                Height="40"
-                HorizontalAlignment="Center"
+                    Background="#3DAB28"
+                    FontSize="20"
+                    Foreground="WhiteSmoke"
+                    Height="40"
+                    HorizontalAlignment="Center"
                      Style="{StaticResource MaterialDesignRaisedButton}"/>
             
 

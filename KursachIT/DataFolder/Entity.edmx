@@ -45,7 +45,7 @@
           <Property Name="DateOfReceipt" Type="date" />
           <Property Name="IdDeviceType" Type="int" Nullable="false" />
           <Property Name="IdBrand" Type="int" Nullable="false" />
-          <Property Name="IdStatus" Type="nchar" MaxLength="10" />
+          <Property Name="IdStatus" Type="int" />
           <Property Name="IdEmployer" Type="int" />
           <Property Name="PhotoPath" Type="nvarchar(max)" />
         </EntityType>
@@ -609,7 +609,7 @@
           <Property Name="DateOfReceipt" Type="DateTime" Precision="0" />
           <Property Name="IdDeviceType" Type="Int32" Nullable="false" />
           <Property Name="IdBrand" Type="Int32" Nullable="false" />
-          <Property Name="IdStatus" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IdStatus" Type="Int32" />
           <Property Name="IdEmployer" Type="Int32" />
           <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Brand" Relationship="Self.FK_Devices_Brand" FromRole="Devices" ToRole="Brand" />

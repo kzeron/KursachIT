@@ -131,7 +131,8 @@ Grid.Column="0">
          Margin="60 10 40 10"
          VerticalAlignment="Center"
          HorizontalAlignment="Left"
-         Style="{StaticResource HoverText}"/>
+         Style="{StaticResource HoverText}"
+                               MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_1"/>
 
                     <materialDesign:PackIcon Kind="LocationExit" Grid.Row="5"
                                              x:Name="LogOut"

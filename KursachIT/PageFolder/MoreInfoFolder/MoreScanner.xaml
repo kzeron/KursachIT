@@ -29,40 +29,60 @@
                Grid.ColumnSpan="2"/>
 
         <StackPanel Grid.Row="1" Margin="10">
-            <Label Content="Имя устройства:"/>
-            <TextBlock x:Name="DeviceNameLabel" Margin="0,0,0,10"/>
+            <Image Source="{Binding PhotoPath}"
+                   x:Name="DeviceImage"
+         Width="100"
+         Height="100"
+         Stretch="Uniform"
+         Margin="0,8"/>
 
-            <Label Content="Серийный номер:"/>
-            <TextBlock x:Name="SerialNumberLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Дата покупки:"/>
-            <TextBlock x:Name="PurchaseDateLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Окончание гарантии:"/>
-            <TextBlock x:Name="WarrantyEndDateLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Дата получения:"/>
-            <TextBlock x:Name="DateOfReceiptLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Тип устройства:"/>
-            <TextBlock x:Name="DeviceTypeLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Бренд:"/>
-            <TextBlock x:Name="BrandLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Ответственный сотрудник:"/>
-            <TextBlock x:Name="EmployerLabel" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Имя устройства:"/>
+                <TextBlock x:Name="DeviceNameLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Серийный номер:"/>
+                <TextBlock x:Name="SerialNumberLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Дата покупки:"/>
+                <TextBlock x:Name="PurchaseDateLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Окончание гарантии:"/>
+                <TextBlock x:Name="WarrantyEndDateLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Дата получения:"/>
+                <TextBlock x:Name="DateOfReceiptLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Тип устройства:"/>
+                <TextBlock x:Name="DeviceTypeLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Бренд:"/>
+                <TextBlock x:Name="BrandLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Ответственный сотрудник:"/>
+                <TextBlock x:Name="EmployerLabel" Margin="5,0,0,0"/>
+            </StackPanel>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
-            <Label Content="Максимальное разрешение сканирования:"/>
-            <TextBlock x:Name="MaxScanResolutionLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Скорость сканирования:"/>
-            <TextBlock x:Name="ScanSpeedLabel" Margin="0,0,0,10"/>
-
-            <Label Content="Наличие автоподатчика документов:"/>
-            <TextBlock x:Name="DocumentFeederLabel" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Максимальное разрешение сканирования:"/>
+                <TextBlock x:Name="MaxScanResolutionLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Скорость сканирования:"/>
+                <TextBlock x:Name="ScanSpeedLabel" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Наличие автоподатчика документов:"/>
+                <TextBlock x:Name="DocumentFeederLabel" Margin="5,0,0,0"/>
+            </StackPanel>
         </StackPanel>
 
         <Button x:Name="BackBt"
@@ -78,6 +98,5 @@
             Margin="0,10,0,0"
             Click="BackBt_Click"/>
     </Grid>
-
 
 </Page>

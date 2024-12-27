@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using KursachIT.PageFolder.AdminFolder;
+using Microsoft.Win32;
 
 namespace KursachIT.PageFolder.AddPages
 {
@@ -25,6 +26,7 @@ namespace KursachIT.PageFolder.AddPages
     /// </summary>
     public partial class AddDevice : Page
     {
+        private string _photoPath;
         int selectDevice;
         public AddDevice()
         {
@@ -102,7 +104,9 @@ namespace KursachIT.PageFolder.AddPages
                             SerialNumber = SerialNumberDevice.Text,
                             IdDeviceType = selectedIdTypeDevice.IdDeviceType,
                             IdBrand = selectedIdBrand.IdBrand,
-                            IdEmployer = selectedIdEmployer // null, если сотрудник не выбран
+                            IdEmployer = selectedIdEmployer, // null, если сотрудник не выбран
+                            PhotoPath = _photoPath,
+                            IdStatus = (int)DeviceStatus.Function
                         };
 
                         context.Devices.Add(device);
@@ -144,5 +148,30 @@ namespace KursachIT.PageFolder.AddPages
         {
             Window.GetWindow(this).Close();
         }
+        private void PhotoAddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image Files (*.jpg, *.jpeg, *.png, *.gif)|*.jpg;*.jpeg;*.png;*.gif",
+                Title = "Выберите фотографию"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Сохраняем выбранный путь к изображению
+                _photoPath = openFileDialog.FileName;
+
+                try
+                {
+                    // Загружаем изображение в интерфейс
+                    DeviceImage.Source = new BitmapImage(new Uri(_photoPath));
+                }
+                catch (Exception ex)
+                {
+                    MBClass.ErrorMB($"Ошибка загрузки фотографии: {ex.Message}");
+                }
+            }
+        }
+
     }
 }

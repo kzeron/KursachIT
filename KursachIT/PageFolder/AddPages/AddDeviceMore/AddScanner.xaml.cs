@@ -41,9 +41,9 @@ namespace KursachIT.PageFolder.AddPages.AddDeviceMore
             {
                 MBClass.ErrorMB("Укажите максимальную скорость сканирования");
             }
-            else if(string.IsNullOrWhiteSpace(MaxResolutionTb.Text))
+            else if (string.IsNullOrWhiteSpace(MaxResolutionTb.Text) && !ClassDataValidator.IsResolutionValid(MaxResolutionTb.Text))
             {
-                MBClass.ErrorMB("Укажите максимальное разрешение");
+                MBClass.ErrorMB("Разрешение должно быть указано в формате 'ширина*высота'.");
             }
             else
             {

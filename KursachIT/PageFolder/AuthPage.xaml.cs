@@ -73,7 +73,8 @@ namespace KursachIT.PageFolder
             {
                 try
                 {
-                    var user = ITAdminEntities.GetContext().User
+                    var context = ITAdminEntities.GetContext();
+                    var user = context.User
                         .FirstOrDefault(u => u.Login == LoginTb.Text);
                     if (user == null)
                     {
@@ -86,6 +87,17 @@ namespace KursachIT.PageFolder
                     }
                     else
                     {
+                        var employer = context.Employers
+                            .FirstOrDefault(u => u.IdUser == user.IdLogin);
+                        if (employer == null)
+                        {
+                            MBClass.ErrorMB("Связанный сотрудник не найден.");
+                            return;
+                        }
+                        if(employer.IdStatus == (int)UserStatus.Fired)
+                        {
+                            MBClass.ErrorMB("Ваша учётная запись не действительна");
+                        }
                         ClassSaveSassion.SaveSession(user);
 
                         switch (user.IdRole)

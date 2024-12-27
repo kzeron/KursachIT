@@ -125,7 +125,7 @@ namespace KursachIT.PageFolder.AdminFolder
                             if (employerToUpdate != null)
                             {
                                 // Изменить статус сотрудника
-                                employerToUpdate.IdStatus = 8;
+                                employerToUpdate.IdStatus = (int)UserStatus.Fired;
 
                                 // Сохранить изменения
                                 context.SaveChanges();
@@ -157,7 +157,7 @@ namespace KursachIT.PageFolder.AdminFolder
             if (StaffDgList.SelectedItem is ClassUser selectedUser)
             {
                 // Создаем экземпляр страницы с деталями и передаем данные
-                MoreEployer userDetailsPage = new MoreEployer(selectedUser);
+                MoreEployer userDetailsPage = new MoreEployer(selectedUser.IdEmployers);
 
                 // Открываем новую страницу в окне
                 AnketWin detailsWindow = new AnketWin(userDetailsPage);

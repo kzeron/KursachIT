@@ -53,15 +53,23 @@ namespace KursachIT.PageFolder.AddPages
             }
             else if (NameOfficeCb.SelectedItem == null)
             {
-                MBClass.ErrorMB("Выберете кабинет");
+                MBClass.ErrorMB("Выберете офис");
             }
             else if (string.IsNullOrWhiteSpace(EmailEmTb.Text))
             {
                 MBClass.ErrorMB("Введите почту");
             }
+            else if (!ClassDataValidator.IsEmailValid(EmailEmTb.Text))
+            {
+                MBClass.ErrorMB("Некорректный формат почты или недопустимый домен (допустимы: gmail.com, yandex.ru, mail.ru).");
+            }
             else if (string.IsNullOrWhiteSpace(PhoneEmTb.Text))
             {
                 MBClass.ErrorMB("Укажите телефон");
+            }
+            else if (!ClassDataValidator.IsPhoneNumberValid(PhoneEmTb.Text))
+            {
+                MBClass.ErrorMB("Телефон должен содержать только цифры и, возможно, знак '+' в начале.");
             }
             else
             {
@@ -83,7 +91,7 @@ namespace KursachIT.PageFolder.AddPages
                             IdOffice = selectedOfficeId, // Передаем ID отдела
                             IdCab = selectedCabinetId, // Передаем ID кабинета
                             IdUser = _newIdUser,
-                            IdStatus = 7,
+                            IdStatus = (int)UserStatus.Working,
                             PhotoPath = _photoPath // Сохраняем путь к фотографии
                         };
 
@@ -97,8 +105,8 @@ namespace KursachIT.PageFolder.AddPages
                     MBClass.ErrorMB(ex.Message);
                 }
             }
-
         }
+
         public static class SharedData
         {
             public static int LastUserId { get; set; }

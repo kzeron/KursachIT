@@ -14,8 +14,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="2.4*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Информация об устройстве"
@@ -28,6 +28,11 @@
 
         <StackPanel HorizontalAlignment="Center"
                     Grid.Row="1">
+            <Image Source="{Binding PhotoPath}"
+           Width="150"
+           Height="150"
+           Stretch="Uniform"
+           Margin="0,8"/>
             <StackPanel Orientation="Horizontal" Margin="0,8">
                 <TextBlock Text="Название устройства:" FontWeight="Bold"
                        Style="{StaticResource StandartText}"/>

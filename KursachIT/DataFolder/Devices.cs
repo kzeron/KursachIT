@@ -31,7 +31,7 @@ namespace KursachIT.DataFolder
         public Nullable<System.DateTime> DateOfReceipt { get; set; }
         public int IdDeviceType { get; set; }
         public int IdBrand { get; set; }
-        public string IdStatus { get; set; }
+        public Nullable<int> IdStatus { get; set; }
         public Nullable<int> IdEmployer { get; set; }
         public string PhotoPath { get; set; }
     

@@ -74,10 +74,9 @@ namespace KursachIT.PageFolder.EditPages.EditDeviceMore
                 MBClass.ErrorMB("Укажите поддерживаемые цвета");
                 return;
             }
-            else if (string.IsNullOrWhiteSpace(MaxResolutionTb.Text))
+            else if (string.IsNullOrWhiteSpace(MaxResolutionTb.Text) && !ClassDataValidator.IsResolutionValid(MaxResolutionTb.Text))
             {
-                MBClass.ErrorMB("Укажите максимальное разрешение");
-                return;
+                MBClass.ErrorMB("Разрешение должно быть указано в формате 'ширина*высота' (например, 1920*1080).");
             }
             else if (string.IsNullOrWhiteSpace(MaxPrintSpeedTb.Text))
             {

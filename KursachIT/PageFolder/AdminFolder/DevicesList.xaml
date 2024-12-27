@@ -95,6 +95,7 @@
                 <DataGridTextColumn Header="Бренд" Binding="{Binding BrandName}"/>
                 <DataGridTextColumn Header="Серийный номер" Binding="{Binding SerialNumber}"/>
                 <DataGridTextColumn Header="Дата приобретения" Binding="{Binding PurchaseDate, StringFormat='dd.MM.yyyy'}"/>
+                <DataGridTextColumn Header="Статус устройства" Binding="{Binding NameStatus}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
