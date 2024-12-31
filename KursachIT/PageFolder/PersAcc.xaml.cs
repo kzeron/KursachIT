@@ -25,26 +25,61 @@ namespace KursachIT.PageFolder
         public PersAcc()
         {
             InitializeComponent();
-            var currentUser = ClassSaveSassion.LoadSession();
+            LoadCurrentEmployeeData();
+        }
 
-            if (currentUser != null)
+        private void LoadCurrentEmployeeData()
+        {
+            try
             {
-                // Получаем данные сотрудника, связанного с текущим пользователем
-                var employee = ITAdminEntities.GetContext().Employers
-                    .FirstOrDefault(emp => emp.IdUser == currentUser.IdLogin);
-
-                if (employee != null)
+                var currentUser = ClassSaveSassion.LoadSession();
+                if (currentUser == null)
                 {
-                    DataContext = employee;
+                    MBClass.ErrorMB("Сессия пользователя не найдена. Проверьте вход в систему.");
+                    NavigationService.GoBack();
+                    return;
                 }
-                else
+
+                using (var context = new ITAdminEntities())
                 {
-                    MBClass.ErrorMB("Информация о сотруднике не найдена.");
+                    // Поиск сотрудника, связанного с текущим пользователем
+                    var employer = context.Employers.FirstOrDefault(emp => emp.IdUser == currentUser.IdLogin);
+
+                    if (employer != null)
+                    {
+                        // Заполнение полей интерфейса
+                        NameTextBlock.Text = employer.Name;
+                        LastNameTextBlock.Text = employer.Lastname;
+                        PatronymicTextBlock.Text = employer.Patronymic;
+                        NumberPhoneTextBlock.Text = employer.numberPhone;
+                        EmailTextBlock.Text = employer.email;
+
+                        var office = context.Office.FirstOrDefault(o => o.IdOffice == employer.IdOffice);
+                        NameOfficeTextBlock.Text = office?.NameOffice ?? "Не указан";
+
+                        var cabinet = context.Cabinet.FirstOrDefault(c => c.IdNumberCabinet == employer.IdCab);
+                        NumberOfficeTextBlock.Text = cabinet?.NumberCabinet.ToString() ?? "Не указан";
+
+                        // Загрузка изображения
+                        if (!string.IsNullOrEmpty(employer.PhotoPath))
+                        {
+                            PhotoImage.Source = new BitmapImage(new Uri(employer.PhotoPath, UriKind.RelativeOrAbsolute));
+                        }
+                        else
+                        {
+                            PhotoImage.Source = null; // Или установить изображение-заглушку
+                        }
+                    }
+                    else
+                    {
+                        MBClass.ErrorMB("Информация о сотруднике не найдена.");
+                        NavigationService.GoBack();
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MBClass.ErrorMB("Сессия пользователя не найдена. Проверьте вход в систему.");
+                MBClass.ErrorMB($"Ошибка загрузки данных: {ex.Message}");
             }
         }
     }

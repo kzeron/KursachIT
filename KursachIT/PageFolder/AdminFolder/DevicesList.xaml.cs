@@ -14,27 +14,22 @@
     using System.Windows.Data;
     using System.Windows.Documents;
     using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-    using System.Windows.Navigation;
-    using System.Windows.Shapes;
-    using static MaterialDesignThemes.Wpf.Theme;
 
-    namespace KursachIT.PageFolder.AdminFolder
-    {
+namespace KursachIT.PageFolder.AdminFolder
+{
         /// <summary>
         /// Логика взаимодействия для DevicesList.xaml
         /// </summary>
-        public partial class DevicesList : Page
+    public partial class DevicesList : Page
+    {
+        private ObservableCollection<ClassDevice> ModelDevices;
+        public DevicesList()
         {
-            private ObservableCollection<ClassDevice> ModelDevices;
-            public DevicesList()
-            {
-                InitializeComponent();
-                ModelDevices = new ObservableCollection<ClassDevice>();
-                LoadData();
-                DevicesDgList.ItemsSource = ModelDevices;
-            }
+            InitializeComponent();
+            ModelDevices = new ObservableCollection<ClassDevice>();
+            LoadData();
+            DevicesDgList.ItemsSource = ModelDevices;
+        }
 
 
 
@@ -107,55 +102,6 @@
                 else
                 {
                     MBClass.ErrorMB("Выберите устройство для редактирования.");
-                }
-            }
-
-
-            private void DeleteClick(object sender, RoutedEventArgs e)
-            {
-                if (DevicesDgList.SelectedItem is ClassDevice selectedDevice)
-                {
-                    bool result = MBClass.QuestionMB($"Вы уверены, что хотите удалить устройство {selectedDevice.NameDevice} с серийным номером {selectedDevice.SerialNumber}?");
-
-                    if (result)
-                    {
-                        try
-                        {
-                            using (var context = new ITAdminEntities())
-                            {
-                                // Find the device to delete based on its ID
-                                var deviceToDelete = context.Devices.FirstOrDefault(d => d.IdDevice == selectedDevice.IdDevice);
-
-                                if (deviceToDelete != null)
-                                {
-                                    // Remove related details (if applicable)
-                                    context.PCDetails.RemoveRange(context.PCDetails.Where(p => p.IdDevice == selectedDevice.IdDevice));
-                                    context.ServerDetails.RemoveRange(context.ServerDetails.Where(s => s.IdDevice == selectedDevice.IdDevice));
-                                    context.ScannerDetails.RemoveRange(context.ScannerDetails.Where(sc => sc.IdDevice == selectedDevice.IdDevice));
-                                    context.PrinterDetails.RemoveRange(context.PrinterDetails.Where(p => p.IdDevice == selectedDevice.IdDevice));
-
-                                    // Remove the device itself
-                                    context.Devices.Remove(deviceToDelete);
-
-                                    context.SaveChanges();
-                                    MBClass.InformationMB("Устройство успешно удалено.");
-                                    LoadData();
-                                }
-                                else
-                                {
-                                    MBClass.ErrorMB("Устройство не найдено.");
-                                }
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MBClass.ErrorMB($"Произошла ошибка при удалении: {ex.Message}");
-                        }
-                    }
-                }
-                else
-                {
-                    MBClass.ErrorMB("Выберите устройство для удаления.");
                 }
             }
             private void OpenFilterPopup_Click(object sender, RoutedEventArgs e)
@@ -236,58 +182,138 @@
 
                     // Обновляем источник данных для DataGrid
                     DevicesDgList.ItemsSource = ModelDevices;
-                }
             }
+        }
 
 
-            private void DevicesDgList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void DevicesDgList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (DevicesDgList.SelectedItem is ClassDevice selectedDevice)
             {
-                if (DevicesDgList.SelectedItem is ClassDevice selectedDevice)
+                // Получение типа устройства
+                using (var context = new ITAdminEntities())
                 {
-                    // Получение типа устройства
-                    using (var context = new ITAdminEntities())
+                    var deviceType = context.Devices
+                                            .Where(d => d.IdDevice == selectedDevice.IdDevice)
+                                            .Select(d => d.IdDeviceType)
+                                            .FirstOrDefault();
+
+                    // Проверяем, что тип устройства найден
+                    if (deviceType != 0)
                     {
-                        var deviceType = context.Devices
-                                                .Where(d => d.IdDevice == selectedDevice.IdDevice)
-                                                .Select(d => d.IdDeviceType)
-                                                .FirstOrDefault();
+                        // Получение страницы для выбранного типа устройства
+                        var page = DevicePageSelectorcs.GetMorePageForDeviceType(deviceType, selectedDevice.IdDevice);
 
-                        // Проверяем, что тип устройства найден
-                        if (deviceType != 0)
+                        if (page != null)
                         {
-                            // Получение страницы для выбранного типа устройства
-                            var page = DevicePageSelectorcs.GetMorePageForDeviceType(deviceType, selectedDevice.IdDevice);
-
-                            if (page != null)
-                            {
-                                // Открываем окно с нужной страницей
-                                AnketWin window = new AnketWin(page);
-                                window.Show();
-                            }
-                            else
-                            {
-                                MBClass.ErrorMB("Не удалось определить страницу для данного типа устройства.");
-                            }
+                            // Открываем окно с нужной страницей
+                            AnketWin window = new AnketWin(page);
+                            window.Show();
                         }
                         else
                         {
-                            MBClass.ErrorMB("Тип устройства не найден.");
+                            MBClass.ErrorMB("Не удалось определить страницу для данного типа устройства.");
                         }
                     }
-                }
-                else
-                {
-                    MBClass.ErrorMB("Выберите устройство из списка.");
+                    else
+                    {
+                        MBClass.ErrorMB("Тип устройства не найден.");
+                    }
                 }
             }
-            private void OnAnketWinClosed(object sender, EventArgs e)
+            else
             {
-                LoadData();
-            }
-            private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
-            {
-                var searchText = SearchTextBox.Text;
-                ApplyFilters(new List<string>(), new List<string>(), searchText);
+                MBClass.ErrorMB("Выберите устройство из списка.");
             }
         }
+        private void MarkAsDecommissioned_Click(object sender, RoutedEventArgs e)
+        {
+            if (DevicesDgList.SelectedItem is ClassDevice selectedDevice)
+            {
+                bool result = MBClass.QuestionMB($"Вы уверены, что хотите списать устройство {selectedDevice.NameDevice} с серийным номером {selectedDevice.SerialNumber}?");
+
+                if (result)
+                {
+                    try
+                    {
+                        using (var context = new ITAdminEntities())
+                        {
+                            var deviceToUpdate = context.Devices.FirstOrDefault(d => d.IdDevice == selectedDevice.IdDevice);
+
+                            if (deviceToUpdate != null)
+                            {
+                                deviceToUpdate.IdStatus = context.Status.FirstOrDefault(s => s.NameStatus == "Списан")?.IdStatus;
+
+                                context.SaveChanges();
+                                MBClass.InformationMB("Устройство успешно списано.");
+                                LoadData();
+                            }
+                            else
+                            {
+                                MBClass.ErrorMB("Устройство не найдено.");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MBClass.ErrorMB($"Произошла ошибка при списании: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MBClass.ErrorMB("Выберите устройство для списания.");
+            }
+        }
+
+        private void MarkAsWorking_Click(object sender, RoutedEventArgs e)
+        {
+            if (DevicesDgList.SelectedItem is ClassDevice selectedDevice)
+            {
+                bool result = MBClass.QuestionMB($"Вы уверены, что хотите восстановить устройство {selectedDevice.NameDevice} с серийным номером {selectedDevice.SerialNumber}?");
+
+                if (result)
+                {
+                    try
+                    {
+                        using (var context = new ITAdminEntities())
+                        {
+                            var deviceToUpdate = context.Devices.FirstOrDefault(d => d.IdDevice == selectedDevice.IdDevice);
+
+                            if (deviceToUpdate != null)
+                            {
+                                deviceToUpdate.IdStatus = context.Status.FirstOrDefault(s => s.NameStatus == "Функцианирует")?.IdStatus;
+
+                                context.SaveChanges();
+                                MBClass.InformationMB("Устройство успешно восстановлено.");
+                                LoadData();
+                            }
+                            else
+                            {
+                                MBClass.ErrorMB("Устройство не найдено.");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MBClass.ErrorMB($"Произошла ошибка при восстановлении: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MBClass.ErrorMB("Выберите устройство для восстановления.");
+            }
+        }
+
+        private void OnAnketWinClosed(object sender, EventArgs e)
+        {
+                LoadData();
+        }
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var searchText = SearchTextBox.Text;
+             ApplyFilters(new List<string>(), new List<string>(), searchText);
+        }
     }
+}

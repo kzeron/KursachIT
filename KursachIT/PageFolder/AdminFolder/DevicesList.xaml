@@ -100,9 +100,11 @@
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Изменить" Click="MenuItem_Click"/>
-                    <MenuItem Header="Удалить" Click="DeleteClick"/>
+                    <MenuItem Header="Списать" Click="MarkAsDecommissioned_Click"/>
+                    <MenuItem Header="Восстановить" Click="MarkAsWorking_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
+
         </DataGrid>
 
         <!-- Кнопка добавления -->

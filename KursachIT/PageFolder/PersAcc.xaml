@@ -9,48 +9,60 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PersAcc">
 
-    <StackPanel Margin="20" HorizontalAlignment="Center">
-        <TextBlock Text="личный кабинет" FontSize="20" FontWeight="Bold" FontFamily="Cascadia Mono SemiLight" Margin="0,0,0,20" />
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <!-- Колонка для фотографии -->
+            <ColumnDefinition Width="*"/>
+            <!-- Колонка для текста -->
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Horizontal" Margin="0,8">
-            <TextBlock Text="Фамилия:" FontWeight="Bold"
-                   Style="{StaticResource StandartText}"/>
-            <Label Content="{Binding LastName}" 
-               FontFamily="Cascadia Mono SemiLight"
-               VerticalContentAlignment="Top"
-               HorizontalAlignment="Left"
-               HorizontalContentAlignment="Left"/>
-        </StackPanel>
+        <!-- Фотография сотрудника -->
+        <Image x:Name="PhotoImage"
+            Width="150" Height="150" 
+            Stretch="UniformToFill" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" 
+            Margin="10" />
 
-        <StackPanel Orientation="Horizontal" Margin="0,8">
-            <TextBlock Text="Имя:" FontWeight="Bold"
-                   Style="{StaticResource  StandartText}"/>
-            <Label Content="{Binding Name}" />
-        </StackPanel>
+        <!-- Информация о сотруднике -->
+        <StackPanel Grid.Column="1" Margin="20,0,0,0">
+            <TextBlock Text="Личный кабинет" FontSize="20" FontWeight="Bold" FontFamily="Cascadia Mono SemiLight" Margin="0,0,0,20" />
 
-        <StackPanel Orientation="Horizontal" Margin="0,8">
-            <TextBlock Text="Отчество:" FontWeight="Bold" Style="{StaticResource StandartText}" />
-            <Label Content="{Binding Patronymic}" />
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Фамилия:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+                <TextBlock x:Name="LastNameTextBlock" FontFamily="Cascadia Mono SemiLight" />
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,8">
-            <TextBlock Text="Отдел:" FontWeight="Bold" Style="{StaticResource StandartText}" />
-            <Label Content="{Binding NameOffice}" />
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Имя:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+                <TextBlock x:Name="NameTextBlock" />
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,8">
-            <TextBlock Text="Номер офиса:" FontWeight="Bold" Style="{StaticResource StandartText}" />
-            <Label Content="{Binding NumberOffice}" />
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Отчество:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+                <TextBlock x:Name="PatronymicTextBlock" />
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,8">
-            <TextBlock Text="Телефон:" FontWeight="Bold" Style="{StaticResource StandartText}"/>
-            <Label Content="{Binding NumberPhone}" />
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Отдел:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+                <TextBlock x:Name="NameOfficeTextBlock" />
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,8">
-            <TextBlock Text="Email:" FontWeight="Bold" Style="{StaticResource StandartText}" />
-            <Label Content="{Binding Email}" />
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Номер офиса:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+                <TextBlock x:Name="NumberOfficeTextBlock" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Телефон:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+                <TextBlock x:Name="NumberPhoneTextBlock" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Email:" FontWeight="Bold" Style="{StaticResource StandartText}" />
+                <TextBlock x:Name="EmailTextBlock" />
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </Page>

@@ -259,7 +259,7 @@ namespace KursachIT.PageFolder.AdminFolder
             if (ReqestDgList.SelectedItem is ClassRequest selectedRequest)
             {
                 // Создаем экземпляр страницы с деталями и передаем данные
-                PageRequestMore requestMore = new PageRequestMore(selectedRequest);
+                PageRequestMore requestMore = new PageRequestMore(selectedRequest.IdRequst);
 
                 // Открываем новую страницу в окне
                 AnketWin detailsWindow = new AnketWin(requestMore);

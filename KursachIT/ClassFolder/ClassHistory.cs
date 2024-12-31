@@ -12,7 +12,7 @@ namespace KursachIT.ClassFolder
         public string TableName { get; set; }
         public string OperationType {  get; set; }
         public DateTime OperationTime { get; set; }
-        public string IdEmployer { get; set; }
+        public int IdEmployer { get; set; }
         public string ChangedData { get; set; }
     }
 }

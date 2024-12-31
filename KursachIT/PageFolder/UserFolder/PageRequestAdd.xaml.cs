@@ -91,6 +91,7 @@ namespace KursachIT.PageFolder.UserFolder
                     context.SaveChanges();
 
                     MBClass.InformationMB("Заявка успешно добавлена.");
+                    Window.GetWindow(this).Close();
                 }
             }
             catch (Exception ex)

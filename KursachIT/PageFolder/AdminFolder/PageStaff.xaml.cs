@@ -260,6 +260,49 @@ namespace KursachIT.PageFolder.AdminFolder
             }
 
         }
+        private void RestoreClick(object sender, RoutedEventArgs e)
+        {
+            if (StaffDgList.SelectedItem is ClassUser selectedUser)
+            {
+                bool result = MBClass.QuestionMB($"Вы уверены, что хотите восстановить сотрудника {selectedUser.Name} {selectedUser.LastName}?");
+
+                if (result)
+                {
+                    try
+                    {
+                        using (var context = new ITAdminEntities())
+                        {
+                            // Найти запись сотрудника в таблице Employers
+                            var employerToUpdate = context.Employers.FirstOrDefault(emp => emp.IdEmployers == selectedUser.IdEmployers);
+
+                            if (employerToUpdate != null)
+                            {
+                                // Изменить статус сотрудника
+                                employerToUpdate.IdStatus = (int)UserStatus.Working;
+
+                                // Сохранить изменения
+                                context.SaveChanges();
+
+                                MBClass.InformationMB("Сотрудник успешно восстановлен.");
+                                LoadData(); // Обновить данные после изменения
+                            }
+                            else
+                            {
+                                MBClass.ErrorMB("Сотрудник не найден.");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MBClass.ErrorMB($"Произошла ошибка при восстановлении: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MBClass.ErrorMB("Выберите сотрудника для восстановления.");
+            }
+        }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

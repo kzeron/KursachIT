@@ -94,9 +94,10 @@ namespace KursachIT.PageFolder
                             MBClass.ErrorMB("Связанный сотрудник не найден.");
                             return;
                         }
-                        if(employer.IdStatus == (int)UserStatus.Fired)
+                        if (employer.IdStatus == (int)UserStatus.Fired)
                         {
-                            MBClass.ErrorMB("Ваша учётная запись не действительна");
+                            MBClass.ErrorMB("Ваша учетная запись не действительна");
+                            return; // Немедленно выйти из метода
                         }
                         ClassSaveSassion.SaveSession(user);
 
@@ -115,7 +116,6 @@ namespace KursachIT.PageFolder
                                 userWin.Show();
                                 Window.GetWindow(this).Close();
                                 break;
-
                         }
                     }
                 }

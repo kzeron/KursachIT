@@ -57,7 +57,7 @@ namespace KursachIT.Windows
 
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            FrameConnect.NavigationService.Navigate(new UserRequestList());
         }
     }
 }

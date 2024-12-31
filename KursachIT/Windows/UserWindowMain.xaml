@@ -24,15 +24,17 @@
                     <RowDefinition Height="0.08*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
 
-                    <Image Source="/Assets/Images/cloud.png"
+                <Image Source="/Assets/Images/cloud.png"
                        Width="60"
                        Height="60"
-                       Margin="20 0 835 0"
+                       Margin="10 0 0 0"
                        HorizontalAlignment="Left"/>
-                    
-                </StackPanel>
+                <TextBlock Text="SmartInfra"
+           Style="{DynamicResource StandartText}"
+           HorizontalAlignment="Left"
+           Margin="80 0"
+           />
                 <materialDesign:PackIcon Kind="WindowMinimize" 
                          x:Name="WinMinIcon"
                              Height="20"
