@@ -13,6 +13,7 @@ namespace KursachIT.ClassFolder
         public string OperationType {  get; set; }
         public DateTime OperationTime { get; set; }
         public int IdEmployer { get; set; }
+        public string NameEmployer { get; set; }
         public string ChangedData { get; set; }
     }
 }

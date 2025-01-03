@@ -35,8 +35,13 @@ namespace KursachIT.PageFolder.MoreFolder
                             r.PlanDate,
                             r.DateRealize,
                             r.Transcription,
-                            SenderName = r.Employers.Lastname,
-                            ExecutorName = r.Employers.Name
+                            // Отправитель заявки (инициатор)
+                            SenderName = r.Employers.Lastname + " " + r.Employers.Name + " " + r.Employers.Patronymic,
+                            // Исполнитель заявки (по IdExecutor в Employers)
+                            ExecutorName = context.Employers
+                                .Where(e => e.IdEmployers == r.IdExcutor)
+                                .Select(e => e.Lastname + " " + e.Name + " " + e.Patronymic)
+                                .FirstOrDefault() ?? "Не назначен"
                         })
                         .FirstOrDefault();
 
@@ -49,7 +54,7 @@ namespace KursachIT.PageFolder.MoreFolder
                         DateRealizeLabel.Content = requestDetails.DateRealize?.ToString("dd.MM.yyyy") ?? "Не указано";
                         TranscriptionLabel.Content = requestDetails.Transcription ?? "Не указано";
                         NameRequestSenderLabel.Content = requestDetails.SenderName ?? "Не указано";
-                        NameExecutorLabel.Content = requestDetails.ExecutorName ?? "Не указано";
+                        NameExecutorLabel.Content = requestDetails.ExecutorName ?? "Не назначен";
                     }
                     else
                     {
@@ -63,6 +68,7 @@ namespace KursachIT.PageFolder.MoreFolder
                 MBClass.ErrorMB($"Ошибка загрузки данных: {ex.Message}");
             }
         }
+
 
         private void BackBt_Click(object sender, RoutedEventArgs e)
         {

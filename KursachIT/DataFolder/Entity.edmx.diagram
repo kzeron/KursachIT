@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="093046e406b7459cb4b08cbdcde3debe" Name="Diagram1">
+        <EntityTypeShape EntityType="ITAdminModel.Brand" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.Cabinet" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.Category" Width="1.5" PointX="6" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.ColorTechology" Width="1.5" PointX="8.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.Devices" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.DeviceTypes" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.DocumentFeeder" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.Employers" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.Office" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.OperationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.PCDetails" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.PrinterDetails" Width="1.5" PointX="10.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.PrintTechonology" Width="1.5" PointX="8.25" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.Priority" Width="1.5" PointX="6" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.Requests" Width="1.5" PointX="8.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.Role" Width="1.5" PointX="1.5" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.ScannerDetails" Width="1.5" PointX="7.5" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.ServerDetails" Width="1.5" PointX="7.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.Status" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITAdminModel.User" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <AssociationConnector Association="ITAdminModel.FK_Devices_Brand" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_Employers_Cabinet" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_Requests_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_PrinterDetails_ColorTechology" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_Devices_DeviceTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_Devices_Employers" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_PCDetails_Devices" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_PrinterDetails_Devices" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_ScannerDetails_Devices" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_ServerDetails_Devices" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_ScannerDetails_DocumentFeeder" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_Employers_Office" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_Employers_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_Employers_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_Requests_Employers" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_PrinterDetails_PrintTechonogy" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_Requests_Priority" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_Requests_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="ITAdminModel.FK_User_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

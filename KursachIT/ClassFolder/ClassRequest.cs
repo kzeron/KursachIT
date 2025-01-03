@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KursachIT.DataFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,5 +24,6 @@ namespace KursachIT.ClassFolder
         public string NameExcutor { get; set; }
         public string NameRequestSender { get; set; }
         public DateTime DateRealize { get; set; }
+        public virtual Employers EmployerExecutor { get; set; }
     }
 }

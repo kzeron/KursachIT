@@ -22,9 +22,6 @@ namespace KursachIT.PageFolder.AdminFolder
             HistoryDgList.ItemsSource = _historyData;
         }
 
-        /// <summary>
-        /// Загрузка данных истории операций.
-        /// </summary>
         public void LoadData()
         {
             try
@@ -32,14 +29,14 @@ namespace KursachIT.PageFolder.AdminFolder
                 using (var context = new ITAdminEntities())
                 {
                     var historyData = (from history in context.OperationHistory
-                                       join employer in context.Employers on history.UserId equals employer.IdEmployers
+                                       join employer in context.Employers on history.EmployerId equals employer.IdEmployers
                                        select new ClassHistory
                                        {
                                            IdHistory = history.IdHistory,
                                            TableName = history.TableName,
                                            OperationType = history.OperationType,
                                            OperationTime = history.OperationTime,
-                                           IdEmployer = employer.Name,
+                                           NameEmployer = employer.Name,
                                            ChangedData = history.ChangedData
                                        }).OrderBy(h => h.OperationTime).ToList();
 
@@ -52,34 +49,31 @@ namespace KursachIT.PageFolder.AdminFolder
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при загрузке данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MBClass.ErrorMB(ex);
             }
         }
 
-        /// <summary>
-        /// Применение фильтров и поиска.
-        /// </summary>
-        /// <param name="searchText">Текст для поиска.</param>
-        public void ApplyFilters(string searchText)
+        public void ApplyFilters(List<string> selectedOperationTypes, string searchText)
         {
             try
             {
                 using (var context = new ITAdminEntities())
                 {
                     var filteredData = (from history in context.OperationHistory
-                                        join employer in context.Employers on history.UserId equals employer.IdEmployers
-                                        where string.IsNullOrEmpty(searchText) ||
-                                              history.TableName.Contains(searchText) ||
-                                              history.OperationType.Contains(searchText) ||
-                                              employer.Name.Contains(searchText) ||
-                                              history.ChangedData.Contains(searchText)
+                                        join employer in context.Employers on history.EmployerId equals employer.IdEmployers
+                                        where (selectedOperationTypes.Count == 0 || selectedOperationTypes.Contains(history.OperationType)) &&
+                                              (string.IsNullOrEmpty(searchText) ||
+                                               history.TableName.Contains(searchText) ||
+                                               history.OperationType.Contains(searchText) ||
+                                               employer.Name.Contains(searchText) ||
+                                               history.ChangedData.Contains(searchText))
                                         select new ClassHistory
                                         {
                                             IdHistory = history.IdHistory,
                                             TableName = history.TableName,
                                             OperationType = history.OperationType,
                                             OperationTime = history.OperationTime,
-                                            IdEmployer = employer.Name,
+                                            NameEmployer = employer.Name,
                                             ChangedData = history.ChangedData
                                         }).OrderBy(h => h.OperationTime).ToList();
 
@@ -95,23 +89,38 @@ namespace KursachIT.PageFolder.AdminFolder
                 MessageBox.Show($"Ошибка при фильтрации данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ApplyFilters(SearchTextBox.Text);
+            var searchText = SearchTextBox.Text;
+            ApplyFilters(new List<string>(), searchText);
         }
+
 
         private void OpenFilterPopup_Click(object sender, RoutedEventArgs e)
         {
-            // Открытие/закрытие Popup
             FilterPopup.IsOpen = !FilterPopup.IsOpen;
         }
+
         private void ApplyFilters_Click(object sender, RoutedEventArgs e)
         {
-            // Получаем текст из поля поиска
-            string searchText = SearchTextBox.Text;
+            // Сбор выбранных значений из CheckBox'ов
+            var selectedOperationTypes = new List<string>();
+            if (AddCheckBox.IsChecked == true) selectedOperationTypes.Add("INSERT");
+            if (DeleteCheckBox.IsChecked == true) selectedOperationTypes.Add("DELETE");
+            if (UpdateCheckBox.IsChecked == true) selectedOperationTypes.Add("UPDATE");
 
-            // Применяем фильтры с введенным текстом
-            ApplyFilters(searchText);
+            // Получение текста из текстового поля
+            var searchText = SearchTextBox.Text;
+
+            // Применение фильтров
+            ApplyFilters(selectedOperationTypes, searchText);
+
+            // Закрытие Popup
+            FilterPopup.IsOpen = false;
         }
+
     }
 }
+

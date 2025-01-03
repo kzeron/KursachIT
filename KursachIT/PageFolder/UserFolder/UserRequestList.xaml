@@ -101,9 +101,12 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu Background="WhiteSmoke">
-                    <MenuItem Header="Принять"
+                    <MenuItem Header="Изменить"
                            x:Name="EditRequest"
                            Click="EditRequest_Click"/>
+                    <MenuItem Header="Отменить"
+                           x:Name="CancelRequest"
+                           Click="CancelRequest_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

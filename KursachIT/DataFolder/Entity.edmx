@@ -1,0 +1,1442 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ITAdminModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="IdBrand" />
+          </Key>
+          <Property Name="IdBrand" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameBrand" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cabinet">
+          <Key>
+            <PropertyRef Name="IdNumberCabinet" />
+          </Key>
+          <Property Name="IdNumberCabinet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberCabinet" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="IdCategory" />
+          </Key>
+          <Property Name="IdCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameCategory" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ColorTechology">
+          <Key>
+            <PropertyRef Name="IdColorTech" />
+          </Key>
+          <Property Name="IdColorTech" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ColorTech" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Devices">
+          <Key>
+            <PropertyRef Name="IdDevice" />
+          </Key>
+          <Property Name="IdDevice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameDevice" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PurchaseDate" Type="date" Nullable="false" />
+          <Property Name="WarrantyEndDate" Type="date" Nullable="false" />
+          <Property Name="DateOfReceipt" Type="date" />
+          <Property Name="IdDeviceType" Type="int" Nullable="false" />
+          <Property Name="IdBrand" Type="int" Nullable="false" />
+          <Property Name="IdStatus" Type="int" />
+          <Property Name="IdEmployer" Type="int" />
+          <Property Name="PhotoPath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DeviceTypes">
+          <Key>
+            <PropertyRef Name="IdDeviceType" />
+          </Key>
+          <Property Name="IdDeviceType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceTypeName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentFeeder">
+          <Key>
+            <PropertyRef Name="IdDocumentFeeder" />
+          </Key>
+          <Property Name="IdDocumentFeeder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentFeederName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employers">
+          <Key>
+            <PropertyRef Name="IdEmployers" />
+          </Key>
+          <Property Name="IdEmployers" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IdOffice" Type="int" Nullable="false" />
+          <Property Name="numberPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdCab" Type="int" />
+          <Property Name="IdStatus" Type="int" />
+          <Property Name="PhotoPath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Office">
+          <Key>
+            <PropertyRef Name="IdOffice" />
+          </Key>
+          <Property Name="IdOffice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameOffice" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OperationHistory">
+          <Key>
+            <PropertyRef Name="IdHistory" />
+          </Key>
+          <Property Name="IdHistory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="OperationType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OperationTime" Type="datetime" Nullable="false" />
+          <Property Name="EmployerId" Type="int" />
+          <Property Name="ChangedData" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PCDetails">
+          <Key>
+            <PropertyRef Name="IdPC" />
+          </Key>
+          <Property Name="IdPC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CPU" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RAM" Type="int" Nullable="false" />
+          <Property Name="Storage" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="GPU" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdDevice" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrinterDetails">
+          <Key>
+            <PropertyRef Name="IdPrinter" />
+          </Key>
+          <Property Name="IdPrinter" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPrintTechnology" Type="int" Nullable="false" />
+          <Property Name="MaxResolution" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaxPrintSpeed" Type="float" Nullable="false" />
+          <Property Name="IdColorTech" Type="int" />
+          <Property Name="IdDevice" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrintTechonology">
+          <Key>
+            <PropertyRef Name="IdPrintTechnology" />
+          </Key>
+          <Property Name="IdPrintTechnology" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrintTechnologyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Priority">
+          <Key>
+            <PropertyRef Name="IdPriority" />
+          </Key>
+          <Property Name="IdPriority" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NamePriority" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="IdRequest" />
+          </Key>
+          <Property Name="IdRequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdStatus" Type="int" Nullable="false" />
+          <Property Name="IdCategory" Type="int" Nullable="false" />
+          <Property Name="IdPriority" Type="int" Nullable="false" />
+          <Property Name="PlanDate" Type="date" Nullable="false" />
+          <Property Name="DateRealize" Type="date" />
+          <Property Name="Transcription" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdRequestSender" Type="int" Nullable="false" />
+          <Property Name="IdExcutor" Type="int" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameRole" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScannerDetails">
+          <Key>
+            <PropertyRef Name="IdScanner" />
+          </Key>
+          <Property Name="IdScanner" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaxScanResolution" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ScanSpeed" Type="float" Nullable="false" />
+          <Property Name="IdDocumentFeeder" Type="int" Nullable="false" />
+          <Property Name="IdDevice" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServerDetails">
+          <Key>
+            <PropertyRef Name="IdServer" />
+          </Key>
+          <Property Name="IdServer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CPU" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RAM" Type="int" Nullable="false" />
+          <Property Name="Storage" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RackUnit" Type="int" Nullable="false" />
+          <Property Name="NetworkInterface" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="IdDevice" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="IdStatus" />
+          </Key>
+          <Property Name="IdStatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameStatus" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdLogin" />
+          </Key>
+          <Property Name="IdLogin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdRole" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Devices_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="IdBrand" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="IdBrand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Devices_DeviceTypes">
+          <End Role="DeviceTypes" Type="Self.DeviceTypes" Multiplicity="1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceTypes">
+              <PropertyRef Name="IdDeviceType" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="IdDeviceType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Devices_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="0..1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="IdEmployers" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="IdEmployer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employers_Cabinet">
+          <End Role="Cabinet" Type="Self.Cabinet" Multiplicity="0..1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cabinet">
+              <PropertyRef Name="IdNumberCabinet" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="IdCab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employers_Office">
+          <End Role="Office" Type="Self.Office" Multiplicity="1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="IdOffice" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="IdOffice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employers_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatus" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employers_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdLogin" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PCDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="PCDetails" Type="Self.PCDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
+            </Principal>
+            <Dependent Role="PCDetails">
+              <PropertyRef Name="IdDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrinterDetails_ColorTechology">
+          <End Role="ColorTechology" Type="Self.ColorTechology" Multiplicity="0..1" />
+          <End Role="PrinterDetails" Type="Self.PrinterDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ColorTechology">
+              <PropertyRef Name="IdColorTech" />
+            </Principal>
+            <Dependent Role="PrinterDetails">
+              <PropertyRef Name="IdColorTech" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrinterDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="PrinterDetails" Type="Self.PrinterDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
+            </Principal>
+            <Dependent Role="PrinterDetails">
+              <PropertyRef Name="IdDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrinterDetails_PrintTechonogy">
+          <End Role="PrintTechonology" Type="Self.PrintTechonology" Multiplicity="1" />
+          <End Role="PrinterDetails" Type="Self.PrinterDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrintTechonology">
+              <PropertyRef Name="IdPrintTechnology" />
+            </Principal>
+            <Dependent Role="PrinterDetails">
+              <PropertyRef Name="IdPrintTechnology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="IdCategory" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="IdCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="IdEmployers" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="IdRequestSender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Priority">
+          <End Role="Priority" Type="Self.Priority" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priority">
+              <PropertyRef Name="IdPriority" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="IdPriority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatus" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScannerDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="ScannerDetails" Type="Self.ScannerDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
+            </Principal>
+            <Dependent Role="ScannerDetails">
+              <PropertyRef Name="IdDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScannerDetails_DocumentFeeder">
+          <End Role="DocumentFeeder" Type="Self.DocumentFeeder" Multiplicity="1" />
+          <End Role="ScannerDetails" Type="Self.ScannerDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentFeeder">
+              <PropertyRef Name="IdDocumentFeeder" />
+            </Principal>
+            <Dependent Role="ScannerDetails">
+              <PropertyRef Name="IdDocumentFeeder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServerDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="ServerDetails" Type="Self.ServerDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
+            </Principal>
+            <Dependent Role="ServerDetails">
+              <PropertyRef Name="IdDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Хранилище ITAdminModelContainer">
+          <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cabinet" EntityType="Self.Cabinet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ColorTechology" EntityType="Self.ColorTechology" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeviceTypes" EntityType="Self.DeviceTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentFeeder" EntityType="Self.DocumentFeeder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employers" EntityType="Self.Employers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Office" EntityType="Self.Office" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OperationHistory" EntityType="Self.OperationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PCDetails" EntityType="Self.PCDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrinterDetails" EntityType="Self.PrinterDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrintTechonology" EntityType="Self.PrintTechonology" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Priority" EntityType="Self.Priority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScannerDetails" EntityType="Self.ScannerDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServerDetails" EntityType="Self.ServerDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Devices_Brand" Association="Self.FK_Devices_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Devices_DeviceTypes" Association="Self.FK_Devices_DeviceTypes">
+            <End Role="DeviceTypes" EntitySet="DeviceTypes" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Devices_Employers" Association="Self.FK_Devices_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employers_Cabinet" Association="Self.FK_Employers_Cabinet">
+            <End Role="Cabinet" EntitySet="Cabinet" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employers_Office" Association="Self.FK_Employers_Office">
+            <End Role="Office" EntitySet="Office" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employers_Status" Association="Self.FK_Employers_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employers_User" Association="Self.FK_Employers_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PCDetails_Devices" Association="Self.FK_PCDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="PCDetails" EntitySet="PCDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrinterDetails_ColorTechology" Association="Self.FK_PrinterDetails_ColorTechology">
+            <End Role="ColorTechology" EntitySet="ColorTechology" />
+            <End Role="PrinterDetails" EntitySet="PrinterDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrinterDetails_Devices" Association="Self.FK_PrinterDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="PrinterDetails" EntitySet="PrinterDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrinterDetails_PrintTechonogy" Association="Self.FK_PrinterDetails_PrintTechonogy">
+            <End Role="PrintTechonology" EntitySet="PrintTechonology" />
+            <End Role="PrinterDetails" EntitySet="PrinterDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Category" Association="Self.FK_Requests_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Employers" Association="Self.FK_Requests_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Priority" Association="Self.FK_Requests_Priority">
+            <End Role="Priority" EntitySet="Priority" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Status" Association="Self.FK_Requests_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScannerDetails_Devices" Association="Self.FK_ScannerDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="ScannerDetails" EntitySet="ScannerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScannerDetails_DocumentFeeder" Association="Self.FK_ScannerDetails_DocumentFeeder">
+            <End Role="DocumentFeeder" EntitySet="DocumentFeeder" />
+            <End Role="ScannerDetails" EntitySet="ScannerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServerDetails_Devices" Association="Self.FK_ServerDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="ServerDetails" EntitySet="ServerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ITAdminModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="IdBrand" />
+          </Key>
+          <Property Name="IdBrand" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameBrand" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_Devices_Brand" FromRole="Brand" ToRole="Devices" />
+        </EntityType>
+        <EntityType Name="Cabinet">
+          <Key>
+            <PropertyRef Name="IdNumberCabinet" />
+          </Key>
+          <Property Name="IdNumberCabinet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberCabinet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employers" Relationship="Self.FK_Employers_Cabinet" FromRole="Cabinet" ToRole="Employers" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="IdCategory" />
+          </Key>
+          <Property Name="IdCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameCategory" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Category" FromRole="Category" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="ColorTechology">
+          <Key>
+            <PropertyRef Name="IdColorTech" />
+          </Key>
+          <Property Name="IdColorTech" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ColorTech" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PrinterDetails" Relationship="Self.FK_PrinterDetails_ColorTechology" FromRole="ColorTechology" ToRole="PrinterDetails" />
+        </EntityType>
+        <EntityType Name="Devices">
+          <Key>
+            <PropertyRef Name="IdDevice" />
+          </Key>
+          <Property Name="IdDevice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameDevice" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SerialNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="WarrantyEndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateOfReceipt" Type="DateTime" Precision="0" />
+          <Property Name="IdDeviceType" Type="Int32" Nullable="false" />
+          <Property Name="IdBrand" Type="Int32" Nullable="false" />
+          <Property Name="IdStatus" Type="Int32" />
+          <Property Name="IdEmployer" Type="Int32" />
+          <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Brand" Relationship="Self.FK_Devices_Brand" FromRole="Devices" ToRole="Brand" />
+          <NavigationProperty Name="DeviceTypes" Relationship="Self.FK_Devices_DeviceTypes" FromRole="Devices" ToRole="DeviceTypes" />
+          <NavigationProperty Name="Employers" Relationship="Self.FK_Devices_Employers" FromRole="Devices" ToRole="Employers" />
+          <NavigationProperty Name="PCDetails" Relationship="Self.FK_PCDetails_Devices" FromRole="Devices" ToRole="PCDetails" />
+          <NavigationProperty Name="PrinterDetails" Relationship="Self.FK_PrinterDetails_Devices" FromRole="Devices" ToRole="PrinterDetails" />
+          <NavigationProperty Name="ScannerDetails" Relationship="Self.FK_ScannerDetails_Devices" FromRole="Devices" ToRole="ScannerDetails" />
+          <NavigationProperty Name="ServerDetails" Relationship="Self.FK_ServerDetails_Devices" FromRole="Devices" ToRole="ServerDetails" />
+        </EntityType>
+        <EntityType Name="DeviceTypes">
+          <Key>
+            <PropertyRef Name="IdDeviceType" />
+          </Key>
+          <Property Name="IdDeviceType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceTypeName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_Devices_DeviceTypes" FromRole="DeviceTypes" ToRole="Devices" />
+        </EntityType>
+        <EntityType Name="DocumentFeeder">
+          <Key>
+            <PropertyRef Name="IdDocumentFeeder" />
+          </Key>
+          <Property Name="IdDocumentFeeder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentFeederName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ScannerDetails" Relationship="Self.FK_ScannerDetails_DocumentFeeder" FromRole="DocumentFeeder" ToRole="ScannerDetails" />
+        </EntityType>
+        <EntityType Name="Employers">
+          <Key>
+            <PropertyRef Name="IdEmployers" />
+          </Key>
+          <Property Name="IdEmployers" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lastname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdOffice" Type="Int32" Nullable="false" />
+          <Property Name="numberPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdCab" Type="Int32" />
+          <Property Name="IdStatus" Type="Int32" />
+          <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cabinet" Relationship="Self.FK_Employers_Cabinet" FromRole="Employers" ToRole="Cabinet" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_Devices_Employers" FromRole="Employers" ToRole="Devices" />
+          <NavigationProperty Name="Office" Relationship="Self.FK_Employers_Office" FromRole="Employers" ToRole="Office" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Employers_Status" FromRole="Employers" ToRole="Status" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Employers_User" FromRole="Employers" ToRole="User" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Employers" FromRole="Employers" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Office">
+          <Key>
+            <PropertyRef Name="IdOffice" />
+          </Key>
+          <Property Name="IdOffice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOffice" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employers" Relationship="Self.FK_Employers_Office" FromRole="Office" ToRole="Employers" />
+        </EntityType>
+        <EntityType Name="OperationHistory">
+          <Key>
+            <PropertyRef Name="IdHistory" />
+          </Key>
+          <Property Name="IdHistory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OperationType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OperationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EmployerId" Type="Int32" />
+          <Property Name="ChangedData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PCDetails">
+          <Key>
+            <PropertyRef Name="IdPC" />
+          </Key>
+          <Property Name="IdPC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CPU" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RAM" Type="Int32" Nullable="false" />
+          <Property Name="Storage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GPU" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdDevice" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_PCDetails_Devices" FromRole="PCDetails" ToRole="Devices" />
+        </EntityType>
+        <EntityType Name="PrinterDetails">
+          <Key>
+            <PropertyRef Name="IdPrinter" />
+          </Key>
+          <Property Name="IdPrinter" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPrintTechnology" Type="Int32" Nullable="false" />
+          <Property Name="MaxResolution" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaxPrintSpeed" Type="Double" Nullable="false" />
+          <Property Name="IdColorTech" Type="Int32" />
+          <Property Name="IdDevice" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ColorTechology" Relationship="Self.FK_PrinterDetails_ColorTechology" FromRole="PrinterDetails" ToRole="ColorTechology" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_PrinterDetails_Devices" FromRole="PrinterDetails" ToRole="Devices" />
+          <NavigationProperty Name="PrintTechonology" Relationship="Self.FK_PrinterDetails_PrintTechonogy" FromRole="PrinterDetails" ToRole="PrintTechonology" />
+        </EntityType>
+        <EntityType Name="PrintTechonology">
+          <Key>
+            <PropertyRef Name="IdPrintTechnology" />
+          </Key>
+          <Property Name="IdPrintTechnology" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrintTechnologyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PrinterDetails" Relationship="Self.FK_PrinterDetails_PrintTechonogy" FromRole="PrintTechonology" ToRole="PrinterDetails" />
+        </EntityType>
+        <EntityType Name="Priority">
+          <Key>
+            <PropertyRef Name="IdPriority" />
+          </Key>
+          <Property Name="IdPriority" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NamePriority" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Priority" FromRole="Priority" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="IdRequest" />
+          </Key>
+          <Property Name="IdRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdStatus" Type="Int32" Nullable="false" />
+          <Property Name="IdCategory" Type="Int32" Nullable="false" />
+          <Property Name="IdPriority" Type="Int32" Nullable="false" />
+          <Property Name="PlanDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateRealize" Type="DateTime" Precision="0" />
+          <Property Name="Transcription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdRequestSender" Type="Int32" Nullable="false" />
+          <Property Name="IdExcutor" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Requests_Category" FromRole="Requests" ToRole="Category" />
+          <NavigationProperty Name="Employers" Relationship="Self.FK_Requests_Employers" FromRole="Requests" ToRole="Employers" />
+          <NavigationProperty Name="Priority" Relationship="Self.FK_Requests_Priority" FromRole="Requests" ToRole="Priority" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Requests_Status" FromRole="Requests" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameRole" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="ScannerDetails">
+          <Key>
+            <PropertyRef Name="IdScanner" />
+          </Key>
+          <Property Name="IdScanner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaxScanResolution" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ScanSpeed" Type="Double" Nullable="false" />
+          <Property Name="IdDocumentFeeder" Type="Int32" Nullable="false" />
+          <Property Name="IdDevice" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_ScannerDetails_Devices" FromRole="ScannerDetails" ToRole="Devices" />
+          <NavigationProperty Name="DocumentFeeder" Relationship="Self.FK_ScannerDetails_DocumentFeeder" FromRole="ScannerDetails" ToRole="DocumentFeeder" />
+        </EntityType>
+        <EntityType Name="ServerDetails">
+          <Key>
+            <PropertyRef Name="IdServer" />
+          </Key>
+          <Property Name="IdServer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CPU" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RAM" Type="Int32" Nullable="false" />
+          <Property Name="Storage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RackUnit" Type="Int32" Nullable="false" />
+          <Property Name="NetworkInterface" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdDevice" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK_ServerDetails_Devices" FromRole="ServerDetails" ToRole="Devices" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="IdStatus" />
+          </Key>
+          <Property Name="IdStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employers" Relationship="Self.FK_Employers_Status" FromRole="Status" ToRole="Employers" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Status" FromRole="Status" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdLogin" />
+          </Key>
+          <Property Name="IdLogin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employers" Relationship="Self.FK_Employers_User" FromRole="User" ToRole="Employers" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_Devices_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="IdBrand" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="IdBrand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employers_Cabinet">
+          <End Role="Cabinet" Type="Self.Cabinet" Multiplicity="0..1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cabinet">
+              <PropertyRef Name="IdNumberCabinet" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="IdCab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="IdCategory" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="IdCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrinterDetails_ColorTechology">
+          <End Role="ColorTechology" Type="Self.ColorTechology" Multiplicity="0..1" />
+          <End Role="PrinterDetails" Type="Self.PrinterDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ColorTechology">
+              <PropertyRef Name="IdColorTech" />
+            </Principal>
+            <Dependent Role="PrinterDetails">
+              <PropertyRef Name="IdColorTech" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Devices_DeviceTypes">
+          <End Role="DeviceTypes" Type="Self.DeviceTypes" Multiplicity="1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceTypes">
+              <PropertyRef Name="IdDeviceType" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="IdDeviceType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Devices_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="0..1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="IdEmployers" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="IdEmployer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PCDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="PCDetails" Type="Self.PCDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
+            </Principal>
+            <Dependent Role="PCDetails">
+              <PropertyRef Name="IdDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrinterDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="PrinterDetails" Type="Self.PrinterDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
+            </Principal>
+            <Dependent Role="PrinterDetails">
+              <PropertyRef Name="IdDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScannerDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="ScannerDetails" Type="Self.ScannerDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
+            </Principal>
+            <Dependent Role="ScannerDetails">
+              <PropertyRef Name="IdDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServerDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="ServerDetails" Type="Self.ServerDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
+            </Principal>
+            <Dependent Role="ServerDetails">
+              <PropertyRef Name="IdDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScannerDetails_DocumentFeeder">
+          <End Role="DocumentFeeder" Type="Self.DocumentFeeder" Multiplicity="1" />
+          <End Role="ScannerDetails" Type="Self.ScannerDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentFeeder">
+              <PropertyRef Name="IdDocumentFeeder" />
+            </Principal>
+            <Dependent Role="ScannerDetails">
+              <PropertyRef Name="IdDocumentFeeder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employers_Office">
+          <End Role="Office" Type="Self.Office" Multiplicity="1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="IdOffice" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="IdOffice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employers_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatus" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employers_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdLogin" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="IdEmployers" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="IdRequestSender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrinterDetails_PrintTechonogy">
+          <End Role="PrintTechonology" Type="Self.PrintTechonology" Multiplicity="1" />
+          <End Role="PrinterDetails" Type="Self.PrinterDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrintTechonology">
+              <PropertyRef Name="IdPrintTechnology" />
+            </Principal>
+            <Dependent Role="PrinterDetails">
+              <PropertyRef Name="IdPrintTechnology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Priority">
+          <End Role="Priority" Type="Self.Priority" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priority">
+              <PropertyRef Name="IdPriority" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="IdPriority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatus" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ITAdminEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Brand" EntityType="Self.Brand" />
+          <EntitySet Name="Cabinet" EntityType="Self.Cabinet" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="ColorTechology" EntityType="Self.ColorTechology" />
+          <EntitySet Name="Devices" EntityType="Self.Devices" />
+          <EntitySet Name="DeviceTypes" EntityType="Self.DeviceTypes" />
+          <EntitySet Name="DocumentFeeder" EntityType="Self.DocumentFeeder" />
+          <EntitySet Name="Employers" EntityType="Self.Employers" />
+          <EntitySet Name="Office" EntityType="Self.Office" />
+          <EntitySet Name="OperationHistory" EntityType="Self.OperationHistory" />
+          <EntitySet Name="PCDetails" EntityType="Self.PCDetails" />
+          <EntitySet Name="PrinterDetails" EntityType="Self.PrinterDetails" />
+          <EntitySet Name="PrintTechonology" EntityType="Self.PrintTechonology" />
+          <EntitySet Name="Priority" EntityType="Self.Priority" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="ScannerDetails" EntityType="Self.ScannerDetails" />
+          <EntitySet Name="ServerDetails" EntityType="Self.ServerDetails" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Devices_Brand" Association="Self.FK_Devices_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employers_Cabinet" Association="Self.FK_Employers_Cabinet">
+            <End Role="Cabinet" EntitySet="Cabinet" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Category" Association="Self.FK_Requests_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrinterDetails_ColorTechology" Association="Self.FK_PrinterDetails_ColorTechology">
+            <End Role="ColorTechology" EntitySet="ColorTechology" />
+            <End Role="PrinterDetails" EntitySet="PrinterDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Devices_DeviceTypes" Association="Self.FK_Devices_DeviceTypes">
+            <End Role="DeviceTypes" EntitySet="DeviceTypes" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Devices_Employers" Association="Self.FK_Devices_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PCDetails_Devices" Association="Self.FK_PCDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="PCDetails" EntitySet="PCDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrinterDetails_Devices" Association="Self.FK_PrinterDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="PrinterDetails" EntitySet="PrinterDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScannerDetails_Devices" Association="Self.FK_ScannerDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="ScannerDetails" EntitySet="ScannerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServerDetails_Devices" Association="Self.FK_ServerDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="ServerDetails" EntitySet="ServerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScannerDetails_DocumentFeeder" Association="Self.FK_ScannerDetails_DocumentFeeder">
+            <End Role="DocumentFeeder" EntitySet="DocumentFeeder" />
+            <End Role="ScannerDetails" EntitySet="ScannerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employers_Office" Association="Self.FK_Employers_Office">
+            <End Role="Office" EntitySet="Office" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employers_Status" Association="Self.FK_Employers_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employers_User" Association="Self.FK_Employers_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Employers" Association="Self.FK_Requests_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrinterDetails_PrintTechonogy" Association="Self.FK_PrinterDetails_PrintTechonogy">
+            <End Role="PrintTechonology" EntitySet="PrintTechonology" />
+            <End Role="PrinterDetails" EntitySet="PrinterDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Priority" Association="Self.FK_Requests_Priority">
+            <End Role="Priority" EntitySet="Priority" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Status" Association="Self.FK_Requests_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ITAdminModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ITAdminModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ITAdminModelContainer" CdmEntityContainer="ITAdminEntities">
+          <EntitySetMapping Name="Brand">
+            <EntityTypeMapping TypeName="ITAdminModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
+                <ScalarProperty Name="NameBrand" ColumnName="NameBrand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cabinet">
+            <EntityTypeMapping TypeName="ITAdminModel.Cabinet">
+              <MappingFragment StoreEntitySet="Cabinet">
+                <ScalarProperty Name="IdNumberCabinet" ColumnName="IdNumberCabinet" />
+                <ScalarProperty Name="NumberCabinet" ColumnName="NumberCabinet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="ITAdminModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+                <ScalarProperty Name="NameCategory" ColumnName="NameCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ColorTechology">
+            <EntityTypeMapping TypeName="ITAdminModel.ColorTechology">
+              <MappingFragment StoreEntitySet="ColorTechology">
+                <ScalarProperty Name="IdColorTech" ColumnName="IdColorTech" />
+                <ScalarProperty Name="ColorTech" ColumnName="ColorTech" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Devices">
+            <EntityTypeMapping TypeName="ITAdminModel.Devices">
+              <MappingFragment StoreEntitySet="Devices">
+                <ScalarProperty Name="IdDevice" ColumnName="IdDevice" />
+                <ScalarProperty Name="NameDevice" ColumnName="NameDevice" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="WarrantyEndDate" ColumnName="WarrantyEndDate" />
+                <ScalarProperty Name="DateOfReceipt" ColumnName="DateOfReceipt" />
+                <ScalarProperty Name="IdDeviceType" ColumnName="IdDeviceType" />
+                <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="IdEmployer" ColumnName="IdEmployer" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeviceTypes">
+            <EntityTypeMapping TypeName="ITAdminModel.DeviceTypes">
+              <MappingFragment StoreEntitySet="DeviceTypes">
+                <ScalarProperty Name="IdDeviceType" ColumnName="IdDeviceType" />
+                <ScalarProperty Name="DeviceTypeName" ColumnName="DeviceTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentFeeder">
+            <EntityTypeMapping TypeName="ITAdminModel.DocumentFeeder">
+              <MappingFragment StoreEntitySet="DocumentFeeder">
+                <ScalarProperty Name="IdDocumentFeeder" ColumnName="IdDocumentFeeder" />
+                <ScalarProperty Name="DocumentFeederName" ColumnName="DocumentFeederName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employers">
+            <EntityTypeMapping TypeName="ITAdminModel.Employers">
+              <MappingFragment StoreEntitySet="Employers">
+                <ScalarProperty Name="IdEmployers" ColumnName="IdEmployers" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="IdOffice" ColumnName="IdOffice" />
+                <ScalarProperty Name="numberPhone" ColumnName="numberPhone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdCab" ColumnName="IdCab" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Office">
+            <EntityTypeMapping TypeName="ITAdminModel.Office">
+              <MappingFragment StoreEntitySet="Office">
+                <ScalarProperty Name="IdOffice" ColumnName="IdOffice" />
+                <ScalarProperty Name="NameOffice" ColumnName="NameOffice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OperationHistory">
+            <EntityTypeMapping TypeName="ITAdminModel.OperationHistory">
+              <MappingFragment StoreEntitySet="OperationHistory">
+                <ScalarProperty Name="IdHistory" ColumnName="IdHistory" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+                <ScalarProperty Name="OperationTime" ColumnName="OperationTime" />
+                <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+                <ScalarProperty Name="ChangedData" ColumnName="ChangedData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PCDetails">
+            <EntityTypeMapping TypeName="ITAdminModel.PCDetails">
+              <MappingFragment StoreEntitySet="PCDetails">
+                <ScalarProperty Name="IdPC" ColumnName="IdPC" />
+                <ScalarProperty Name="CPU" ColumnName="CPU" />
+                <ScalarProperty Name="RAM" ColumnName="RAM" />
+                <ScalarProperty Name="Storage" ColumnName="Storage" />
+                <ScalarProperty Name="GPU" ColumnName="GPU" />
+                <ScalarProperty Name="IdDevice" ColumnName="IdDevice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrinterDetails">
+            <EntityTypeMapping TypeName="ITAdminModel.PrinterDetails">
+              <MappingFragment StoreEntitySet="PrinterDetails">
+                <ScalarProperty Name="IdPrinter" ColumnName="IdPrinter" />
+                <ScalarProperty Name="IdPrintTechnology" ColumnName="IdPrintTechnology" />
+                <ScalarProperty Name="MaxResolution" ColumnName="MaxResolution" />
+                <ScalarProperty Name="MaxPrintSpeed" ColumnName="MaxPrintSpeed" />
+                <ScalarProperty Name="IdColorTech" ColumnName="IdColorTech" />
+                <ScalarProperty Name="IdDevice" ColumnName="IdDevice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrintTechonology">
+            <EntityTypeMapping TypeName="ITAdminModel.PrintTechonology">
+              <MappingFragment StoreEntitySet="PrintTechonology">
+                <ScalarProperty Name="IdPrintTechnology" ColumnName="IdPrintTechnology" />
+                <ScalarProperty Name="PrintTechnologyName" ColumnName="PrintTechnologyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Priority">
+            <EntityTypeMapping TypeName="ITAdminModel.Priority">
+              <MappingFragment StoreEntitySet="Priority">
+                <ScalarProperty Name="IdPriority" ColumnName="IdPriority" />
+                <ScalarProperty Name="NamePriority" ColumnName="NamePriority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="ITAdminModel.Requests">
+              <MappingFragment StoreEntitySet="Requests">
+                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+                <ScalarProperty Name="IdPriority" ColumnName="IdPriority" />
+                <ScalarProperty Name="PlanDate" ColumnName="PlanDate" />
+                <ScalarProperty Name="DateRealize" ColumnName="DateRealize" />
+                <ScalarProperty Name="Transcription" ColumnName="Transcription" />
+                <ScalarProperty Name="IdRequestSender" ColumnName="IdRequestSender" />
+                <ScalarProperty Name="IdExcutor" ColumnName="IdExcutor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="ITAdminModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="NameRole" ColumnName="NameRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScannerDetails">
+            <EntityTypeMapping TypeName="ITAdminModel.ScannerDetails">
+              <MappingFragment StoreEntitySet="ScannerDetails">
+                <ScalarProperty Name="IdScanner" ColumnName="IdScanner" />
+                <ScalarProperty Name="MaxScanResolution" ColumnName="MaxScanResolution" />
+                <ScalarProperty Name="ScanSpeed" ColumnName="ScanSpeed" />
+                <ScalarProperty Name="IdDocumentFeeder" ColumnName="IdDocumentFeeder" />
+                <ScalarProperty Name="IdDevice" ColumnName="IdDevice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServerDetails">
+            <EntityTypeMapping TypeName="ITAdminModel.ServerDetails">
+              <MappingFragment StoreEntitySet="ServerDetails">
+                <ScalarProperty Name="IdServer" ColumnName="IdServer" />
+                <ScalarProperty Name="CPU" ColumnName="CPU" />
+                <ScalarProperty Name="RAM" ColumnName="RAM" />
+                <ScalarProperty Name="Storage" ColumnName="Storage" />
+                <ScalarProperty Name="RackUnit" ColumnName="RackUnit" />
+                <ScalarProperty Name="NetworkInterface" ColumnName="NetworkInterface" />
+                <ScalarProperty Name="IdDevice" ColumnName="IdDevice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="ITAdminModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="NameStatus" ColumnName="NameStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ITAdminModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ITAdminModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IdLogin" ColumnName="IdLogin" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище ITAdminModel.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище ITAdminModel.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище ITAdminModel.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище ITAdminModel.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ITAdminModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище ITAdminModel.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ITAdminModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище ITAdminModel.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище ITAdminModel.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

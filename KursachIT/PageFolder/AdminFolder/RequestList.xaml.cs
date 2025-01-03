@@ -2,18 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using KursachIT.ClassFolder;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using KursachIT.DataFolder;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using KursachIT.PageFolder.MoreFolder;
 using KursachIT.Windows;
@@ -85,26 +78,60 @@ namespace KursachIT.PageFolder.AdminFolder
             var selectedRequest = ReqestDgList.SelectedItem as ClassRequest;
             if (selectedRequest == null)
             {
-                MBClass.ErrorMB("Выбирете заявку");
+                MBClass.ErrorMB("Выберите заявку");
                 return;
             }
-            else
+
+            // Получение текущего пользователя из сессии
+            var session = ClassSaveSassion.LoadSession();
+            if (session == null)
             {
-                using (var context = new ITAdminEntities())
+                MBClass.ErrorMB("Сессия не найдена.");
+                return;
+            }
+
+            using (var context = ITAdminEntities.GetContext())
+            {
+                // Поиск пользователя по идентификатору из сессии
+                var user = context.User
+                    .FirstOrDefault(u => u.IdLogin == session.IdLogin);
+
+                if (user == null)
                 {
-                    var currentUser = ClassSaveSassion.LoadSession();
-                    var request = context.Requests.FirstOrDefault(r => r.IdRequest == selectedRequest.IdRequst);
-                    if (request != null)
-                    {
-                        RequestHelper.AssignExecutor(currentUser.IdLogin, selectedRequest);
-                        request.IdStatus = (int)RequestHelper.StatusEnum.InProgress;
-                        request.IdExcutor = AuthUser.IdCurretUser;
-                        context.SaveChanges();
-                        LoadData();
-                    }
+                    MBClass.ErrorMB("Пользователь не найден.");
+                    return;
+                }
+
+                // Поиск связанного сотрудника
+                var employer = context.Employers
+                    .FirstOrDefault(emp => emp.IdUser == user.IdLogin);
+
+                if (employer == null)
+                {
+                    MBClass.ErrorMB("Связанный сотрудник не найден.");
+                    return;
+                }
+
+                // Проверка наличия заявки
+                var request = context.Requests.FirstOrDefault(r => r.IdRequest == selectedRequest.IdRequst);
+                if (request != null)
+                {
+                    request.IdStatus = (int)RequestHelper.StatusEnum.InProgress;
+                    request.IdExcutor = employer.IdEmployers; // Назначение текущего сотрудника исполнителем
+                    context.SaveChanges();
+                    LoadData(); // Обновление данных
+                    MBClass.InformationMB("Заявка успешно принята.");
+                }
+                else
+                {
+                    MBClass.ErrorMB("Заявка не найдена.");
                 }
             }
         }
+
+
+
+
 
         private void CompliteRequest_Click(object sender, RoutedEventArgs e)
         {

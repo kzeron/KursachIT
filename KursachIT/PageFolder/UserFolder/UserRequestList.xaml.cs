@@ -227,7 +227,7 @@ namespace KursachIT.PageFolder.UserFolder
             }
             else
             {
-                MBClass.ErrorMB("Выберите сотрудника для просмотра.");
+                MBClass.ErrorMB("Выберите заявку для просмотра.");
             }
         }
 
@@ -237,6 +237,40 @@ namespace KursachIT.PageFolder.UserFolder
             var searchedText = SearchTextBox.Text;
             ApplyFilters(new List<string>(), new List<string>(), searchedText);
 
+        }
+
+        private void CancelRequest_Click(object sender, RoutedEventArgs e)
+        {
+            // Получаем выбранную заявку из списка
+            var selectedRequest = ReqestDgList.SelectedItem as ClassRequest;
+            if (selectedRequest == null)
+            {
+                MBClass.ErrorMB("Выберите заявку");
+                return;
+            }
+            else
+            {
+                using (var context = new ITAdminEntities())
+                {
+                    // Ищем заявку в базе данных по Id
+                    var request = context.Requests.FirstOrDefault(r => r.IdRequest == selectedRequest.IdRequst);
+                    if (request != null)
+                    {
+                        // Устанавливаем статус "Завершено" и дату завершения
+                        request.IdStatus = (int)RequestHelper.StatusEnum.Canceled;
+                        request.DateRealize = DateTime.Now;
+
+                        context.SaveChanges(); // Сохраняем изменения в базе данных
+                        LoadData(); // Обновляем список заявок
+
+                        MBClass.InformationMB("Заявка успешно завершена.");
+                    }
+                    else
+                    {
+                        MBClass.ErrorMB("Заявка не найдена.");
+                    }
+                }
+            }
         }
     }
 }
