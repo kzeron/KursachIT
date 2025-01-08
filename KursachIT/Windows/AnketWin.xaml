@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen"
         MouseDown="Window_MouseDown"
         AllowsTransparency="True"
-        Title="AnketWin" Height="600" Width="800">
+        Title="AnketWin" Height="650" Width="800">
     <Grid>
         <materialDesign:Card UniformCornerRadius="15"
                              Margin="5" Background="WhiteSmoke">

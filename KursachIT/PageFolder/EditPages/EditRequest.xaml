@@ -85,7 +85,7 @@
                 Grid.Column="1"
                 Grid.Row="2"
                 materialDesign:ButtonAssist.CornerRadius="5"
-                Width="120"
+                Width="140"
                 Background="#3DAB28"
                 FontSize="20"
                 Content="Сохранить"

@@ -36,6 +36,26 @@ namespace KursachIT.PageFolder
                 var currentUser = ClassSaveSassion.LoadSession();
                 if (currentUser != null)
                 {
+                    try
+                    {
+                            var employer = currentUser.Employers
+                                .FirstOrDefault(u => u.IdUser == currentUser.IdLogin);
+                            if (employer == null)
+                            {
+                                MBClass.ErrorMB("Связанный сотрудник не найден.");
+                                return;
+                            }
+                            if (employer.IdStatus == (int)UserStatus.Fired)
+                            {
+                                MBClass.ErrorMB("Ваша учетная запись не действительна");
+                                ClassSaveSassion.ClearSession();
+                                return; // Немедленно выйти из метода
+                            }
+                    }
+                    catch (Exception ex)
+                    {
+                        MBClass.ErrorMB(ex);
+                    }
                     switch (currentUser.IdRole)
                     {
                         case 1:
@@ -55,6 +75,7 @@ namespace KursachIT.PageFolder
                             parentWindow.Close();
                             break;
                     }
+                   
                 }
             }
         }

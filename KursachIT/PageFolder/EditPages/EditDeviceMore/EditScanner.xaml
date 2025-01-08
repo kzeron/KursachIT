@@ -67,7 +67,7 @@
                  Width="150"
                  Background="#3DAB28"
                  FontSize="20"
-                 Content="Добавить"
+                 Content="Изменить"
                  Foreground="WhiteSmoke"
                  Height="40"
                  HorizontalAlignment="Right"

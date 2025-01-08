@@ -6,7 +6,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:KursachIT.PageFolder.AddPages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="650" d:DesignWidth="800"
       Title="AddDevice">
 
     <Grid>
@@ -22,21 +22,21 @@
         </Grid.RowDefinitions>
 
         <!-- Левая колонка -->
-        <ScrollViewer Grid.Column="0" Margin="10" VerticalScrollBarVisibility="Auto">
-            <StackPanel>
-                <!-- Фото устройства -->
-                <Border Margin="30 10"
+
+        <StackPanel>
+            <!-- Фото устройства -->
+            <Border Margin="30 10"
                         BorderBrush="#3DAB28"
                         BorderThickness="2"
-                        Height="150"
-                        Width="200"
+                        Height="130"
+                        Width="130"
                         HorizontalAlignment="Center">
-                    <Image x:Name="DeviceImage"
+                <Image x:Name="DeviceImage"
                            Stretch="UniformToFill"
                            ToolTip="Изображение устройства"/>
-                    
-                </Border>
-                <Button Content="Добавить фото" Click="PhotoAddBtn_Click" Margin="10"
+
+            </Border>
+            <Button Content="Добавить фото" Click="PhotoAddBtn_Click" Margin="10"
                         ToolTip="MaterialDesignRaisedButton with Round Corners"
                         Cursor="Hand" 
                         Background="#3DAB28"
@@ -45,8 +45,8 @@
                         Height="40"
                         HorizontalAlignment="Center"
                          Style="{StaticResource MaterialDesignRaisedButton}"/>
-                <!-- Поля ввода -->
-                <TextBox x:Name="NameDevice"
+            <!-- Поля ввода -->
+            <TextBox x:Name="NameDevice"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:TextFieldAssist.UnderlineBrush="#3DAB28"
                          materialDesign:HintAssist.Foreground="#3DAB28"
@@ -57,8 +57,8 @@
                          Margin="30 10" 
                          Foreground="Black"/>
 
-                <!-- Дата покупки -->
-                <DatePicker x:Name="PurchaseDatePicker"
+            <!-- Дата покупки -->
+            <DatePicker x:Name="PurchaseDatePicker"
                             FontSize="20"
                             Margin="30 10"
                             materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
@@ -67,8 +67,8 @@
                             materialDesign:HintAssist.Hint="Укажите дату покупки"
                             Style="{StaticResource CustomOutlinedDatePicker}"/>
 
-                <!-- Дата получения -->
-                <DatePicker x:Name="DateOfReceiptDatePicker"
+            <!-- Дата получения -->
+            <DatePicker x:Name="DateOfReceiptDatePicker"
                             Background="WhiteSmoke"
                             materialDesign:CalendarAssist.SelectionColor="#3DAB28"
                             materialDesign:CalendarAssist.HeaderBackground="#3DAB28"
@@ -83,8 +83,8 @@
                             materialDesign:HintAssist.Foreground="#3DAB28"
                             Style="{StaticResource CustomOutlinedDatePicker}"/>
 
-                <!-- Конец гарантии -->
-                <DatePicker x:Name="WarrantyEndDatePicker"
+            <!-- Конец гарантии -->
+            <DatePicker x:Name="WarrantyEndDatePicker"
                             Background="WhiteSmoke"
                             materialDesign:CalendarAssist.SelectionColor="#3DAB28"
                             materialDesign:CalendarAssist.HeaderBackground="#3DAB28"
@@ -98,9 +98,8 @@
                             materialDesign:HintAssist.Foreground="#3DAB28"
                             materialDesign:HintAssist.Hint="Укажите гарантийный срок"
                             Style="{StaticResource CustomOutlinedDatePicker}"/>
-                
-            </StackPanel>
-        </ScrollViewer>
+
+        </StackPanel>
 
         <!-- Правая колонка -->
         <ScrollViewer Grid.Column="1" Margin="10" VerticalScrollBarVisibility="Auto">
@@ -181,7 +180,7 @@
                 Height="45"
                 HorizontalAlignment="Left"
                 Style="{StaticResource MaterialDesignRaisedButton}"
-                Margin="30 0 10 0"
+                Margin="30 10 10 10"
                 Cursor="Hand" Click="BackBt_Click"/>
 
         <Button x:Name="AddBt"

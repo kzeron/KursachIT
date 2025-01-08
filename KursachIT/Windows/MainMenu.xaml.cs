@@ -26,7 +26,7 @@ namespace KursachIT.Windows
         public MainMenu()
         {
             InitializeComponent();
-            FrameConnect.NavigationService.Navigate(new PageStaff());
+            FrameConnect.NavigationService.Navigate(new RequestList());
         }
 
         private void Staff_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

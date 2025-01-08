@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
             <Image x:Name="EmployeePhoto" Height="150" Width="150" Margin="10"/>
-            <Button Content="Добавить фото" Click="PhotoAddBtn_Click" Margin="10"
+            <Button Content="Изменить фото" Click="PhotoAddBtn_Click" Margin="10"
                 ToolTip="MaterialDesignRaisedButton with Round Corners"
                 Cursor="Hand" 
             Background="#3DAB28"
@@ -105,8 +105,7 @@ materialDesign:HintAssist.Background="WhiteSmoke"
               SelectedValuePath = "IdOffice"
               Height="60"
               FontSize="20"
-              Margin="30 10"
-              SelectedItem="{Binding Office}"/>
+              Margin="30 10"/>
             <ComboBox x:Name="NamberOfficeCb"
               Style="{StaticResource CustomComboBoxStyle}"
               materialDesign:HintAssist.Hint="Укажите номер кабинета"
@@ -117,14 +116,13 @@ materialDesign:HintAssist.Background="WhiteSmoke"
                   materialDesign:HintAssist.Foreground="#3DAB28"
               Margin="30 10"
               DisplayMemberPath = "NumberCabinet"
-              SelectedValuePath = "IdNumberCabinet"
-              SelectedItem="{Binding Cabinet}"/>
+              SelectedValuePath = "IdNumberCabinet"/>
             <Button x:Name="EditBt"
             materialDesign:ButtonAssist.CornerRadius="5"
             Width="150"
             Background="#3DAB28"
             FontSize="20"
-            Content="Добавить"
+            Content="Изменить"
             Foreground="WhiteSmoke"
             Height="40"
             HorizontalAlignment="Right"

@@ -114,7 +114,7 @@ namespace KursachIT.PageFolder.AdminFolder
 
                 // Проверка наличия заявки
                 var request = context.Requests.FirstOrDefault(r => r.IdRequest == selectedRequest.IdRequst);
-                if (request != null)
+                if (request != null && request.IdStatus != (int)RequestHelper.StatusEnum.Denied && request.IdStatus != (int)RequestHelper.StatusEnum.Canceled)
                 {
                     request.IdStatus = (int)RequestHelper.StatusEnum.InProgress;
                     request.IdExcutor = employer.IdEmployers; // Назначение текущего сотрудника исполнителем
@@ -124,14 +124,10 @@ namespace KursachIT.PageFolder.AdminFolder
                 }
                 else
                 {
-                    MBClass.ErrorMB("Заявка не найдена.");
+                    MBClass.ErrorMB("Заявка не найдена или не актуальна.");
                 }
             }
         }
-
-
-
-
 
         private void CompliteRequest_Click(object sender, RoutedEventArgs e)
         {
@@ -142,30 +138,64 @@ namespace KursachIT.PageFolder.AdminFolder
                 MBClass.ErrorMB("Выберите заявку");
                 return;
             }
-            else
+
+            // Получение текущего пользователя из сессии
+            var session = ClassSaveSassion.LoadSession();
+            if (session == null)
             {
-                using (var context = new ITAdminEntities())
+                MBClass.ErrorMB("Сессия не найдена.");
+                return;
+            }
+
+            using (var context = ITAdminEntities.GetContext())
+            {
+                // Поиск пользователя по идентификатору из сессии
+                var user = context.User
+                    .FirstOrDefault(u => u.IdLogin == session.IdLogin);
+
+                if (user == null)
                 {
-                    // Ищем заявку в базе данных по Id
-                    var request = context.Requests.FirstOrDefault(r => r.IdRequest == selectedRequest.IdRequst);
-                    if (request != null)
-                    {
-                        // Устанавливаем статус "Завершено" и дату завершения
-                        request.IdStatus = (int)RequestHelper.StatusEnum.Completed;
-                        request.DateRealize = DateTime.Now;
+                    MBClass.ErrorMB("Пользователь не найден.");
+                    return;
+                }
 
-                        context.SaveChanges(); // Сохраняем изменения в базе данных
-                        LoadData(); // Обновляем список заявок
+                // Поиск связанного сотрудника
+                var employer = context.Employers
+                    .FirstOrDefault(emp => emp.IdUser == user.IdLogin);
 
-                        MBClass.InformationMB("Заявка успешно завершена.");
-                    }
-                    else
+                if (employer == null)
+                {
+                    MBClass.ErrorMB("Связанный сотрудник не найден.");
+                    return;
+                }
+
+                // Поиск заявки
+                var request = context.Requests.FirstOrDefault(r => r.IdRequest == selectedRequest.IdRequst);
+                if (request != null)
+                {
+                    // Проверка, является ли текущий сотрудник исполнителем заявки
+                    if (request.IdExcutor != employer.IdEmployers)
                     {
-                        MBClass.ErrorMB("Заявка не найдена.");
+                        MBClass.ErrorMB("Вы не являетесь исполнителем этой заявки.");
+                        return;
                     }
+
+                    // Устанавливаем статус "Завершено" и дату завершения
+                    request.IdStatus = (int)RequestHelper.StatusEnum.Completed;
+                    request.DateRealize = DateTime.Now;
+
+                    context.SaveChanges(); // Сохраняем изменения в базе данных
+                    LoadData(); // Обновляем список заявок
+
+                    MBClass.InformationMB("Заявка успешно завершена.");
+                }
+                else
+                {
+                    MBClass.ErrorMB("Заявка не найдена.");
                 }
             }
         }
+
         private void OpenFilterPopup_Click(object sender, RoutedEventArgs e)
         {
             // Открытие/закрытие Popup
