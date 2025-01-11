@@ -19,9 +19,9 @@
             <!-- Кнопка -->
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition/>
             <!-- Левая панель -->
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
             <!-- Правая панель -->
         </Grid.ColumnDefinitions>
 
@@ -30,91 +30,116 @@
                    Grid.ColumnSpan="2"
                    FontWeight="Bold" 
                    FontSize="37" 
-                   HorizontalAlignment="Center" 
-                   Style="{StaticResource StandartText}"/>
+                   HorizontalAlignment="Left" 
+                   Style="{StaticResource StandartText}" Height="43" Margin="238,0,0,0" Width="304"/>
 
         <!-- Левая панель -->
-        <StackPanel Grid.Row="1" Margin="10" Grid.Column="0" VerticalAlignment="Top">
+        <StackPanel Grid.Row="1" Margin="10,10,10,0" Grid.Column="0" VerticalAlignment="Top" Height="263">
             <!-- Изображение устройства -->
             <Image Source="{Binding PhotoPath}"
-                   x:Name="DeviceImage"
-                   Width="200"
-                   Height="200"
-                   Stretch="Uniform"
-                   Margin="0,8"
-                   HorizontalAlignment="Center"
-                   ToolTip="Изображение устройства"/>
+           x:Name="DeviceImage"
+           Width="120"
+           Height="120"
+           Stretch="Uniform"
+           HorizontalAlignment="Left"
+           ToolTip="Изображение устройства"/>
 
             <!-- Поле типа устройства -->
-            <Label Content="Тип устройства:" Margin="0,10,0,0"/>
-            <TextBlock x:Name="DeviceTypeLabel" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="Тип устройства:" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+                <TextBlock x:Name="DeviceTypeLabel" Margin="5,0,0,0" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+            </StackPanel>
 
             <!-- Поле бренда -->
-            <Label Content="Бренд:"/>
-            <TextBlock x:Name="BrandLabel" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Бренд:" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+                <TextBlock x:Name="BrandLabel" Margin="5,0,0,0" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+            </StackPanel>
 
             <!-- Поле ответственного сотрудника -->
-            <Label Content="Ответственный сотрудник:"/>
-            <TextBlock x:Name="EmployerLabel" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Ответственный сотрудник:" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+                <TextBlock x:Name="EmployerLabel" Margin="5,0,0,0" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+            </StackPanel>
+
+            <!-- Поле места в стойке -->
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Место в стойке (Rack Unit):" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+                <TextBlock x:Name="RackUnitLabel" Margin="5,0,0,0" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+            </StackPanel>
+
+            <!-- Поле сетевого интерфейса -->
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Сетевой интерфейс:" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+                <TextBlock x:Name="NetworkInterfaceLabel" Margin="5,0,0,0" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+            </StackPanel>
         </StackPanel>
 
         <!-- Правая панель -->
-        <StackPanel Grid.Row="1" Margin="10,10,10,0" Grid.Column="1" VerticalAlignment="Top" Height="317">
+        <StackPanel Grid.Row="1" Margin="10,0,10,0" Grid.Column="1" VerticalAlignment="Center" Height="317">
             <!-- Поле имени устройства -->
-            <Label Content="Имя устройства:"/>
-            <TextBlock x:Name="DeviceNameLabel" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Имя устройства:" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+                <TextBlock x:Name="DeviceNameLabel" Margin="5,0,0,0" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+            </StackPanel>
 
             <!-- Поле серийного номера -->
-            <Label Content="Серийный номер:"/>
-            <TextBlock x:Name="SerialNumberLabel" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Серийный номер:" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+                <TextBlock x:Name="SerialNumberLabel" Margin="5,0,0,0" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+            </StackPanel>
 
             <!-- Поле даты покупки -->
-            <Label Content="Дата покупки:"/>
-            <TextBlock x:Name="PurchaseDateLabel" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Дата покупки:" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+                <TextBlock x:Name="PurchaseDateLabel" Margin="5,0,0,0" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+            </StackPanel>
 
             <!-- Поле окончания гарантии -->
-            <Label Content="Окончание гарантии:"/>
-            <TextBlock x:Name="WarrantyEndDateLabel" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Окончание гарантии:" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+                <TextBlock x:Name="WarrantyEndDateLabel" Margin="5,0,0,0" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+            </StackPanel>
 
             <!-- Поле даты получения -->
-            <Label Content="Дата получения:"/>
-            <TextBlock x:Name="DateOfReceiptLabel" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Дата получения:" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+                <TextBlock x:Name="DateOfReceiptLabel" Margin="5,0,0,0" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+            </StackPanel>
 
             <!-- Поле процессора -->
-            <Label Content="Процессор (CPU):"/>
-            <TextBlock x:Name="CPULabel" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Процессор (CPU):" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+                <TextBlock x:Name="CPULabel" Margin="5,0,0,0" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+            </StackPanel>
 
             <!-- Поле оперативной памяти -->
-            <Label Content="Оперативная память (RAM):"/>
-            <TextBlock x:Name="RAMLabel" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Оперативная память (RAM):" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+                <TextBlock x:Name="RAMLabel" Margin="5,0,0,0" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+            </StackPanel>
 
             <!-- Поле накопителя -->
-            <Label Content="Накопитель (Storage):"/>
-            <TextBlock x:Name="StorageLabel" Margin="0,0,0,10"/>
-
-            <!-- Поле места в стойке -->
-            <Label Content="Место в стойке (Rack Unit):"/>
-            <TextBlock x:Name="RackUnitLabel" Margin="0,0,0,10"/>
-
-            <!-- Поле сетевого интерфейса -->
-            <Label Content="Сетевой интерфейс:"/>
-            <TextBlock x:Name="NetworkInterfaceLabel" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Накопитель (Storage):" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+                <TextBlock x:Name="StorageLabel" Margin="5,0,0,0" FontFamily="Cascadia Mono SemiLight" FontSize="16"/>
+            </StackPanel>
         </StackPanel>
+
 
         <!-- Кнопка "Назад" -->
         <Button x:Name="BackBt"
                 Grid.Row="2"
                 Content="Назад"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
                 Width="100"
                 Height="40"
                 Background="DarkGray"
-                Grid.ColumnSpan="2"
                 FontSize="20"
                 Foreground="WhiteSmoke"
                 Style="{StaticResource MaterialDesignRaisedButton}"
-                Margin="0,10,0,0"
-                Click="BackBt_Click"/>
+                Margin="1,10,0,0"
+                Click="BackBt_Click" Grid.Column="1"/>
     </Grid>
 </Page>
