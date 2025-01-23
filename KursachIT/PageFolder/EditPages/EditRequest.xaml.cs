@@ -86,6 +86,7 @@ namespace KursachIT.PageFolder.EditPages
                 ITAdminEntities.GetContext().SaveChanges();
 
                 MessageBox.Show("Изменения сохранены", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                Window.GetWindow(this).Close();
             }
             catch (Exception ex)
             {

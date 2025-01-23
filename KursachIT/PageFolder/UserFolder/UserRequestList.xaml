@@ -10,11 +10,14 @@
       Title="UserRequestList">
 
     <Grid>
+        <!-- Разделение строк -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <!-- Заголовок -->
             <RowDefinition Height="Auto"/>
+            <!-- Фильтры -->
             <RowDefinition Height="*"/>
-            <!-- Контейнер для списка -->
+            <!-- DataGrid занимает оставшееся пространство -->
             <RowDefinition Height="Auto"/>
             <!-- Кнопка -->
         </Grid.RowDefinitions>
@@ -44,6 +47,7 @@
                     Margin="0,0,10,0" 
                     Style="{StaticResource MaterialDesignFloatingActionButton}"/>
 
+            <!-- Popup для фильтров -->
             <Popup x:Name="FilterPopup" Placement="Bottom" StaysOpen="False"
                    HorizontalAlignment="Right">
                 <Border Background="White" Padding="10" CornerRadius="5">

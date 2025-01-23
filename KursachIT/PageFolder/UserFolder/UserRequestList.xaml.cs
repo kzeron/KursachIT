@@ -218,6 +218,11 @@ namespace KursachIT.PageFolder.UserFolder
         {
             if (ReqestDgList.SelectedItem is ClassRequest selectedRequest)
             {
+                if(selectedRequest.IdStatus != (int)RequestHelper.StatusEnum.Canceled && selectedRequest.IdStatus  != (int)RequestHelper.StatusEnum.Completed && selectedRequest.IdStatus != (int)RequestHelper.StatusEnum.Denied)
+                {
+                    MBClass.ErrorMB("Редактирование заявки невозможно");
+                    return;
+                }
                 // Создаем экземпляр страницы с деталями и передаем данные
                 EditRequest editRequest = new EditRequest(selectedRequest.IdRequst);
 
