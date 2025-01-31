@@ -29,16 +29,19 @@ namespace KursachIT.PageFolder.AdminFolder
                 using (var context = new ITAdminEntities())
                 {
                     var historyData = (from history in context.OperationHistory
-                                       join employer in context.Employers on history.EmployerId equals employer.IdEmployers
+                                       join employer in context.Employers
+                                       on history.EmployerId equals employer.IdEmployers into employerGroup
+                                       from employer in employerGroup.DefaultIfEmpty()
                                        select new ClassHistory
                                        {
                                            IdHistory = history.IdHistory,
                                            TableName = history.TableName,
                                            OperationType = history.OperationType,
                                            OperationTime = history.OperationTime,
-                                           NameEmployer = employer.Name,
+                                           NameEmployer = employer != null ? employer.Name : "Неизвестно",
                                            ChangedData = history.ChangedData
                                        }).OrderBy(h => h.OperationTime).ToList();
+
 
                     _historyData.Clear();
                     foreach (var item in historyData)
