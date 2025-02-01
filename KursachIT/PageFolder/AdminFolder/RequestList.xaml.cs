@@ -314,10 +314,11 @@ namespace KursachIT.PageFolder.AdminFolder
                 MBClass.ErrorMB("Выбирете заявку");
                 return;
             }
-            else if(selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Canceled ||
-                    selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Overdue)
+            else if (selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Canceled ||
+                    selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Overdue ||
+                    selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Completed)
             {
-
+                MBClass.ErrorMB("Заявку уже нельзя отклонить");
             }
             else
             {
