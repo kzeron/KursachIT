@@ -81,16 +81,21 @@ namespace KursachIT.PageFolder.AdminFolder
                 MBClass.ErrorMB("Выберите заявку");
                 return;
             }
+            if (selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Denied || selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Canceled)
+            {
+                MBClass.ErrorMB("Заявка не действительна");
+                return;
+            }    
 
-            // Получение текущего пользователя из сессии
-            var session = ClassSaveSassion.LoadSession();
+                // Получение текущего пользователя из сессии
+              var session = ClassSaveSassion.LoadSession();
             if (session == null)
             {
                 MBClass.ErrorMB("Сессия не найдена.");
                 return;
             }
 
-            using (var context = ITAdminEntities.GetContext())
+            var context = ITAdminEntities.GetContext();
             {
                 // Поиск пользователя по идентификатору из сессии
                 var user = context.User
@@ -114,7 +119,7 @@ namespace KursachIT.PageFolder.AdminFolder
 
                 // Проверка наличия заявки
                 var request = context.Requests.FirstOrDefault(r => r.IdRequest == selectedRequest.IdRequst);
-                if (request != null && request.IdStatus != (int)RequestHelper.StatusEnum.Denied && request.IdStatus != (int)RequestHelper.StatusEnum.Canceled)
+                if (request != null)
                 {
                     request.IdStatus = (int)RequestHelper.StatusEnum.InProgress;
                     request.IdExcutor = employer.IdEmployers; // Назначение текущего сотрудника исполнителем
