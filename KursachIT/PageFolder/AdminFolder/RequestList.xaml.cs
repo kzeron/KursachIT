@@ -61,7 +61,9 @@ namespace KursachIT.PageFolder.AdminFolder
                         NameCategory = request.NameCategory,
                         NamePriority = request.NamePriority,
                         PlanDate = request.PlanDate,
+                        IdStatus = context.Status.FirstOrDefault(s => s.NameStatus == request.NameStatus)?.IdStatus ?? 0
                     });
+
                 }
                 ReqestDgList.ItemsSource = ModelRequest;
             }
@@ -81,21 +83,24 @@ namespace KursachIT.PageFolder.AdminFolder
                 MBClass.ErrorMB("Выберите заявку");
                 return;
             }
-            if (selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Denied || selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Canceled)
+            if (selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Denied ||
+                selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Canceled ||
+                selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Overdue)
             {
-                MBClass.ErrorMB("Заявка не действительна");
+                MBClass.ErrorMB("Заявка не действительна.");
                 return;
-            }    
+            }
 
-                // Получение текущего пользователя из сессии
-              var session = ClassSaveSassion.LoadSession();
+
+            // Получение текущего пользователя из сессии
+            var session = ClassSaveSassion.LoadSession();
             if (session == null)
             {
                 MBClass.ErrorMB("Сессия не найдена.");
                 return;
             }
 
-            var context = ITAdminEntities.GetContext();
+            using (var context = new ITAdminEntities())
             {
                 // Поиск пользователя по идентификатору из сессии
                 var user = context.User
@@ -136,6 +141,7 @@ namespace KursachIT.PageFolder.AdminFolder
 
         private void CompliteRequest_Click(object sender, RoutedEventArgs e)
         {
+
             // Получаем выбранную заявку из списка
             var selectedRequest = ReqestDgList.SelectedItem as ClassRequest;
             if (selectedRequest == null)
@@ -143,6 +149,14 @@ namespace KursachIT.PageFolder.AdminFolder
                 MBClass.ErrorMB("Выберите заявку");
                 return;
             }
+            if (selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Denied ||
+                selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Canceled ||
+                selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Overdue)
+            {
+                MBClass.ErrorMB("Заявка не действительна.");
+                return;
+            }
+
 
             // Получение текущего пользователя из сессии
             var session = ClassSaveSassion.LoadSession();
@@ -152,7 +166,7 @@ namespace KursachIT.PageFolder.AdminFolder
                 return;
             }
 
-            using (var context = ITAdminEntities.GetContext())
+            using (var context = new ITAdminEntities())
             {
                 // Поиск пользователя по идентификатору из сессии
                 var user = context.User
@@ -299,6 +313,11 @@ namespace KursachIT.PageFolder.AdminFolder
             {
                 MBClass.ErrorMB("Выбирете заявку");
                 return;
+            }
+            else if(selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Canceled ||
+                    selectedRequest.IdStatus == (int)RequestHelper.StatusEnum.Overdue)
+            {
+
             }
             else
             {
