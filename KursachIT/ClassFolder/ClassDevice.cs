@@ -43,6 +43,7 @@ namespace KursachIT.ClassFolder
         public int IdBrand { get; set; }    
         public string BrandName { get; set; }
         public string NameStatus { get; set; }
+        public byte[] Photo { get; set; }
     }
     public class DeviceTypeModel
     {

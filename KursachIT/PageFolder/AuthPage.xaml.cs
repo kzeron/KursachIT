@@ -67,7 +67,9 @@ namespace KursachIT.PageFolder
                             }
                             break;
                         case 2:
-                            MBClass.InformationMB("Помощник");
+                            main = new MainMenu();
+                            main.Show();
+                            Window.GetWindow(this).Close();
                             break;
                         case 3:
                             UserWindowMain user = new UserWindowMain();

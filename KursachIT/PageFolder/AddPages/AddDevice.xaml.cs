@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using KursachIT.PageFolder.AdminFolder;
 using Microsoft.Win32;
+using System.IO;
 
 namespace KursachIT.PageFolder.AddPages
 {
@@ -26,7 +27,8 @@ namespace KursachIT.PageFolder.AddPages
     /// </summary>
     public partial class AddDevice : Page
     {
-        private string _photoPath;
+        public string _photoPath;
+        private byte[] _photoBytes;
         int selectDevice;
         public AddDevice()
         {
@@ -105,7 +107,7 @@ namespace KursachIT.PageFolder.AddPages
                             IdDeviceType = selectedIdTypeDevice.IdDeviceType,
                             IdBrand = selectedIdBrand.IdBrand,
                             IdEmployer = selectedIdEmployer, // null, если сотрудник не выбран
-                            PhotoPath = _photoPath,
+                            Photo = _photoBytes,
                             IdStatus = (int)DeviceStatus.Function
                         };
 
@@ -148,6 +150,11 @@ namespace KursachIT.PageFolder.AddPages
         {
             Window.GetWindow(this).Close();
         }
+        private byte[] ConvertImageToByteArray(string imagePath)
+        {
+            return File.ReadAllBytes(imagePath);
+        }
+
         private void PhotoAddBtn_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog
@@ -158,13 +165,15 @@ namespace KursachIT.PageFolder.AddPages
 
             if (openFileDialog.ShowDialog() == true)
             {
-                // Сохраняем выбранный путь к изображению
-                _photoPath = openFileDialog.FileName;
-
                 try
                 {
-                    // Загружаем изображение в интерфейс
+                    _photoPath = openFileDialog.FileName;
+                    var imageBytes = ConvertImageToByteArray(_photoPath);
+
                     DeviceImage.Source = new BitmapImage(new Uri(_photoPath));
+
+                    // Сохраняем фото в переменной для последующего сохранения в БД
+                    _photoBytes = imageBytes;
                 }
                 catch (Exception ex)
                 {
@@ -172,6 +181,7 @@ namespace KursachIT.PageFolder.AddPages
                 }
             }
         }
+
 
     }
 }

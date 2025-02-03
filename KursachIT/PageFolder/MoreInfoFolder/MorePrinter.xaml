@@ -30,9 +30,9 @@
 
         <!-- Левая панель -->
         <StackPanel Grid.Row="1" Margin="10">
-            <Image Source="{Binding PhotoPath}"
+            <Image Source="{Binding Photo}"
                     Width="150"
-                   x:Name="DeviceImage"
+                   x:Name="PhotoImage"
                     Height="150"
                     Stretch="Uniform"
                     Margin="0,8"/>

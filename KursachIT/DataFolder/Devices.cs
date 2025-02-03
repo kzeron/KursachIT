@@ -33,7 +33,7 @@ namespace KursachIT.DataFolder
         public int IdBrand { get; set; }
         public Nullable<int> IdStatus { get; set; }
         public Nullable<int> IdEmployer { get; set; }
-        public string PhotoPath { get; set; }
+        public byte[] Photo { get; set; }
     
         public virtual Brand Brand { get; set; }
         public virtual DeviceTypes DeviceTypes { get; set; }

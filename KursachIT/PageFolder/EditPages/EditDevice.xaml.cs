@@ -3,6 +3,7 @@ using KursachIT.DataFolder;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,18 +56,19 @@ namespace KursachIT.PageFolder.EditPages
             SerialNumberDevice.Text = devices.SerialNumber;
 
             // Загрузка изображения
-            if (!string.IsNullOrWhiteSpace(devices.PhotoPath))
+            if (_devices.Photo != null && _devices.Photo.Length > 0)
             {
-                try
+                using (var ms = new MemoryStream(_devices.Photo))
                 {
-                    DeviceImage.Source = new BitmapImage(new Uri(devices.PhotoPath));
-                    _photoPath = devices.PhotoPath; // Сохраняем текущий путь для обновления
-                }
-                catch (Exception ex)
-                {
-                    MBClass.ErrorMB($"Ошибка загрузки изображения: {ex.Message}");
+                    var bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.StreamSource = ms;
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.EndInit();
+                    DeviceImage.Source = bitmapImage;
                 }
             }
+
         }
         private void LoadBrand()
         {
@@ -112,13 +114,15 @@ namespace KursachIT.PageFolder.EditPages
 
             if (openFileDialog.ShowDialog() == true)
             {
-                // Сохраняем выбранный путь к изображению
                 _photoPath = openFileDialog.FileName;
 
                 try
                 {
-                    // Загружаем изображение в интерфейс
+                    // Загрузка изображения в интерфейс
                     DeviceImage.Source = new BitmapImage(new Uri(_photoPath));
+
+                    // Конвертация изображения в byte[]
+                    _devices.Photo = File.ReadAllBytes(_photoPath);
                 }
                 catch (Exception ex)
                 {
@@ -126,6 +130,7 @@ namespace KursachIT.PageFolder.EditPages
                 }
             }
         }
+
 
         private void BackBt_Click(object sender, RoutedEventArgs e)
         {
@@ -192,8 +197,9 @@ namespace KursachIT.PageFolder.EditPages
                     // Сохранение пути к изображению
                     if (!string.IsNullOrWhiteSpace(_photoPath))
                     {
-                        _devices.PhotoPath = _photoPath;
+                        _devices.Photo = File.ReadAllBytes(_photoPath);
                     }
+
 
                     ITAdminEntities.GetContext().SaveChanges();
 

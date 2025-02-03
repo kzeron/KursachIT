@@ -38,7 +38,7 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                             DeviceType = server.Devices.DeviceTypes.DeviceTypeName,
                             Brand = server.Devices.Brand.NameBrand,
                             Employer = server.Devices.Employers.Lastname,
-                            server.Devices.PhotoPath,
+                            server.Devices.Photo,
                             server.CPU,
                             server.RAM,
                             server.Storage,
@@ -63,11 +63,21 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                         StorageLabel.Text = serverDetails.Storage ?? "Не указано";
                         RackUnitLabel.Text = serverDetails.RackUnit.ToString() ?? "Не указано";
                         NetworkInterfaceLabel.Text = serverDetails.NetworkInterface ?? "Не указано";
-                        if (!string.IsNullOrWhiteSpace(serverDetails.PhotoPath) && File.Exists(serverDetails.PhotoPath))
+                        // Загрузка изображения из базы
+                        if (serverDetails.Photo != null && serverDetails.Photo.Length > 0)
                         {
                             try
                             {
-                                DeviceImage.Source = new BitmapImage(new Uri(serverDetails.PhotoPath));
+                                using (var stream = new MemoryStream(serverDetails.Photo))
+                                {
+                                    BitmapImage bitmap = new BitmapImage();
+                                    bitmap.BeginInit();
+                                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                                    bitmap.StreamSource = stream;
+                                    bitmap.EndInit();
+                                    bitmap.Freeze(); // Делаем потокобезопасным
+                                    PhotoImage.Source = bitmap; // Устанавливаем изображение
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -76,8 +86,8 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                         }
                         else
                         {
-                            DeviceImage.Source = null; // Устанавливаем пустое изображение
-                            MBClass.InformationMB("Фотография устройства отсутствует или путь неверный.");
+                            PhotoImage.Source = null; // Очищаем, если фото нет
+                            MBClass.InformationMB("Фотография устройства отсутствует.");
                         }
                     }
                     else

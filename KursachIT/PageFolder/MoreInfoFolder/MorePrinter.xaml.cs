@@ -9,9 +9,6 @@ using System.Windows.Media.Imaging;
 
 namespace KursachIT.PageFolder.MoreInfoFolder
 {
-    /// <summary>
-    /// Логика взаимодействия для MorePrinter.xaml
-    /// </summary>
     public partial class MorePrinter : Page
     {
         private int _idDevice;
@@ -38,7 +35,7 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                             printer.Devices.PurchaseDate,
                             printer.Devices.WarrantyEndDate,
                             printer.Devices.DateOfReceipt,
-                            printer.Devices.PhotoPath,
+                            printer.Devices.Photo, // Загружаем фото из БД как byte[]
                             DeviceType = printer.Devices.DeviceTypes.DeviceTypeName,
                             Brand = printer.Devices.Brand.NameBrand,
                             Employer = printer.Devices.Employers.Lastname,
@@ -46,13 +43,12 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                             printer.MaxResolution,
                             printer.MaxPrintSpeed,
                             ColorTechnology = printer.ColorTechology.ColorTech
-                            
                         })
                         .FirstOrDefault();
 
                     if (printerDetails != null)
                     {
-                        // Заполнение элементов интерфейса
+                        // Заполнение текстовых полей
                         DeviceNameLabel.Text = printerDetails.NameDevice ?? "Не указано";
                         SerialNumberLabel.Text = printerDetails.SerialNumber ?? "Не указано";
                         PurchaseDateLabel.Text = printerDetails.PurchaseDate.ToString("dd.MM.yyyy") ?? "Не указано";
@@ -66,12 +62,21 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                         MaxPrintSpeedLabel.Text = printerDetails.MaxPrintSpeed.ToString() ?? "Не указано";
                         ColorTechLabel.Text = printerDetails.ColorTechnology ?? "Не указано";
 
-                        // Проверка пути к фотографии
-                        if (!string.IsNullOrWhiteSpace(printerDetails.PhotoPath) && File.Exists(printerDetails.PhotoPath))
+                        // Загрузка изображения из базы
+                        if (printerDetails.Photo != null && printerDetails.Photo.Length > 0)
                         {
                             try
                             {
-                                DeviceImage.Source = new BitmapImage(new Uri(printerDetails.PhotoPath));
+                                using (var stream = new MemoryStream(printerDetails.Photo))
+                                {
+                                    BitmapImage bitmap = new BitmapImage();
+                                    bitmap.BeginInit();
+                                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                                    bitmap.StreamSource = stream;
+                                    bitmap.EndInit();
+                                    bitmap.Freeze(); // Делаем потокобезопасным
+                                    PhotoImage.Source = bitmap; // Устанавливаем изображение
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -80,11 +85,10 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                         }
                         else
                         {
-                            DeviceImage.Source = null; // Устанавливаем пустое изображение
-                            MBClass.InformationMB("Фотография устройства отсутствует или путь неверный.");
+                            PhotoImage.Source = null; // Очищаем, если фото нет
+                            MBClass.InformationMB("Фотография устройства отсутствует.");
                         }
                     }
-
                 }
             }
             catch (Exception ex)

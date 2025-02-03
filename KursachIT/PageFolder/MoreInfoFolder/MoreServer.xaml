@@ -36,8 +36,8 @@
         <!-- Левая панель -->
         <StackPanel Grid.Row="1" Margin="10,10,10,0" Grid.Column="0" VerticalAlignment="Top" Height="263">
             <!-- Изображение устройства -->
-            <Image Source="{Binding PhotoPath}"
-           x:Name="DeviceImage"
+            <Image Source="{Binding Photo}"
+           x:Name="PhotoImage"
            Width="120"
            Height="120"
            Stretch="Uniform"

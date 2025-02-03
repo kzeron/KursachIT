@@ -55,13 +55,31 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                             pc.RAM,
                             pc.Storage,
                             pc.GPU,
-                            pc.Devices.PhotoPath// Поле для пути изображения
+                            pc.Devices.Photo // Теперь загружаем `Photo`, а не `PhotoPath`
                         })
                         .FirstOrDefault();
 
                     if (pcDetails != null)
                     {
                         DataContext = pcDetails;
+
+                        // Загрузка изображения из `byte[]`
+                        if (pcDetails.Photo != null && pcDetails.Photo.Length > 0)
+                        {
+                            using (var stream = new System.IO.MemoryStream(pcDetails.Photo))
+                            {
+                                BitmapImage bitmap = new BitmapImage();
+                                bitmap.BeginInit();
+                                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                                bitmap.StreamSource = stream;
+                                bitmap.EndInit();
+                                PhotoImage.Source = bitmap;
+                            }
+                        }
+                        else
+                        {
+                            PhotoImage.Source = null; // Или установить заглушку
+                        }
                     }
                     else
                     {
@@ -74,6 +92,7 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                 MBClass.ErrorMB($"Ошибка: {ex.Message}");
             }
         }
+
 
 
         private void BackBt_Click(object sender, RoutedEventArgs e)

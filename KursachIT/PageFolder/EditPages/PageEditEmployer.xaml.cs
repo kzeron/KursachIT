@@ -2,6 +2,7 @@
 using KursachIT.DataFolder;
 using Microsoft.Win32;
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -48,10 +49,9 @@ namespace KursachIT.PageFolder.EditPages
 
                 if (_currentEmployer != null)
                 {
-                    if (!string.IsNullOrWhiteSpace(_currentEmployer.PhotoPath))
+                    if (_currentEmployer.Photo != null && _currentEmployer.Photo.Length > 0)
                     {
-                        _photoPath = _currentEmployer.PhotoPath;
-                        EmployeePhoto.Source = new BitmapImage(new Uri(_photoPath));
+                        EmployeePhoto.Source = ByteArrayToImage(_currentEmployer.Photo);
                     }
                     NameEmTb.Text = _currentEmployer.Name;
                     SurnameEmTb.Text = _currentEmployer.Lastname;
@@ -122,7 +122,6 @@ namespace KursachIT.PageFolder.EditPages
 
                     if (employer != null)
                     {
-                        // Обновление данных сотрудника
                         employer.Name = NameEmTb.Text;
                         employer.Lastname = SurnameEmTb.Text;
                         employer.Patronymic = PathronymicEmTb.Text;
@@ -131,10 +130,12 @@ namespace KursachIT.PageFolder.EditPages
                         employer.IdOffice = (int)NameOfficeCb.SelectedValue;
                         employer.IdCab = (int)NamberOfficeCb.SelectedValue;
                         employer.IdStatus = 7;
-                        employer.PhotoPath = _photoPath;
 
+                        if (!string.IsNullOrEmpty(_photoPath))
+                        {
+                            employer.Photo = ImageToByteArray(_photoPath);
+                        }
 
-                        // Сохранение изменений
                         context.SaveChanges();
                         MBClass.InformationMB("Данные сотрудника успешно обновлены.");
                         Window.GetWindow(this)?.Close();
@@ -156,6 +157,11 @@ namespace KursachIT.PageFolder.EditPages
 
             NavigationService.GoBack();
         }
+        private byte[] ImageToByteArray(string imagePath)
+        {
+            return File.ReadAllBytes(imagePath);
+        }
+
         private void PhotoAddBtn_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog
@@ -180,6 +186,19 @@ namespace KursachIT.PageFolder.EditPages
                 }
             }
         }
+        private BitmapImage ByteArrayToImage(byte[] byteArray)
+        {
+            using (var ms = new MemoryStream(byteArray))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
+            }
+        }
+
 
     }
 }

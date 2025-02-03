@@ -38,7 +38,7 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                             scanner.Devices.PurchaseDate,
                             scanner.Devices.WarrantyEndDate,
                             scanner.Devices.DateOfReceipt,
-                            scanner.Devices.PhotoPath,
+                            scanner.Devices.Photo, // Загружаем бинарные данные изображения
                             DeviceType = scanner.Devices.DeviceTypes.DeviceTypeName,
                             Brand = scanner.Devices.Brand.NameBrand,
                             Employer = scanner.Devices.Employers.Lastname,
@@ -63,11 +63,20 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                         ScanSpeedLabel.Text = scannerDetails.ScanSpeed.ToString() ?? "Не указано";
                         DocumentFeederLabel.Text = scannerDetails.DocumentFeeder ?? "Не указано";
 
-                        if (!string.IsNullOrWhiteSpace(scannerDetails.PhotoPath) && File.Exists(scannerDetails.PhotoPath))
+                        // Загрузка изображения из базы данных
+                        if (scannerDetails.Photo != null && scannerDetails.Photo.Length > 0)
                         {
                             try
                             {
-                                DeviceImage.Source = new BitmapImage(new Uri(scannerDetails.PhotoPath));
+                                using (MemoryStream ms = new MemoryStream(scannerDetails.Photo))
+                                {
+                                    BitmapImage bitmap = new BitmapImage();
+                                    bitmap.BeginInit();
+                                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                                    bitmap.StreamSource = ms;
+                                    bitmap.EndInit();
+                                    PhotoImage.Source = bitmap;
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -76,8 +85,8 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                         }
                         else
                         {
-                            DeviceImage.Source = null; // Устанавливаем пустое изображение
-                            MBClass.InformationMB("Фотография устройства отсутствует или путь неверный.");
+                            PhotoImage.Source = null; // Очищаем изображение, если данных нет
+                            MBClass.InformationMB("Фотография устройства отсутствует.");
                         }
                     }
                     else
@@ -91,7 +100,6 @@ namespace KursachIT.PageFolder.MoreInfoFolder
                 MBClass.ErrorMB($"Ошибка загрузки данных: {ex.Message}");
             }
         }
-
 
         private void BackBt_Click(object sender, RoutedEventArgs e)
         {

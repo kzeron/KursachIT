@@ -29,8 +29,8 @@
                Grid.ColumnSpan="2"/>
 
         <StackPanel Grid.Row="1" Margin="10">
-            <Image Source="{Binding PhotoPath}"
-                   x:Name="DeviceImage"
+            <Image Source="{Binding Photo}"
+                   x:Name="PhotoImage"
          Width="100"
          Height="100"
          Stretch="Uniform"

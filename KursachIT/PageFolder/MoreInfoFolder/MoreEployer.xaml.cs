@@ -44,13 +44,21 @@ namespace KursachIT.PageFolder.MoreFolder
                         NumberOfficeTextBlock.Text = cabinet?.NumberCabinet.ToString() ?? "Не указан";
 
                         // Загрузка изображения
-                        if (!string.IsNullOrEmpty(employer.PhotoPath))
+                        if (employer.Photo != null && employer.Photo.Length > 0)
                         {
-                            PhotoImage.Source = new BitmapImage(new Uri(employer.PhotoPath, UriKind.RelativeOrAbsolute));
+                            using (var stream = new System.IO.MemoryStream(employer.Photo))
+                            {
+                                BitmapImage bitmap = new BitmapImage();
+                                bitmap.BeginInit();
+                                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                                bitmap.StreamSource = stream;
+                                bitmap.EndInit();
+                                PhotoImage.Source = bitmap;
+                            }
                         }
                         else
                         {
-                            PhotoImage.Source = null; // Или установить изображение-заглушку
+                            PhotoImage.Source = null; // Или поставить изображение-заглушку
                         }
                     }
                     else

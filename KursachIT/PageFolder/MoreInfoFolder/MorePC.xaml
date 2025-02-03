@@ -28,7 +28,8 @@
 
         <StackPanel HorizontalAlignment="Center"
                     Grid.Row="1">
-            <Image Source="{Binding PhotoPath}"
+            <Image Source="{Binding Photo}"
+                   x:Name="PhotoImage"
            Width="150"
            Height="150"
            Stretch="Uniform"

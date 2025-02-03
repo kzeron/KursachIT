@@ -2,10 +2,8 @@
 using KursachIT.DataFolder;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -19,6 +17,7 @@ namespace KursachIT.PageFolder.AddPages
     {
         private string _photoPath;
         int _newIdUser;
+        private byte[] _photoData;
         public PageAddEmploye(int userId)
         {
             InitializeComponent();
@@ -92,7 +91,7 @@ namespace KursachIT.PageFolder.AddPages
                             IdCab = selectedCabinetId, // Передаем ID кабинета
                             IdUser = _newIdUser,
                             IdStatus = (int)UserStatus.Working,
-                            PhotoPath = _photoPath // Сохраняем путь к фотографии
+                            Photo = _photoData // Сохраняем путь к фотографии
                         };
 
                         context.Employers.Add(employer);
@@ -140,6 +139,11 @@ namespace KursachIT.PageFolder.AddPages
                 parentWindow.Close();
             }
         }
+        private byte[] ConvertImageToByteArray(string imagePath)
+        {
+            return File.ReadAllBytes(imagePath);
+        }
+
         private void PhotoAddBtn_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog
@@ -150,16 +154,14 @@ namespace KursachIT.PageFolder.AddPages
 
             if (openFileDialog.ShowDialog() == true)
             {
-                // Сохраняем выбранный путь к изображению
                 var selectedImagePath = openFileDialog.FileName;
 
                 try
                 {
-                    // Загружаем изображение в интерфейс
                     EmployeePhoto.Source = new BitmapImage(new Uri(selectedImagePath));
 
-                    // Сохраняем путь в переменную для дальнейшей обработки
-                    _photoPath = selectedImagePath;
+                    // Сохраняем изображение в переменную
+                    _photoData = ConvertImageToByteArray(selectedImagePath);
                 }
                 catch (Exception ex)
                 {
